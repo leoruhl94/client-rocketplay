@@ -13,7 +13,7 @@ const Home: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 >
                     <path
-                        d={`M0 0h${window.innerWidth}v587C169 568 139.033 689.187 0 670V0z`}
+                        d={`M0 0h375v587C169 568 139.033 689.187 0 670V0z`}
                         fill="url(#prefix__paint0_linear_100_5529)"
                     />
                     <defs>
