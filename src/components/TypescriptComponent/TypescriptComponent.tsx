@@ -1,5 +1,5 @@
 import React from "react"
-import './TypescriptComponent.css'
+import './TypescriptComponent.scss'
 export const TypescriptComponent: React.FC = () => {
     return (
         <div>
