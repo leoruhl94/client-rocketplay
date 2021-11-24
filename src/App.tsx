@@ -1,19 +1,35 @@
 import React from 'react'
-import { TypescriptComponent } from './components/TypescriptComponent/TypescriptComponent'
 // import './styles/global.scss'
-import './styles/global.css'
+import "./styles/normalize.css"
+import './styles/app.css'
 
+// Componentes
+import Home from "./routes/Home/Home";
+import AboutComponent from './routes/About/AboutComponent';
+import PricingComponent from './routes/Pricing/PricingComponent';
+
+// Navegación
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const App: React.FC = () => {
 
-    return (
-        <div>
-            <h1 className="bg-indigo-500">Parece que funciona</h1>
-            <h2>Estilos... Ojala funcionen...</h2>
-            <TypescriptComponent/>
-        </div>
+    return ( // ----------------------------------------------------
+        // ..... Enrutamiento .....
+        <BrowserRouter>
+            <Switch>
+                {/* ..... Ruta principal ..... */}
+                <Route path="/" component={Home} />
+                {/* ..... Ruta about ..... */}
+                <Route path="/about" component={AboutComponent} />
+                {/* ...... Ruta pricing ..... */}
+                <Route path="/pricing" component={PricingComponent} />
+
+            </Switch>   
+
+        </BrowserRouter>
     )
 } 
+// ----------------------------------------------------
 // Componentes para hacer el día 24 / 11 ->
 /*
 

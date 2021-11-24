@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Yatra+One&display=swap');
+* {
+    /*HOla*/
+}
+
+body {
+    font-family: 'Ubuntu Condensed', 'Yatra One', sans-serif;
+    background: #22343C;
+}
