@@ -1,0 +1,1 @@
+## Aqui van componentes Grandes que renderizan componentes pequeños
