@@ -1,0 +1,15 @@
+.headerSubContainer {
+    width: 80%;
+    /* background: red; */
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+    /* outline: 2px dashed gray; */
+    border-radius: 15px;
+    .title {
+        font-size: 4rem;
+        color: rgb(245, 79, 79);
+        font-weight: bold;
+        text-shadow: 2px 2px 5px #000;
+    }
+}
