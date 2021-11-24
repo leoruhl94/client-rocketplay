@@ -56,7 +56,7 @@ module.exports = {
           loader: "html-loader",
         },
       },
-      {
+       {
         test: /\.s?[ac]ss$/i,
         use: [ 
           MiniCssExtractPlugin.loader, 
@@ -64,10 +64,6 @@ module.exports = {
           "sass-loader", 
         ],
       },
-      // {
-      //   test: /\.css$/i,
-      //   use: [ MiniCssExtractPlugin.loader,  "css-loader"],
-      // },
       {
         test: /\.(jpg|png)$/i,
         type: 'asset'

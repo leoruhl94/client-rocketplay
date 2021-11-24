@@ -6,9 +6,13 @@ const PricingComponent: React.FC = () => {
 
     // ----- ----- ----- ----- -----
     return (
-        <div>
-            <h1>Acá van los precios component</h1>
-            <h2>Estilización</h2>
+            <div>
+                <h1>Explore current top deals</h1>
+                <h5>See our products</h5>
+                {/* Aquí va un componente que es un div . Mostrará data del paquete */}
+            
         </div>
     )
 } 
+
+export default PricingComponent
