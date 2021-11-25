@@ -6,11 +6,11 @@ import { HomeClients } from "../../components/HomeComponents/HomeClients/HomeCli
 export const Home: React.FC = () => {
 
     return (
-        <>
+        <div className="allContainer">
             <HomeHeader />
             <HomeClients/>
             <HomeImages/>
             <HomeButton/>
-        </>
+        </div>
     )
 }

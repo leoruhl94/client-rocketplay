@@ -82,7 +82,7 @@ module.exports = {
     new ImageMinimizerPlugin({
         minimizerOptions: {
             plugins: [
-                'optipng', {optimizationLevel:5}
+                ['optipng', {optimizationLevel:5}]
             ]
         }
     }),

@@ -43,14 +43,36 @@
 
 @media (min-width: 768px) {
     .logInButtonContainer {
-        position: relative;
+        position:initial;
         margin: 0 auto;
         margin-bottom: 2rem;
         border-radius: 10px;
         width: 30%;
         background: none;
         .logInButton {
-            width: 70%;
+            width: 30%;
+            position: absolute;
+            top: 32%;
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .logInButtonContainer{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 32%;
+        }
+    }
+}
+
+@media (min-width: 1115px){
+    .logInButtonContainer{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 42%;
         }
     }
 }

@@ -1,0 +1,66 @@
+@import "../../styles/variables.scss";
+
+.loginImgContainer{
+    width: 80%;
+    height: 18.76rem;
+    margin: 0 auto;
+    padding: 0;
+    // background: red;
+    margin-top: 5rem;
+    .loginImg{
+        margin: 0;
+        width: 300px;
+        border-radius: 15px;
+        box-shadow: 5px 5px 30px black;
+    }
+}
+
+.buttonsContainer{
+    width: 80%;
+    height: 10rem;
+    // background: red;
+    margin: 0 auto;
+    margin-top: 5rem;
+    .singleButton{
+        display: flex;
+        // background: blue;
+        margin: 1rem auto;
+        width: 100%;
+        justify-content: center;
+        height: 3.5rem;
+        .loginGoogle {
+            width: 100%;
+            height: 3.5rem;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 1.5rem;
+            align-items: center;
+            border-radius: 15px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 5px 5px 15px black;
+            color: #8a9194;
+            .logoGoogle {
+                width: 32px;
+            }
+        }
+        .loginEmail {
+            width: 100%;
+            height: 3.5rem;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 1.5rem;
+            align-items: center;
+            border-radius: 15px;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            box-shadow: 5px 5px 15px black;
+            background: $mainButtonColor;
+            color: white;
+            text-shadow: 1px 1px 3px black;
+        }
+    }
+}

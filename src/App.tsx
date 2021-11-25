@@ -12,6 +12,7 @@ import PricingComponent from './routes/Pricing/PricingComponent';
 
 // Navegación
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { LoginSwitch } from './components/Login-Register/LoginSwitch';
 
 const App: React.FC = () => {
 
@@ -33,7 +34,7 @@ const App: React.FC = () => {
                 
                 <Route exact path="/logs" component={Logins}/>
                 {/* ...... Ruta Log In ..... */}
-                <Route exact path="/login"/>
+                <Route exact path="/login" component={LoginSwitch}/>
                 {/* ...... Ruta Register ..... */}
                 <Route exact path="/register"/>
                 {/* ...... Ruta Business register ..... */}
