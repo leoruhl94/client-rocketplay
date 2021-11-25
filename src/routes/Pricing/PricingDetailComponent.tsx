@@ -12,7 +12,7 @@ export interface Props {
 
 export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     // Caja de variables
-    const [dep, setDep] = useState<Boolean>(false)
+    const [dep, setDep] = useState<Boolean>(props.plan === 'Standard' ? true : false)
     // ----- ----- ----- ----- -----
     function handleDeploy() {
         setDep(!dep)

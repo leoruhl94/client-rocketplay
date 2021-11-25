@@ -1,0 +1,50 @@
+.loadingContainer {
+    transform: translateX(100px);
+}
+.littleCircle{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    transform: rotate(calc(18deg * var(--i)));
+    &:before{
+        position: absolute;
+        content: "";
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: white;
+        animation: scaleAnim 2s linear infinite;
+        animation-delay: calc(0.1s * var(--i));
+    }
+    @keyframes scaleAnim {
+        0%{
+            transform: scale(0)
+        }
+        10%{
+            transform: scale(1)
+        }
+        100%{
+            transform: scale(0)
+        }
+    }
+}
+.rocket{
+    position: absolute;
+    width: 35px;
+    transform: translateX(-10px) translateY(-10px) rotate(45deg);
+}
+.rocketContainer{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    transform: rotate(180deg);
+    animation: spin 2s linear infinite;
+    @keyframes spin {
+        from{
+            transform: rotate(10deg);
+        }to{
+            transform: rotate(370deg)
+        }
+    }
+}
