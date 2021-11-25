@@ -4,7 +4,7 @@ import "./styles/normalize.css"
 import './styles/app.css'
 
 // Componentes
-import Home from "./routes/Home/Home";
+import {Home} from "./routes/Home/Home";
 import AboutComponent from './routes/About/AboutComponent';
 import PricingComponent from './routes/Pricing/PricingComponent';
 
@@ -18,11 +18,17 @@ const App: React.FC = () => {
         <BrowserRouter>
             <Switch>
                 {/* ..... Ruta principal ..... */}
-                <Route path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 {/* ..... Ruta about ..... */}
-                <Route path="/about" component={AboutComponent} />
+                <Route exact path="/about" component={AboutComponent} />
                 {/* ...... Ruta pricing ..... */}
-                <Route path="/pricing" component={PricingComponent} />
+                <Route exact path="/pricing" component={PricingComponent} />
+                {/* ...... Ruta pricing ..... */}
+                <Route exact path="/login"/>
+                {/* ...... Ruta pricing ..... */}
+                <Route exact path="/register"/>
+                {/* ...... Ruta pricing ..... */}
+                <Route exact path="/business-register"/>
 
             </Switch>   
 

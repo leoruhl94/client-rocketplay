@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/home.css"
 import "../../styles/home.scss"
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
 
     return (
         <div className="headerContainer"> {/* Red container */}
@@ -69,4 +69,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home
+
