@@ -2,7 +2,6 @@
 
 .aboutImgContainer {
     width: 300px;
-    background: red;
     margin: 5rem auto;
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -20,7 +19,7 @@
     h2{
         position: absolute;
         top: 60%;
-        left: 60%;
+        right: 5%;
         font-size: 2rem;
         font-weight: bold;
         color: #fff;

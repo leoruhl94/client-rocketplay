@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./homeHeader.scss"
 
 export const HomeHeader: React.FC = () => {
+
+    let div: any = document.querySelector(".headerContainer");
+
     return (
         <div className="headerContainer"> {/* Red container */}
                 <svg
