@@ -1,12 +1,7 @@
 import React from "react";
+import { useParams } from "react-router";
 
-// ----- ----- -----
-export interface Props {
-    name : string,
-    image : string,
-    description : string,
-    social : []
-}
+
 // ----- ----- -----
 // LInks:
 /*
@@ -18,18 +13,23 @@ https://adrianrueda.dev/typescript-con-react/
 // ----- ----- -----
 
 // Componente about
-const AboutDetailComponent: React.FC<Props> = (props:Props) => {
+const AboutDetailComponent: React.FC = () => {
     // Caja de variables
+    // https://dev.to/javila35/react-router-hook-useparam-now-w-typescript-m93
+    type idParams = {
+        id : string
+    }
+
+    let { id } = useParams<idParams>()
+
+    
+
+
+
     // ----- ----- ----- ----- -----
     return (
         <div>
-            {/* Componente que va a ser renderizado por otros componentes */}
-            <h1>{ props.name }</h1>
-            <h1>{ props.image }</h1>
-            <h1>{ props.description }</h1>
-            <h1>{ props.social.map((x) => {
-                return (<span>{x}</span>) 
-            })}</h1>
+            <h1>Buenas soy el {id}</h1>
         </div>
     )
 } 

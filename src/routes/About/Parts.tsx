@@ -1,5 +1,7 @@
-export default interface Partes {
+export interface Props {
+    id: Number
     name : string,
     image : string,
-    social : [],
+    description : string,
+    social : []
 }

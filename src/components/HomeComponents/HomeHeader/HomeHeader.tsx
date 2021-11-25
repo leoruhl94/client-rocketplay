@@ -7,31 +7,21 @@ export const HomeHeader: React.FC = () => {
 
     return (
         <div className="headerContainer"> {/* Red container */}
+            <div className='curve-bg'>
                 <svg
-                className="curve-bg"
-                width={375}
-                height={673}
-                fill="none"
+                className='bottom-curve'
                 xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1533.04 124.29"
                 >
+                <g data-name="Capa 2">
                     <path
-                        d={`M0 0h375v587C169 568 139.033 689.187 0 670V0z`}
-                        fill="url(#prefix__paint0_linear_100_5529)"
+                    d="M1533 124.29H0V98.77C254.45-4.85 453.76-9.46 592.09 7.49 807.91 33.94 923.81 118.79 1158 109.14c159.79-6.58 289.22-53.63 375-93.37z"
+                    fill="#22343c"
+                    data-name="Capa 1"
                     />
-                    <defs>
-                        <linearGradient
-                        id="prefix__paint0_linear_100_5529"
-                        x1={187.5}
-                        y1={0}
-                        x2={187.5}
-                        y2={672.067}
-                        gradientUnits="userSpaceOnUse"
-                        >
-                        <stop stopColor="#6835A5" />
-                        <stop offset={1} stopColor="#1983FF" />
-                        </linearGradient>
-                    </defs>
+                </g>
                 </svg>
+            </div>
             <div className="headerSubContainer"> {/* Red sub container */}
                 <div className="logo"> {/* Logo div */}
                 <svg

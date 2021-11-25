@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.backButton {
+    background: $backButtonColor;
+    color: white;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px black;
+}

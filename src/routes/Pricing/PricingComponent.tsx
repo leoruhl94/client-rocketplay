@@ -10,7 +10,7 @@ const PricingComponent: React.FC = () => {
                 <h1>Explore current top deals</h1>
                 <h5>See our products</h5>
                 {/* Aquí va un componente que es un div . Mostrará data del paquete */}
-            
+                {/* Pricing component */}
         </div>
     )
 } 
