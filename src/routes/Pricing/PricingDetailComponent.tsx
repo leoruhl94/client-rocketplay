@@ -1,26 +1,35 @@
-import React from "react";
-
-// Componente about
+import React, { FormEvent, useState } from "react";
+import './PricingDetailComponent.scss'
 
 // ----- ----- -----
 export interface Props {
-    name : string,
-    image : string,
-    description : string,
-    social : []
+    color: string;
+    plan: string;
+    price: number;
+    description: string;
 }
 // ----- ----- -----
 
-const PricingDetailComponent: React.FC = () => {
+export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     // Caja de variables
-
+    const [dep, setDep] = useState<Boolean>(false)
     // ----- ----- ----- ----- -----
+    function handleDeploy() {
+        setDep(!dep)
+    }
     return (
-        <div>
-            <h1>Explore current top deals</h1>
-            <h5>See our products</h5>
-            {/* Aquí va un componente que es un div . Mostrará data del paquete */}
-            
+        <div className={`planContainer ${props.color}${dep ? ' dep':''}`}>
+            <button className={`btn-deploy`} onClick={handleDeploy}></button>
+            <p className="plan">{props.plan}</p>
+            <div className='planData'>
+                <div className="price">
+                    <span>{props.price}<span> $</span></span> per month
+                </div>
+                <p className="description">{props.description}</p>
+                <button className="btn-buy">Buy Now</button>
+            </div>
         </div>
     )
 } 
+
+ 

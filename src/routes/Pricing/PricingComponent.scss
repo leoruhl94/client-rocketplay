@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+#pricingTitle{
+    color: white;
+    text-align: center;
+}
+.pricingContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+@media only screen and (min-width: $smallDevices) {
+    .pricingContainer{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
