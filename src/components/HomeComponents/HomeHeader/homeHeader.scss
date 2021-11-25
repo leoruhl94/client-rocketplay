@@ -77,3 +77,10 @@
         bottom: -1;
     }
 }
+
+@media (min-width: 768px){
+    .descriptionContainer {
+        height: 3rem;
+        width: 40%;
+    }
+}
