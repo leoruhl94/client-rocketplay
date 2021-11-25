@@ -1,0 +1,44 @@
+/* Contenedor principal*/
+
+.aboutArticle {
+    color: #fff;
+    width: 90%;
+    margin: auto;
+}
+
+.detailImage {
+    border-radius: 30px;
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+
+.superButton {
+    margin-top: 78px;
+    margin-bottom: 47px;
+}
+
+
+/* Contenedor de redes sociales*/
+
+.icon {
+    border-radius: 20px;
+    width: 100%;
+}
+
+.socialNetwork {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 30% 70%;
+    margin: auto;
+    text-align: left;
+    border-radius: 25px;
+    background-color: #30444E;
+    margin-bottom: 20px;
+}
+
+.socialTextNetwork {
+    display: grid;
+    grid-template-rows: 33px 33px 33px;
+}

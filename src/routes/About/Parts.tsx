@@ -3,5 +3,6 @@ export interface Props {
     name : string,
     image : string,
     description : string,
-    social : []
+    linkedin: string,
+    github : string
 }

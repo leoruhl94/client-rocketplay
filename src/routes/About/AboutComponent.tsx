@@ -1,60 +1,52 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
+//Componentes del archivo
+import AboutUser from "./AboutUser";
 
-import AboutDetailComponent from "./AboutDetailComponent";
-import {Link} from "react-router-dom"
+// Estilización
+import "./styles/About.scss";
 
-
-
-import { Props } from "./Parts";
+// Variables del archivo a usar
+import { state } from "./info";
 
 // Componente about
 const AboutComponent: React.FC = () => {
-    // ..... Caja de variables .....
-    
-    
-    // ..... EL objeto despues del backEnd .....
+  // ..... Caja de variables .....
 
+  // ..... EL objeto después del backEnd .....
 
-    // ----- ----- ----- ----- -----
-    return (
-        <div>
-            {/* TODO: Back button */}
-            <h1>About Component</h1>
-            {/* TODO: About image */}
+  // ----- ----- ----- ----- -----
+  return (
+    <div>
+      {/* Complete: Back button */}
+      <Link to="/">
+        <button>Back</button>
+      </Link>
 
+      {/* Complete: About User components */}
+      <h2>Team fullstack</h2>
+      {/* Complete: Componente que va a renderizar otros componentes */}
+      {state.map((x) => {
+        return (
+          //Decoration color HERE
+          <Link className="aboutText" to={`/about/${x.id}`}>
+            <div>
+              <AboutUser
+                id={x.id}
+                name={x.name}
+                description={x.description}
+                image={x.image}
+                linkedin={x.linkedin}
+                github={x.github}
+              ></AboutUser>
+            </div>
+          </Link>
+        );
+      })}
+      {/* TODO: Estilización del figma */}
+    </div>
+  );
+};
 
-            {/* Componente que va a renderizar otros componentes */}
-            <Link to={`/about/0`}>
-                <li>1</li>
-            </Link>
-            <Link to={`/about/1`}>
-                <li>1</li>
-            </Link>
-            <Link to={`/about/2`}>
-                <li>2</li>
-            </Link>
-            <Link to={`/about/3`}>
-                <li>3</li>
-            </Link>
-            <Link to={`/about/4`}>
-                <li>4</li>
-            </Link>
-            <Link to={`/about/5`}>
-                <li>5</li>
-            </Link>
-            <Link to={`/about/6`}>
-                <li>6</li>
-            </Link>
-            <Link to={`/about/7`}>
-                <li>7</li>
-            </Link>
-            <Link to={`/about/8`}>
-                <li>8</li>
-            </Link>
-
-        </div>
-    )
-} 
-
-export default AboutComponent
+export default AboutComponent;
