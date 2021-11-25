@@ -1,7 +1,7 @@
 import React from 'react'
 // import './styles/global.scss'
 import "./styles/normalize.css"
-import './styles/app.css'
+import './styles/app.scss'
 
 // Componentes
 import {Home} from "./routes/Home/Home";
