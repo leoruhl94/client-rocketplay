@@ -5,8 +5,8 @@
     justify-content: center;
 }
 .logInButtonContainer {
-    height: 6vh;
-    background: rgba(115, 0, 255, 0.41);
+    height: 7vh;
+    // background: rgba(115, 0, 255, 0.41);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,10 +21,10 @@
         border: none;
         box-shadow: 3px 3px 10px black;
         border-radius: 10px;
-        color: #555;
+        color: rgb(56, 52, 52);
         cursor: pointer;
         display: inline-block;
-        font-size: 14px;
+        font-size: 24px;
         font-weight: bold;
         line-height: 1.42857;
         margin-bottom: 0;
@@ -33,5 +33,87 @@
         vertical-align: middle;
         white-space: nowrap;
         width: 90%;
+        transition: transform 0.3s ease-in-out;
+        &:hover{
+            background-color:#b36cec;
+            transform: scale(1.05)
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .logInButtonContainer {
+        position:initial;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        border-radius: 10px;
+        width: 30%;
+        background: none;
+        .logInButton {
+            width: 30%;
+            position: absolute;
+            top: 32%;
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .logInButtonContainer{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 32%;
+        }
+    }
+}
+
+@media (min-width: 1115px){
+    .logInButtonContainer{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 42%;
+        }
+    }
+}
+@media (min-width: 768px) {
+    .logInButtonContainer2 {
+        position:initial;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        border-radius: 10px;
+        width: 30%;
+        background: none;
+        .logInButton {
+            width: 30%;
+            position: absolute;
+            top: 10%;
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .logInButtonContainer2{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 10%;
+        }
+    }
+}
+
+@media (min-width: 1115px){
+    .logInButtonContainer2{
+        .logInButton{
+            width: 20%;
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+        }
     }
 }
