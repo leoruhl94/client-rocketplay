@@ -10,7 +10,7 @@
     border-radius: 30px;
     margin: auto;
     display: block;
-    width: 100%;
+    width: 90%;
 }
 
 .superButton {
@@ -22,8 +22,9 @@
 /* Contenedor de redes sociales*/
 
 .icon {
+    margin: auto;
     border-radius: 20px;
-    width: 100%;
+    width: 50%;
 }
 
 .socialNetwork {
@@ -36,6 +37,7 @@
     border-radius: 25px;
     background-color: #30444E;
     margin-bottom: 20px;
+    box-shadow: 2px 4px 8px #222020;
 }
 
 .socialTextNetwork {

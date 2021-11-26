@@ -69,14 +69,14 @@ const AboutDetailComponent: React.FC = () => {
     // ----- ----- ----- ----- -----
     return (
         // TODO: Mostrar el user completo del state
-        <article className="aboutArticle">
+        <article className="aboutArticle animated fadeIn fast">
 
             {/* Sección información principal */}
             <section>
 
             <Link to="/about">
 
-            <button className="superButton"><FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon></button>
+            <button className="superButton"><FontAwesomeIcon icon={faAngleLeft} size="3x" fixedWidth></FontAwesomeIcon></button>
             </Link>
 
             <img className="detailImage" src={user.image} alt="" />
@@ -98,9 +98,7 @@ const AboutDetailComponent: React.FC = () => {
                     <Link className="aboutText" to={user.linkedin}>
                         <p>{user.name}</p>
                     </Link>
-                    <p>
-                            Barra de colorcito
-                    </p>
+
                 </div>
             </div>
 
@@ -115,9 +113,7 @@ const AboutDetailComponent: React.FC = () => {
                     <Link className="aboutText" to={user.linkedin}>
                         <p>{user.name}</p>
                     </Link>
-                    <p>
-                            Barra de colorcito
-                    </p>
+
                 </div>
             </div>
 

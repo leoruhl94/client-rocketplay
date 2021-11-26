@@ -1,8 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-
 /* Animaciones */
 
 .animated {
@@ -36,8 +31,10 @@
 /* Grilla principal*/
 
 .inDivGrid {
+    border-radius: 10px;
+    background-color: #30444E;
     text-align: center;
-    margin: 6%;
+    margin: 8%;
     display: grid;
     grid-template-columns: 25% 60% 15%;
 }
@@ -52,12 +49,13 @@
 }
 
 .aboutlinkedInImage {
+    border-radius: 10px;
     width: 48px;
-    align-self: center;
+    margin: auto;
 }
 
 .aboutPersonImage {
-    border-radius: 25px;
+    border-radius: 10px;
     width: 60px;
     height: 60px;
     align-self: center;
@@ -71,5 +69,15 @@
 
 .abouth1Name {
     margin: auto;
-    line-height: 18px;
+    line-height: 1rem;
+}
+
+.aboutHeaderName {
+    color: #fff;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.automatic {
+    margin: auto;
 }

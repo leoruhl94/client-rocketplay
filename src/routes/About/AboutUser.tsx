@@ -2,6 +2,7 @@ import React from "react";
 
 // Variables para traer
 import { Props } from "./Parts";
+import { Link } from 'react-router-dom';
 
 // Componentes
 
@@ -26,7 +27,6 @@ const AboutUser: React.FC<Props> = (props:Props) => {
             {/* TODO: LinkedIn a la derecha */}
 
 
-
         
             {/* Row1 */}
             <img className="aboutPersonImage" src={props.image} alt="...." />
@@ -35,14 +35,19 @@ const AboutUser: React.FC<Props> = (props:Props) => {
             <div className="textDivGrid">
 
             {/* Row2 */}
+            <Link className="aboutText" to={`/about/${props.id}`}>
+
             <p className="abouth1Name">{props.name}</p>
             {/* Complete: description */}
             <p> {props.description} </p>
 
+            </Link>
             </div>
-
+            
             {/* Row3 */}
+            <a className="automatic" href="https://www.linkedin.com/feed/">
             <img className="aboutlinkedInImage" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linkedIn Icon" />
+            </a>
 
         </div>
             </div>
