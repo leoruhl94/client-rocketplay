@@ -11,6 +11,13 @@ export const HomeButton: React.FC = () => {
                 </button>
                 </Link>
             </div>
+            <div className="logInButtonContainer2">
+                <Link to="/logs" className="link">
+                <button className="logInButton">
+                    Log In / Sign Up
+                </button>
+                </Link>
+            </div>
         </>
     )
 }

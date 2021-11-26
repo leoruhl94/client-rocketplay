@@ -9,10 +9,12 @@ import AboutComponent from './routes/About/AboutComponent';
 import AboutDetailComponent from './routes/About/AboutDetailComponent';
 import {Logins} from "./routes/Logins/Logs"
 import PricingComponent from './routes/Pricing/PricingComponent';
+import {RegisterSwitch} from "./components/Login-Register/RegisterSwitch"
+import { LoginSwitch } from './components/Login-Register/LoginSwitch';
+import { LoginEmail } from './components/Login-Register/LoginEmail';
 
 // Navegación
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { LoginSwitch } from './components/Login-Register/LoginSwitch';
 
 const App: React.FC = () => {
 
@@ -35,8 +37,10 @@ const App: React.FC = () => {
                 <Route exact path="/logs" component={Logins}/>
                 {/* ...... Ruta Log In ..... */}
                 <Route exact path="/login" component={LoginSwitch}/>
+                {/* ...... Ruta Log In Email..... */}
+                <Route exact path="/loginEmail" component={LoginEmail}/>
                 {/* ...... Ruta Register ..... */}
-                <Route exact path="/register"/>
+                <Route exact path="/register" component={RegisterSwitch}/>
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/business-register"/>
 

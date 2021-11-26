@@ -2,9 +2,8 @@ import { BackButton } from "../BackButton/BackButton";
 import React from "react";
 import "./loginSwitch.scss"
 import google from "../../images/google.png"
-import { Link } from "react-router-dom";
 
-export const LoginSwitch: React.FC = () => {
+export const RegisterSwitch: React.FC = () => {
     return (
         <div>
             <BackButton/>
@@ -13,14 +12,12 @@ export const LoginSwitch: React.FC = () => {
             </div>
             <div className="buttonsContainer">
                 <div className="singleButton">
-                    <button className="loginGoogle">Log In with Google 
+                    <button className="loginGoogle">Sign Up with Google 
                         <img className="logoGoogle" src={google} alt="google" />
                     </button>
                 </div>
                 <div className="singleButton">
-                    <Link to="/loginEmail" className="linkEmail">
-                        <button className="loginEmail">Log In via Email</button>
-                    </Link>
+                    <button className="loginEmail">Sign Up via Email</button>
                 </div>
             </div>
         </div>

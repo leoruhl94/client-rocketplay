@@ -76,3 +76,44 @@
         }
     }
 }
+@media (min-width: 768px) {
+    .logInButtonContainer2 {
+        position:initial;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        border-radius: 10px;
+        width: 30%;
+        background: none;
+        .logInButton {
+            width: 30%;
+            position: absolute;
+            top: 10%;
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .logInButtonContainer2{
+        .logInButton{
+            width: 30%;
+            position: absolute;
+            top: 10%;
+        }
+    }
+}
+
+@media (min-width: 1115px){
+    .logInButtonContainer2{
+        .logInButton{
+            width: 20%;
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+        }
+    }
+}

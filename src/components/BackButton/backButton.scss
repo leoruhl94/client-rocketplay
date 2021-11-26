@@ -2,11 +2,13 @@
 
 
 .buttonContainer{
-    position: relative;
+    position: absolute;
     // background: red;
+    top: 5%;
+    left: 2%;
     width: 30%;
     height: 3.5rem;
-    margin-top: 2rem;
+    // margin-top: 2rem;
     display: flex;
     justify-content: center;
     .backButton {
@@ -16,7 +18,7 @@
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 10px;
-        box-shadow: 3px 3px 10px black;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
         font-weight: bold;
         font-size: 2rem;
         position: absolute;
