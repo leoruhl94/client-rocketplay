@@ -15,14 +15,14 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
-    alias: {
-      "@components": path.resolve(__dirname,"src/components"),
-      "@containers": path.resolve(__dirname,"src/containers"),
-      "@context": path.resolve(__dirname,"src/context"),
-      "@routes": path.resolve(__dirname,"src/routes"),
-      "@styles": path.resolve(__dirname,"src/styles"),
-      "@assets": path.resolve(__dirname,"src/assets"),
-    },
+    // alias: {
+    //   "@components": path.resolve(__dirname,"src/components"),
+    //   "@containers": path.resolve(__dirname,"src/containers"),
+    //   "@context": path.resolve(__dirname,"src/context"),
+    //   "@routes": path.resolve(__dirname,"src/routes"),
+    //   "@styles": path.resolve(__dirname,"src/styles"),
+    //   "@assets": path.resolve(__dirname,"src/assets"),
+    // },
   },
   module: {
     rules: [

@@ -1,0 +1,52 @@
+.bottom_bar,
+.bottom_bar_right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3px;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background-color: #011526aa;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: "Roboto";
+  width: 100%;
+  height: fit-content;
+}
+.bottom_bar_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .bar_group_3 {
+    display: none;
+  }
+  .bar_group_4 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .bar_group_2-1 {
+    display: none;
+  }
+  .bar_group_3 {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .bar_group_2-1,
+  .bar_group_2-2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .bottom_bar {
+    display: none;
+  }
+}

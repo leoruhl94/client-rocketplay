@@ -1,0 +1,45 @@
+.NavigationMobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-family: "Ubuntu ";
+  width: 100%;
+  height: 70px;
+  box-sizing: border-box;
+  background: #30444E;
+  box-shadow: 0px 1px 14px #19282F;
+  border-radius: 25px 25px 0px 0px;
+  height: 96px;
+
+.NavigationMobile__button-home{
+    background: linear-gradient(180deg, #C985FF 0%, #5E2D9C 100%);
+    border-radius: 100%;
+    padding: 15px;
+    font-size: 3rem;
+    &:hover{
+        padding: 20px;
+        .NavigationMobile__icon{
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+    }
+}
+  .NavigationMobile__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .NavigationMobile {
+    display: none;
+  }
+}

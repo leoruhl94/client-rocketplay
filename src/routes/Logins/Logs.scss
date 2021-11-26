@@ -1,0 +1,55 @@
+.Logs {
+  // position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4vh 3vw 0 3vw;
+  background: linear-gradient(138.13deg, #22343c 25.87%, #1f2e35 100%);
+
+  .Logs_title {
+    color: #fff;
+    text-align: center;
+    font-family: "Ubuntu Condensed";
+    font-style: normal;
+    font-size: 2.5rem;
+    line-height: 3.8rem;
+    padding: 0 5%;
+  }
+
+  .Logs_logo {
+    width: 200px;
+    margin: 2.5rem auto;
+  }
+  .Logs_buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 30px;
+    margin: 20px 0;
+    button {
+      border: none;
+      padding: 20px;
+      min-width: 110px;
+      background-color: rgb(163, 51, 228);
+      border-radius: 20px;
+      color: white;
+      font-family: "Ubuntu Condensed";
+      font-size: 1.8rem;
+      line-height: 1rem;
+
+      text-align: center;
+    }
+  }
+  .Logs_link {
+    margin-left: calc(3vw + 30px);
+    font-family: "Ubuntu";
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    text-decoration-line: underline;
+    color: #e3eeff;
+  }
+}
