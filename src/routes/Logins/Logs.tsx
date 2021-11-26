@@ -13,7 +13,6 @@ export const Logins: React.FC = () => {
         <h2 className="Logs_title">Log in to start using our service</h2>
 
         <div className="Logs_logo">
-          {" "}
           {/* Logo div */}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2023.07 2023.38">
             <defs>
