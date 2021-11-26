@@ -4,12 +4,13 @@ import "./loginSwitch.scss"
 import google from "../../images/google.png"
 import { Link } from "react-router-dom";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import avatar from "../../images/avatar.png"
 export const LoginSwitch: React.FC = () => {
     return (
         <div className="loginSwitchContainer">
       
             <div className="loginImgContainer">
-                <img className="loginImg" src="https://lh3.googleusercontent.com/proxy/ZDIUWyMveUGcHCExQh1mRUHVfuGuUOvmQaG3J4ED-Qwy_W-E_c9M-1BdiaSk7lJyoNybjj1gfBJsHvCNBXBx3D_vkdrNQtxLrw-27iuW8xW7rkmCP7Jj3FhBcYnzLE4" alt="Placeholder" />
+                <img className="loginImg" src={avatar} alt="Placeholder" />
             </div>
             <div className="buttonsContainer">
                 <div className="singleButton">

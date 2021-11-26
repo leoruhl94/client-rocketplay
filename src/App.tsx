@@ -12,6 +12,8 @@ import PricingComponent from './routes/Pricing/PricingComponent';
 import {RegisterSwitch} from "./components/Login-Register/RegisterSwitch"
 import { LoginSwitch } from './components/Login-Register/LoginSwitch';
 import { LoginEmail } from './components/Login-Register/LoginEmail';
+import { RegisterEmail } from './components/Login-Register/RegisterEmail';
+import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 
 // Navegación
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -41,6 +43,10 @@ const App: React.FC = () => {
                 <Route exact path="/loginEmail" component={LoginEmail}/>
                 {/* ...... Ruta Register ..... */}
                 <Route exact path="/register" component={RegisterSwitch}/>
+                {/* ...... Ruta Register Email ..... */}
+                <Route exact path="/registerEmail" component={RegisterEmail}/>
+                {/* ...... Ruta Business Switch ..... */}
+                <Route exact path="/business" component={BusinessSwitch}/>
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/business-register"/>
 

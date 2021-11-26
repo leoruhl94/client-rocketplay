@@ -54,7 +54,7 @@ export const Logins: React.FC = () => {
           {/* <button> LOG IN </button>
           <button> REGISTER </button> */}
         </div>
-        <Link to="/" className="Logs_link">
+        <Link to="/business" className="Logs_link">
           Business account
         </Link>
         {/* <BackButton /> */}

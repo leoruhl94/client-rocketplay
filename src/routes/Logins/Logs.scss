@@ -1,3 +1,4 @@
+@import "../../styles/variables.scss";
 .Logs {
   // position: absolute;
   box-sizing: border-box;
@@ -32,7 +33,7 @@
       border: none;
       padding: 20px;
       min-width: 110px;
-      background-color: rgb(163, 51, 228);
+      background: $mainButtonColor;
       border-radius: 20px;
       color: white;
       font-family: "Ubuntu Condensed";

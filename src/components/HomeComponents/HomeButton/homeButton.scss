@@ -4,6 +4,9 @@
     text-decoration: none;
     justify-content: center;
 }
+.logInButtonContainer2{
+    display: none;
+}
 .logInButtonContainer {
     height: 7vh;
     // background: rgba(115, 0, 255, 0.41);
@@ -78,6 +81,7 @@
 }
 @media (min-width: 768px) {
     .logInButtonContainer2 {
+        display: block;
         position:initial;
         margin: 0 auto;
         margin-bottom: 2rem;
@@ -94,6 +98,7 @@
 
 @media (min-width: 992px){
     .logInButtonContainer2{
+        display: block;
         .logInButton{
             width: 30%;
             position: absolute;
@@ -104,6 +109,7 @@
 
 @media (min-width: 1115px){
     .logInButtonContainer2{
+        display: block;
         .logInButton{
             width: 20%;
             position: absolute;
