@@ -1,0 +1,18 @@
+@import "../../styles/variables.scss";
+
+.pricingTitle{
+    color: white;
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+.pricingContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+@media only screen and (min-width: $smallDevices) {
+    .pricingContainer{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
