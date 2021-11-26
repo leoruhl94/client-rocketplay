@@ -1,60 +1,72 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
+//font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import AboutDetailComponent from "./AboutDetailComponent";
-import {Link} from "react-router-dom"
+//Componentes del archivo
+import AboutUser from "./AboutUser";
 
+// Estilización
+import "./styles/About.scss";
 
-
-import { Props } from "./Parts";
+// Variables del archivo a usar
+import { state } from "./info";
 
 // Componente about
 const AboutComponent: React.FC = () => {
-    // ..... Caja de variables .....
-    
-    
-    // ..... EL objeto despues del backEnd .....
+  // ..... Caja de variables .....
+
+  // ..... EL objeto después del backEnd .....
+
+  // ----- ----- ----- ----- -----
+  return (
+    <div>
+      {/* Sección información principal */}
+      <section className="">
 
 
-    // ----- ----- ----- ----- -----
-    return (
-        <div>
-            {/* TODO: Back button */}
-            <h1>About Component</h1>
-            {/* TODO: About image */}
+      <Link to="/">
+        <button>Back</button>
+      </Link>
 
 
-            {/* Componente que va a renderizar otros componentes */}
-            <Link to={`/about/0`}>
-                <li>1</li>
-            </Link>
-            <Link to={`/about/1`}>
-                <li>1</li>
-            </Link>
-            <Link to={`/about/2`}>
-                <li>2</li>
-            </Link>
-            <Link to={`/about/3`}>
-                <li>3</li>
-            </Link>
-            <Link to={`/about/4`}>
-                <li>4</li>
-            </Link>
-            <Link to={`/about/5`}>
-                <li>5</li>
-            </Link>
-            <Link to={`/about/6`}>
-                <li>6</li>
-            </Link>
-            <Link to={`/about/7`}>
-                <li>7</li>
-            </Link>
-            <Link to={`/about/8`}>
-                <li>8</li>
-            </Link>
+      <h1 className="aboutHeaderName">
+        Meet our team
+      </h1>
 
-        </div>
-    )
-} 
+        <img className="detailImage" src="https://img.freepik.com/vector-gratis/mejores-amigos-agitando-mano_23-2148361691.jpg?size=626&ext=jpg" alt="" />
 
-export default AboutComponent
+      </section>
+
+      {/* Complete: Back button */}
+
+      {/* Complete: About User components */}
+      <h1 className="aboutHeaderName">Team fullstack</h1>
+      {/* Complete: Componente que va a renderizar otros componentes */}
+      <section className="about__responsive">
+
+      {state.map((x) => {
+        return (
+          //Decoration color HERE
+          <div className="aboutText">
+              <AboutUser
+                id={x.id}
+                name={x.name}
+                description={x.description}
+                image={x.image}
+                linkedin={x.linkedin}
+                github={x.github}
+                ></AboutUser>
+            </div>
+        );
+      })}
+      </section>
+      {/* TODO: Estilización del figma */}
+      <br />
+      <br />
+    </div>
+  );
+};
+
+export default AboutComponent;
