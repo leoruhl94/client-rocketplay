@@ -12,7 +12,7 @@ import "./styles/About.scss";
 
 // Variables del archivo a usar
 import { state } from "./info";
-
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 // Componente about
 const AboutComponent: React.FC = () => {
   // ..... Caja de variables .....
@@ -24,11 +24,6 @@ const AboutComponent: React.FC = () => {
     <div>
       {/* Sección información principal */}
       <section className="">
-
-
-      <Link to="/">
-        <button>Back</button>
-      </Link>
 
 
       <h1 className="aboutHeaderName">
@@ -65,6 +60,7 @@ const AboutComponent: React.FC = () => {
       {/* TODO: Estilización del figma */}
       <br />
       <br />
+      <NavigationMobile/>
     </div>
   );
 };

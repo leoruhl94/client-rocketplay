@@ -51,3 +51,5 @@ export const state : Props[] = [{
     linkedin : "[{name : ",
     github : ""  
   }]
+
+  export default state;

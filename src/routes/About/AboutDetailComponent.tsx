@@ -11,8 +11,9 @@ import { Props } from './Parts'
 
 // ----- ----- -----
 import "./styles/AboutDetail.scss";
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
-
+NavigationMobile
 // LInks:
 /*
 https://cinthialandia.com/es/blog/props/
@@ -33,7 +34,7 @@ const AboutDetailComponent: React.FC = () => {
     let { id } = useParams<idParams>()
 
     // Estado de react con useState
-    // TODO: Use state para ofrecer la información a la pantalla
+    // Complete: Use state para ofrecer la información a la pantalla
     const [ user, setUser ] = useState({
         id:0,
         name : "",
@@ -43,13 +44,13 @@ const AboutDetailComponent: React.FC = () => {
         github : ""
     })
 
-    // TODO: Completar el useEffect de ejemplo
+    // Complete: Completar el useEffect de ejemplo
     useEffect(() => {
         async function fetchUsersApi(){
             // let res = await axios.get(`http://aSimpleRestAPi:3001/User/${id}`)
             // setUser(res.data) // Must be an object en el backEnd
             // ------------------------------------------------------------------
-            let poder : Props[] = state.filter((x) => { return parseInt(id) === x.id} )
+            let poder : Props[] = state.filter((x : any) => { return parseInt(id) === x.id} )
             setUser({
                 id: parseInt(id),
                 name : poder[0].name,
@@ -68,16 +69,16 @@ const AboutDetailComponent: React.FC = () => {
 
     // ----- ----- ----- ----- -----
     return (
-        // TODO: Mostrar el user completo del state
+        // Complete: Mostrar el user completo del state
         <article className="aboutArticle animated fadeIn fast">
 
             {/* Sección información principal */}
             <section>
 
-            <Link to="/about">
+            {/* <Link to="/about">
 
             <button className="superButton"><FontAwesomeIcon icon={faAngleLeft} size="3x" fixedWidth></FontAwesomeIcon></button>
-            </Link>
+            </Link> */}
 
             <img className="detailImage" src={user.image} alt="" />
             <h1> {user.name} </h1>
@@ -119,7 +120,7 @@ const AboutDetailComponent: React.FC = () => {
 
         </div>
         <br /><br />
-
+            <NavigationMobile/>
         </article>
 
     )
