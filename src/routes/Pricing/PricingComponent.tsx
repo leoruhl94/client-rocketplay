@@ -1,7 +1,7 @@
 import { PricingDetailComponent } from "./PricingDetailComponent";
 import React from "react";
 import './PricingComponent.scss'
-import { BackButton } from "../../components/BackButton/BackButton";
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
 // Componente about
 const PricingComponent: React.FC = () => {
@@ -17,9 +17,9 @@ const PricingComponent: React.FC = () => {
                     <PricingDetailComponent color='blue' plan='Standard' price={39} description='Es un plan Standard' />
                     <PricingDetailComponent color='gold' plan='Premium' price={49} description='Es un plan Premium' />
                 </div>
-                <BackButton/>
                 {/* Aquí va un componente que es un div . Mostrará data del paquete */}
                 {/* Pricing component */}
+                <NavigationMobile/>
         </div>
     )
 } 
