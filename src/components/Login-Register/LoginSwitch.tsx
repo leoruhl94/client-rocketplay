@@ -1,13 +1,13 @@
-import { BackButton } from "../BackButton/BackButton";
+
 import React from "react";
 import "./loginSwitch.scss"
 import google from "../../images/google.png"
 import { Link } from "react-router-dom";
-
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 export const LoginSwitch: React.FC = () => {
     return (
         <div className="loginSwitchContainer">
-            <BackButton/>
+      
             <div className="loginImgContainer">
                 <img className="loginImg" src="https://lh3.googleusercontent.com/proxy/ZDIUWyMveUGcHCExQh1mRUHVfuGuUOvmQaG3J4ED-Qwy_W-E_c9M-1BdiaSk7lJyoNybjj1gfBJsHvCNBXBx3D_vkdrNQtxLrw-27iuW8xW7rkmCP7Jj3FhBcYnzLE4" alt="Placeholder" />
             </div>
@@ -23,6 +23,7 @@ export const LoginSwitch: React.FC = () => {
                     </Link>
                 </div>
             </div>
+            <NavigationMobile/>
         </div>
     )
 }

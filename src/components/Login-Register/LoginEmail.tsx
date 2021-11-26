@@ -1,12 +1,12 @@
-import { BackButton } from "../BackButton/BackButton";
+
 import React from "react";
 import "./loginEmail.scss"
 import icon from "../../images/bg.png"
 import { Link } from "react-router-dom";
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 export const LoginEmail: React.FC = () => {
     return (
         <div className="loginEmailContainer">
-                <BackButton/>
                 <h1 className="loginTitle">Log In with Email</h1>
             <div className="formContainer">
                 <form>
@@ -27,6 +27,7 @@ export const LoginEmail: React.FC = () => {
                 </Link>
             </div>
             </div>
+        <NavigationMobile/>
         </div>
     )
 }
