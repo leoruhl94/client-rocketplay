@@ -23,7 +23,7 @@ const AboutComponent: React.FC = () => {
   return (
     <div>
       {/* Sección información principal */}
-      <section>
+      <section className="">
 
 
       <Link to="/">
@@ -44,10 +44,12 @@ const AboutComponent: React.FC = () => {
       {/* Complete: About User components */}
       <h1 className="aboutHeaderName">Team fullstack</h1>
       {/* Complete: Componente que va a renderizar otros componentes */}
+      <section className="about__responsive">
+
       {state.map((x) => {
         return (
           //Decoration color HERE
-            <div className="aboutText">
+          <div className="aboutText">
               <AboutUser
                 id={x.id}
                 name={x.name}
@@ -55,11 +57,14 @@ const AboutComponent: React.FC = () => {
                 image={x.image}
                 linkedin={x.linkedin}
                 github={x.github}
-              ></AboutUser>
+                ></AboutUser>
             </div>
         );
       })}
+      </section>
       {/* TODO: Estilización del figma */}
+      <br />
+      <br />
     </div>
   );
 };

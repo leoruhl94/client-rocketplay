@@ -46,7 +46,7 @@ const AboutUser: React.FC<Props> = (props:Props) => {
             
             {/* Row3 */}
             <a className="automatic" href="https://www.linkedin.com/feed/">
-            <img className="aboutlinkedInImage" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linkedIn Icon" />
+            <img className="aboutlinkedInImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsMPG6W2gOOr9S-KeE__8qYca9cJNI0u3Tw&usqp=CAU" alt="linkedIn Icon" />
             </a>
 
         </div>

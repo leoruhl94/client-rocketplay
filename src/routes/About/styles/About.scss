@@ -56,9 +56,11 @@
 
 .aboutPersonImage {
     border-radius: 10px;
-    width: 60px;
+    width: 90%;
     height: 60px;
     align-self: center;
+    object-fit: cover;
+    object-position: center center;
 }
 
 .aboutText {
@@ -80,4 +82,21 @@
 
 .automatic {
     margin: auto;
+}
+
+
+/* Media queries*/
+
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+    /* Contenedores chicos */
+    .about__responsive {
+        border-radius: 10px;
+        text-align: center;
+        width: auto;
+        display: grid;
+        grid-template: auto auto auto auto / 1fr 1fr;
+        grid-gap: 30px;
+        margin-bottom: 100px;
+    }
 }
