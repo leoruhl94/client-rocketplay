@@ -1,9 +1,32 @@
 
 import React from "react";
 import "./loginSwitch.scss"
-import google from "../../images/google.png"
+import googleLogo from "../../images/google.png"
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import { app } from '../../firebaseConfig'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+//import {google} from 'googleapis'
+  
 export const RegisterSwitch: React.FC = () => {
+    
+    function googleLogin(){
+        const auth = getAuth(app)
+        const provider = new GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/youtube.upload')
+
+        signInWithPopup(auth, provider)
+        .then(r => {
+            console.log(r)
+        })
+        .catch(e => {
+            console.log(e)
+        })
+        /* const youtube = google.youtube({ //youtube authentication
+            version: 'v3',
+            auth: auth
+        }) */
+    }
+
     return (
         <div className="loginSwitchContainer">
             <div className="loginImgContainer">
@@ -11,8 +34,8 @@ export const RegisterSwitch: React.FC = () => {
             </div>
             <div className="buttonsContainer">
                 <div className="singleButton">
-                    <button className="loginGoogle">Sign Up with Google 
-                        <img className="logoGoogle" src={google} alt="google" />
+                    <button onClick={googleLogin} className="loginGoogle">Sign Up with Google 
+                        <img className="logoGoogle" src={googleLogo} alt="google" />
                     </button>
                 </div>
                 <div className="singleButton">

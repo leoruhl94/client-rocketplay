@@ -26,7 +26,7 @@ export const LoadingComponent: React.FC = () => {
     )
 }
 function numArrayGen(n: number){
-    let arr = []
+    let arr: number[] = []
     for(let i = 0; i < n; i++){arr.push(i+1)}
     return arr
 }
