@@ -11,7 +11,7 @@ interface Props{
   classes?:string,
 }
 
-const Icon:React.FC<Props> = ({ svg , classes}) => {
+export const Icon:React.FC<Props> = ({ svg , classes}) => {
   // Ingresaremos el nombre del ícono con la propiedad svg
   // de nuestro ícono en el objeto de íconos
   // Junto con una condicional para buscar el valor por
@@ -23,7 +23,7 @@ const Icon:React.FC<Props> = ({ svg , classes}) => {
      svgRender? 
       <svg
         viewBox={svgRender.viewBox}
-        className={`${classes} svg-icon`}
+        className={`${classes? classes : ""} svg-icon`}
         xmlns="http://www.w3.org/2000/svg"
         >
         {svgRender.svg}
@@ -33,7 +33,7 @@ const Icon:React.FC<Props> = ({ svg , classes}) => {
   );
 };
 
-export default Icon;
+
 
 
 // ejemplos de uso:

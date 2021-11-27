@@ -20,6 +20,11 @@
   }
 
   .Logs_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+
     width: 200px;
     margin: 2.5rem auto;
   }

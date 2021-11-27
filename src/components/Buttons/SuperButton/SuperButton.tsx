@@ -2,7 +2,7 @@ import React from "react";
 import "./SuperButton.scss";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import Icon from "../../Icon/Icon";
+import { Icon } from "../../Icon/Icon";
 
 interface IPayload {
   name: string;
@@ -54,7 +54,7 @@ export const SuperButton: React.FC<Props> = ({
       onClick={handleOnClick}
     >
       {icon ? (
-        <span className={` SuperButton__icon ${classIcon ? classIcon: ""}`}>
+        <span className={` SuperButton__icon ${classIcon ? classIcon : ""}`}>
           <Icon svg={icon} /> {text}
         </span>
       ) : (
