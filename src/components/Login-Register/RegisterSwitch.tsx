@@ -3,28 +3,38 @@ import React from "react";
 import "./loginSwitch.scss"
 import googleLogo from "../../images/google.png"
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
-import { app } from '../../firebaseConfig'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+//import { app } from '../../firebaseConfig'
+//import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import axios from 'axios'
 //import {google} from 'googleapis'
   
 export const RegisterSwitch: React.FC = () => {
     
     function googleLogin(){
-        const auth = getAuth(app)
+        let wnd: any = null
+        /* const auth = getAuth(app)
         const provider = new GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/youtube.upload')
 
         signInWithPopup(auth, provider)
         .then(r => {
-            console.log(r)
+            //axios.post('localhost:3002/loginUser', r.user)
+            axios({
+                method: 'post',
+                url: 'http://localhost:3002/loginUser',
+                headers: {'Content-Type': 'application/json'}, 
+                data: {
+                    user: r.user
+                }
+              })
         })
         .catch(e => {
             console.log(e)
-        })
-        /* const youtube = google.youtube({ //youtube authentication
-            version: 'v3',
-            auth: auth
         }) */
+        axios.post('http://localhost:3002/loginUser', {isBusiness: true})
+        .then(r => {
+            if(r.data.url) wnd = window.open(r.data.url, '_blank', 'toolbar=0,location=0,menubar=0')
+        })
     }
 
     return (
