@@ -39,15 +39,14 @@ const AboutUser: React.FC<Props> = (props:Props) => {
 
             <p className="abouth1Name">{props.name}</p>
             {/* Complete: description */}
-            <p> {props.description} </p>
+            <br />
+            <p className="about__mobile"> {props.description} </p>
+        
+            <p className="color">  </p>
 
             </Link>
             </div>
             
-            {/* Row3 */}
-            <a className="automatic" href="https://www.linkedin.com/feed/">
-            <img className="aboutlinkedInImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsMPG6W2gOOr9S-KeE__8qYca9cJNI0u3Tw&usqp=CAU" alt="linkedIn Icon" />
-            </a>
 
         </div>
             </div>
