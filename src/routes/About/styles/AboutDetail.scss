@@ -1,4 +1,4 @@
-/* Contenedor principal*/
+/* Contenedor principal Es solamente saber el ancho */
 
 .aboutArticle {
     color: #fff;
@@ -6,26 +6,47 @@
     margin: auto;
 }
 
-.detailImage {
-    border-radius: 30px;
-    margin: auto;
-    display: block;
-    width: 90%;
+
+
+/* Icono de fontAwesome para volver a la página anterior */
+
+.about__btn {
+    margin-top: 78px;
+    margin-bottom: 47px;
 }
 
-// .superButton {
-//     margin-top: 78px;
-//     margin-bottom: 47px;
-// }
 
-
-/* Contenedor de redes sociales*/
+/* Contenedor de redes sociales - Hecho también para dar una barrita de color en la descripción*/
 
 .icon {
     margin: auto;
     border-radius: 20px;
     width: 50%;
+    color: #fff;
+    background-color: #fff;
 }
+
+
+/* Para la bio o descripción de la persona si quiere escribir algo*/
+
+.flipCardback {
+    width: 80%;
+    display: grid;
+    padding: 30px;
+    gap: 10px;
+    grid-template-columns: 30% 70%;
+    margin: auto;
+    text-align: justify;
+    border-radius: 25px;
+    background-color: #30444E;
+    margin-bottom: 20px;
+    box-shadow: 2px 4px 8px #222020;
+    cursor: copy;
+    margin-top: 15px;
+}
+
+
+/* Contenedor que va a mostrar las cards de las redes sociales */
 
 .socialNetwork {
     width: 100%;
@@ -38,9 +59,154 @@
     background-color: #30444E;
     margin-bottom: 20px;
     box-shadow: 2px 4px 8px #222020;
+    cursor: pointer;
 }
+
+
+/* Acá iría el nombre de la red social y hacia que perfil apuntaría*/
 
 .socialTextNetwork {
     display: grid;
     grid-template-rows: 33px 33px 33px;
+}
+
+
+/* Para desktops*/
+
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+    /* Desktop - Contenedor principal - Vamos a mostrar dos secciones completas*/
+    .aboutArticle {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        color: #fff;
+        width: 90%;
+        margin: auto;
+        margin-top: 5%;
+    }
+    /* Animación que ocupé en mi PI*/
+    .flipCard {
+        margin: auto;
+        border-radius: 30px;
+        background-color: transparent;
+        width: 90%;
+        height: 90%;
+        perspective: 1000px;
+        /* Remove this if you don't want the 3D effect */
+    }
+    /* This container is needed to position the front and back side */
+    .flipCardInner {
+        border-radius: 30px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .flipCard:hover .flipCardInner {
+        transform: rotateY(180deg);
+    }
+    /* Position the front and back side */
+    .flipCardfront,
+    .flipCardback {
+        border-radius: 30px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        /* Safari */
+        backface-visibility: hidden;
+    }
+    /* Style the front side (fallback if image is missing) */
+    .flipCardfront {
+        background-color: rgb(255, 255, 255);
+        color: black;
+    }
+    /* Style the back side */
+    .flipCardback {
+        background-color: rgb(63, 111, 158);
+        color: white;
+        transform: rotateY(180deg);
+    }
+    .flipImage {
+        width: 500px;
+        height: 600px;
+        border-radius: 30px;
+    }
+    .about__bio {
+        text-align: justify;
+        margin: auto;
+        width: 90%;
+    }
+    .icon {
+        margin: 1%;
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+    }
+    /**/
+    /**/
+    /**/
+    /**/
+    /* Contenedores chicos */
+    /* About Component */
+    .about__responsive {
+        border-radius: 10px;
+        text-align: center;
+        width: 70%;
+        margin: auto;
+        display: grid;
+        grid-template: auto auto auto auto/ 1fr 1fr;
+        grid-gap: 30px;
+        margin-bottom: 100px;
+    }
+    /* ABout COmponent - Se usa para dejar de mostrar la palabra fullstack Team en desktops */
+    .aboutHeaderName__mobile {
+        display: none;
+    }
+    /* About User - Gigantografía*/
+    .detailImage {
+        margin-bottom: 3%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+    /* Componente donde vamos a mostrar la sección de nombre del programador */
+    .aboutText {
+        margin: auto;
+        width: 100%;
+        height: 150px;
+    }
+    /* Modificaciones - En este vamos a mostrar distintas coas*/
+    .textDivGrid {
+        height: 100%;
+    }
+    /* Contenedor que indica para mostrar el texto en desktops*/
+    .about__mobile {
+        display: inline;
+    }
+    /* About User - Contenedor de la imágen del componente */
+    .aboutPersonImage {
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        align-self: center;
+        object-fit: cover;
+        object-position: center center;
+    }
+    /* Barrita de color*/
+    .color {
+        width: 100%;
+        height: 15px;
+        background-color: rgb(30, 16, 156);
+        border-radius: 30px;
+    }
+    .socialTextNetwork {
+        font-size: 1.7rem;
+        display: grid;
+        grid-template-rows: 33% 33% 10%;
+    }
 }

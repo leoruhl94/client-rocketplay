@@ -22,10 +22,10 @@ const AboutUser: React.FC<Props> = (props:Props) => {
             
         <div className="inDivGrid">
             {/* TODO: Investigación acerca de useHistory */}
-            {/* TODO: Grilla, similar a Li */}
-            {/* TODO: Imágen a la izquierda */}
-            {/* TODO: Nombre en el medio */}
-            {/* TODO: LinkedIn a la derecha */}
+            {/* Complete: Grilla, similar a Li */}
+            {/* Complete: Imágen a la izquierda */}
+            {/* Complete: Nombre en el medio */}
+            {/* Complete: LinkedIn a la derecha */}
 
 
         
@@ -40,16 +40,14 @@ const AboutUser: React.FC<Props> = (props:Props) => {
 
             <p className="abouth1Name">{props.name}</p>
             {/* Complete: description */}
-            <p> {props.description} </p>
+            <br />
+            <p className="about__mobile"> {props.description} </p>
+        
+            <p className="color">  </p>
 
             </Link>
             </div>
-            {/* Row3 */}
-            <a className="automatic" href="https://www.linkedin.com/feed/">
             
-               
-            {/* <img className="aboutlinkedInImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsMPG6W2gOOr9S-KeE__8qYca9cJNI0u3Tw&usqp=CAU" alt="linkedIn Icon" /> */}
-            </a>
 
         </div>
             </div>
