@@ -5,10 +5,10 @@ import icon from "../../images/bg.png"
 import { Link } from "react-router-dom";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 // import avatar from "../../images/avatar.png"
-export const LoginEmail: React.FC = () => {
+export const RegisterEmail: React.FC = () => {
     return (
         <div className="loginEmailContainer">
-                <h1 className="loginTitle">Log In with Email</h1>
+                <h1 className="loginTitle">Sign Up with Email</h1>
             <div className="formContainer">
                 <form>
                     <div className="divInput">

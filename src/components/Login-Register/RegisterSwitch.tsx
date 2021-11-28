@@ -3,11 +3,13 @@ import React from "react";
 import "./loginSwitch.scss"
 import google from "../../images/google.png"
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import avatar from "../../images/avatar.png"
+import { Link } from "react-router-dom";
 export const RegisterSwitch: React.FC = () => {
     return (
         <div className="loginSwitchContainer">
             <div className="loginImgContainer">
-                <img className="loginImg" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Placeholder" />
+                <img className="loginImg" src={avatar} alt="Placeholder" />
             </div>
             <div className="buttonsContainer">
                 <div className="singleButton">
@@ -16,7 +18,9 @@ export const RegisterSwitch: React.FC = () => {
                     </button>
                 </div>
                 <div className="singleButton">
-                    <button className="loginEmail">Sign Up via Email</button>
+                    <Link to="/registerEmail" className="linkEmail">
+                        <button className="loginEmail">Sign Up via Email</button>
+                    </Link>
                 </div>
             </div>
             <NavigationMobile />
