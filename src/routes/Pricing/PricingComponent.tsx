@@ -2,6 +2,8 @@ import { PricingDetailComponent } from "./PricingDetailComponent";
 import React from "react";
 import './PricingComponent.scss'
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
+
 
 // Componente about
 const PricingComponent: React.FC = () => {
