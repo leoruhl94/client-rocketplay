@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
+import axios from "axios";
 
+import { Props2 } from './Parts'
 
 //Componentes del archivo
 import AboutUser from "./AboutUser";
@@ -16,8 +19,19 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 const AboutComponent: React.FC = () => {
   // ..... Caja de variables .....
 
-  // ..... EL objeto después del backEnd .....
+  const[ array, setArray ] = useState<Props2[]>([])
 
+
+  // ..... EL objeto después del backEnd .....
+  useEffect(() => {
+    async function getAboutArray(){
+      let res = await axios.get(`http://localhost:3002/aboutUs`)
+
+      setArray(res.data)
+    }
+    getAboutArray()
+    // TODO: Usar el redux para guardar los datos de las personas del about
+  },[])
   // ----- ----- ----- ----- -----
   return (
     <div>
@@ -56,7 +70,7 @@ const AboutComponent: React.FC = () => {
       {/* ..... Componente que va a renderizar otros componentes ..... */}
       <section className="about__responsive">
 
-      {newState.map((x) => {
+      {array.map((x) => {
         return (
           //Decoration color HERE
           <div className="aboutText">

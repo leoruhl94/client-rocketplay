@@ -10,8 +10,9 @@ import { Props2 } from './Parts'
 // ----- ----- -----
 import "./styles/AboutDetail.scss";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import axios from "axios";
 
-NavigationMobile
+
 // LInks:
 /*
 https://cinthialandia.com/es/blog/props/
@@ -43,7 +44,23 @@ const AboutDetailComponent: React.FC = () => {
 
     // Complete: Completar el useEffect de ejemplo
     useEffect(() => {
+
+        async function getAboutAPI(){
+            let res = await axios.get(`http://localhost:3002/aboutUs`)
+            let power : Props2 = res.data.filter((x :any) => {
+                return parseInt(id) === x.id
+            })
+            setUser({
+                id: parseInt(id),
+                name : power[0].name,
+                photo: power[0].photo,
+                description : power[0].description,
+                links: { linkedin: power[0].links.linkedin, github: power[0].links.github}
+            })
+        }
+
         async function fetchUsersApi(){
+
             // let res = await axios.get(`http://aSimpleRestAPi:3001/User/${id}`)
             // setUser(res.data) // Must be an object en el backEnd
             // ------------------------------------------------------------------
@@ -57,7 +74,7 @@ const AboutDetailComponent: React.FC = () => {
             })
 
         }   
-        fetchUsersApi()
+        getAboutAPI()
     },[]);
 
 
@@ -98,13 +115,18 @@ const AboutDetailComponent: React.FC = () => {
                 </div>
                 {/* Aquí va a estar la descripción de lo que se escriba */}
                 <div className='flipCardback'>
-                  <h3>About Me</h3>
-                  <aside className="about__bio">
+
+                    <div className="about__super__container">
+                        <h3>About Me</h3>
+                        <aside className="about__bio">
                     {/* TODO: Usar este aside junto al user.name para hacer una descripción desplegable en el mobile. Así queda mejor presentado */}
-                <p><a>
-                  {user.description}
-                </a></p>
-                  </aside>
+                        <p><a>
+                            {user.description}
+                        </a></p>
+                        </aside>
+                    </div>
+
+                    
                 </div>
               </div>
             </div>
