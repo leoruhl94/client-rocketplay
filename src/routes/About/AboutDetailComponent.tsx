@@ -1,13 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 //import axios from "axios"; After
-import { state } from "./info";
-import { Props } from './Parts'
+import { newState } from "./info";
+import { Props2 } from './Parts'
 
 // ----- ----- -----
 import "./styles/AboutDetail.scss";
@@ -38,10 +36,9 @@ const AboutDetailComponent: React.FC = () => {
     const [ user, setUser ] = useState({
         id:0,
         name : "",
-        image : "....",
+        photo : "....",
         description : "Soy una descripción",
-        linkedin: "",
-        github : ""
+        links: { linkedin: "", github :""}
     })
 
     // Complete: Completar el useEffect de ejemplo
@@ -50,15 +47,13 @@ const AboutDetailComponent: React.FC = () => {
             // let res = await axios.get(`http://aSimpleRestAPi:3001/User/${id}`)
             // setUser(res.data) // Must be an object en el backEnd
             // ------------------------------------------------------------------
-            let poder : Props[] = state.filter((x : any) => { return parseInt(id) === x.id} )
+            let poder : Props2[] = newState.filter((x : any) => { return parseInt(id) === x.id} )
             setUser({
                 id: parseInt(id),
                 name : poder[0].name,
-                image: poder[0].image,
+                photo: poder[0].photo,
                 description : poder[0].description,
-                linkedin : poder[0].linkedin,
-                github : "s"
-
+                links: { linkedin: poder[0].links.linkedin, github: poder[0].links.github}
             })
 
         }   
@@ -78,14 +73,14 @@ const AboutDetailComponent: React.FC = () => {
             <div className='flipCard'>
               <div className='flipCardInner'>
                 <div className='flipCardfront'>
-                  <img src={user.image} className='detailImage flipImage' alt="Author" />
+                  <img src={user.photo} className='detailImage flipImage' alt="Author" />
                 </div>
                 <div className='flipCardback'>
                   <h3>About Me</h3>
                   <aside className="about__bio">
                     {/* TODO: Usar este aside junto al user.name para hacer una descripción desplegable en el mobile. Así queda mejor presentado */}
                 <p><a>
-                  Text description here - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  {user.description}
                 </a></p>
                   </aside>
                 </div>
@@ -107,7 +102,7 @@ const AboutDetailComponent: React.FC = () => {
                 
                 <div className="socialTextNetwork">
                     <p>LinkedIn</p>
-                    <Link className="aboutText" to={user.linkedin}>
+                    <Link className="aboutText" to={user.links.linkedin}>
                         <p>{user.name}</p>
                     </Link>
 
@@ -117,12 +112,12 @@ const AboutDetailComponent: React.FC = () => {
             {/* GIthub */}
             <div className="socialNetwork">
 
-            <img className="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
 
+            <img className="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
 
             <div className="socialTextNetwork">
                     <p>Github</p>
-                    <Link className="aboutText" to={user.linkedin}>
+                    <Link className="aboutText" to={user.links.linkedin}>
                         <p>{user.name}</p>
                     </Link>
 

@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-//font awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //Componentes del archivo
 import AboutUser from "./AboutUser";
@@ -11,9 +8,11 @@ import AboutUser from "./AboutUser";
 import "./styles/About.scss";
 
 // Variables del archivo a usar
-import { state } from "./info";
+import { newState } from "./info";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
-// Componente about
+
+
+// Componente about - Componente principal
 const AboutComponent: React.FC = () => {
   // ..... Caja de variables .....
 
@@ -22,10 +21,11 @@ const AboutComponent: React.FC = () => {
   // ----- ----- ----- ----- -----
   return (
     <div>
-      {/* Sección información principal */}
+      {/* ..... Sección información principal ..... */}
       <section className="headerContainer">
 
             <div className='curve-bg'>
+                {/* ..... Svg de la organización ..... */}
                 <svg
                 className='bottom-curve'
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,24 +39,24 @@ const AboutComponent: React.FC = () => {
                     />
                 </g>
                 </svg>
+                {/* Fin svg */}
             </div>
-            <div className="about__headerSubContainer"> {/* Red sub container */}
-                <div> {/* h1 and h2 */}
+
+            {/* ..... Header principal - Text & Image ..... */}
+            <div className="about__headerSubContainer">
+                <div> {/* Content */}
                     <h1 className="about__title">Meet our team</h1>
                     <img className="detailImage" src="https://img.freepik.com/vector-gratis/mejores-amigos-agitando-mano_23-2148361691.jpg?size=626&ext=jpg" alt="" />
                 </div>
             </div>
 
 
-
-      {/* Complete: Back button */}
-
-      {/* Complete: About User components */}
+      {/* Complete: About User components  - Mapeo con cada persona*/}
       <h1 className="aboutHeaderName__mobile ">Team fullstack</h1>
-      {/* Complete: Componente que va a renderizar otros componentes */}
+      {/* ..... Componente que va a renderizar otros componentes ..... */}
       <section className="about__responsive">
 
-      {state.map((x) => {
+      {newState.map((x) => {
         return (
           //Decoration color HERE
           <div className="aboutText">
@@ -64,15 +64,13 @@ const AboutComponent: React.FC = () => {
                 id={x.id}
                 name={x.name}
                 description={x.description}
-                image={x.image}
-                linkedin={x.linkedin}
-                github={x.github}
+                photo={x.photo}
+                links={x.links}
                 ></AboutUser>
             </div>
         );
       })}
       </section>
-      {/* TODO: Estilización del figma */}
       <br />
       <br />
       </section>

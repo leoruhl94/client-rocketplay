@@ -1,7 +1,7 @@
 import React from "react";
 
 // Variables para traer
-import { Props } from "./Parts";
+import { Props2 } from "./Parts";
 import { Link } from 'react-router-dom';
 
 
@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 
 // Componente about
-const AboutUser: React.FC<Props> = (props:Props) => {
+const AboutUser: React.FC<Props2> = (props:Props2) => {
     // ..... Caja de variables .....
     
     
@@ -30,7 +30,7 @@ const AboutUser: React.FC<Props> = (props:Props) => {
 
         
             {/* Row1 */}
-            <img className="aboutPersonImage" src={props.image} alt="...." />
+            <img className="aboutPersonImage" src={props.photo} alt="...." />
             {/* COmplete: name */}
             
             <div className="textDivGrid">
