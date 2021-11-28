@@ -76,6 +76,7 @@ const AboutComponent: React.FC = () => {
       <br />
       <br />
       </section>
+      <NavigationMobile/>
     </div>
   );
 };
