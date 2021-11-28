@@ -22,7 +22,7 @@ export const NavigationMobile: React.FC = () => {
 
   return (
     <section className="NavigationMobile">
-      <SuperButton icon="undo3" name={"button_undo"} handler={handleGoBack} />
+      {/* <SuperButton icon="undo3" name={"button_undo"} handler={handleGoBack} /> */}
       <SuperButton
         icon="homeSolid"
         name={"button_home"}
@@ -30,7 +30,7 @@ export const NavigationMobile: React.FC = () => {
         classIcon="NavigationMobile__icon"
         route="/"
       />
-      <SuperButton icon="menu" name={"button_menu"}  />
+      {/* <SuperButton icon="menu" name={"button_menu"}  /> */}
 
       {/* <MenuMobile active={menu} /> */}
     </section>

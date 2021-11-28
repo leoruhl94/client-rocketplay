@@ -15,15 +15,7 @@ export const Logins: React.FC = () => {
         <div className="Logs_logo">
           <Icon svg="logoDarkColor" />
         </div>
-        <div className="Logs_logo">
-          <Icon svg="logoLightOutline" />
-        </div>
-        <div className="Logs_logo">
-          <Icon svg="logoLightColor" />
-        </div>
-        <div className="Logs_logo">
-          <Icon svg="logoDarkOutline" />
-        </div>
+      
 
         <div className="Logs_buttons">
           <SuperButton name={"button_Login"} route="/login" text="Log In" />
