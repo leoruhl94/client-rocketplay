@@ -10,9 +10,6 @@ export class Icons {
     }
   }
 
-  
-
-
   const allIcons = {
     'heartSolid': new Icons("0 0 512 512", <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>),
     'heartOutline': new Icons("0 0 24 24", <path fill="none" stroke-linecap="round" stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />),
@@ -61,10 +58,13 @@ export class Icons {
     'logoDarkOutline': new Icons("0 0 2023.07 2023.38", Logos.logoDarkOutline), 
     'logoLightOutline': new Icons("0 0 2023.07 2023.38", Logos.logoLightOutline), 
     
+    
+    
+    //__________________Template _____________________________________
+
     '__template': new Icons("0 0 24 24", <path/> ), 
     
-    // Muy importante agregar un valor por default que regrese null
-	// para evitar problemas por si llegamos a escribir mal el nombre de un ícono
+
 	'default': null
 }
 
