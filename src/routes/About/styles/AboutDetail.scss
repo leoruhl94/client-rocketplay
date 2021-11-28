@@ -7,7 +7,6 @@
 }
 
 
-
 /* Icono de fontAwesome para volver a la página anterior */
 
 .about__btn {
@@ -89,7 +88,7 @@ $breakpoint-tablet: 768px;
         margin: auto;
         border-radius: 30px;
         background-color: transparent;
-        width: 90%;
+        width: 80%;
         height: 90%;
         perspective: 1000px;
         /* Remove this if you don't want the 3D effect */
@@ -113,7 +112,7 @@ $breakpoint-tablet: 768px;
     .flipCardback {
         border-radius: 30px;
         position: absolute;
-        width: 100%;
+        width: 90%;
         height: 100%;
         -webkit-backface-visibility: hidden;
         /* Safari */
@@ -131,8 +130,8 @@ $breakpoint-tablet: 768px;
         transform: rotateY(180deg);
     }
     .flipImage {
-        width: 500px;
-        height: 600px;
+        width: 90%;
+        height: 100%;
         border-radius: 30px;
     }
     .about__bio {

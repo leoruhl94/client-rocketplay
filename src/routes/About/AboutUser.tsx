@@ -41,7 +41,7 @@ const AboutUser: React.FC<Props2> = (props:Props2) => {
             <p className="abouth1Name">{props.name}</p>
             {/* Complete: description */}
             <br />
-            <p className="about__mobile"> {props.description} </p>
+            <p className="about__mobile"> Fullstack Web Developer </p>
         
             <p className="color">  </p>
 

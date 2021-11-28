@@ -65,8 +65,29 @@ const AboutDetailComponent: React.FC = () => {
     // ----- ----- ----- ----- -----
     return (
         // Complete: Mostrar el user completo del state
-        <article className="aboutArticle animated fadeIn fast">
+        <div>
+            
+            <div className='curve-bg'>
+                {/* ..... Svg de la organización ..... */}
+                <svg
+                className='bottom-curve'
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1533.04 124.29"
+                >
+                <g data-name="Capa 2">
+                    <path
+                    d="M1533 124.29H0V98.77C254.45-4.85 453.76-9.46 592.09 7.49 807.91 33.94 923.81 118.79 1158 109.14c159.79-6.58 289.22-53.63 375-93.37z"
+                    fill="#22343c"
+                    data-name="Capa 1"
+                    />
+                </g>
+                </svg>
+                {/* Fin svg */}
+            </div>
 
+            <article className="aboutArticle animated fadeIn fast">
+            
+            
             {/* Sección información principal */}
             <section className="about__user_section">
 
@@ -75,6 +96,7 @@ const AboutDetailComponent: React.FC = () => {
                 <div className='flipCardfront'>
                   <img src={user.photo} className='detailImage flipImage' alt="Author" />
                 </div>
+                {/* Aquí va a estar la descripción de lo que se escriba */}
                 <div className='flipCardback'>
                   <h3>About Me</h3>
                   <aside className="about__bio">
@@ -103,7 +125,7 @@ const AboutDetailComponent: React.FC = () => {
                 <div className="socialTextNetwork">
                     <p>LinkedIn</p>
                     <Link className="aboutText" to={user.links.linkedin}>
-                        <p>{user.name}</p>
+                        <p>LInkedin : {user.name}</p>
                     </Link>
 
                 </div>
@@ -117,8 +139,8 @@ const AboutDetailComponent: React.FC = () => {
 
             <div className="socialTextNetwork">
                     <p>Github</p>
-                    <Link className="aboutText" to={user.links.linkedin}>
-                        <p>{user.name}</p>
+                    <Link className="aboutText" to={user.links.github}>
+                        <p>Github : {user.name}</p>
                     </Link>
 
                 </div>
@@ -128,6 +150,7 @@ const AboutDetailComponent: React.FC = () => {
         <br /><br />
             <NavigationMobile/>
         </article>
+        </div>
 
     )
 } 
