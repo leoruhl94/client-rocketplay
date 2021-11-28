@@ -1,4 +1,3 @@
-import { BackButton } from "../../components/Buttons/BackButton/BackButton";
 import React from "react";
 import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
 import "./NavigationMobile.scss";
