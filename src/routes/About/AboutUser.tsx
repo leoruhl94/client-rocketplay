@@ -21,10 +21,10 @@ const AboutUser: React.FC<Props> = (props:Props) => {
             
         <div className="inDivGrid">
             {/* TODO: Investigación acerca de useHistory */}
-            {/* TODO: Grilla, similar a Li */}
-            {/* TODO: Imágen a la izquierda */}
-            {/* TODO: Nombre en el medio */}
-            {/* TODO: LinkedIn a la derecha */}
+            {/* Complete: Grilla, similar a Li */}
+            {/* Complete: Imágen a la izquierda */}
+            {/* Complete: Nombre en el medio */}
+            {/* Complete: LinkedIn a la derecha */}
 
 
         

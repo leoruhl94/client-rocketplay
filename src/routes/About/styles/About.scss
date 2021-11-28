@@ -49,10 +49,10 @@
 /* About User */
 
 .textDivGrid {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: auto;
     display: grid;
-    height: 70%;
+    height: 80%;
 }
 
 
@@ -83,6 +83,7 @@
 /* About User - Darle un margen automático al nombre */
 
 .abouth1Name {
+    font-weight: 900;
     margin: auto;
 }
 
@@ -126,7 +127,8 @@
 /* A. User - La descripción no se muestra en mobile*/
 
 .about__mobile {
-    display: none;
+    display: inline;
+    font-style: italic;
 }
 
 
@@ -135,7 +137,7 @@
 $breakpoint-tablet: 768px;
 @media (min-width: $breakpoint-tablet) {
     /* Contenedores chicos */
-    /* About Component*/
+    /* About Component */
     .about__responsive {
         border-radius: 10px;
         text-align: center;
