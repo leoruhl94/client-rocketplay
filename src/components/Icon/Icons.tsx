@@ -58,8 +58,7 @@ export class Icons {
     'logoLightColor': new Icons("0 0 2023.07 2023.38", Logos.logoLightColor), 
     'logoDarkOutline': new Icons("0 0 2023.07 2023.38", Logos.logoDarkOutline), 
     'logoLightOutline': new Icons("0 0 2023.07 2023.38", Logos.logoLightOutline), 
-    
-    
+    'rocketColor': new Icons("0 0 2023.07 2023.38", Logos.rocketColor), 
     
     //__________________Template _____________________________________
 
