@@ -3,6 +3,9 @@ const initialState: ArticleState = {
     /*
     
     categories : [{},{}] -.
+    
+    persons : [{},{}] -.
+    
     */ 
     articles: [
         {
@@ -10,7 +13,7 @@ const initialState: ArticleState = {
             title: "prop1",
             body: 'val1'
         }
-    ]
+    ],
   }
 
   // ..... ..... ..... .....

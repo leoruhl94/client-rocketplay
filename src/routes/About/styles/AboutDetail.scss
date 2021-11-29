@@ -7,7 +7,6 @@
 }
 
 
-
 /* Icono de fontAwesome para volver a la página anterior */
 
 .about__btn {
@@ -34,7 +33,6 @@
     display: grid;
     padding: 30px;
     gap: 10px;
-    grid-template-columns: 30% 70%;
     margin: auto;
     text-align: justify;
     border-radius: 25px;
@@ -43,6 +41,43 @@
     box-shadow: 2px 4px 8px #222020;
     cursor: copy;
     margin-top: 15px;
+}
+
+.about__super__container {
+    overflow-y: scroll;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#6835A5, #1983FF);
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#562e86, #1c74d8);
 }
 
 
@@ -89,7 +124,7 @@ $breakpoint-tablet: 768px;
         margin: auto;
         border-radius: 30px;
         background-color: transparent;
-        width: 90%;
+        width: 80%;
         height: 90%;
         perspective: 1000px;
         /* Remove this if you don't want the 3D effect */
@@ -113,7 +148,7 @@ $breakpoint-tablet: 768px;
     .flipCardback {
         border-radius: 30px;
         position: absolute;
-        width: 100%;
+        width: 90%;
         height: 100%;
         -webkit-backface-visibility: hidden;
         /* Safari */
@@ -126,13 +161,13 @@ $breakpoint-tablet: 768px;
     }
     /* Style the back side */
     .flipCardback {
-        background-color: rgb(63, 111, 158);
+        background-color: #30444E;
         color: white;
         transform: rotateY(180deg);
     }
     .flipImage {
-        width: 500px;
-        height: 600px;
+        width: 90%;
+        height: 100%;
         border-radius: 30px;
     }
     .about__bio {

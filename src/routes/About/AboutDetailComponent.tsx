@@ -1,19 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 //import axios from "axios"; After
-import { state } from "./info";
-import { Props } from './Parts'
+import { newState } from "./info";
+import { Props2 } from './Parts'
 
 // ----- ----- -----
 import "./styles/AboutDetail.scss";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+import axios from "axios";
 
-NavigationMobile
+
 // LInks:
 /*
 https://cinthialandia.com/es/blog/props/
@@ -38,31 +37,44 @@ const AboutDetailComponent: React.FC = () => {
     const [ user, setUser ] = useState({
         id:0,
         name : "",
-        image : "....",
+        photo : "....",
         description : "Soy una descripción",
-        linkedin: "",
-        github : ""
+        links: { linkedin: "", github :""}
     })
 
     // Complete: Completar el useEffect de ejemplo
     useEffect(() => {
+
+        async function getAboutAPI(){
+            let res = await axios.get(`http://localhost:3002/aboutUs`)
+            let power : Props2 = res.data.filter((x :any) => {
+                return parseInt(id) === x.id
+            })
+            setUser({
+                id: parseInt(id),
+                name : power[0].name,
+                photo: power[0].photo,
+                description : power[0].description,
+                links: { linkedin: power[0].links.linkedin, github: power[0].links.github}
+            })
+        }
+
         async function fetchUsersApi(){
+
             // let res = await axios.get(`http://aSimpleRestAPi:3001/User/${id}`)
             // setUser(res.data) // Must be an object en el backEnd
             // ------------------------------------------------------------------
-            let poder : Props[] = state.filter((x : any) => { return parseInt(id) === x.id} )
+            let poder : Props2[] = newState.filter((x : any) => { return parseInt(id) === x.id} )
             setUser({
                 id: parseInt(id),
                 name : poder[0].name,
-                image: poder[0].image,
+                photo: poder[0].photo,
                 description : poder[0].description,
-                linkedin : poder[0].linkedin,
-                github : "s"
-
+                links: { linkedin: poder[0].links.linkedin, github: poder[0].links.github}
             })
 
         }   
-        fetchUsersApi()
+        getAboutAPI()
     },[]);
 
 
@@ -70,24 +82,51 @@ const AboutDetailComponent: React.FC = () => {
     // ----- ----- ----- ----- -----
     return (
         // Complete: Mostrar el user completo del state
-        <article className="aboutArticle animated fadeIn fast">
+        <div>
+            
+            <div className='curve-bg'>
+                {/* ..... Svg de la organización ..... */}
+                <svg
+                className='bottom-curve'
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1533.04 124.29"
+                >
+                <g data-name="Capa 2">
+                    <path
+                    d="M1533 124.29H0V98.77C254.45-4.85 453.76-9.46 592.09 7.49 807.91 33.94 923.81 118.79 1158 109.14c159.79-6.58 289.22-53.63 375-93.37z"
+                    fill="#22343c"
+                    data-name="Capa 1"
+                    />
+                </g>
+                </svg>
+                {/* Fin svg */}
+            </div>
 
+            <article className="aboutArticle animated fadeIn fast">
+            
+            
             {/* Sección información principal */}
             <section className="about__user_section">
 
             <div className='flipCard'>
               <div className='flipCardInner'>
                 <div className='flipCardfront'>
-                  <img src={user.image} className='detailImage flipImage' alt="Author" />
+                  <img src={user.photo} className='detailImage flipImage' alt="Author" />
                 </div>
+                {/* Aquí va a estar la descripción de lo que se escriba */}
                 <div className='flipCardback'>
-                  <h3>About Me</h3>
-                  <aside className="about__bio">
+
+                    <div className="about__super__container">
+                        <h3>About Me</h3>
+                        <aside className="about__bio">
                     {/* TODO: Usar este aside junto al user.name para hacer una descripción desplegable en el mobile. Así queda mejor presentado */}
-                <p><a>
-                  Text description here - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </a></p>
-                  </aside>
+                        <p><a>
+                            {user.description}
+                        </a></p>
+                        </aside>
+                    </div>
+
+                    
                 </div>
               </div>
             </div>
@@ -107,8 +146,8 @@ const AboutDetailComponent: React.FC = () => {
                 
                 <div className="socialTextNetwork">
                     <p>LinkedIn</p>
-                    <Link className="aboutText" to={user.linkedin}>
-                        <p>{user.name}</p>
+                    <Link className="aboutText" to={user.links.linkedin}>
+                        <p>LInkedin : {user.name}</p>
                     </Link>
 
                 </div>
@@ -117,13 +156,13 @@ const AboutDetailComponent: React.FC = () => {
             {/* GIthub */}
             <div className="socialNetwork">
 
-            <img className="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
 
+            <img className="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
 
             <div className="socialTextNetwork">
                     <p>Github</p>
-                    <Link className="aboutText" to={user.linkedin}>
-                        <p>{user.name}</p>
+                    <Link className="aboutText" to={user.links.github}>
+                        <p>Github : {user.name}</p>
                     </Link>
 
                 </div>
@@ -133,6 +172,7 @@ const AboutDetailComponent: React.FC = () => {
         <br /><br />
             <NavigationMobile/>
         </article>
+        </div>
 
     )
 } 
