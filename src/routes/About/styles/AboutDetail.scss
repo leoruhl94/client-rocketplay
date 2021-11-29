@@ -52,7 +52,7 @@
 }
 
 
-/* width */
+/* Scroll Bar - Vamos a modificarlo un poco */
 
 ::-webkit-scrollbar {
     width: 20px;
@@ -63,7 +63,6 @@
 
  ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
 }
 
 
@@ -84,7 +83,7 @@
 
 /* Contenedor que va a mostrar las cards de las redes sociales */
 
-.socialNetwork {
+.about__socialNetwork {
     width: 100%;
     display: grid;
     gap: 10px;

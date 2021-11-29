@@ -1,52 +1,45 @@
 import React from "react";
-
-// Variables para traer
-import { Props2 } from "./Parts";
 import { Link } from 'react-router-dom';
+
+// Interfaces
+import { Props2 } from "./Parts";
 
 
 // Componentes
 
 
-// Componente about
+// Componente about - Le pasamos la interfaz para los valores de Props
 const AboutUser: React.FC<Props2> = (props:Props2) => {
     // ..... Caja de variables .....
-    
+    // No hay necesarias por el momento
     
     // ..... Componente presentacional .....
 
 
     // ----- ----- ----- ----- -----
     return (
+        // Contenedor principal, encargado de hacer la animación nomás
         <div className="animated fadeIn fast">
             
+        {/* ..... Grilla principall ..... */}
         <div className="inDivGrid">
             {/* TODO: Investigación acerca de useHistory */}
-            {/* Complete: Grilla, similar a Li */}
-            {/* Complete: Imágen a la izquierda */}
-            {/* Complete: Nombre en el medio */}
-            {/* Complete: LinkedIn a la derecha */}
 
 
         
-            {/* Row1 */}
+            {/* Row1 - Imágen correspondiente */}
             <img className="aboutPersonImage" src={props.photo} alt="...." />
-            {/* COmplete: name */}
             
+            {/* Row 2 - Lugar donde colocamos la información completa junto con un link al detail */}
             <div className="textDivGrid">
-
-            {/* Row2 */}
             <Link className="aboutText" to={`/about/${props.id}`}>
-
             <p className="abouth1Name">{props.name}</p>
-            {/* Complete: description */}
             <br />
             <p className="about__mobile"> Fullstack Web Developer </p>
-        
             <p className="color">  </p>
-
             </Link>
             </div>
+            {/* ..... Fin del row2 ..... */}
             
 
         </div>
