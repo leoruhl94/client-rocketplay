@@ -65,7 +65,7 @@ export const Logins: React.FC = () => {
         <div className="singleButton">
           <GoogleLogin
             clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
-            buttonText={ sign ? "Sign up with google ": "Log in with google "}
+            buttonText={ sign ? "Sign up with Google ": "Log in with Google "}
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
             className="botoncito"
             onSuccess={responseGoogle}

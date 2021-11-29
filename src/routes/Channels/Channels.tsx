@@ -11,7 +11,7 @@ export const Channels: React.FC = () => {
     return (
         <div>
             <nav className="channelsNav">
-                <ul className="channelsNavUl">{`${profile.name} Channels`}</ul>
+                <ul className="channelsNavUl">Channels</ul>
                 <ul className="channelsNavUl "><img className="Profile_image" src={profile.pic}/></ul>
             </nav>
             <ChannelNotFound/>
