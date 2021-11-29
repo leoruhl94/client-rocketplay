@@ -6,7 +6,7 @@
 
 .aboutImgContainer {
     width: 300px;
-    margin: 5rem auto;
+    // margin: 5rem auto;
     position: relative;
     transition: all 0.3s ease-in-out;
     // background: red;
@@ -19,7 +19,7 @@
         background-repeat: no-repeat;
         border-radius: 10px;
         box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
-        margin: 0 auto;
+        margin: 1rem auto;
     }
     h2{
         position: absolute;
@@ -34,6 +34,12 @@
     &:hover {
         transform: scale(1.1);
     }
+}
+.imagesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 5rem;
 }
 
 @media (min-width: 768px){

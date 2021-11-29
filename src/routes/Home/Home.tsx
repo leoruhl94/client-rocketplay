@@ -1,8 +1,9 @@
 import React from "react";
 import { HomeHeader } from "../../components/HomeComponents/HomeHeader/HomeHeader";
 import { HomeImages } from "../../components/HomeComponents/HomeImages/HomeImages";
-import { HomeButton } from "../../components/HomeComponents/HomeButton/HomeButton";
 import { HomeClients } from "../../components/HomeComponents/HomeClients/HomeClients";
+import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
+import './Home.scss';
 export const Home: React.FC = () => {
 
     return (
@@ -10,7 +11,14 @@ export const Home: React.FC = () => {
             <HomeHeader />
             <HomeClients/>
             <HomeImages/>
-            <HomeButton/>
+            <div className="logInButtonContainer">
+                 <SuperButton
+                    name="boton_home"
+                    route="/logs"
+                    classes="logInButton"
+                    text="Log In / Sign Up"
+                />
+            </div>
         </div>
     )
 }
