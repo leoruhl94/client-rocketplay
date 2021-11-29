@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import {useHistory} from 'react-router-dom'
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
-
+import { useDispatch } from "react-redux";
 import "./Logins.scss";
+import {changeProfile} from '../../redux/actions'
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
 import { Icon } from "../../components/Icon/Icon";
@@ -16,6 +17,7 @@ let wnd: any = null
 export const Logins: React.FC = () => {
   const [sign, setSign] = useState<boolean>(false);
   const history = useHistory();
+  const dispatch = useDispatch()
   /* const { signIn, loaded } = useGoogleLogin({
       scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl',
       clientId:
@@ -24,24 +26,29 @@ export const Logins: React.FC = () => {
   const handleSign = () :void => {
     setSign(!sign)
   }
-  const handleSend = () :void => {
-      //history.push("/")
-      axios.post('http://localhost:3002/loginUser', {isBusiness: true})
-        .then(r => {
-            if(r.data.url){
-                wnd = window.open(r.data.url, '_blank', 'toolbar=0,location=0,menubar=0')
-                console.log(wnd)
-            } 
+  // const handleSend = () :void => {
+  //     //history.push("/")
+  //     axios.post('http://localhost:3002/loginUser', {isBusiness: true})
+  //       .then(r => {
+  //           if(r.data.url){
+  //               wnd = window.open(r.data.url, '_blank', 'toolbar=0,location=0,menubar=0')
+  //               console.log(wnd)
+  //           } 
             
-        })
-  }
+  //       })
+  // }
   
   function responseGoogle(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log(profile)
+    // var profile = googleUser.getBasicProfile();
+    console.log(googleUser)
+    axios.post('http://localhost:3002/loginUser', {isBusiness: true, name: googleUser.profileObj.name, email: googleUser.profileObj.email})
+    
+    dispatch(changeProfile({
+      name: googleUser.profileObj.name,
+      pic: googleUser.profileObj.imageUrl
+    }))
     history.push("/home")
 
-    //axios.post('https://localhost:3002/loginUser', profile)
     /* console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
@@ -60,10 +67,11 @@ export const Logins: React.FC = () => {
             clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
             buttonText={ sign ? "Sign up with google ": "Log in with google "}
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
-            className="loginGoogle"
+            className="botoncito"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
+            
           />
         </div>
         <button className="Logins__toggle-botton" onClick={handleSign}>

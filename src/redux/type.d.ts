@@ -1,16 +1,15 @@
-interface IArticle {
-    id: number
-    title: string
-    body: string
+interface profile {
+    name: string,
+    pic: string
   }
   // --------------------------------
-  type ArticleState = {
-    articles: IArticle[]
+  type storeState = {
+    profile: profile
   }
   
-  type ArticleAction = {
+  type storeAction = {
     type: string
-    article: IArticle
+    payload: profile
   }
   
-  type DispatchType = (args: ArticleAction) => ArticleAction
+  type DispatchType = (args: storeState) => storeAction

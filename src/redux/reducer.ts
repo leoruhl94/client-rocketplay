@@ -1,4 +1,6 @@
-const initialState: ArticleState = {
+import { CHANGE_PROFILE } from "./actions"
+
+const initialState: storeState = {
     // Que nos van a traer
     /*
     
@@ -7,22 +9,20 @@ const initialState: ArticleState = {
     persons : [{},{}] -.
     
     */ 
-    articles: [
-        {
-            id: 1,
-            title: "prop1",
-            body: 'val1'
-        }
-    ],
+    profile: {name: '',pic: ''},
   }
 
   // ..... ..... ..... .....
 const reducer = (
-    state: ArticleState = initialState,
-    action: ArticleAction
-  ): ArticleState => {
+    state: storeState = initialState,
+    action: storeAction
+  ): storeState => {
     switch (action.type) {
-      
+      case CHANGE_PROFILE: 
+        return {
+          ...state, 
+          profile: action.payload
+      }
     }
     return state
   }

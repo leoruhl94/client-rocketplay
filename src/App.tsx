@@ -50,7 +50,7 @@ const App: React.FC = () => {
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/business-register"/>
                 {/* ...... Ruta Channels ..... */}
-                <Route exact path="/channels" component={Channels}/>
+                <Route exact path="/home" component={Channels}/>
             </Switch>   
 
         </HashRouter>
