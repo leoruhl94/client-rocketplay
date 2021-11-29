@@ -30,12 +30,43 @@
 /* Para la bio o descripción de la persona si quiere escribir algo*/
 
 .flipCardback {
-    width: 80%;
+    overflow: hidden;
+    height: 60px;
     display: grid;
-    padding: 30px;
-    gap: 10px;
+    border-radius: 25px;
+    background-color: #30444E;
+    margin-bottom: 20px;
+    box-shadow: 2px 4px 8px #222020;
+    cursor: copy;
+    margin-top: 15px;
+    overflow-y: hidden;
+    transition: 0.4s;
+}
+
+.about__super__container {
+    //overflow-y: scroll;
+    width: 90%;
+    height: 100%;
     margin: auto;
+    margin-bottom: 15px;
+}
+
+
+/* User description */
+
+.about__bio {
     text-align: justify;
+    overflow: hidden;
+    margin: auto;
+    width: 90%;
+    height: 100%;
+}
+
+.flipCardback:hover {
+    padding: 10px;
+    overflow: hidden;
+    height: 60%;
+    display: grid;
     border-radius: 25px;
     background-color: #30444E;
     margin-bottom: 20px;
@@ -44,11 +75,12 @@
     margin-top: 15px;
 }
 
-.about__super__container {
+.about__super__container:hover {
     overflow-y: scroll;
     width: 90%;
-    height: 90%;
+    height: 100%;
     margin: auto;
+    margin-bottom: 15px;
 }
 
 
@@ -129,6 +161,20 @@ $breakpoint-tablet: 768px;
         perspective: 1000px;
         /* Remove this if you don't want the 3D effect */
     }
+    .flipCardback {
+        width: 80%;
+        display: grid;
+        padding: 30px;
+        gap: 10px;
+        margin: auto;
+        text-align: justify;
+        border-radius: 25px;
+        background-color: #30444E;
+        margin-bottom: 20px;
+        box-shadow: 2px 4px 8px #222020;
+        cursor: copy;
+        margin-top: 15px;
+    }
     /* This container is needed to position the front and back side */
     .flipCardInner {
         border-radius: 30px;
@@ -172,8 +218,10 @@ $breakpoint-tablet: 768px;
     }
     .about__bio {
         text-align: justify;
+        overflow: auto;
         margin: auto;
         width: 90%;
+        height: auto;
     }
     .icon {
         margin: 1%;
