@@ -1,6 +1,6 @@
 /* Contenedor principal Es solamente saber el ancho */
 
-.aboutArticle {
+.about__Article {
     color: #fff;
     width: 90%;
     margin: auto;
@@ -17,7 +17,8 @@
 
 /* Contenedor de redes sociales - Hecho también para dar una barrita de color en la descripción*/
 
-.icon {
+.about__icon {
+    /* icon */
     margin: auto;
     border-radius: 20px;
     width: 50%;
@@ -100,7 +101,7 @@
 
 /* Acá iría el nombre de la red social y hacia que perfil apuntaría*/
 
-.socialTextNetwork {
+.about__socialTextNetwork {
     display: grid;
     grid-template-rows: 33px 33px 33px;
 }
@@ -111,7 +112,7 @@
 $breakpoint-tablet: 768px;
 @media (min-width: $breakpoint-tablet) {
     /* Desktop - Contenedor principal - Vamos a mostrar dos secciones completas*/
-    .aboutArticle {
+    .about__Article {
         display: grid;
         grid-template-columns: 50% 50%;
         color: #fff;
@@ -239,7 +240,7 @@ $breakpoint-tablet: 768px;
         background-color: rgb(30, 16, 156);
         border-radius: 30px;
     }
-    .socialTextNetwork {
+    .about__socialTextNetwork {
         font-size: 1.7rem;
         display: grid;
         grid-template-rows: 33% 33% 10%;

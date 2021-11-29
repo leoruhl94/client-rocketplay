@@ -59,21 +59,6 @@ const AboutDetailComponent: React.FC = () => {
             })
         }
 
-        async function fetchUsersApi(){
-
-            // let res = await axios.get(`http://aSimpleRestAPi:3001/User/${id}`)
-            // setUser(res.data) // Must be an object en el backEnd
-            // ------------------------------------------------------------------
-            let poder : Props2[] = newState.filter((x : any) => { return parseInt(id) === x.id} )
-            setUser({
-                id: parseInt(id),
-                name : poder[0].name,
-                photo: poder[0].photo,
-                description : poder[0].description,
-                links: { linkedin: poder[0].links.linkedin, github: poder[0].links.github}
-            })
-
-        }   
         getAboutAPI()
     },[]);
 
@@ -102,7 +87,7 @@ const AboutDetailComponent: React.FC = () => {
                 {/* Fin svg */}
             </div>
 
-            <article className="aboutArticle animated fadeIn fast">
+            <article className="about__Article animated fadeIn fast">
             
             
             {/* Sección información principal */}
@@ -137,14 +122,14 @@ const AboutDetailComponent: React.FC = () => {
 
         <section className="">
             <div className="socialNetwork">
-            <p className="icon"> . </p>
+            <p className="about__icon"> . </p>
             <h2> {user.name} </h2>
             </div>
             {/* LinkedIn */}
             <div className="socialNetwork">
-                <img className="icon" src="data:image/png;base64,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" alt="" />
+                <img className="about__icon" src="data:image/png;base64,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" alt="" />
                 
-                <div className="socialTextNetwork">
+                <div className="about__socialTextNetwork">
                     <p>LinkedIn</p>
                     <Link className="aboutText" to={user.links.linkedin}>
                         <p>LInkedin : {user.name}</p>
@@ -157,9 +142,9 @@ const AboutDetailComponent: React.FC = () => {
             <div className="socialNetwork">
 
 
-            <img className="icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
+            <img className="about__icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
 
-            <div className="socialTextNetwork">
+            <div className="about__socialTextNetwork">
                     <p>Github</p>
                     <Link className="aboutText" to={user.links.github}>
                         <p>Github : {user.name}</p>
@@ -188,13 +173,13 @@ export default AboutDetailComponent
 // <Link to="/about">
 
 // {/* Es un botón de pruebas nomás */}
-// <button className="about__btn"><FontAwesomeIcon icon={faAngleLeft} size="3x" fixedWidth></FontAwesomeIcon></button>
+// <button className="about__btn"><FontAwesomeabout__icon about__icon={faAngleLeft} size="3x" fixedWidth></FontAwesomeabout__icon></button>
 // </Link>
 
 // <img className="detailImage" src={user.image} alt="" />
 // <h1> {user.name} </h1>
 // <div className="socialNetwork">
-// <p className="icon"> . </p>
+// <p className="about__icon"> . </p>
 // <h2> {user.description} </h2>
 // </div>
 
@@ -206,7 +191,7 @@ export default AboutDetailComponent
 // <div>
 // {/* LinkedIn */}
 // <div className="socialNetwork">
-//     <img className="icon" src="data:image/png;base64,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" alt="" />
+//     <img className="about__icon" src="data:image/png;base64,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" alt="" />
     
 //     <div className="socialTextNetwork">
 //         <p>LinkedIn</p>
