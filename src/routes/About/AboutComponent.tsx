@@ -17,7 +17,7 @@ import "./styles/About.scss";
 const AboutComponent: React.FC = () => {
   // ..... Caja de variables .....
 
-  const[ array, setArray ] = useState<Props2[]>([])
+  const[ array, setArray ] = useState<Props2[]>([]);
 
 
   // ..... EL objeto después del backEnd .....
