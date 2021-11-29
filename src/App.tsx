@@ -16,6 +16,7 @@ import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { Channels } from "./routes/Channels/Channels";
 
 const App: React.FC = () => {
 
@@ -48,7 +49,8 @@ const App: React.FC = () => {
                 <Route exact path="/business" component={BusinessSwitch}/>
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/business-register"/>
-
+                {/* ...... Ruta Channels ..... */}
+                <Route exact path="/channels" component={Channels}/>
             </Switch>   
 
         </HashRouter>
