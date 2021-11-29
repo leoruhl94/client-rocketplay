@@ -34,7 +34,7 @@ const AboutComponent: React.FC = () => {
   return (
     <div>
       {/* ..... Sección información principal ..... */}
-      <section className="headerContainer">
+      <section className="About__header">
 
                 {/* ..... Svg de la organización ..... */}
             <div className='curve-bg'>
@@ -55,7 +55,7 @@ const AboutComponent: React.FC = () => {
                 {/* Fin svg */}
 
             {/* ..... Header principal - Text & Image ..... */}
-            <div className="about__headerSubContainer">
+            <div className="About__header-container">
                 <div> {/* Content */}
                     <h1 className="about__title">Meet our team</h1>
                     <img className="detailImage" src="https://img.freepik.com/vector-gratis/mejores-amigos-agitando-mano_23-2148361691.jpg?size=626&ext=jpg" alt="" />
