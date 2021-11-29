@@ -1,0 +1,47 @@
+.singleChannelSuperContainer{
+    padding: 16px;
+}
+
+.singleChannelDiv{
+    // background: red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4rem;
+    background: #286053;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    .singleChannelIcon{
+        // background: white;
+        width: 20%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .singleChannelText{
+        // background: blue;
+        width: 70%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        h2 {
+            margin-left: 1rem;
+            color: rgb(230, 224, 224);
+            text-shadow: 2px 2px 5px black;
+            font-weight: 400;
+        }
+    }
+    .singleChannelArrow{
+        // background: yellow;
+        width: 10%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: rgb(230, 224, 224);
+        text-shadow: 2px 2px 5px black;
+        font-weight: 400;
+    }
+}

@@ -1,0 +1,38 @@
+@import "../../styles/variables.scss";
+
+.channelsNav {
+	position: fixed;
+	width: 101%;
+	height: 40px;
+	background: #30444e;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	display: flex;
+	justify-content: space-between;
+	.channelsNavUl {
+		margin: 0;
+		padding: 0;
+		margin-top: 0.6rem;
+		margin-left: 2rem;
+		margin-right: 2rem;
+		font-size: 1.1rem;
+		color: white;
+		text-shadow: 1px 1px 3px black;
+	}
+	.channelsNavF {
+		background: white;
+		width: 24px;
+		height: 24px;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		padding: 2px;
+		margin-right: 1.5rem;
+		margin-top: 0.45rem;
+		border-radius: 50%;
+		background: #ff6b00;
+		font-size: 1rem;
+	}
+}
+
+
