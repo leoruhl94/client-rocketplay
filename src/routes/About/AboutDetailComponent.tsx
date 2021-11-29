@@ -113,7 +113,7 @@ const AboutDetailComponent: React.FC = () => {
                 <div className='flipCardfront'>
                   <img src={user.photo} className='detailImage flipImage' alt="Author" />
                 </div>
-                {/* Aquí va a estar la descripción de lo que se escriba */}
+                {/* Aquí va a estar la descripción de lo que se escriba ..... */}
                 <div className='flipCardback'>
 
                     <div className="about__super__container">
@@ -126,7 +126,7 @@ const AboutDetailComponent: React.FC = () => {
                         </aside>
                     </div>
 
-                    
+
                 </div>
               </div>
             </div>
