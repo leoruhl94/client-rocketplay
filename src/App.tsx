@@ -14,6 +14,7 @@ import { LoginEmail } from './components/Login-Register/LoginEmail';
 import { RegisterEmail } from './components/Login-Register/RegisterEmail';
 import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 import { Categories } from "./routes/Categories/Categories";
+import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
@@ -71,6 +72,7 @@ const App: React.FC = () => {
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
+                <Route exact path="/testing" component={LoginAccountType}/>
             </Switch>   
 
         </HashRouter>
