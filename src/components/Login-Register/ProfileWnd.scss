@@ -2,8 +2,8 @@
     position: absolute;
     right: 0;
     width: 300px;
-    height: 230px;
-    padding: 1rem;
+    height: 0;
+    padding: 0;
     margin: 1rem;
     border-radius: 1rem;
     background: rgba(77, 86, 90, 0.5);
@@ -38,7 +38,7 @@
         background: transparent;
         border-radius: 25px;
         overflow: hidden;
-        border: 2px solid white !important;
+        //border: 2px solid white !important;
     }
     .profileWnd__googleBtn{
         width: 100%;
@@ -48,11 +48,9 @@
         div{
             background-color: transparent !important;
         }
-        button{
-        }
     }
 }
 .profileWndDep{
-    height: 0;
-    padding: 0
+    height: 230px;
+    padding: 1rem;
 }
