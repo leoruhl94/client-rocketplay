@@ -11,15 +11,16 @@ import { Icon } from "../../components/Icon/Icon";
 //import { useGoogleLogin } from 'react-google-login'
 
 interface User {
-  accessToken: '', 
-  name: '',
-  pic: ''
+  accessToken: string, 
+  name: string,
+  pic: string,
+  email: string,
+  isBusiness: boolean,
 }
 //let wnd: any = null
 export const Logins: React.FC = () => {
   const [sign, setSign] = useState<boolean>(false);
   const history = useHistory();
-  const location = useLocation(); 
   
   /* const { signIn, loaded } = useGoogleLogin({
       scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl',
@@ -48,9 +49,13 @@ export const Logins: React.FC = () => {
     const user: User = {
       accessToken: googleUser.accessToken, 
       name: googleUser.profileObj.name,
-      pic: googleUser.profileObj.imageUrl
+      pic: googleUser.profileObj.imageUrl,
+      email: googleUser.profileObj.email,
+      isBusiness: true,
     }
-    axios.post('http://localhost:3002/loginUser', {isBusiness: true, name: googleUser.profileObj.name, email: googleUser.profileObj.email})
+    //axios.post('http://localhost:3002/loginUser', user)
+    axios.get('http://localhost:3002/loginUser?email='+user.email)
+    .then(r => console.log(r))
     
     localStorage.setItem('user', JSON.stringify(user));
     
@@ -78,7 +83,6 @@ export const Logins: React.FC = () => {
             onSuccess={responseGoogle}
             onFailure={(errorGoogle)}
             cookiePolicy={'single_host_origin'}
-            
           />
         </div>
         <button className="Logins__toggle-botton" onClick={handleSign}>
