@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useHistory} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
 import { useDispatch } from "react-redux";
@@ -10,14 +10,17 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 import { Icon } from "../../components/Icon/Icon";
 //import { useGoogleLogin } from 'react-google-login'
 
-interface googleScope {
-  scope: string;
+interface User {
+  accessToken: '', 
+  name: '',
+  pic: ''
 }
-let wnd: any = null
+//let wnd: any = null
 export const Logins: React.FC = () => {
   const [sign, setSign] = useState<boolean>(false);
   const history = useHistory();
-  const dispatch = useDispatch()
+  const location = useLocation(); 
+  
   /* const { signIn, loaded } = useGoogleLogin({
       scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl',
       clientId:
@@ -40,20 +43,24 @@ export const Logins: React.FC = () => {
   
   function responseGoogle(googleUser) {
     // var profile = googleUser.getBasicProfile();
-    console.log(googleUser)
-    axios.post('http://localhost:3002/loginUser', {isBusiness: true, name: googleUser.profileObj.name, email: googleUser.profileObj.email})
-    
-    dispatch(changeProfile({
+    console.log('user: ',googleUser)
+
+    const user: User = {
+      accessToken: googleUser.accessToken, 
       name: googleUser.profileObj.name,
       pic: googleUser.profileObj.imageUrl
-    }))
+    }
+    axios.post('http://localhost:3002/loginUser', {isBusiness: true, name: googleUser.profileObj.name, email: googleUser.profileObj.email})
+    
+    localStorage.setItem('user', JSON.stringify(user));
+    
     history.push("/home")
-
-    /* console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); */ // This is null if the 'email' scope is not present.
   }
+
+  function errorGoogle(response){
+    console.log(response)
+  }
+
   return (
     <div>
       <div className="Logs">
@@ -69,7 +76,7 @@ export const Logins: React.FC = () => {
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
             className="botoncito"
             onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onFailure={(errorGoogle)}
             cookiePolicy={'single_host_origin'}
             
           />

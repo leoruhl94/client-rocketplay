@@ -1,10 +1,19 @@
 import React from "react";
 import "./singleChannel.scss"
 import {Icon} from '../../Icon/Icon'
+import { useHistory } from "react-router";
 
-export const SingleChannel: React.FC = () => {
+interface Props {
+    channel: string
+}
+export const SingleChannel: React.FC<Props> = ({channel}) => {
+    const history = useHistory()
+
+    function handleClick(){
+        history.push('/home/'+channel)
+    }
     return (
-        <div className="singleChannelDiv">
+        <div className="singleChannelDiv" onClick={handleClick}>
             <div className="singleChannelIcon">
                 <Icon svg='rocketColor'/>
                 {/* <img src="nothing" alt="PPP" /> */}

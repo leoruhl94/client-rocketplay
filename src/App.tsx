@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/normalize.css";
 import "./styles/app.scss";
 
@@ -13,19 +13,31 @@ import { LoginSwitch } from './components/Login-Register/LoginSwitch';
 import { LoginEmail } from './components/Login-Register/LoginEmail';
 import { RegisterEmail } from './components/Login-Register/RegisterEmail';
 import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
+import { Categories } from "./routes/Categories/Categories";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { Channels } from "./routes/Channels/Channels";
+import { Redirect, useHistory } from "react-router";
+
+// Redux
+import { useDispatch } from "react-redux";
+import { changeProfile } from "./redux/actions";
 
 const App: React.FC = () => {
-
+    //const history = useHistory()
+    const json = localStorage.getItem("lastRoute")
+    const lastRoute = json || '/'
+    console.log(lastRoute)
     return ( // ----------------------------------------------------
         // ..... Enrutamiento .....
         <HashRouter>
             <Switch>
                 {/* ..... Ruta principal ..... */}
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" render={() => 
+                    !localStorage.getItem("user") ? 
+                    <Home/> :
+                    <Redirect to={lastRoute}/>}/>
                 {/* ..... Ruta about ..... */}
                 <Route exact path="/about">
                     <AboutComponent></AboutComponent>
@@ -50,7 +62,15 @@ const App: React.FC = () => {
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/business-register"/>
                 {/* ...... Ruta Channels ..... */}
-                <Route exact path="/home" component={Channels}/>
+                <Route exact path="/home" render={() => 
+                    !localStorage.getItem("user") ? 
+                    <Redirect to="/logs"/> : 
+                    <Channels/>}/>
+                {/* ...... Ruta Categories ..... */}
+                <Route exact path='/home/:channel' render={({match}: any) => 
+                    !localStorage.getItem("user") ? 
+                    <Redirect to="/logs"/> : 
+                    <Categories channel={match.params.channel}/>}/>
             </Switch>   
 
         </HashRouter>
