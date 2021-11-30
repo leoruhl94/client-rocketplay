@@ -5,12 +5,13 @@ interface profile {
   }
   // --------------------------------
   type storeState = {
-    profile: profile
+    profile: profile,
+    accountType: boolean
   }
   
   type storeAction = {
     type: string
-    payload: profile
+    payload: any
   }
   
   type DispatchType = (args: storeState) => storeAction

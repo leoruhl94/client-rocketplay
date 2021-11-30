@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, LOGOUT } from "./actions"
+import { CHANGE_PROFILE, DEPLOY_LOG_WND, LOGOUT } from "./actions"
 
 const initialState: storeState = {
     // Que nos van a traer
@@ -10,6 +10,7 @@ const initialState: storeState = {
     
     */ 
     profile: {accessToken: '', name: '',pic: ''},
+    accountType: false,
   }
 
   // ..... ..... ..... .....
@@ -20,6 +21,8 @@ const reducer = (
     switch (action.type) {
       case CHANGE_PROFILE: 
         return state
+      case DEPLOY_LOG_WND: 
+        return {...state, accountType: action.payload}
       case LOGOUT: 
         return state
     }
