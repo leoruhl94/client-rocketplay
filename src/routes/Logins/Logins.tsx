@@ -21,45 +21,14 @@ interface User {
 export const Logins: React.FC = () => {
   const [sign, setSign] = useState<boolean>(false);
   const history = useHistory();
-  
-  /* const { signIn, loaded } = useGoogleLogin({
-      scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl',
-      clientId:
-    }) */
+  const dispatch = useDispatch()
   
   const handleSign = () :void => {
     setSign(!sign)
   }
-  // const handleSend = () :void => {
-  //     //history.push("/")
-  //     axios.post('http://localhost:3002/loginUser', {isBusiness: true})
-  //       .then(r => {
-  //           if(r.data.url){
-  //               wnd = window.open(r.data.url, '_blank', 'toolbar=0,location=0,menubar=0')
-  //               console.log(wnd)
-  //           } 
-            
-  //       })
-  // }
   
   function responseGoogle(googleUser) {
-    // var profile = googleUser.getBasicProfile();
-    console.log('user: ',googleUser)
-
-    const user: User = {
-      accessToken: googleUser.accessToken, 
-      name: googleUser.profileObj.name,
-      pic: googleUser.profileObj.imageUrl,
-      email: googleUser.profileObj.email,
-      isBusiness: true,
-    }
-    //axios.post('http://localhost:3002/loginUser', user)
-    axios.get('http://localhost:3002/loginUser?email='+user.email)
-    .then(r => console.log(r))
-    
-    localStorage.setItem('user', JSON.stringify(user));
-    
-    history.push("/home")
+    dispatch(changeProfile(googleUser, history))
   }
 
   function errorGoogle(response){

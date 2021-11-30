@@ -6,38 +6,31 @@ import { changeProfile, Logout } from "../../redux/actions"
 import {GoogleLogin, GoogleLogout} from 'react-google-login'
 import './ProfileWnd.scss'
 
-interface User {
-    accessToken: '', 
-    name: '',
-    pic: ''
-  }
+
 interface Props {
     dep: boolean
   }
-
+interface User {
+    accessToken: string, 
+    name: string,
+    pic: string,
+}
 export const ProfileWnd: React.FC<Props> = ({dep}) => {
     const json = localStorage.getItem('user')
     const profile: User = json ? JSON.parse(json) : null
     const history = useHistory()
+    const dispatch = useDispatch()
 
     function responseGoogle(googleUser){
         
-        const user: User = {
-            accessToken: googleUser.accessToken, 
-            name: googleUser.profileObj.name,
-            pic: googleUser.profileObj.imageUrl
-          }
-          axios.post('http://localhost:3002/loginUser', {isBusiness: true, name: googleUser.profileObj.name, email: googleUser.profileObj.email})
-          
-          localStorage.setItem('user', JSON.stringify(user));
+        dispatch(changeProfile(googleUser, history))
     }
     
     function errorGoogle(response){
         console.log(response)
     }
     function logout(){
-        localStorage.clear()
-        history.push('/logs')
+        dispatch(Logout(history))
     }
 
     return (

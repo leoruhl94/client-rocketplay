@@ -19,15 +19,9 @@ const reducer = (
   ): storeState => {
     switch (action.type) {
       case CHANGE_PROFILE: 
-        return {
-          ...state, 
-          profile: action.payload
-      }
+        return state
       case LOGOUT: 
-        return {
-          ...state, 
-          profile: {accessToken: '', name:'', pic:''}
-      }
+        return state
     }
     return state
   }
