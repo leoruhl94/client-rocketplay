@@ -25,6 +25,7 @@ import { Redirect, useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { changeProfile } from "./redux/actions";
 import { VideoForm } from "./routes/Videos/VideoForm";
+import { Class } from "./routes/Clases/Class";
 
 const App: React.FC = () => {
     //const history = useHistory()
@@ -73,6 +74,10 @@ const App: React.FC = () => {
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
+                <Route exact path="/home/:channel/:class" render={({match}: any) => 
+                    !localStorage.getItem("user") ? 
+                    <Redirect to="/logs"/> : 
+                    <Class class={match.params.class}/>}/>
                 <Route exact path="/testing" component={LoginAccountType}/>
                 {/* ...... Ruta Business register ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
