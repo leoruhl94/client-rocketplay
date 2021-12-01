@@ -10,10 +10,8 @@ interface User {
     email: string,
     isBusiness: boolean,
 }
-interface UserStorange {
-    accessToken: string, 
-    name: string,
-    pic: string
+interface userDb {
+    data: any, 
 }
 /* export function changeProfile(googleUser, history){
     const user: User = {
@@ -33,27 +31,23 @@ interface UserStorange {
 
 export function changeProfile(googleUser, history){
     return async (dispatch) => {
-        const userDb = await axios.get('http://localhost:3002/loginUser?email='+googleUser.email)
+        const userDb: userDb = await axios.get('http://localhost:3002/users?email='+googleUser.email)
         console.log(userDb)
-        const user: UserStorange = {
-            accessToken: googleUser.accessToken, 
-            name: googleUser.name,
-            pic: googleUser.pic
-        }
-        localStorage.setItem('user', JSON.stringify(user)); 
 
-        if(userDb) {
+        localStorage.setItem('user', JSON.stringify(googleUser)); 
+
+        if(userDb.data.isRegistered) {
             history.push("/home")
         }else{
-            axios.post('http://localhost:3002/loginUser', {isBusiness: null, name: googleUser.name, email: googleUser.email}) 
+            const newUser = await axios.post('http://localhost:3002/users', {isBusiness: false, name: googleUser.name, email: googleUser.email}) 
+            console.log(newUser)
             dispatch({type: DEPLOY_LOG_WND, payload: true})
         } 
     }   
 }
-export function deployLogWnd(){
-    
+export function closeAccountType(){
     return (dispatch) => {
-        dispatch({type: DEPLOY_LOG_WND, payload: true})
+        dispatch({type: DEPLOY_LOG_WND, payload: false})
     }   
 }
 export function Logout(history){

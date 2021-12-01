@@ -21,8 +21,19 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    function responseGoogle(googleUser){
-        
+    async function responseGoogle(googleUser){
+        const {code} = googleUser
+        const tokens = await axios.post('http://localhost:3002/loginUser', {code: code})
+        //console.log('data: ',tokens.data)
+        localStorage.setItem('tok', JSON.stringify(tokens))
+        const data = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
+        const userGoogle = {
+            accessToken: tokens.data.data.access_token,
+            name: data.data.name,
+            pic: data.data.picture,
+            email: data.data.email, 
+        }
+        console.log(userGoogle)
         dispatch(changeProfile(googleUser, history))
     }
     
@@ -44,7 +55,7 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
             </div>
             <div className="profileWnd__cambiar">
                 <GoogleLogin
-                    clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
+                    clientId="1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com"
                     buttonText="Cambiar Cuenta"
                     className="profileWnd__googleBtn"
                     onSuccess={responseGoogle}
@@ -53,7 +64,7 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
             </div>
             <div className="profileWnd__cambiar">
                 <GoogleLogout
-                    clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
+                    clientId="1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com"
                     buttonText="Logout"
                     className="profileWnd__googleBtn"
                     onLogoutSuccess={logout}

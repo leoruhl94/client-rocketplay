@@ -38,7 +38,7 @@ const App: React.FC = () => {
                 <Route exact path="/" render={() => 
                     !localStorage.getItem("user") ? 
                     <Home/> :
-                    <Redirect to={lastRoute}/>}/>
+                    <Redirect to={lastRoute && '/home'}/>}/>
                 {/* ..... Ruta about ..... */}
                 <Route exact path="/about">
                     <AboutComponent></AboutComponent>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { changeProfile } from "../../redux/actions";
+import { changeProfile, closeAccountType } from "../../redux/actions";
 import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
@@ -9,15 +9,24 @@ import "./loginAccountType.scss";
 interface Props{
     googleUser: any
 }
-export const LoginAccountType: React.FC<Props> = ({googleUser}) => {
+export const LoginAccountType: React.FC = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(googleUser)
+    const json = localStorage.getItem('user')
+    const user = json && JSON.parse(json)
 
     function handleClick(e){
-        axios.post('http://localhost:3002/loginUser', {isBusiness: false, name: googleUser.profileObj.name, email: googleUser.profileObj.email}) 
-        history.push('/home')
-        //dispatch(changeProfile(googleUser, history))
+        const json = localStorage.getItem('user')
+        const user = json && JSON.parse(json)
+
+        const isBusiness = (e.target.value === 'business')
+        console.log('isBusiness: ', isBusiness)
+        
+        axios.put('http://localhost:3002/users', {isBusiness: isBusiness, email: user.email})
+        dispatch(closeAccountType())
+
+        if(isBusiness) history.push('/pricing')
+        else history.push('/home')
     }
     return (
         <div className="acctype-super-container">
@@ -28,11 +37,11 @@ export const LoginAccountType: React.FC<Props> = ({googleUser}) => {
                 <div className="acctype-button-div">
                         <div>
                             <p>A company/enterprise looking to use our service to upload and showcase videos</p>
-                            <button onClick={() => history.push('/pricing')} className="acctype-choose-business">Business Account</button>
+                            <button onClick={handleClick} value='business' className="acctype-choose-business">Business Account</button>
                         </div>
                         <div>
                             <p>An employee/subscriber looking to only access and watch videos</p>
-                            <button onClick={(e) => handleClick(e)} className="acctype-choose-business">Subscriber Account</button>
+                            <button onClick={handleClick} value='user' className="acctype-choose-business">Subscriber Account</button>
                         </div>
                 </div>
             </div>

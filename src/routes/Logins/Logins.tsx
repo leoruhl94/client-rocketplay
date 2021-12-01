@@ -4,7 +4,7 @@ import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import "./Logins.scss";
-import {changeProfile, deployLogWnd} from '../../redux/actions'
+import {changeProfile} from '../../redux/actions'
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
 import { Icon } from "../../components/Icon/Icon";
@@ -28,7 +28,6 @@ export const Logins: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch()
   const {accountType} = useSelector((state: storeState) => state)
-  const [user, setUser] = useState({})
   const handleSign = () :void => {
     setSign(!sign)
   }
@@ -52,7 +51,6 @@ export const Logins: React.FC = () => {
     
     console.log(userGoogle)
     dispatch(changeProfile(userGoogle, history))
-    setUser(userGoogle)
   }
 
   function errorGoogle(response){
@@ -85,18 +83,17 @@ export const Logins: React.FC = () => {
     setInput({...input, [e.target.name]: e.target.value})
   }
 
-
   return (
     <div>
       <div className="Logs">
-        {accountType ? <LoginAccountType googleUser={user} /> : null}
+        {accountType ? <LoginAccountType/> : null}
         <h2 className="Logs_title">{`${sign ?'Sign up':'Log in'} to start using our service`}</h2>
         <div className="Logs_logo">
           <Icon svg="logoDarkColor" />
         </div>      
         <div className="singleButton">
           <GoogleLogin
-            clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
+            clientId='1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com'
             buttonText={ sign ? "Sign up with Google ": "Log in with Google "}
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
             className="botoncito"
