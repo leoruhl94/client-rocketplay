@@ -1,12 +1,12 @@
+// Imports de react
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-//import axios from "axios"; After
-import { Props2 } from "./Parts";
-
-// ----- ----- -----
-import "./styles/AboutDetail.scss";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import axios from "axios";
+
+// ----- ----- ----- Componentes ----- ----- -----
+import "./styles/AboutDetail.scss";
+import { Props2 } from "./Parts";
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
 import { Images } from "./info";
 
@@ -22,25 +22,30 @@ https://adrianrueda.dev/typescript-con-react/
 
 // ..... Componente about .....
 const AboutDetailComponent: React.FC = () => {
-  // Caja de variables
+  // ..... Caja de variables .....
   type idParams = {
     id: string;
   };
-    let { id } = useParams<idParams>();
+    let { id } = useParams<idParams>(); // useParams de reactJs pero con Ts
     let icon = <Icon svg="linkedin"></Icon>
     let boolAbout = true
-  // Estado de react con useState - State = Props2
-  const [user, setUser] = useState({
-    id: 0,
-    name: "",
-    photo: "....",
-    description: "Soy una descripción",
-    links: { linkedin: "", github: "" },
-  });
+    let boolTech = true
+    
+    
+    
+    // Estado de react con useState - Props2 es la interface
+    const [user, setUser] = useState({
+      id: 0,
+      name: "",
+      photo: "....",
+      description: "Soy una descripción",
+      links: { linkedin: "", github: "" },
+    });
+    // ..... End of var box .....
 
   // ..... useEffect .....
   useEffect(() => {
-    // Traer los datos desde el backEnd
+    // Traer los datos desde el backEnd - Hago función aparte para poder usar async await
     async function getAboutAPI() {
       let res = await axios.get(`http://localhost:3002/aboutUs`);
       let power: Props2 = res.data.filter((x: any) => {
@@ -61,8 +66,10 @@ const AboutDetailComponent: React.FC = () => {
     // Hacemos ejecutar la función
     getAboutAPI();
   }, []);
+  // ..... End of useEffect() .....
 
-  // TODO: Función acordeón
+
+  // ..... About dropdown .....
   function handleWidthAbout(){
     if(boolAbout === true){
       boolAbout = false
@@ -75,23 +82,25 @@ const AboutDetailComponent: React.FC = () => {
       ab.className = 'AboutDetail_about-me '
     }
   }
+  // ..... End of About dropdown .....
+  // ..... Tecnologies dropdown .....
   function handleWidthTech(){
-    if(boolAbout === true){
-      boolAbout = false
+    if(boolTech === true){
+      boolTech = false
       let about = document.getElementsByClassName('AboutDetail_about-tech')[0]
       about.className = 'AboutDetail_about-tech-sec'
 
     }else{
-      boolAbout = true
+      boolTech = true
       let ab = document.getElementsByClassName('AboutDetail_about-tech-sec')[0]
       ab.className = 'AboutDetail_about-tech '
     }
   }
-  // Mostrar / Ocultar el about Me
+  // ..... End of tecnologies dropdown .....
 
   // ----- ----- ----- ----- -----
   return (
-    // Complete: Mostrar el user completo del state
+    // TODO: Mostrar el user completo del state(redux)
     <div>
       <div className="curve-bg">
         {/* ..... Svg de la organización ..... */}
@@ -109,11 +118,14 @@ const AboutDetailComponent: React.FC = () => {
           </g>
         </svg>
         {/* Fin svg */}
+        {/* ............................ */}
+
       </div>
 
       <article className="about__Article animated fadeIn fast">
         {/* ..... Sección de el perfil - Img, name, social ..... */}
         <section className="AboutDetail_profile-container">
+          {/* Image */}
           <img
             src={user.photo}
             alt="profile-image"
@@ -122,8 +134,7 @@ const AboutDetailComponent: React.FC = () => {
           <div className="AboutDetail_profile-details">
             <h2 className="AboutDetail_profile-name">{user.name}</h2>
             <div className="AboutDetail_profile-links">
-              <a href={user.links.linkedin} className="AboutDetail_icon-link">
-              {console.log(user.links.linkedin)} 
+              <a href={user.links.linkedin} className="AboutDetail_icon-link"> 
                 <Icon svg="linkedin"></Icon>
               </a>
               <a href={user.links.github} className="AboutDetail_icon-link">
@@ -132,6 +143,7 @@ const AboutDetailComponent: React.FC = () => {
             </div>
           </div>
         </section>
+        {/* ............................ */}
         {/* ..... Sección About Me ..... */}
        <section>
       {/* ..... Dropdown de description ..... */}
@@ -142,7 +154,8 @@ const AboutDetailComponent: React.FC = () => {
           </div>
           <div  className="AboutDetail_about-me-description">{user.description}</div>
         </div>
-        {/* ..... Dropdown de description ..... */}
+        {/* ............................ */}
+        {/* ..... Dropdown de tecnologies ..... */}
        <div className="AboutDetail_about-tech">
           <div className="AboutDetail__about-tech-drop">
           <h3  className="AboutDetail_about-tech-title">Tecnologies</h3>
@@ -153,10 +166,17 @@ const AboutDetailComponent: React.FC = () => {
 
           </div>
         </div>
+        {/* ............................ */}
 
        </section>
+        {/* 
+        TODO: Podría simplificar esto, tecnicamente las clases de tecnologies y about cambian en un solo lugar. El resto son igualitas
+        TODO: Investigar si se puede mapear esto
+        */}
 
+        {/* Navbar para los celulares, en desktop no se muestra ..... */}
         <NavigationMobile />
+        {/* TODO: Footer para desktops, en mobile no se mostrará ..... */}
       </article>
     </div>
   );

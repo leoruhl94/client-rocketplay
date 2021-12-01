@@ -145,15 +145,16 @@
     height: 100%;
 }
 
-$breakpoint-tablet: 768px;
+$breakpoint-tablet: 1024px;
 @media (min-width: $breakpoint-tablet) {
     .about__Article {
+        text-decoration: none;
         color: #fff;
         width: 90%;
         margin: auto;
         display: grid;
-        gap: 5%;
-        grid-template-columns: 20% 75%;
+        gap: 10%;
+        grid-template-columns: 20% 70%;
     }
     .AboutDetail_profile-container {
         //   background-color: rgba(79, 219, 224, 0.795);
@@ -169,6 +170,8 @@ $breakpoint-tablet: 768px;
             align-items: center;
         }
         .AboutDetail_icon-link {
+            color: white;
+            text-decoration: none;
             margin: 0 2rem;
         }
     }
