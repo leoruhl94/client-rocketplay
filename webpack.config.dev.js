@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-
+const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -10,7 +10,9 @@ module.exports = {
     path: path.join(__dirname, "dist/"),
     publicPath: "/",
     filename: "bundle.js",
+    sourceMapFilename: "bundle.js.map",
   },
+  devtool: "source-map",
   mode: "development",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -43,6 +45,13 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.(js)?$/,
+        enforce: "pre",
+        use: {
+            loader: "source-map-loader",
+        },
+    },
       {
         test: /\.(ts|tsx)?$/,
         exclude: /node_modules/,
@@ -77,6 +86,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "assets/[name].css",
+    }),
+    new SourceMapDevToolPlugin({
+      filename: "[file].map"
     }),
 
     new ImageMinimizerPlugin({

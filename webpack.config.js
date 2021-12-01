@@ -5,6 +5,7 @@ const CSSMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { SourceMapDevToolPlugin } = require("webpack");
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -12,7 +13,9 @@ module.exports = {
         path: path.join(__dirname, "dist/"),
         publicPath: "/",
         filename: "bundle.js",
+        sourceMapFilename: "bundle.js.map",
     },
+    devtool: "source-map",
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"],
         // alias: {
@@ -30,6 +33,13 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
+                },
+            },
+            {
+                test: /\.(js)?$/,
+                enforce: "pre",
+                use: {
+                    loader: "source-map-loader",
                 },
             },
             {
@@ -71,6 +81,9 @@ module.exports = {
                 ],
             },
         }),
+        new SourceMapDevToolPlugin({
+            filename: "[file].map"
+          }),
     ],
     optimization: {
         minimize: true,
