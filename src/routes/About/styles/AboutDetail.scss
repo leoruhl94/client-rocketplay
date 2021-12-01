@@ -4,118 +4,84 @@
     align-items: center;
     margin-top: 3rem;
     .AboutDetail_profile-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 100%;
+        width: 120px;
+        height: 120px;
+        border-radius: 100%;
     }
     .AboutDetail_profile-details {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      width: 100%;
-      height: 120px;
-      padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 120px;
+        padding-left: 1rem;
     }
     .AboutDetail_profile-links {
-      display: flex;
-     }
+        display: flex;
+    }
     .AboutDetail_icon-link {
-      font-size: 2rem;
-      text-decoration: none;
-      margin-right: 2rem;
+        font-size: 2rem;
+        text-decoration: none;
+        margin-right: 2rem;
     }
     .AboutDetail_profile-name {
-      font-size: 2rem;
-      font-weight: 400;
-      margin: 0;
-    }
-  }
-  .AboutDetail_about-me{
-      background-color: #30444e;
-    margin-top: 3rem;
-    border-radius: 15px;
-    .AboutDetail_about-me-title{
-        font-weight: 400;
         font-size: 2rem;
-        padding: 1rem;
+        font-weight: 400;
         margin: 0;
-      }
-      .AboutDetail_about-me-description{
-        font-weight: 300;
-        max-height: 300px;
-        overflow-y: auto; 
-        white-space: pre-line;
-      padding: 1rem;
     }
-  }
-  
-  $breakpoint-tablet: 768px;
-  @media (min-width: $breakpoint-tablet) {
-      .AboutDetail_profile-container {
-          //   background-color: rgba(79, 219, 224, 0.795);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 3rem;
-          .AboutDetail_profile-image {
-              width: 270px;
-              height: 270px;
-  
-            }
-            .AboutDetail_profile-details {
-              align-items: center;
-            }
-         
-              .AboutDetail_icon-link {
-                margin: 0 2rem;
-            }
-             
-      }
-  }
-  
-  
-  ::-webkit-scrollbar {
-      width: 10px;
-      border-radius: 5px;
-    }
-    
-    /* Track */
-    
-    ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px grey;
-      border-radius: 5px;
-    }
-    
-    /* Handle */
-    
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(#6835a5, #1983ff);
-      border-radius: 10px;
-    }
-    
-    /* Handle on hover */
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(#562e86, #1c74d8);
-    }
-    
-  
+}
 
+.AboutDetail_about-me {
+    background-color: #30444e;
+    margin-top: 3rem;
+    height: 65px;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: 0.4s;
+}
 
+.AboutDetail_about-me-sec {
+    background-color: #30444e;
+    margin-top: 3rem;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.4s;
+}
 
+.AboutDetail__about-me-drop {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
 
+.AboutDetail__about-me-button {
+    font-size: 3rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
 
+.AboutDetail__about-me-button:hover {
+    font-size: 3rem;
+    background-color: white;
+    border: none;
+    color: black;
+}
 
+.AboutDetail_about-me-title {
+    font-weight: 400;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 0;
+}
 
-
-
-
-
-
-
-
-
-/* Contenedor principal Es solamente saber el ancho */
+.AboutDetail_about-me-description {
+    font-weight: 300;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-line;
+    padding: 1rem;
+}
 
 .about__Article {
     color: #fff;
@@ -123,50 +89,186 @@
     margin: auto;
 }
 
-
-/* Icono de fontAwesome para volver a la página anterior */
-
-.about__btn {
-    margin-top: 78px;
-    margin-bottom: 47px;
+.AboutDetail_about-tech-sec {
+    background-color: #30444e;
+    height: 65px;
+    margin-top: 3rem;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.4s;
 }
 
-
-/* Contenedor de redes sociales - Hecho también para dar una barrita de color en la descripción*/
-
-.about__icon {
-    /* icon */
-    margin: auto;
-    border-radius: 20px;
-    width: 50%;
-    color: #fff;
-    background-color: #fff;
+.AboutDetail_about-tech {
+    background-color: #30444e;
+    margin-top: 3rem;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.4s;
 }
 
-
-/* Para la bio o descripción de la persona si quiere escribir algo*/
-
-.flipCardback {
-    width: 80%;
+.AboutDetail__about-tech-drop {
     display: grid;
-    padding: 30px;
-    gap: 10px;
-    margin: auto;
-    text-align: justify;
-    border-radius: 25px;
-    background-color: #30444E;
-    margin-bottom: 20px;
-    box-shadow: 2px 4px 8px #222020;
-    cursor: copy;
-    margin-top: 15px;
+    grid-template-columns: 80% 20%;
 }
 
-.about__super__container {
-    overflow-y: scroll;
-    width: 90%;
-    height: 90%;
-    margin: auto;
+.AboutDetail__about-tech-button {
+    font-size: 3rem;
+    background-color: transparent;
+    border: none;
+    color: white;
 }
+
+.AboutDetail__about-tech-button:hover {
+    font-size: 3rem;
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.AboutDetail_about-tech-title {
+    font-weight: 400;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 0;
+}
+
+.AboutDetail_about-tech-logos {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.AboutDetail__about-tech-logo {
+    width: 100%;
+    height: 100%;
+}
+
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+    .about__Article {
+        color: #fff;
+        width: 90%;
+        margin: auto;
+        display: grid;
+        gap: 5%;
+        grid-template-columns: 20% 75%;
+    }
+    .AboutDetail_profile-container {
+        //   background-color: rgba(79, 219, 224, 0.795);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+        .AboutDetail_profile-image {
+            width: 270px;
+            height: 270px;
+        }
+        .AboutDetail_profile-details {
+            align-items: center;
+        }
+        .AboutDetail_icon-link {
+            margin: 0 2rem;
+        }
+    }
+    .AboutDetail_about-me {
+        background-color: #30444e;
+        height: 65px;
+        margin-top: 5rem;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .AboutDetail_about-me-sec {
+        background-color: #30444e;
+        margin-top: 5rem;
+        height: 400px;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .AboutDetail__about-me-drop {
+        display: grid;
+        grid-template-columns: 80% 20%;
+    }
+    .AboutDetail__about-me-button {
+        font-size: 3rem;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+    .AboutDetail__about-me-button:hover {
+        font-size: 3rem;
+        background-color: white;
+        border: none;
+        color: black;
+    }
+    .AboutDetail_about-me-title {
+        font-weight: 400;
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 0;
+    }
+    .AboutDetail_about-me-description {
+        font-weight: 300;
+        max-height: 300px;
+        overflow-y: auto;
+        white-space: pre-line;
+        padding: 1rem;
+    }
+    .AboutDetail_about-tech-sec {
+        background-color: #30444e;
+        height: 65px;
+        margin-top: 3rem;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .AboutDetail_about-tech {
+        background-color: #30444e;
+        margin-top: 3rem;
+        height: 400px;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .AboutDetail__about-tech-drop {
+        display: grid;
+        grid-template-columns: 80% 20%;
+    }
+    .AboutDetail__about-tech-button {
+        font-size: 3rem;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+    .AboutDetail__about-tech-button:hover {
+        font-size: 3rem;
+        background-color: white;
+        border: none;
+        color: black;
+    }
+    .AboutDetail_about-tech-title {
+        font-weight: 400;
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 0;
+    }
+    .AboutDetail_about-tech-logos {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 1rem;
+    }
+}
+
+
+/* Contenedor principal Es solamente saber el ancho */
+
+
+/*AboutDetail__about-me-drop*/
 
 
 /* width */
@@ -199,167 +301,7 @@
 }
 
 
-/* Contenedor que va a mostrar las cards de las redes sociales */
-
-.socialNetwork {
-    width: 100%;
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 30% 70%;
-    margin: auto;
-    text-align: left;
-    border-radius: 25px;
-    background-color: #30444E;
-    margin-bottom: 20px;
-    box-shadow: 2px 4px 8px #222020;
-    cursor: pointer;
-}
-
-
 /* Acá iría el nombre de la red social y hacia que perfil apuntaría*/
-
-.about__socialTextNetwork {
-    display: grid;
-    grid-template-rows: 33px 33px 33px;
-}
 
 
 /* Para desktops*/
-
-$breakpoint-tablet: 768px;
-@media (min-width: $breakpoint-tablet) {
-    /* Desktop - Contenedor principal - Vamos a mostrar dos secciones completas*/
-    .about__Article {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        color: #fff;
-        width: 90%;
-        margin: auto;
-        margin-top: 5%;
-    }
-    /* Animación que ocupé en mi PI*/
-    .flipCard {
-        margin: auto;
-        border-radius: 30px;
-        background-color: transparent;
-        width: 80%;
-        height: 90%;
-        perspective: 1000px;
-        /* Remove this if you don't want the 3D effect */
-    }
-    /* This container is needed to position the front and back side */
-    .flipCardInner {
-        border-radius: 30px;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-    }
-    /* Do an horizontal flip when you move the mouse over the flip box container */
-    .flipCard:hover .flipCardInner {
-        transform: rotateY(180deg);
-    }
-    /* Position the front and back side */
-    .flipCardfront,
-    .flipCardback {
-        border-radius: 30px;
-        position: absolute;
-        width: 90%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        /* Safari */
-        backface-visibility: hidden;
-    }
-    /* Style the front side (fallback if image is missing) */
-    .flipCardfront {
-        background-color: rgb(255, 255, 255);
-        color: black;
-    }
-    /* Style the back side */
-    .flipCardback {
-        background-color: #30444E;
-        color: white;
-        transform: rotateY(180deg);
-    }
-    .flipImage {
-        width: 90%;
-        height: 100%;
-        border-radius: 30px;
-    }
-    .about__bio {
-        text-align: justify;
-        margin: auto;
-        width: 90%;
-    }
-    .icon {
-        margin: 1%;
-        width: 80px;
-        height: 80px;
-        border-radius: 80px;
-    }
-    /**/
-    /**/
-    /**/
-    /**/
-    /* Contenedores chicos */
-    /* About Component */
-    .about__responsive {
-        border-radius: 10px;
-        text-align: center;
-        width: 70%;
-        margin: auto;
-        display: grid;
-        grid-template: auto auto auto auto/ 1fr 1fr;
-        grid-gap: 30px;
-        margin-bottom: 100px;
-    }
-    /* ABout COmponent - Se usa para dejar de mostrar la palabra fullstack Team en desktops */
-    .aboutHeaderName__mobile {
-        display: none;
-    }
-    /* About User - Gigantografía*/
-    .detailImage {
-        margin-bottom: 3%;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-    }
-    /* Componente donde vamos a mostrar la sección de nombre del programador */
-    .aboutText {
-        margin: auto;
-        width: 100%;
-        height: 150px;
-    }
-    /* Modificaciones - En este vamos a mostrar distintas coas*/
-    .textDivGrid {
-        height: 100%;
-    }
-    /* Contenedor que indica para mostrar el texto en desktops*/
-    .about__mobile {
-        display: inline;
-    }
-    /* About User - Contenedor de la imágen del componente */
-    .aboutPersonImage {
-        border-radius: 15px;
-        width: 100%;
-        height: 100%;
-        align-self: center;
-        object-fit: cover;
-        object-position: center center;
-    }
-    /* Barrita de color*/
-    .color {
-        width: 100%;
-        height: 15px;
-        background-color: rgb(30, 16, 156);
-        border-radius: 30px;
-    }
-    .about__socialTextNetwork {
-        font-size: 1.7rem;
-        display: grid;
-        grid-template-rows: 33% 33% 10%;
-    }
-}

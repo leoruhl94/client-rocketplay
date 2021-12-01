@@ -23,6 +23,7 @@ import { Redirect, useHistory } from "react-router";
 // Redux
 import { useDispatch } from "react-redux";
 import { changeProfile } from "./redux/actions";
+import { VideoForm } from "./routes/Videos/VideoForm";
 
 const App: React.FC = () => {
     //const history = useHistory()
@@ -71,6 +72,9 @@ const App: React.FC = () => {
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
+                {/* ..... Ruta Create videogame ..... */}
+                <Route exact path="/createVids" component={VideoForm}/>
+
             </Switch>   
 
         </HashRouter>

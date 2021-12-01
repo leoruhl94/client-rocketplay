@@ -5,7 +5,7 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 import "./channels.scss";
 import { useSelector } from "react-redux";
 import { ProfileWnd } from "../../components/Login-Register/ProfileWnd";
-
+import { Link } from "react-router-dom";
 interface User {
     accessToken: '', 
     name: '',
@@ -30,8 +30,13 @@ export const Channels: React.FC = () => {
             <ChannelNotFound/>
                 <div className="singleChannelSuperContainer">
                     <SingleChannel channel='canal 1'/>
+                    <SingleChannel channel='canal 1'/>
+
                     <SingleChannel channel='canal 2'/>
                     <SingleChannel channel='canal 3'/>
+                    <Link to="/createVids">
+                    <button>Crear un video</button>
+                    </Link>
                 </div>
             <NavigationMobile back='home'/>
         </div>
