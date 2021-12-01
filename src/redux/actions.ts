@@ -2,6 +2,7 @@ import axios from "axios"
 export const CHANGE_PROFILE = 'CHANGE_PROFILE'
 export const DEPLOY_LOG_WND = 'DEPLOY_LOG_WND'
 export const LOGOUT = 'LOGOUT'
+export const REFRESH = "REFRESH"
 
 interface User {
     accessToken: string, 
@@ -37,6 +38,7 @@ export function changeProfile(googleUser, history){
         localStorage.setItem('user', JSON.stringify(googleUser)); 
 
         if(userDb.data.isRegistered) {
+            dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
             history.push("/home")
         }else{
             const newUser = await axios.post('http://localhost:3002/users', {isBusiness: false, name: googleUser.name, email: googleUser.email}) 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router" 
 import axios from "axios"
@@ -20,6 +20,7 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
     const profile: User = json ? JSON.parse(json) : null
     const history = useHistory()
     const dispatch = useDispatch()
+    const profileState = useSelector((state: storeState) => state.profile)
 
     async function responseGoogle(googleUser){
         const {code} = googleUser
@@ -28,7 +29,7 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
         localStorage.setItem('tok', JSON.stringify(tokens))
         const data = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
         const userGoogle = {
-            accessToken: tokens.data.data.access_token,
+            //accessToken: tokens.data.data.access_token,
             name: data.data.name,
             pic: data.data.picture,
             email: data.data.email, 
@@ -47,9 +48,9 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
     return (
         <div className={`profileWnd ${dep ? 'profileWndDep' : ''}`}>
             <div className="profileWnd__user">
-                <img src={profile.pic} className="profileWnd__pic"/>
+                <img src={profileState.pic} className="profileWnd__pic"/>
                 <div className="profileWnd__info">
-                    <span>{profile.name}</span>
+                    <span>{profileState.name}</span>
                     <span>super admin</span>
                 </div>
             </div>

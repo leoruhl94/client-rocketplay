@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, DEPLOY_LOG_WND, LOGOUT } from "./actions"
+import { CHANGE_PROFILE, DEPLOY_LOG_WND, LOGOUT, REFRESH } from "./actions"
 
 const initialState: storeState = {
     // Que nos van a traer
@@ -9,7 +9,7 @@ const initialState: storeState = {
     persons : [{},{}] -.
     
     */ 
-    profile: {accessToken: '', name: '',pic: ''},
+    profile: {name: 'Not logged in', pic: ''},
     accountType: false,
   }
 
@@ -25,6 +25,11 @@ const reducer = (
         return {...state, accountType: action.payload}
       case LOGOUT: 
         return state
+      case REFRESH:
+        return {
+          ...state,
+          profile: {name: action.payload.name, pic: action.payload.pic},
+        }
     }
     return state
   }

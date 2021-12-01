@@ -12,7 +12,7 @@ import { LoginAccountType } from "../../components/Login-Register/LoginAccountTy
 //import { useGoogleLogin } from 'react-google-login'
 
 interface User {
-  accessToken: string, 
+  //accessToken: string, 
   name: string,
   pic: string,
   email: string,
@@ -43,7 +43,7 @@ export const Logins: React.FC = () => {
     localStorage.setItem('tok', JSON.stringify(tokens))
     const data = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
     const userGoogle = {
-      accessToken: tokens.data.data.access_token,
+      //accessToken: tokens.data.data.access_token,
       name: data.data.name,
       pic: data.data.picture,
       email: data.data.email, 

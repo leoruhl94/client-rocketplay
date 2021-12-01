@@ -1,5 +1,4 @@
 interface profile {
-    accessToken: string;
     name: string,
     pic: string
   }
