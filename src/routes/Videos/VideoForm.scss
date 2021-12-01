@@ -4,6 +4,32 @@
     --var-container-color: #30444E
 }
 
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
 
 /* Contenedor main */
 
@@ -25,9 +51,9 @@
     padding: 15px;
     border-radius: 15px;
     /* TODO: Cambiar el color */
-    box-shadow: 5px 10px 18px #4b4949;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
     background-color: var(--var-container-color);
-    width: 50%;
+    width: 80%;
 }
 
 
@@ -36,24 +62,65 @@
 .Video__title-main {
     color: white;
     text-align: center;
+    text-shadow: 1px 1px 3px black;
 }
 
 // Input file
 .Video__file-uploader-text {
+    padding: 15px;
     width: 100%;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 1.4rem;
+}
+
+.inputDiv {
+    position: relative;
+}
+.Video__title-placeholder{
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .Video__file-uploader-btn {
+    background-color: #fff;
+    border:none;
+    font-size:1.6rem;
     margin-top: 15px;
     padding: 15px;
     width: 100%;
     border-radius: 15px;
+    /* Only SASS */
+    &:hover{
+        background-color: rgb(204, 204, 204);
+    border:none;
+    
+    margin-top: 15px;
+    padding: 15px;
+    width: 100%;
+    border-radius: 15px;
+    }
+    /* Pro -> TIP*/
 }
+// .Video__file-uploader-btn:hover {
+//     background-color: rgb(204, 204, 204);
+//     border:none;
+    
+//     margin-top: 15px;
+//     padding: 15px;
+//     width: 100%;
+//     border-radius: 15px;
+// }
 
 .Video__file-uploader-textfield {
     height: 30px;
 }
+
+
+/* ------------------------------------------------------------------------------- */
 
 .file-upload {
     background-color: #ffffff;
@@ -66,11 +133,11 @@
     width: 100%;
     margin: 0;
     color: #fff;
-    background: #1FB264;
+    background: #68428b;
     border: none;
     padding: 10px;
     border-radius: 4px;
-    border-bottom: 4px solid #15824B;
+    border-bottom: 4px solid #6c1582;
     transition: all .2s ease;
     outline: none;
     text-transform: uppercase;
@@ -78,7 +145,7 @@
 }
 
 .file-upload-btn:hover {
-    background: #1AA059;
+    background: #626caa;
     color: #ffffff;
     transition: all .2s ease;
     cursor: pointer;
@@ -108,6 +175,7 @@
 .image-upload-wrap {
     margin-top: 20px;
     border: 4px dashed #1FB264;
+    border-radius: 5px;
     position: relative;
 }
 
@@ -138,31 +206,4 @@
     max-width: 200px;
     margin: auto;
     padding: 20px;
-}
-
-.remove-image {
-    width: 200px;
-    margin: 0;
-    color: #fff;
-    background: #cd4535;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #b02818;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.remove-image:hover {
-    background: #c13b2a;
-    color: #ffffff;
-    transition: all .2s ease;
-    cursor: pointer;
-}
-
-.remove-image:active {
-    border: 0;
-    transition: all .2s ease;
 }

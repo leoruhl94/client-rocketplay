@@ -105,11 +105,11 @@ export const Logins: React.FC = () => {
             prompt='consent'
           />
         </div>
-        <form onSubmit={handleUpload}>
+        {/* <form onSubmit={handleUpload}>
           <input type='text' name='title' value={input.title} onChange={handleChange}/>
           <input type='file' name='video' onChange={handleChange}/>
           <button type='submit' >subir video</button>
-        </form>
+        </form> */}
 
         <button className="Logins__toggle-botton">
         { sign ? "Already have an account? Log in": "Don’t have an account? Sign up"}

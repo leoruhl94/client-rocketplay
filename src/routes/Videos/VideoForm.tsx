@@ -30,7 +30,7 @@ export const VideoForm: React.FC = () => {
     title: "",
   });
 
-  const [ textFile , setTextFile ] = useState<string>('Draghrthrtg and drop a file or select add Video')
+  const [ textFile , setTextFile ] = useState<string>('Drag and drop a file or select add Video')
 
   // ..... Con esta función subimos los cambios ..... 
   function handleUpload(e) {
@@ -73,27 +73,33 @@ export const VideoForm: React.FC = () => {
     // TODO: Estilización de la creación de videos .....
     // TODO: Proponer el popUp Component .....
 
-    <article className="Video__container-main">
+    <article className="Video__container-main animated fadeIn fast">
       <section className="Video__container-form">
 
       {/* ..... ¿ This is necesary ? ..... */}
-      {accountType ? <LoginAccountType googleUser={user} /> : null}
+      {accountType ? <LoginAccountType /> : null}
       <h1 className="Video__title-main">Create a video</h1>
 
       {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
       <form onSubmit={handleUpload}>
         {/* ..... Title ..... */}
-        <input
-          className="Video__file-uploader-text"
-          type="text"
-          name="title"
-          value={input.title}
-          onChange={(e) => handleChange(e)}
-        />
+        <div className="inputDiv">
+          <input
+            className="Video__file-uploader-text"
+            type="text"
+            name="title"
+            value={input.title}
+            id="title"
+            placeholder="Title"
+            onChange={(e) => handleChange(e)}
+            required
+          />
+          {/* <label htmlFor="title" className="Video__title-placeholder">Title</label> */}
+        </div>
         {/* ..... File ..... */}
         {/* <input className="Video__file-uploader-textfield" type="file" name="video" onChange={handleChange} />         */}
         <div className="image-upload-wrap">
-          <input className="file-upload-input" type="file" name="video" onChange={(e) => handleChange(e)}/>
+          <input className="file-upload-input" type="file" name="video" onChange={(e) => handleChange(e)} required/>
         <div className="drag-text">
           <h3>{textFile}</h3>
         </div>
