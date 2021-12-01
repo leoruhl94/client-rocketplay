@@ -1,6 +1,7 @@
 import React from "react";
 import "./videoFrame.scss";
 import like from "../../../images/like.png"
+import {Link} from "react-router-dom";
 
 interface Props {
     title: string,
@@ -10,6 +11,7 @@ interface Props {
 
 export const VideoFrame: React.FC<Props> = ({title, video, likes}) => {
     return (
+        <Link to="" className="video-frame-link">
         <div className="video-frame-container">
             <div className="video-frame-video-div">
                 {/* Frame */}
@@ -25,5 +27,6 @@ export const VideoFrame: React.FC<Props> = ({title, video, likes}) => {
                 </div>
             </div>
         </div>
+        </Link>
     )
 }
