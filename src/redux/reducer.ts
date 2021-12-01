@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE } from "./actions"
+import { CHANGE_PROFILE, LOGOUT } from "./actions"
 
 const initialState: storeState = {
     // Que nos van a traer
@@ -9,7 +9,7 @@ const initialState: storeState = {
     persons : [{},{}] -.
     
     */ 
-    profile: {name: '',pic: ''},
+    profile: {accessToken: '', name: '',pic: ''},
   }
 
   // ..... ..... ..... .....
@@ -22,6 +22,11 @@ const reducer = (
         return {
           ...state, 
           profile: action.payload
+      }
+      case LOGOUT: 
+        return {
+          ...state, 
+          profile: {accessToken: '', name:'', pic:''}
       }
     }
     return state

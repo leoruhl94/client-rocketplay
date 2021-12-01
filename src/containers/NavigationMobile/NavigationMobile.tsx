@@ -3,7 +3,10 @@ import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
 import "./NavigationMobile.scss";
 import { useHistory } from "react-router";
 
-export const NavigationMobile: React.FC = () => {
+interface Props {
+  back?: string;
+}
+export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
   let history = useHistory();
   // const [menu, setMenu] = useState(false);
   // const resetPath = () => {
@@ -16,12 +19,13 @@ export const NavigationMobile: React.FC = () => {
   //   setMenu(!value);
   // };
   const handleGoBack = (): void => {
-    history.goBack();
+    if(!back) return history.goBack();
+    history.push(back)
   };
 
   return (
     <section className="NavigationMobile">
-      {/* <SuperButton icon="undo3" name={"button_undo"} handler={handleGoBack} /> */}
+      <SuperButton name={"button_Back"} text="<" handler={handleGoBack} />
       <SuperButton
         icon="homeSolid"
         name={"button_home"}
