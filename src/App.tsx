@@ -24,6 +24,7 @@ import { Redirect, useHistory } from "react-router";
 // Redux
 import { useDispatch } from "react-redux";
 import { changeProfile } from "./redux/actions";
+import { VideoForm } from "./routes/Videos/VideoForm";
 
 const App: React.FC = () => {
     //const history = useHistory()
@@ -73,6 +74,9 @@ const App: React.FC = () => {
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
                 <Route exact path="/testing" component={LoginAccountType}/>
+                {/* ...... Ruta Business register ..... */}
+                <Route exact path="/createVids" component={VideoForm}/>
+                
             </Switch>   
 
         </HashRouter>
