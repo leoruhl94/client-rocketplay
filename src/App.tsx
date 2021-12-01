@@ -25,6 +25,7 @@ import { Redirect, useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { changeProfile } from "./redux/actions";
 import { VideoForm } from "./routes/Videos/VideoForm";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 
 const App: React.FC = () => {
     //const history = useHistory()
@@ -77,7 +78,7 @@ const App: React.FC = () => {
                 {/* ...... Ruta Create Video ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
                 {/* ...... Ruta Video Detail ..... */}
-                <Route exact path="/videoDetail/:id"/>
+                <Route path="/videodetail/:id" component={VideoDetail} />
 
             </Switch>   
 
