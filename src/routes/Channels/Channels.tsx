@@ -5,28 +5,15 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 import "./channels.scss";
 import { useSelector } from "react-redux";
 import { ProfileWnd } from "../../components/Login-Register/ProfileWnd";
+import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { Link } from "react-router-dom";
-interface User {
-    accessToken: '', 
-    name: '',
-    pic: ''
-  }
+
 export const Channels: React.FC = () => {
-    const json = localStorage.getItem('user')
-    const profile: User = json ? JSON.parse(json) : null
-    const [wndProfile, setWndProfile] = useState(false)
+    
     useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
     return (
         <div>
-            <nav className="channelsNav">
-                <ul className="channelsNavUl">Channels</ul>
-                <ul className="channelsNavUl ">
-                    <button className="channelsNavProfileBtn" onClick={()=>{setWndProfile(!wndProfile)}}>
-                        <img className="Profile_image" src={profile.pic}/>
-                    </button>
-                    <ProfileWnd dep={wndProfile}/>
-                </ul>
-            </nav>
+            <NavProfileAndLocation/>
             <ChannelNotFound/>
                 <div className="singleChannelSuperContainer">
                     <SingleChannel channel='canal 1'/>

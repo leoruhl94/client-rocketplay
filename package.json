@@ -42,6 +42,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
     "firebase": "^9.5.0",
     "googleapis": "^91.0.0",
     "react": "^17.0.2",

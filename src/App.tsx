@@ -14,6 +14,7 @@ import { LoginEmail } from './components/Login-Register/LoginEmail';
 import { RegisterEmail } from './components/Login-Register/RegisterEmail';
 import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 import { Categories } from "./routes/Categories/Categories";
+import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
@@ -38,7 +39,7 @@ const App: React.FC = () => {
                 <Route exact path="/" render={() => 
                     !localStorage.getItem("user") ? 
                     <Home/> :
-                    <Redirect to={lastRoute}/>}/>
+                    <Redirect to={lastRoute && '/home'}/>}/>
                 {/* ..... Ruta about ..... */}
                 <Route exact path="/about">
                     <AboutComponent></AboutComponent>
@@ -72,9 +73,10 @@ const App: React.FC = () => {
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
-                {/* ..... Ruta Create videogame ..... */}
+                <Route exact path="/testing" component={LoginAccountType}/>
+                {/* ...... Ruta Business register ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
-
+                
             </Switch>   
 
         </HashRouter>
