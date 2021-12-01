@@ -1,142 +1,110 @@
-import React, {useState} from "react";
-import {useHistory, useLocation} from 'react-router-dom'
-import {GoogleLogin} from 'react-google-login'
-import axios from 'axios'
-import { useDispatch, useSelector } from "react-redux";
-import "../Logins/Logins.scss";
-import {changeProfile, deployLogWnd} from '../../redux/actions'
+import React, { useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import "./VideoForm.scss";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
 import { Icon } from "../../components/Icon/Icon";
 import { LoginAccountType } from "../../components/Login-Register/LoginAccountType";
-//import { useGoogleLogin } from 'react-google-login'
 
+// Interfaces
 interface User {
-  accessToken: string, 
-  name: string,
-  pic: string,
-  email: string,
-  isBusiness: boolean,
+  accessToken: string;
+  name: string;
+  pic: string;
+  email: string;
+  isBusiness: boolean;
 }
-interface Input{
-  file: any,
-  title: string
+interface Input {
+  file: any;
+  title: string;
 }
-
+// -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
-    const [sign, setSign] = useState<boolean>(false);
-  const history = useHistory();
-  const dispatch = useDispatch()
-  const {accountType} = useSelector((state: storeState) => state)
-  const [user, setUser] = useState({})
-  const handleSign = () :void => {
-    setSign(!sign)
-  }
+  // Caja de variables
+  const { accountType } = useSelector((state: storeState) => state);
+  const [user, setUser] = useState({});
+
   const [input, setInput] = useState<Input>({
-    file: null, title: '',
-  })
-  
-  async function responseGoogle(googleUser) {
-    //console.log(googleUser)
-    const {code} = googleUser
-    const tokens = await axios.post('http://localhost:3002/loginUser', {code: code})
-    //console.log('data: ',tokens.data)
-    localStorage.setItem('tok', JSON.stringify(tokens))
-    const data = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
-    const userGoogle = {
-      accessToken: tokens.data.data.access_token,
-      name: data.data.name,
-      pic: data.data.picture,
-      email: data.data.email, 
-    }
-    
-    console.log(userGoogle)
-    dispatch(changeProfile(userGoogle, history))
-    setUser(userGoogle)
-  }
+    file: null,
+    title: "",
+  });
 
-  function errorGoogle(response){
-    console.log(response)
-  }
-  async function handleUpload(e){
-    e.preventDefault()
-    // Acá agarramos las credenciales que tenemos en el redux?
-    const js = localStorage.getItem('tok')!! // NOt null assertion
-    // Acá las convertimos en el formato de credenciales necesarias
-    // ESTO NO PARSEA -  QUE ONDA?
-    let tokens = JSON.parse(js)
+  const [ textFile , setTextFile ] = useState<string>('Draghrthrtg and drop a file or select add Video')
 
-
-    console.log('tokewreughre' + tokens);
-    console.log('tokens ' + tokens.data.data)
-    // Formulario para enviar la información
-    const formData = new FormData()
-    formData.append('videoFile', input.file)
-    formData.append('title', input.title)
-    formData.append('tokens', tokens.data.data)
-    // Headers
+  // ..... Con esta función subimos los cambios ..... 
+  function handleUpload(e) {
+    e.preventDefault();
+    const js = localStorage.getItem("tok");
+    const tokens = js && JSON.parse(js);
+    console.log(tokens.data.data);
+    const formData = new FormData();
+    formData.append("videoFile", input.file);
+    formData.append("title", input.title);
+    formData.append("tokens", JSON.stringify(tokens.data.data));
     const config = {
-      headers: {'content-type': 'multipart/form-data'}
-    }
-    //axios.post('http://localhost:5000/upload', formData, config)
-    // Test1 - Vemos el objeto para agarrar las credenciales
-    let objetito = {
-        videoFile : input.file,
-        title : input.title,
-        tokens : tokens.data.data
-    }
-    console.log(objetito);
-    console.log(formData);
-    axios.post('http://localhost:3002/uploadVideo', objetito, config)
-    .then(r => {
-      console.log('respuesta: ',r)
-    })
-    /* const js = localStorage.getItem('tok')
-    const tokens = js && JSON.parse(js)
-    axios.post('http://localhost:3002/uploadVideo', {tokens}) */
-  }
-  function handleChange(e){
-    if (e.target.name === 'video') return setInput({...input, file: e.target.files[0]})
-    setInput({...input, [e.target.name]: e.target.value})
-  }
+      headers: { "content-type": "multipart/form-data" },
+    };
 
+    axios
+      .post("http://localhost:3002/uploadVideo", formData, config)
+      .then((r) => {
+        // TODO: Devolver un feedback
+        console.log("respuesta: ", r);
+      });
+
+
+  }
+  // ..... Captamos los cambios con esta función .....
+  function handleChange(e) {
+    if (e.target.name === "video") {
+      
+      setInput({ ...input, file: e.target.files[0] })
+      setTextFile(e.target.value);
+      console.log(e.target.value);
+      return 
+    
+    };
+
+      setInput({ ...input, [e.target.name]: e.target.value });
+  }
 
   return (
-    <div>
-      <div className="Logs">
-        {accountType ? <LoginAccountType googleUser={user} /> : null}
-        <h2 className="Logs_title">{`${sign ?'Sign up':'Log in'} to start using our service`}</h2>
-        <div className="Logs_logo">
-          <Icon svg="logoDarkColor" />
-        </div>      
-        <div className="singleButton">
-          <GoogleLogin
-            clientId="1009538709316-mp0t7rds0snem49ajha6d8u74mbgtb9v.apps.googleusercontent.com"
-            buttonText={ sign ? "Sign up with Google ": "Log in with Google "}
-            scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
-            className="botoncito"
-            accessType='offline'
-            responseType='code'
-            onSuccess={responseGoogle}
-            onFailure={(errorGoogle)}
-            cookiePolicy={'single_host_origin'}
-            prompt='consent'
-          />
+    // TODO: Estilización de la creación de videos .....
+    // TODO: Proponer el popUp Component .....
+
+    <article className="Video__container-main">
+      <section className="Video__container-form">
+
+      {/* ..... ¿ This is necesary ? ..... */}
+      {accountType ? <LoginAccountType googleUser={user} /> : null}
+      <h1 className="Video__title-main">Create a video</h1>
+
+      {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
+      <form onSubmit={handleUpload}>
+        {/* ..... Title ..... */}
+        <input
+          className="Video__file-uploader-text"
+          type="text"
+          name="title"
+          value={input.title}
+          onChange={(e) => handleChange(e)}
+        />
+        {/* ..... File ..... */}
+        {/* <input className="Video__file-uploader-textfield" type="file" name="video" onChange={handleChange} />         */}
+        <div className="image-upload-wrap">
+          <input className="file-upload-input" type="file" name="video" onChange={(e) => handleChange(e)}/>
+        <div className="drag-text">
+          <h3>{textFile}</h3>
         </div>
-        <form onSubmit={handleUpload}>
-          <input type='text' name='title' value={input.title} onChange={handleChange}/>
-          <input type='file' name='video' onChange={handleChange}/>
-          <button type='submit' >subir video</button>
-        </form>
-
-        <button className="Logins__toggle-botton">
-        { sign ? "Already have an account? Log in": "Don’t have an account? Sign up"}
-        </button>
-
-
-
-        <NavigationMobile />
-      </div>
-    </div>
+        </div>
+        {/* ..... Upload ..... */}
+        <button className="Video__file-uploader-btn" type="submit">Upload video</button>
+      </form>
+      {/* ..... ..... ..... ..... */}
+      <NavigationMobile />
+      </section>
+    </article>
+    // TODO: Control de errores debería llegar al front
   );
-}
+};
