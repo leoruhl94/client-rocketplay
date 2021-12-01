@@ -74,9 +74,11 @@ const App: React.FC = () => {
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
                 <Route exact path="/testing" component={LoginAccountType}/>
-                {/* ...... Ruta Business register ..... */}
+                {/* ...... Ruta Create Video ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
-                
+                {/* ...... Ruta Video Detail ..... */}
+                <Route exact path="/videoDetail/:id"/>
+
             </Switch>   
 
         </HashRouter>
