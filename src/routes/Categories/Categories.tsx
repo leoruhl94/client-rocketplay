@@ -15,7 +15,7 @@ export const Categories: React.FC<Props> = ({channel}) => {
             <NavProfileAndLocation/> 
             <div className="Categories">
                 {numToArr(5).map(x => 
-                    <Link to={`/home/${channel}/${x}`}>
+                    <Link to={`/home/${channel}/${x}`} className="Categories-link">
                         <div className="Categories__item">
                             {`#Clase ${x}`}
                         </div>
