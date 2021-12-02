@@ -10,21 +10,25 @@ import {Logins} from "./routes/Logins/Logins"
 import PricingComponent from './routes/Pricing/PricingComponent';
 import { Categories } from "./routes/Categories/Categories";
 import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
-import { VideoForm } from "./routes/Videos/VideoForm";
-import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
+import { Channels } from "./routes/Channels/Channels";
 import { Class } from "./routes/Clases/Class";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
+import { VideoForm } from "./routes/Videos/VideoForm";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { Channels } from "./routes/Channels/Channels";
 import { Redirect, useHistory } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { refresh } from "./redux/actions";
 
 
 
+=======
+import { changeProfile, refresh } from "./redux/actions";
+>>>>>>> 6b908bb45e375a4bd42d4151ddbd069ef9502db7
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
