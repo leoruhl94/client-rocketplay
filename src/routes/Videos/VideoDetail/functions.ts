@@ -6,8 +6,9 @@ export const videodatallazo = {
         e.target.playVideo()
         console.log(e.target.playerInfo.videoData);
         console.log(e.target.playerInfo.videoData.title);
-        console.log(e.target.showVideoInfo());
-    
+        let obj = e.target.getVideoData();
+        return obj;
+
     
     },
     onPause : (e) => {

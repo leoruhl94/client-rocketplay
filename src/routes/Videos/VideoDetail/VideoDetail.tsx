@@ -5,9 +5,15 @@ import YouTube from 'react-youtube';
 // Estilización
 import './VideoDetail.scss'
 import { videodatallazo } from './functions';
+import axios from "axios";
 // ..... Componente principal del archivo .....
  export const VideoDetail: React.FC = () => {
     
+    const [video, setVideo ] = useState({
+        title : '',
+        author : ''
+    })
+
     // ..... Var box ..... 
     type idParams = {
         id : string
@@ -19,31 +25,30 @@ import { videodatallazo } from './functions';
         video_id : string
     }
 
-    const [ video, setVideo ] = useState('')
-
     let { id } = useParams<idParams>()
     // TODO: ¿Debería pedir el resto de información al backEnd?
     // TODO: Descripción, name, etiquetas, channels
 
     // useEffect 
     useEffect(() => {
+        let api = 'AIzaSyDWYs7h3L7MuhumjSVofdjn3RxYkJMsyxI'
+        // Para cuando tenga que pedir cosas
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${id}&key=${api}
+        `).then()
 
     },[]);
-
-
+    
     // ..... Funciones de Youtube frame .....
-    const onReady = (e) => {
-        // Ocurre cuando el video está preparado por completo
-        console.log(e.target);
-        e.target.playVideo()
-        console.log(e.target.playerInfo.videoData);
-        console.log(e.target.playerInfo.videoData.title);
-        console.log(e.target.showVideoInfo());
+    // Están modularizadas ahora las principales
+    function onReadyData(e){
 
+        let r = videodatallazo.onReady(e);
 
-    }
-    const onPause = (e) => {
-        e.target.pauseVideo()
+        setVideo({
+            ...video,
+            title : r.title,
+            author : r.video_id
+})
     }
 
     // ..... Lo que voy a devolver .....    
@@ -52,7 +57,7 @@ import { videodatallazo } from './functions';
         <section className="">
             {/* ..... Show videos ..... */}
             {/* TODO: Mostrar los títulos relacionados */}
-            <h1 className="VideoDetail-main-title">Soy el componente</h1>
+            <h1 className="VideoDetail-main-title">{video.title}</h1>
             {/* TODO: Mostrar el video en un componente*/}
             <div className="VideoDetail__video-container">
             {/* ... frame section ... */}
@@ -62,7 +67,7 @@ import { videodatallazo } from './functions';
             // className={string}                // defaults -> null
             // containerClassName={string}       // defaults -> ''
             // opts={obj}                        // defaults -> {}
-             onReady={e => videodatallazo.onReady(e)}                    // Cuándo esté listo
+             onReady={e => {onReadyData(e)  }}                    // Cuándo esté listo
             // onPlay={func}                     // defaults -> noop
              onPause={e => videodatallazo.onPause(e)}                    // defaults -> noop
             // onEnd={func}                      // defaults -> noop
@@ -71,6 +76,7 @@ import { videodatallazo } from './functions';
             // onPlaybackRateChange={func}       // defaults -> noop
             // onPlaybackQualityChange={func}    // defaults -> noop
             />
+            <h3>Autor :  {video.author}</h3>
             </div>
             {/* ... End of frame section ... */}
             {/* TODO: Mostrar la descripción */}
