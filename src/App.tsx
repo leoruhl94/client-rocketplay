@@ -15,18 +15,18 @@ import { RegisterEmail } from './components/Login-Register/RegisterEmail';
 import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 import { Categories } from "./routes/Categories/Categories";
 import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
+import { Channels } from "./routes/Channels/Channels";
+import { Class } from "./routes/Clases/Class";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
+import { VideoForm } from "./routes/Videos/VideoForm";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { Channels } from "./routes/Channels/Channels";
 import { Redirect, useHistory } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
 import { changeProfile, refresh } from "./redux/actions";
-import { VideoForm } from "./routes/Videos/VideoForm";
-import { Class } from "./routes/Clases/Class";
-import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 
 const App: React.FC = () => {
     //const history = useHistory()
