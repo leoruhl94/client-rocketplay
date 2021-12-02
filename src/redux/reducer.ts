@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, DEPLOY_LOG_WND, LOGOUT, REFRESH } from "./actions"
+import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH } from "./actions"
 
 const initialState: storeState = {
     // Que nos van a traer
@@ -10,7 +10,7 @@ const initialState: storeState = {
     
     */ 
     profile: {name: 'Not logged in', pic: ''},
-    accountType: false,
+    logsPage: 0,
   }
 
   // ..... ..... ..... .....
@@ -21,8 +21,8 @@ const reducer = (
     switch (action.type) {
       case CHANGE_PROFILE: 
         return state
-      case DEPLOY_LOG_WND: 
-        return {...state, accountType: action.payload}
+      case CHANGE_LOGSPAGE: 
+        return {...state, logsPage: action.payload}
       case LOGOUT: 
         return state
       case REFRESH:

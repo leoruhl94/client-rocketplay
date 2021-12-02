@@ -23,13 +23,20 @@ import { Redirect, useHistory } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { changeProfile } from "./redux/actions";
+import { changeProfile, refresh } from "./redux/actions";
 import { VideoForm } from "./routes/Videos/VideoForm";
 
 const App: React.FC = () => {
     //const history = useHistory()
+    const dispatch = useDispatch() 
     const json = localStorage.getItem("lastRoute")
-    const lastRoute = json || '/'
+    const lastRoute = json || ''
+    
+    useEffect(() => {
+        const js = localStorage.getItem("user")
+        const user = js && JSON.parse(js)
+        if(js) dispatch(refresh(user))
+    }, [])
     console.log(lastRoute)
     return ( // ----------------------------------------------------
         // ..... Enrutamiento .....

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import CSS from 'csstype';
 import {useHistory, useLocation} from 'react-router-dom'
 import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
@@ -9,6 +10,7 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 
 import { Icon } from "../../components/Icon/Icon";
 import { LoginAccountType } from "../../components/Login-Register/LoginAccountType";
+import { LoginPlan } from "../../components/Login-Register/LoginPlan2";
 //import { useGoogleLogin } from 'react-google-login'
 
 interface User {
@@ -27,7 +29,8 @@ export const Logins: React.FC = () => {
   const [sign, setSign] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch()
-  const {accountType} = useSelector((state: storeState) => state)
+  const {logsPage} = useSelector((state: storeState) => state)
+  const [page, setpage] = useState(2)
   const handleSign = () :void => {
     setSign(!sign)
   }
@@ -53,6 +56,9 @@ export const Logins: React.FC = () => {
     dispatch(changeProfile(userGoogle, history))
   }
 
+  function change(e){
+    setpage(parseInt(e.target.value))
+  }
   function errorGoogle(response){
     console.log(response)
   }
@@ -82,11 +88,21 @@ export const Logins: React.FC = () => {
     if (e.target.name === 'video') return setInput({...input, file: e.target.files[0]})
     setInput({...input, [e.target.name]: e.target.value})
   }
-
+  function styleVar(v){
+    const i: string = '--i'
+    const page: string = '--page'
+    const slideStyles: CSS.Properties = {
+        [i]: `${v}`,
+        [page]: `${logsPage}`,
+    }
+    return slideStyles
+  }
   return (
     <div>
-      <div className="Logs">
-        {accountType ? <LoginAccountType/> : null}
+      {/* <input onChange={change} type="number" value={page}/> */}
+      <div className='slideComp' style={styleVar(1)}><LoginAccountType/></div>
+      <div className='slideComp' style={styleVar(2)}><LoginPlan/></div>
+      <div className="Logs slideComp" style={styleVar(0)}>
         <h2 className="Logs_title">{`${sign ?'Sign up':'Log in'} to start using our service`}</h2>
         <div className="Logs_logo">
           <Icon svg="logoDarkColor" />

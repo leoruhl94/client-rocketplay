@@ -22,7 +22,7 @@ interface Input {
 // -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
   // Caja de variables
-  const { accountType } = useSelector((state: storeState) => state);
+  const { logsPage } = useSelector((state: storeState) => state);
   const [user, setUser] = useState({});
 
   const [input, setInput] = useState<Input>({
@@ -77,7 +77,7 @@ export const VideoForm: React.FC = () => {
       <section className="Video__container-form">
 
       {/* ..... ¿ This is necesary ? ..... */}
-      {accountType ? <LoginAccountType /> : null}
+      {logsPage === 1 ? <LoginAccountType /> : null}
       <h1 className="Video__title-main">Create a video</h1>
 
       {/* ..... Comenzamos con el formulario para subir las cosas ..... */}

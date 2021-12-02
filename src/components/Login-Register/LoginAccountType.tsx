@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeProfile, closeAccountType } from "../../redux/actions";
+import { changeLogsPage, changeProfile, Logout } from "../../redux/actions";
 import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
@@ -13,20 +13,14 @@ interface Props{
 export const LoginAccountType: React.FC = () => {
     const history = useHistory()
     const dispatch = useDispatch()
+    const {logsPage} = useSelector((state: storeState) => state)
     const json = localStorage.getItem('user')
     const user = json && JSON.parse(json)
     const [input, setInput] = useState("user")
 
     function handleSubmit(e){
         e.preventDefault();
-        const json = localStorage.getItem('user')
-        const user = json && JSON.parse(json)
-        const isBusiness = (input === 'business')
-
-        axios.put('http://localhost:3002/users', {isBusiness: isBusiness, email: user.email})
-        dispatch(closeAccountType())
-
-        if(isBusiness) history.push('/pricing')
+        if(input === 'business') dispatch(changeLogsPage(2))
         else history.push('/home')
     }
     
@@ -34,7 +28,7 @@ export const LoginAccountType: React.FC = () => {
         setInput(e.target.value)
     }
     function logout(){
-
+        dispatch(Logout(history))
     }
     
     return (

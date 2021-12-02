@@ -2,6 +2,9 @@ import React from "react";
 import "./channelNotFound.scss";
 
 export const ChannelNotFound: React.FC = () => {
+    function handleAdd(){
+
+    }
     return (
         <div className="channelsSuperContainer">
             <div className="channels">
@@ -10,7 +13,7 @@ export const ChannelNotFound: React.FC = () => {
                 </div>
                 <div className="channelsAddChannel">
                     <h4>Add channel</h4>
-                    <button>+</button>
+                    <button onClick={handleAdd}>+</button>
                 </div>
             </div>
         </div>
