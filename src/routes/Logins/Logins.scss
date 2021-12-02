@@ -10,8 +10,8 @@
   padding: 68px 3vw 0 3vw;
   max-width: 400px;
   margin: auto;
-  
-  .singleButton{
+
+  .singleButton {
     display: flex;
     // background: blue;
     border-radius: 25px;
@@ -20,17 +20,16 @@
     justify-content: center;
     height: 3.5rem;
     .botoncito {
-      
       display: flex;
       justify-content: center;
       width: 100%;
-     border-radius: 10px !important; 
-        span{
+      border-radius: 10px !important; 
+      span{
         font-size: 1.5rem;
-     }
+      }
     }
   }
-
+  
   .Logs_title {
     color: #fff;
     text-align: center;
@@ -40,7 +39,7 @@
     line-height: 2.8rem;
     padding: 0 5%;
   }
-
+  
   .Logs_logo {
     display: flex;
     align-items: center;
@@ -64,7 +63,7 @@
       font-family: "Ubuntu Condensed";
       font-size: 1.8rem;
       line-height: 1rem;
-
+      
       text-align: center;
     }
   }
@@ -78,16 +77,23 @@
     text-decoration-line: underline;
     color: #e3eeff;
   }
-  .Logins__toggle-botton{
+  .Logins__toggle-botton {
     font-style: italic;
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 23px;
     text-decoration-line: underline;
-    color: #E3EEFF;
+    color: #e3eeff;
     background-color: transparent;
     outline: none;
     border:none;
-
+    
   }
+}
+
+.slideComp{
+  position: absolute;
+  width: 100%;
+  transition: 0.2s;
+  left: calc((var(--i) - var(--page))*100vw);
 }

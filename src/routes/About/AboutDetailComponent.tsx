@@ -1,16 +1,14 @@
+// Imports de react
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
-//import axios from "axios"; After
-import { newState } from "./info";
-import { Props2 } from "./Parts";
-
-// ----- ----- -----
-import "./styles/AboutDetail.scss";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import axios from "axios";
-import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
+
+// ----- ----- ----- Componentes ----- ----- -----
+import "./styles/AboutDetail.scss";
+import { Props2 } from "./Parts";
+import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
+import { Images } from "./info";
 
 // LInks:
 /*
@@ -24,24 +22,30 @@ https://adrianrueda.dev/typescript-con-react/
 
 // ..... Componente about .....
 const AboutDetailComponent: React.FC = () => {
-  // Caja de variables
+  // ..... Caja de variables .....
   type idParams = {
     id: string;
   };
-  let { id } = useParams<idParams>();
-
-  // Estado de react con useState - State = Props2
-  const [user, setUser] = useState({
-    id: 0,
-    name: "",
-    photo: "....",
-    description: "Soy una descripción",
-    links: { linkedin: "", github: "" },
-  });
+    let { id } = useParams<idParams>(); // useParams de reactJs pero con Ts
+    let icon = <Icon svg="linkedin"></Icon>
+    let boolAbout = true
+    let boolTech = true
+    
+    
+    
+    // Estado de react con useState - Props2 es la interface
+    const [user, setUser] = useState({
+      id: 0,
+      name: "",
+      photo: "....",
+      description: "Soy una descripción",
+      links: { linkedin: "", github: "" },
+    });
+    // ..... End of var box .....
 
   // ..... useEffect .....
   useEffect(() => {
-    // Traer los datos desde el backEnd
+    // Traer los datos desde el backEnd - Hago función aparte para poder usar async await
     async function getAboutAPI() {
       let res = await axios.get(`http://localhost:3002/aboutUs`);
       let power: Props2 = res.data.filter((x: any) => {
@@ -54,21 +58,49 @@ const AboutDetailComponent: React.FC = () => {
         photo: power[0].photo,
         description: power[0].description,
         links: {
-          linkedin: power[0].links.linkedin,
-          github: power[0].links.github,
+          linkedin: power[0].links.LinkedIn,
+          github: power[0].links.GitHub,
         },
       });
     }
     // Hacemos ejecutar la función
     getAboutAPI();
   }, []);
+  // ..... End of useEffect() .....
 
-  // TODO: Función acordeón
-  // Mostrar / Ocultar el about Me
+
+  // ..... About dropdown .....
+  function handleWidthAbout(){
+    if(boolAbout === true){
+      boolAbout = false
+      let about = document.getElementsByClassName('AboutDetail_about-me')[0]
+      about.className = 'AboutDetail_about-me-sec'
+
+    }else{
+      boolAbout = true
+      let ab = document.getElementsByClassName('AboutDetail_about-me-sec')[0]
+      ab.className = 'AboutDetail_about-me '
+    }
+  }
+  // ..... End of About dropdown .....
+  // ..... Tecnologies dropdown .....
+  function handleWidthTech(){
+    if(boolTech === true){
+      boolTech = false
+      let about = document.getElementsByClassName('AboutDetail_about-tech')[0]
+      about.className = 'AboutDetail_about-tech-sec'
+
+    }else{
+      boolTech = true
+      let ab = document.getElementsByClassName('AboutDetail_about-tech-sec')[0]
+      ab.className = 'AboutDetail_about-tech '
+    }
+  }
+  // ..... End of tecnologies dropdown .....
 
   // ----- ----- ----- ----- -----
   return (
-    // Complete: Mostrar el user completo del state
+    // TODO: Mostrar el user completo del state(redux)
     <div>
       <div className="curve-bg">
         {/* ..... Svg de la organización ..... */}
@@ -86,10 +118,14 @@ const AboutDetailComponent: React.FC = () => {
           </g>
         </svg>
         {/* Fin svg */}
+        {/* ............................ */}
+
       </div>
 
       <article className="about__Article animated fadeIn fast">
+        {/* ..... Sección de el perfil - Img, name, social ..... */}
         <section className="AboutDetail_profile-container">
+          {/* Image */}
           <img
             src={user.photo}
             alt="profile-image"
@@ -98,8 +134,7 @@ const AboutDetailComponent: React.FC = () => {
           <div className="AboutDetail_profile-details">
             <h2 className="AboutDetail_profile-name">{user.name}</h2>
             <div className="AboutDetail_profile-links">
-              <a href={user.links.linkedin} className="AboutDetail_icon-link">
-              {console.log(user.links.linkedin)} 
+              <a href={user.links.linkedin} className="AboutDetail_icon-link"> 
                 <Icon svg="linkedin"></Icon>
               </a>
               <a href={user.links.github} className="AboutDetail_icon-link">
@@ -108,79 +143,40 @@ const AboutDetailComponent: React.FC = () => {
             </div>
           </div>
         </section>
-        <div className="AboutDetail_about-me">
+        {/* ............................ */}
+        {/* ..... Sección About Me ..... */}
+       <section>
+      {/* ..... Dropdown de description ..... */}
+       <div className="AboutDetail_about-me">
+          <div className="AboutDetail__about-me-drop">
           <h3  className="AboutDetail_about-me-title">About Me</h3>
+          <button onClick={handleWidthAbout} className="AboutDetail__about-me-button">{icon}</button>
+          </div>
           <div  className="AboutDetail_about-me-description">{user.description}</div>
         </div>
+        {/* ............................ */}
+        {/* ..... Dropdown de tecnologies ..... */}
+       <div className="AboutDetail_about-tech">
+          <div className="AboutDetail__about-tech-drop">
+          <h3  className="AboutDetail_about-tech-title">Tecnologies</h3>
+          <button onClick={handleWidthTech} className="AboutDetail__about-tech-button">{icon}</button>
+          </div>
+          <div  className="AboutDetail_about-tech-logos">
+          {Images.map((x)=>{ return(<img className="AboutDetail__about-tech-logo" src={x.url} />)})}
 
-        {/* Sección información principal */}
-        {/* <section className="about__user_section">
+          </div>
+        </div>
+        {/* ............................ */}
 
-            <div className='flipCard'>
-              <div className='flipCardInner'>
-                <div className='flipCardfront'>
-                  <img src={user.photo} className='AboutDetail__profile-image' alt="Author" />
-                </div> */}
-        {/* Aquí va a estar la descripción de lo que se escriba ..... */}
-        {/* <div className='flipCardback'>
-
-                    <div className="about__super__container">
-                        <h3>About Me</h3>
-                        <aside className="about__bio">
-                        <p><a> */}
-        {/* TODO: Desplegable (only Mobile) */}
-        {/* TODO: Que se vea tranquilo */}
-        {/* text-overflow: ellipsis; */}
-        {/* {user.description}
-                        </a></p>
-                        </aside>
-                    </div>
-
-
-                </div>
-              </div> */}
-        {/* </div> */}
-
-        {/* </section> */}
-
-        {/* Sección de redes sociales */}
-
-        {/* <section className="">
-            <div className="about__socialNetwork">
-            <p className="about__icon"> . </p>
-            <h2> {user.name} </h2>
-            </div> */}
-        {/* LinkedIn */}
-        {/* <div className="about__socialNetwork"></div>
-                <img className="about__icon" src="data:image/png;base64,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" alt="" />
-                
-                <div className="about__socialTextNetwork">
-                    <p>LinkedIn</p>
-                    <Link className="aboutText" to={user.links.linkedin}>
-                        <p>LInkedin : {user.name}</p>
-                    </Link>
-
-                </div>
-            </div> */}
-
-        {/* GIthub */}
-        {/* <div className="about__socialNetwork">
-
-
-            <img className="about__icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ41A8ryU11vs-nxlU8MOizlAun3E9JsYd0Xw&usqp=CAU" alt="" />
-
-            <div className="about__socialTextNetwork">
-                    <p>Github</p>
-                    <Link className="aboutText" to={user.links.github}>
-                        <p>Github : {user.name}</p>
-                    </Link>
-
-                </div>
-            </div> */}
+       </section>
         {/* 
-        </section>
-        <br /><br /> */}
+        TODO: Podría simplificar esto, tecnicamente las clases de tecnologies y about cambian en un solo lugar. El resto son igualitas
+        TODO: Investigar si se puede mapear esto
+        */}
+
+        {/* Navbar para los celulares, en desktop no se muestra ..... */}
         <NavigationMobile />
+        {/* TODO: Footer para desktops, en mobile no se mostrará ..... */}
       </article>
     </div>
   );

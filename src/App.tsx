@@ -23,14 +23,22 @@ import { Redirect, useHistory } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { changeProfile } from "./redux/actions";
+import { changeProfile, refresh } from "./redux/actions";
 import { VideoForm } from "./routes/Videos/VideoForm";
 import { Class } from "./routes/Clases/Class";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 
 const App: React.FC = () => {
     //const history = useHistory()
+    const dispatch = useDispatch() 
     const json = localStorage.getItem("lastRoute")
-    const lastRoute = json || '/'
+    const lastRoute = json || ''
+    
+    useEffect(() => {
+        const js = localStorage.getItem("user")
+        const user = js && JSON.parse(js)
+        if(js) dispatch(refresh(user))
+    }, [])
     console.log(lastRoute)
     return ( // ----------------------------------------------------
         // ..... Enrutamiento .....
@@ -79,9 +87,11 @@ const App: React.FC = () => {
                     <Redirect to="/logs"/> : 
                     <Class class={match.params.class}/>}/>
                 <Route exact path="/testing" component={LoginAccountType}/>
-                {/* ...... Ruta Business register ..... */}
+                {/* ...... Ruta Create Video ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
-                
+                {/* ...... Ruta Video Detail ..... */}
+                <Route path="/videodetail/:id" component={VideoDetail} />
+
             </Switch>   
 
         </HashRouter>

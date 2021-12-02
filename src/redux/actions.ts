@@ -1,6 +1,6 @@
 import axios from "axios"
 export const CHANGE_PROFILE = 'CHANGE_PROFILE'
-export const DEPLOY_LOG_WND = 'DEPLOY_LOG_WND'
+export const CHANGE_LOGSPAGE = 'CHANGE_LOGSPAGE'
 export const LOGOUT = 'LOGOUT'
 export const REFRESH = "REFRESH"
 
@@ -28,7 +28,11 @@ interface userDb {
         dispatch({type: CHANGE_PROFILE, payload: false})
     }   
 } */
-
+export function refresh(user){
+    return (dispatch) => {
+        dispatch({type: REFRESH, payload: {name: user.name, pic: user.pic}})
+    }
+}
 
 export function changeProfile(googleUser, history){
     return async (dispatch) => {
@@ -38,18 +42,20 @@ export function changeProfile(googleUser, history){
         localStorage.setItem('user', JSON.stringify(googleUser)); 
 
         if(userDb.data.isRegistered) {
+            console.log('here')
             dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
             history.push("/home")
         }else{
             const newUser = await axios.post('http://localhost:3002/users', {isBusiness: false, name: googleUser.name, email: googleUser.email}) 
             console.log(newUser)
-            dispatch({type: DEPLOY_LOG_WND, payload: true})
+            dispatch({type: CHANGE_LOGSPAGE, payload: 1})
+            dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
         } 
     }   
 }
-export function closeAccountType(){
+export function changeLogsPage(page){
     return (dispatch) => {
-        dispatch({type: DEPLOY_LOG_WND, payload: false})
+        dispatch({type: CHANGE_LOGSPAGE, payload: page})
     }   
 }
 export function Logout(history){
@@ -57,5 +63,6 @@ export function Logout(history){
     history.push('/logs')
     return (dispatch) => {
         dispatch({type: LOGOUT, payload: null})
+        dispatch({type: CHANGE_LOGSPAGE, payload: 0})
     } 
 }

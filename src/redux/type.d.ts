@@ -5,7 +5,7 @@ interface profile {
   // --------------------------------
   type storeState = {
     profile: profile,
-    accountType: boolean
+    logsPage: number
   }
   
   type storeAction = {
