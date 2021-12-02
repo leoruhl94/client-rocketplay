@@ -8,11 +8,6 @@ import AboutComponent from './routes/About/AboutComponent';
 import AboutDetailComponent from './routes/About/AboutDetailComponent';
 import {Logins} from "./routes/Logins/Logins"
 import PricingComponent from './routes/Pricing/PricingComponent';
-import {RegisterSwitch} from "./components/Login-Register/RegisterSwitch"
-import { LoginSwitch } from './components/Login-Register/LoginSwitch';
-import { LoginEmail } from './components/Login-Register/LoginEmail';
-import { RegisterEmail } from './components/Login-Register/RegisterEmail';
-import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 import { Categories } from "./routes/Categories/Categories";
 import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
 
@@ -28,19 +23,18 @@ import { VideoForm } from "./routes/Videos/VideoForm";
 import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 
 const App: React.FC = () => {
-    //const history = useHistory()
     const dispatch = useDispatch() 
     const json = localStorage.getItem("lastRoute")
     const lastRoute = json || ''
     
     useEffect(() => {
+        //cargar en redux datos de la sesion abierta
         const js = localStorage.getItem("user")
         const user = js && JSON.parse(js)
         if(js) dispatch(refresh(user))
     }, [])
-    console.log(lastRoute)
-    return ( // ----------------------------------------------------
-        // ..... Enrutamiento .....
+
+    return ( // ..... Enrutamiento .....
         <HashRouter>
             <Switch>
                 {/* ..... Ruta principal ..... */}
@@ -49,29 +43,14 @@ const App: React.FC = () => {
                     <Home/> :
                     <Redirect to={lastRoute && '/home'}/>}/>
                 {/* ..... Ruta about ..... */}
-                <Route exact path="/about">
-                    <AboutComponent></AboutComponent>
-                </Route>
-                <Route exact path="/about/:id">
-                    <AboutDetailComponent></AboutDetailComponent>
-                </Route>
+                <Route exact path="/about" component={AboutComponent}/>
+                {/* ..... Ruta about detail ..... */}
+                <Route exact path="/about/:id" component={AboutDetailComponent}/>
                 {/* ...... Ruta pricing ..... */}
                 <Route exact path="/pricing" component={PricingComponent} />
-                
-                <Route exact path="/logs" component={Logins}/>
                 {/* ...... Ruta Log In ..... */}
-                <Route exact path="/login" component={LoginSwitch}/>
-                {/* ...... Ruta Log In Email..... */}
-                <Route exact path="/loginEmail" component={LoginEmail}/>
-                {/* ...... Ruta Register ..... */}
-                <Route exact path="/register" component={RegisterSwitch}/>
-                {/* ...... Ruta Register Email ..... */}
-                <Route exact path="/registerEmail" component={RegisterEmail}/>
-                {/* ...... Ruta Business Switch ..... */}
-                <Route exact path="/business" component={BusinessSwitch}/>
-                {/* ...... Ruta Business register ..... */}
-                <Route exact path="/business-register"/>
-                {/* ...... Ruta Channels ..... */}
+                <Route exact path="/logs" component={Logins}/>
+                {/* ...... Ruta Channel ..... */}
                 <Route exact path="/home" render={() => 
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
@@ -81,6 +60,7 @@ const App: React.FC = () => {
                     !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
+                {/* ...... Ruta Testing ..... */}
                 <Route exact path="/testing" component={LoginAccountType}/>
                 {/* ...... Ruta Create Video ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
