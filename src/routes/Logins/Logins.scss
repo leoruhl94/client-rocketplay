@@ -10,8 +10,8 @@
   padding: 68px 3vw 0 3vw;
   max-width: 400px;
   margin: auto;
-  
-  .singleButton{
+
+  .singleButton {
     display: flex;
     // background: blue;
     border-radius: 25px;
@@ -20,7 +20,6 @@
     justify-content: center;
     height: 3.5rem;
     .botoncito {
-      
       display: flex;
       justify-content: center;
       width: 100%;
@@ -78,13 +77,13 @@
     text-decoration-line: underline;
     color: #e3eeff;
   }
-  .Logins__toggle-botton{
+  .Logins__toggle-botton {
     font-style: italic;
     font-weight: 500;
     font-size: 1.4rem;
     line-height: 23px;
     text-decoration-line: underline;
-    color: #E3EEFF;
+    color: #e3eeff;
     background-color: transparent;
     outline: none;
     border:none;

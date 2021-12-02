@@ -5,7 +5,7 @@ import {GoogleLogin} from 'react-google-login'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import "./Logins.scss";
-import {changeProfile} from '../../redux/actions'
+import { changeProfile } from "../../redux/actions";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 
 import { Icon } from "../../components/Icon/Icon";
@@ -106,7 +106,7 @@ export const Logins: React.FC = () => {
         <h2 className="Logs_title">{`${sign ?'Sign up':'Log in'} to start using our service`}</h2>
         <div className="Logs_logo">
           <Icon svg="logoDarkColor" />
-        </div>      
+        </div>
         <div className="singleButton">
           <GoogleLogin
             clientId='1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com'
@@ -130,8 +130,6 @@ export const Logins: React.FC = () => {
         <button className="Logins__toggle-botton">
         { sign ? "Already have an account? Log in": "Don’t have an account? Sign up"}
         </button>
-
-
 
         <NavigationMobile />
       </div>

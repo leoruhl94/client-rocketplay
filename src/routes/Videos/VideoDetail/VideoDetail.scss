@@ -1,0 +1,18 @@
+/* Estilización del componente detail */
+
+.VideoDetail__video-container {
+    height: 70%;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.VideoDetail-main-title {
+    color: white;
+}
+
+.VideoDetail-main-video {
+    width: 90%;
+    height: 75%;
+}
