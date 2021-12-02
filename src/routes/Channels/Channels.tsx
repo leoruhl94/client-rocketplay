@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 export const Channels: React.FC = () => {
     
     useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
+
     return (
         <div>
             <NavProfileAndLocation/>
@@ -22,7 +23,7 @@ export const Channels: React.FC = () => {
                     <SingleChannel channel='canal 2'/>
                     <SingleChannel channel='canal 3'/>
                     <Link to="/createVids">
-                    <button>Crear un video</button>
+                    <button >Crear un video</button>
                     </Link>
                 </div>
             <NavigationMobile back='home'/>
