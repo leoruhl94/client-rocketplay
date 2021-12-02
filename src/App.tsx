@@ -21,14 +21,10 @@ import { Redirect, useHistory } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
 import { refresh } from "./redux/actions";
 
 
 
-=======
-import { changeProfile, refresh } from "./redux/actions";
->>>>>>> 6b908bb45e375a4bd42d4151ddbd069ef9502db7
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
