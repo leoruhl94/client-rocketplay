@@ -25,7 +25,7 @@ export const Class: React.FC<Props> = () => {
      
     useEffect(() => {
         let id = "lQ3RtZ1QgQI"
-        let api = "AIzaSyBCy0Yk2-nAuN6OLO_bQnxR7r1AtmU5ytM"
+        let api = ""
         let acc_token = "ya29.a0ARrdaM9tZyXZz3Kc2nYG1Z_YfubB1ocI5-idamHyDbC2knmQp6nrXQihsTfKS1Exym0VSGjaScM-joKbqt4T-3dtyjZ5VkeHwOlo9kufK7S4cbh4d3TH2znLcAweKp976l2jzH0Ml4GxdkJkdYKsNtoJBuL-"
         axios.get(`https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=${id}&key=${api}`)
         .then(r => {
