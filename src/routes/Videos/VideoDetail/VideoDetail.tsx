@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import YouTube from 'react-youtube';
 // Estilización
 import './VideoDetail.scss'
+import { videodatallazo } from './functions';
 // ..... Componente principal del archivo .....
  export const VideoDetail: React.FC = () => {
     
@@ -61,9 +62,9 @@ import './VideoDetail.scss'
             // className={string}                // defaults -> null
             // containerClassName={string}       // defaults -> ''
             // opts={obj}                        // defaults -> {}
-             onReady={onReady}                    // Cuándo esté listo
+             onReady={e => videodatallazo.onReady(e)}                    // Cuándo esté listo
             // onPlay={func}                     // defaults -> noop
-            // onPause={func}                    // defaults -> noop
+             onPause={e => videodatallazo.onPause(e)}                    // defaults -> noop
             // onEnd={func}                      // defaults -> noop
             // onError={func}                    // defaults -> noop
             // onStateChange={func}              // defaults -> noop
