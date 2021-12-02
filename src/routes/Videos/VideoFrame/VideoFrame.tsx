@@ -5,17 +5,19 @@ import {Link} from "react-router-dom";
 
 interface Props {
     title: string,
-    video: string,
+    thumbnail: string,
     likes: number,
+    videoId: string,
 }
 
-export const VideoFrame: React.FC<Props> = ({title, video, likes}) => {
+export const VideoFrame: React.FC<Props> = ({title, thumbnail, likes, videoId}) => {
     return (
-        <Link to="" className="video-frame-link">
+        <Link to={`/videodetail/${videoId}`} className="video-frame-link" key={videoId}>
         <div className="video-frame-container">
             <div className="video-frame-video-div">
                 {/* Frame */}
-                <h4>{video}</h4>
+                {/* <h4>{video}</h4> */}
+                <img src={thumbnail} alt="Thumbnail" className="video-frame-thumbnail"/>
             </div>
             <div className="video-frame-text-div">
                 <div className="video-frame-text-title">
