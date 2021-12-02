@@ -14,7 +14,7 @@ export const Categories: React.FC<Props> = ({channel}) => {
             <NavProfileAndLocation/> 
             <div className="Categories">
                 {numToArr(5).map(x => 
-                    <div className="Categories__item">
+                    <div key={x} className="Categories__item">
                         {`#Clase ${x}`}
                     </div>
                 )}

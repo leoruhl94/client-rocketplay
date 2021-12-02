@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, changeProfile, Logout } from "../../redux/actions";
+import { changeLogsPage, createUser, Logout } from "../../redux/actions";
 import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
@@ -13,15 +13,19 @@ interface Props{
 export const LoginAccountType: React.FC = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const {logsPage} = useSelector((state: storeState) => state)
+    const {logsPage, plan} = useSelector((state: storeState) => state)
     const json = localStorage.getItem('user')
     const user = json && JSON.parse(json)
-    const [input, setInput] = useState("user")
+    const [input, setInput] = useState(plan ? 'business' : "user")
 
     function handleSubmit(e){
         e.preventDefault();
-        if(input === 'business') dispatch(changeLogsPage(2))
-        else history.push('/home')
+        if(input === 'business') {
+            dispatch(changeLogsPage(2))
+        } else {
+            dispatch(createUser(user))
+            history.push('/home')
+        }
     }
     
     function handleInput(e){
@@ -44,7 +48,7 @@ export const LoginAccountType: React.FC = () => {
                                 {/* <p>An employee/subscriber looking to only access and watch videos</p> */}
                                 {/* <button onClick={handleClick} value='user' className="acctype-choose-business">Subscriber Account</button> */}
                                 <div className="acctype-input-div">
-                                    <input type="radio" value="user" className="acctype-choose-business" name="acctype" id="acctype" defaultChecked onChange={handleInput} />
+                                    <input type="radio" value="user" className="acctype-choose-business" name="acctype" id="acctype" checked={input === "user"} onChange={handleInput} />
                                     <label htmlFor="acctype" className="acctype-labels">User Account</label>
                                 </div>
                             </div>
@@ -52,13 +56,13 @@ export const LoginAccountType: React.FC = () => {
                                 {/* <p>A company/enterprise looking to use our service to upload and showcase videos</p> */}
                                 {/* <button onClick={handleClick} value='business' className="acctype-choose-business">Business Account</button> */}
                                 <div className="acctype-input-div">
-                                    <input type="radio" value="business" className="acctype-choose-business" name="acctype" id="acctype" onChange={handleInput} />
-                                    <label htmlFor="acctype" className="acctype-labels">Business Account</label>
+                                    <input type="radio" value="business" className="acctype-choose-business" name="acctype" id="acctype" checked={input === "business"} onChange={handleInput} />
+                                    <label htmlFor="acctype" className="acctype-labels" >Business Account</label>
                                 </div>
                             </div>
                             <div className="acctype-buttons-div">
                                 <div className="acctype-submit-div">
-                                    <button type="submit" className="acctype-submit-btn">Accept</button>
+                                    <button type="submit" className="acctype-submit-btn" >Accept</button>
                                 </div>
                                 <div className="acctype-submit-div">
                                     <GoogleLogout

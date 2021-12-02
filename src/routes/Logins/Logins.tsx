@@ -23,7 +23,7 @@ export const Logins: React.FC = () => {
   const dispatch = useDispatch()
   const {logsPage} = useSelector((state: storeState) => state)
   
-  async function responseGoogle(googleUser) {
+  async function responseGoogle(googleUser, keepSession) {
     //Obtener Tokens mediante el code
     const tokens = await axios.post('http://localhost:3002/loginUser', {code: googleUser.code})
     localStorage.setItem('tok', JSON.stringify(tokens))
@@ -37,7 +37,7 @@ export const Logins: React.FC = () => {
     }
     
     //Loguear o Registrar usuario 
-    dispatch(changeProfile(userGoogle, history))
+    dispatch(changeProfile(userGoogle, history, keepSession))
   }
   
   function errorGoogle(response){
@@ -48,18 +48,10 @@ export const Logins: React.FC = () => {
     const cssVars: CSS.Properties = {}
     if(typeof vars === 'object'){
       for(let prop in vars){
-        const key: string = '--'+vars.prop
-        cssVars[prop] = key
+        cssVars['--'+prop] = vars[prop]
       }
     }
     return cssVars
-    /* const i: string = '--i'
-    const page: string = '--page'
-    const slideStyles: CSS.Properties = {
-        [i]: `${v}`,
-        [page]: `${logsPage}`,
-    }
-    return slideStyles */
   }
   return (
     <div>

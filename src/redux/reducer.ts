@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH } from "./actions"
+import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH, PRICING_SELECT } from "./actions"
 
 const initialState: storeState = {
     // Que nos van a traer
@@ -11,6 +11,7 @@ const initialState: storeState = {
     */ 
     profile: {name: 'Not logged in', pic: ''},
     logsPage: 0,
+    plan: ''
   }
 
   // ..... ..... ..... .....
@@ -23,6 +24,8 @@ const reducer = (
         return state
       case CHANGE_LOGSPAGE: 
         return {...state, logsPage: action.payload}
+      case PRICING_SELECT: 
+        return {...state, plan: action.payload}
       case LOGOUT: 
         return state
       case REFRESH:

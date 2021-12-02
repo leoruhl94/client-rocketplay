@@ -5,7 +5,8 @@ interface profile {
   // --------------------------------
   type storeState = {
     profile: profile,
-    logsPage: number
+    logsPage: number, 
+    plan: string,
   }
   
   type storeAction = {

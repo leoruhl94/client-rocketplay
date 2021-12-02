@@ -10,6 +10,8 @@ import {Logins} from "./routes/Logins/Logins"
 import PricingComponent from './routes/Pricing/PricingComponent';
 import { Categories } from "./routes/Categories/Categories";
 import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
+import { VideoForm } from "./routes/Videos/VideoForm";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
@@ -17,17 +19,22 @@ import { Channels } from "./routes/Channels/Channels";
 import { Redirect, useHistory } from "react-router";
 
 // Redux
-import { useDispatch } from "react-redux";
-import { changeProfile, refresh } from "./redux/actions";
-import { VideoForm } from "./routes/Videos/VideoForm";
-import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
+import { useDispatch, useSelector } from "react-redux";
+import { refresh } from "./redux/actions";
+
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
-    const json = localStorage.getItem("lastRoute")
-    const lastRoute = json || ''
+    let lastRoute = ''
     
     useEffect(() => {
+        const ksJson = localStorage.getItem("keepSession")
+        const ks = ksJson && JSON.parse(ksJson)
+        if(!ks?.keepSession) {localStorage.clear()}
+        
+        const json = localStorage.getItem("lastRoute")
+        lastRoute = json || '/'
+
         //cargar en redux datos de la sesion abierta
         const js = localStorage.getItem("user")
         const user = js && JSON.parse(js)
@@ -39,9 +46,9 @@ const App: React.FC = () => {
             <Switch>
                 {/* ..... Ruta principal ..... */}
                 <Route exact path="/" render={() => 
-                    !localStorage.getItem("user") ? 
+                    !localStorage.getItem("user") || !lastRoute ? 
                     <Home/> :
-                    <Redirect to={lastRoute && '/home'}/>}/>
+                    <Redirect to={lastRoute}/>}/>
                 {/* ..... Ruta about ..... */}
                 <Route exact path="/about" component={AboutComponent}/>
                 {/* ..... Ruta about detail ..... */}

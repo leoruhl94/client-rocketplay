@@ -77,15 +77,15 @@
     text-decoration-line: underline;
     color: #e3eeff;
   }
-  .Logins__toggle-botton {
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.4rem;
-    line-height: 23px;
-    text-decoration-line: underline;
-    color: #e3eeff;
-    background-color: transparent;
-    outline: none;
-    border:none;
+  .logs_keppSession-lbl{
+    font-size: 1.2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+  .logs_keppSession-cb{
+    margin: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
