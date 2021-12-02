@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { useSelector } from "react-redux";
 
 // Interfaces
 import { Props2 } from './Parts'
@@ -12,31 +11,20 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 // Estilización
 import "./styles/About.scss";
 
-
-// Componente about - Componente principal
 const AboutComponent: React.FC = () => {
-  // ..... Caja de variables .....
-
   const[ array, setArray ] = useState<Props2[]>([]);
 
-
-  // ..... EL objeto después del backEnd .....
   useEffect(() => {
     async function getAboutArray(){
       let res = await axios.get(`http://localhost:3002/aboutUs`)
-
       setArray(res.data)
     }
     getAboutArray()
     // TODO: Usar el redux para guardar los datos de las personas del about - Investigar redux + Ts
   },[])
-  // ----- ----- ----- ----- -----
   return (
     <div>
-      {/* ..... Sección información principal ..... */}
       <section className="About__header">
-
-                {/* ..... Svg de la organización ..... */}
             <div className='curve-bg'>
                 <svg
                 className='bottom-curve'
@@ -52,26 +40,18 @@ const AboutComponent: React.FC = () => {
                 </g>
                 </svg>
             </div>
-                {/* Fin svg */}
 
-            {/* ..... Header principal - Text & Image ..... */}
             <div className="About__header-container">
-                <div> {/* Content */}
+                <div> 
                     <h1 className="about__title">Meet our team</h1>
                     <img className="detailImage" src="https://img.freepik.com/vector-gratis/mejores-amigos-agitando-mano_23-2148361691.jpg?size=626&ext=jpg" alt="" />
                 </div>
             </div>
-            {/* ..... End main Header ..... */}
 
-
-      {/* About User components  - Mapeo con cada persona*/}
       <h1 className="aboutHeaderName__mobile ">Team fullstack</h1>
-      {/* ..... Componente que va a renderizar otros componentes ..... */}
       <section className="about__responsive">
-      {/* Usamos AboutUser para mostrar la data de cada uno */}
       {array.map((x) => {
         return (
-          //Decoration color HERE
           <div className="aboutText">
               <AboutUser
                 id={x.id}
@@ -84,14 +64,11 @@ const AboutComponent: React.FC = () => {
         );
       })}
       </section>
-      {/* ..... End Map Components ..... */}
 
       <br />
       <br />
       </section>
-      {/* ..... End Users Section ..... */}
       <NavigationMobile/>
-      {/* ..... Navbar ..... */}
     </div>
   );
 };

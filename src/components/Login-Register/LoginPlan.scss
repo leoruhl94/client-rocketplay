@@ -1,12 +1,11 @@
 .loginPlan__container{
     position:absolute;
-    height: 100%;
     width: 100%;
     color: white;
     text-align: center;
-    display: flex;
-    align-items: center;
+    top: calc(50vh - 200px);
     .loginPlan{
+        height: 100%;
         width: 100%;
         .loginPlan__form{
             display: flex;

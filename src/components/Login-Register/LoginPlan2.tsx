@@ -1,20 +1,22 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
-import { changeLogsPage } from "../../redux/actions"
+import { changeLogsPage, createUser } from "../../redux/actions"
 import axios from 'axios'
 import './LoginPlan.scss'
 
 export const LoginPlan: React.FC = () => {
-    const [input, setInput] = useState("free")
+    const {plan} = useSelector((state: storeState) => state)
+    const [input, setInput] = useState(plan ? plan : "Basic")
     const dispatch = useDispatch()
-    const history = useHistory() 
+    const history = useHistory()
 
     function handleSubmit(e){
         e.preventDefault() 
         const json = localStorage.getItem('user')
         const user = json && JSON.parse(json)
-        axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
+        dispatch(createUser(user, true, input))
+        //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
         history.push('/home')
     }
     function handleInput(e){
@@ -29,15 +31,15 @@ export const LoginPlan: React.FC = () => {
             <h2 className="loginPlan__title">Choose your account plan</h2>
             <form onSubmit={handleSubmit} className="loginPlan__form">
                 <div className="loginPlan__option-container">
-                    <input type="radio" value="user" className="loginPlan__option-input" name="acctype" id="acctype" defaultChecked onChange={handleInput} />
+                    <input type="radio" value="Basic" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Basic'} onChange={handleInput} />
                     <label htmlFor="acctype" className="loginPlan__option-label">Basic</label>
                 </div>
                 <div className="loginPlan__option-container">
-                    <input type="radio" value="user" className="loginPlan__option-input" name="acctype" id="acctype" defaultChecked onChange={handleInput} />
+                    <input type="radio" value="Standard" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Standard'} onChange={handleInput} />
                     <label htmlFor="acctype" className="loginPlan__option-label">Standard</label>
                 </div>
                 <div className="loginPlan__option-container">
-                    <input type="radio" value="user" className="loginPlan__option-input" name="acctype" id="acctype" defaultChecked onChange={handleInput} />
+                    <input type="radio" value="Premium" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Premium'} onChange={handleInput} />
                     <label htmlFor="acctype" className="loginPlan__option-label">Premium</label>
                 </div>
                 <div className="loginPlan__btns-container">
