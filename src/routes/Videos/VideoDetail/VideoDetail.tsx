@@ -9,6 +9,7 @@ import axios from "axios";
 import { Comments, CommentsYT } from './hardcode';
 import { Icon } from '../../../components/Icon/Icon';
 import { NavigationMobile } from '../../../containers/NavigationMobile/NavigationMobile';
+import { NavProfileAndLocation } from "../../../containers/NavProfileAndLocation/NavProfileAndLocation";
 // ..... Componente principal del archivo .....
 export const VideoDetail: React.FC = () => {
   // ..... Var box .....
@@ -113,6 +114,7 @@ export const VideoDetail: React.FC = () => {
 
   // ..... Lo que voy a devolver .....
   return (
+    <><NavProfileAndLocation/>
     <article className="VideoDetail__main-article">
       {/* ..... Main section ..... */}
       <section className="VideoDetail__main-frame">
@@ -184,7 +186,7 @@ export const VideoDetail: React.FC = () => {
         {/* TODO: Ocupar la navbar */}
       </section>
       <NavigationMobile/> 
-    </article>
+    </article></>
   );
 };
 

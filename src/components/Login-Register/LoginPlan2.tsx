@@ -17,7 +17,7 @@ export const LoginPlan: React.FC = () => {
         const user = json && JSON.parse(json)
         dispatch(createUser(user, true, input))
         //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
-        history.push('/home')
+        history.push('/preapproval')
     }
     function handleInput(e){
         setInput(e.target.value)
