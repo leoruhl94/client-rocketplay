@@ -71,9 +71,10 @@ const App: React.FC = () => {
                     <Redirect to="/logs"/> : 
                     <Categories channel={match.params.channel}/>}/>
                 <Route exact path="/home/:channel/:class" render={({match}: any) => 
-                    !localStorage.getItem("user") ? 
+                    {console.log("holandaaa")
+                    return !localStorage.getItem("user") ? 
                     <Redirect to="/logs"/> : 
-                    <Class class={match.params.class}/>}/>
+                    <Class class={match.params.class}/>}}/>
                 <Route exact path="/testing" component={LoginAccountType}/>
                 {/* ...... Ruta Create Video ..... */}
                 <Route exact path="/createVids" component={VideoForm}/>
