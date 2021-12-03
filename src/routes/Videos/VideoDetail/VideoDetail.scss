@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     padding-top: 50px;
 }
 
@@ -28,7 +29,7 @@
 .VideoDetail__autor-logo {
     margin: auto;
     width: 70%;
-    border-radius: 80%;
+    border-radius: 50%;
 }
 
 .VideoDetail__main-frame {
@@ -38,19 +39,22 @@
     width: 100%;
 }
 
-.VideoDetail__main-frame2 {
-    box-shadow: 10px 10px 30px #2e2c2c;
-    width: 100vw;
-    height: 56vw;
+.VideoDetail__main-frame2-container{
+    width: 100%;
+    .VideoDetail__main-frame2 {
+        border-radius: 1rem 1rem 0rem 0rem;
+        box-shadow: 10px 10px 30px #2e2c2c;
+        width: 100%;
+        height: 56vw;
+    }
 }
 
 .VideoDetail__container-description {
-    padding: 20px;
+    padding: 5%;
     background-color: #30444E;
     color: white;
-    margin: auto;
     margin-top: 35px;
-    border-radius: 25px;
+    border-radius: 1rem;
     width: 90%;
     box-shadow: 10px 10px 30px #2e2c2c;
     margin-bottom: 20px;
@@ -67,14 +71,10 @@
 /* LIke / Dislike*/
 
 .VideoDetail__content-detail {
-    margin: auto;
+    margin: 1rem;
     color: chocolate;
     width: 100%;
     height: 60%;
-}
-
-.VideoDetail__container-comments {
-    margin: auto;
 }
 
 .VideoDetail__container-comment {
@@ -84,7 +84,7 @@
     height: 7%;
     grid-template-rows: 33% 33% 20%;
     margin-bottom: 10px;
-    border-radius: 30px;
+    border-radius: 1rem;
     transition: 0.3s;
 }
 
@@ -120,9 +120,8 @@
     gap: 1%;
     background-color: #30444E;
     width: 90%;
-    margin: auto;
-    padding: 20px;
-    border-radius: 0 0 15px 15px;
+    padding: 5%;
+    border-radius: 0 0 1rem 1rem;
     box-shadow: 10px 10px 30px #141414;
 }
 
@@ -131,9 +130,9 @@
 
 @media (min-width: 375px) {
     /* Dimensionado del iframe de video de YT*/
-    .VideoDetail__main-frame2 {
-        //height: 211px;
-    }
+    /* .VideoDetail__main-frame2 {
+        height: 211px;
+    } */
 }
 
 // ************************************
@@ -144,9 +143,9 @@
 /* Dimensionado del iframe de video de YT*/
 
 @media (min-width: 425px) {
-    .VideoDetail__main-frame2 {
-        //height: 200px;
-    }
+    /* .VideoDetail__main-frame2 {
+        height: 200px;
+    } */
 }
 
 
@@ -154,9 +153,9 @@
 
 @media (min-width: 768px) {
     /* Dimensionado del iframe de video de YT*/
-    .VideoDetail__main-frame2 {
-        //height: 435px;
-    }
+    /* .VideoDetail__main-frame2 {
+        height: 435px;
+    } */
 }
 
 
@@ -164,14 +163,14 @@
 
 @media (min-width: 768px) {
     /* Dimensionado del iframe de video de YT*/
-    .VideoDetail__main-frame2 {
-        //height: 580px;
-    }
+    /* .VideoDetail__main-frame2 {
+        height: 580px;
+    } */
 }
 
 @media (min-width: 1440px) {
     /* Dimensionado del iframe de video de YT*/
-    .VideoDetail__main-frame2 {
-        //height: 740px;
-    }
+    /* .VideoDetail__main-frame2 {
+        height: 740px;
+    } */
 }

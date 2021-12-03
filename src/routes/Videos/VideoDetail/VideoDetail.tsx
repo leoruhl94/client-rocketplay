@@ -114,14 +114,14 @@ export const VideoDetail: React.FC = () => {
 
   // ..... Lo que voy a devolver .....
   return (
-    <><NavProfileAndLocation/>
+    <><NavProfileAndLocation header={video.title}/>
     <article className="VideoDetail__main-article">
       {/* ..... Main section ..... */}
       <section className="VideoDetail__main-frame">
         {/* ..... Show videos ..... */}
         <h1 className="VideoDetail-main-title">{video.title}</h1>
         {/* Complete: Mostrar el video en un componente*/}
-        <div className="">
+        <div className="VideoDetail__main-frame2-container">
           {/* ... frame section ... */}
           <YouTube
             videoId={id} // defaults -> null
@@ -140,14 +140,14 @@ export const VideoDetail: React.FC = () => {
             // onPlaybackRateChange={func}       // defaults -> noop
             // onPlaybackQualityChange={func}    // defaults -> noop
           />
-          <div className="VideoDetail__author-container">
-            <img className="VideoDetail__autor-logo" src={autor.icon} alt="..." />
-            <h3>{video.author}</h3>
-            {/* ..... Imágen de like */}
-            <Icon classes="VideoDetail__content-detail" svg="like"></Icon>
-            {/* ..... Imágen de dislike ..... */}
-            <Icon classes="VideoDetail__content-detail" svg="dislike"></Icon>
-          </div>
+        </div>
+        <div className="VideoDetail__author-container">
+          <img className="VideoDetail__autor-logo" src={autor.icon} alt="..." />
+          <h3>{video.author}</h3>
+          {/* ..... Imágen de like */}
+          <Icon classes="VideoDetail__content-detail" svg="like"></Icon>
+          {/* ..... Imágen de dislike ..... */}
+          <Icon classes="VideoDetail__content-detail" svg="dislike"></Icon>
         </div>
         {/* ..... Sección de los detalles del video */}
         <section className="VideoDetail__main-video-detail">

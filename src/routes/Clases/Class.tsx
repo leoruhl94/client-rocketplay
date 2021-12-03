@@ -15,7 +15,7 @@ type idParams = {
     class: string
 }
 
-export const Class: React.FC<Props> = () => {
+export const Class: React.FC<Props> = ({class: string}) => {
 
     let params = useParams<idParams>()
     console.log(params)
@@ -43,7 +43,7 @@ export const Class: React.FC<Props> = () => {
         //videos de Profe Julio
         const key = 'AIzaSyC9bk8qUluOXv5S4bWIj5_pwOUUF4qxnQg'
         const channelId = 'UCIkCzk3ezlAxX5r2OFlHLaQ'
-        axios.get(`https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=${channelId}&part=snippet,id&order=date&maxResults=5`)
+        axios.get(`https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=${channelId}&part=snippet,id&order=date&maxResults=15`)
         .then(r => {
             console.log(r.data.items)
             setVideos(r.data.items)
@@ -54,7 +54,7 @@ export const Class: React.FC<Props> = () => {
         <><NavProfileAndLocation/>
         <div className="class-super-container">
             <div className="class-title">
-                <h1>Class N° {params.class}</h1>
+                <h1>{params.class}</h1>
             </div>
             <div className="class-video-super-container">
             {/* <iframe width="420" height="315"

@@ -15,6 +15,15 @@
 		color: white;
 		text-shadow: 1px 1px 3px black;
 	}
+	.title{
+		margin: auto 0;
+		font-size: 1.1rem;
+		color: white;
+		text-shadow: 1px 1px 3px black;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 	.Profile_image{
 		width: 35px;
 		height: 35px;
