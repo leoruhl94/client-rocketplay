@@ -22,7 +22,7 @@ import { Redirect, useHistory, useLocation } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { refresh } from "./redux/actions";
+import { getPlans, refresh } from "./redux/actions";
 
 
 const App: React.FC = () => {
@@ -40,6 +40,9 @@ const App: React.FC = () => {
         const js = localStorage.getItem("user")
         const user = js && JSON.parse(js)
         if(js) dispatch(refresh(user))
+
+        //cargar los planes de pago en redux
+        dispatch(getPlans())
     }, [])
 
     useEffect(() => {

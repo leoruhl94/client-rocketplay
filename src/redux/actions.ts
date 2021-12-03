@@ -5,9 +5,25 @@ export const CHANGE_LOGSPAGE = 'CHANGE_LOGSPAGE'
 export const LOGOUT = 'LOGOUT'
 export const REFRESH = "REFRESH"
 export const PRICING_SELECT = 'PRICING_SELECT'
+export const GET_PLANS = 'GET_PLANS'    
 
 interface userDb {
     data: any, 
+}
+export function getPlans(){
+    return async(dispatch) => {
+        const data = await axios.get('http://localhost:3002/plans')
+        let payload = data.data.map(data => {
+            return {
+                name: data.name, 
+                price: data.price, 
+                description: data.description, 
+                url: data.back_url,
+                userLimit: data.userLimit
+            }
+        })
+        dispatch({type: GET_PLANS, payload})
+    }
 }
 
 export function pricingSelect(value){

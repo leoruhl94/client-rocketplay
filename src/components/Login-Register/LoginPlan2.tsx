@@ -7,7 +7,8 @@ import './LoginPlan.scss'
 
 export const LoginPlan: React.FC = () => {
     const {plan} = useSelector((state: storeState) => state)
-    const [input, setInput] = useState(plan ? plan : "Basic")
+    const {plans} = useSelector((state: storeState) => state)
+    const [input, setInput] = useState(plan ? plan : plans[0].name)
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -17,6 +18,7 @@ export const LoginPlan: React.FC = () => {
         const user = json && JSON.parse(json)
         dispatch(createUser(user, true, input))
         //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
+        window.open(plans.find(x => x.name === input).url)
         history.push('/preapproval')
     }
     function handleInput(e){
@@ -30,18 +32,12 @@ export const LoginPlan: React.FC = () => {
         <div className="loginPlan">
             <h2 className="loginPlan__title">Choose your account plan</h2>
             <form onSubmit={handleSubmit} className="loginPlan__form">
+                {plans.map(x => 
                 <div className="loginPlan__option-container">
-                    <input type="radio" value="Basic" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Basic'} onChange={handleInput} />
-                    <label htmlFor="acctype" className="loginPlan__option-label">Basic</label>
+                    <input type="radio" value={x.name} className="loginPlan__option-input" name="acctype" id="acctype" checked={input === x.name} onChange={handleInput} />
+                    <label htmlFor="acctype" className="loginPlan__option-label">{x.name}</label>
                 </div>
-                <div className="loginPlan__option-container">
-                    <input type="radio" value="Standard" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Standard'} onChange={handleInput} />
-                    <label htmlFor="acctype" className="loginPlan__option-label">Standard</label>
-                </div>
-                <div className="loginPlan__option-container">
-                    <input type="radio" value="Premium" className="loginPlan__option-input" name="acctype" id="acctype" checked={input === 'Premium'} onChange={handleInput} />
-                    <label htmlFor="acctype" className="loginPlan__option-label">Premium</label>
-                </div>
+                )}
                 <div className="loginPlan__btns-container">
                     <div className="loginPlan__btn-cont">
                         <button type="button" onClick={handleBack} className="loginPlan__btn">Back</button>
