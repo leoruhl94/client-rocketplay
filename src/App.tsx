@@ -17,13 +17,13 @@ import { VideoForm } from "./routes/Videos/VideoForm";
 import { PreApproval } from "./routes/PreApproval/PreApproval";
 
 // Navegación
-import { HashRouter, Route, Switch } from "react-router-dom";
-import { Redirect, useHistory, useLocation } from "react-router";
+import { Route, Switch } from "react-router-dom";
+import { Redirect, useLocation } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
-
+import { TestingMP } from "./routes/TestingMP/TestingMP";
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
@@ -85,6 +85,7 @@ const App: React.FC = () => {
                 <Class class={match.params.class}/>}/>
             {/* ...... Ruta Testing ..... */}
             <Route exact path="/testing" component={LoginAccountType}/>
+            <Route exact path="/testingMP" component={TestingMP} />
             {/* ...... Ruta Create Video ..... */}
             <Route exact path="/createVids" component={VideoForm}/>
             {/* ...... Ruta Video Detail ..... */}

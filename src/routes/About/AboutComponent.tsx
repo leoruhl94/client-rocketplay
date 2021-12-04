@@ -16,7 +16,9 @@ const AboutComponent: React.FC = () => {
 
   useEffect(() => {
     async function getAboutArray(){
-      let res = await axios.get(`http://localhost:3002/aboutUs`)
+      // let res = await axios.get(`http://localhost:3002/aboutUs`)
+      let res = await axios.get(`https://api-rocketplay.herokuapp.com/aboutus`);
+
       setArray(res.data)
     }
     getAboutArray()

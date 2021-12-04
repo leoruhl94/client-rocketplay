@@ -47,7 +47,8 @@ const AboutDetailComponent: React.FC = () => {
   useEffect(() => {
     // Traer los datos desde el backEnd - Hago función aparte para poder usar async await
     async function getAboutAPI() {
-      let res = await axios.get(`http://localhost:3002/aboutUs`);
+      // let res = await axios.get(`http://localhost:3002/aboutUs`);
+      let res = await axios.get(`https://api-rocketplay.herokuapp.com/aboutus`);
       let power: Props2 = res.data.filter((x: any) => {
         return parseInt(id) === x.id;
       });

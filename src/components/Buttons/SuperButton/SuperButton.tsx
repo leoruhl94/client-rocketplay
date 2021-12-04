@@ -20,6 +20,7 @@ interface Props {
   handler?(value: any): any;
   classIcon?: string;
   route?: string;
+  externalLink?: string;
 }
 export const SuperButton: React.FC<Props> = ({
   classes,
@@ -32,6 +33,7 @@ export const SuperButton: React.FC<Props> = ({
   handler,
   classIcon,
   route,
+  externalLink,
 }) => {
   let dispatch = useDispatch();
   let history = useHistory();
@@ -53,13 +55,28 @@ export const SuperButton: React.FC<Props> = ({
       name={name}
       onClick={handleOnClick}
     >
-      {icon ? (
+      {externalLink ? (
+        icon ? (
+          <a href={externalLink}>
+            <span
+              className={` SuperButton__icon ${classIcon ? classIcon : ""}`}
+            >
+              <Icon svg={icon} /> {text}
+            </span>
+          </a>
+        ) : (
+          <a href={externalLink}>
+            <span className="SuperButton__text">{text}</span>
+          </a>
+        )
+      ) : icon ? (
         <span className={` SuperButton__icon ${classIcon ? classIcon : ""}`}>
           <Icon svg={icon} /> {text}
         </span>
       ) : (
         <span className="SuperButton__text">{text}</span>
       )}
+      
     </button>
   );
 };
