@@ -31,7 +31,7 @@ export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
         name={"button_home"}
         classes="NavigationMobile__button-home"
         classIcon="NavigationMobile__icon"
-        route="/"
+        route="/home"
       />
       {/* <SuperButton icon="menu" name={"button_menu"}  /> */}
 

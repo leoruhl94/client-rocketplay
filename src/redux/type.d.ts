@@ -7,6 +7,7 @@ interface profile {
     profile: profile,
     logsPage: number, 
     plan: string,
+    plans: any[],
   }
   
   type storeAction = {

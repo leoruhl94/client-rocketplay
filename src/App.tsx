@@ -14,6 +14,7 @@ import { Channels } from "./routes/Channels/Channels";
 import { Class } from "./routes/Clases/Class";
 import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 import { VideoForm } from "./routes/Videos/VideoForm";
+import { PreApproval } from "./routes/PreApproval/PreApproval";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
@@ -21,9 +22,7 @@ import { Redirect, useHistory, useLocation } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { refresh } from "./redux/actions";
-
-
+import { getPlans, refresh } from "./redux/actions";
 
 
 const App: React.FC = () => {
@@ -41,10 +40,15 @@ const App: React.FC = () => {
         const js = localStorage.getItem("user")
         const user = js && JSON.parse(js)
         if(js) dispatch(refresh(user))
+
+        //cargar los planes de pago en redux
+        dispatch(getPlans())
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('lastRoute', `${location.pathname}`)
+        if(location.pathname.startsWith('/home')){
+            localStorage.setItem('lastRoute', `${location.pathname}`)
+        }
       }, [location]);
 
     return ( // ..... Enrutamiento .....
@@ -56,6 +60,8 @@ const App: React.FC = () => {
                 <Redirect to={lastRoute}/>}/>
             {/* ..... Ruta about ..... */}
             <Route exact path="/about" component={AboutComponent}/>
+            {/* ..... Ruta preapproval ..... */}
+            <Route exact path="/preapproval" component={PreApproval}/>
             {/* ..... Ruta about detail ..... */}
             <Route exact path="/about/:id" component={AboutDetailComponent}/>
             {/* ...... Ruta pricing ..... */}
