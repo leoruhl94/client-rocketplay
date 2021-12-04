@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios'
 import CSS from 'csstype';
+import { storeState } from "../../redux/type";
 
 //Components
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";

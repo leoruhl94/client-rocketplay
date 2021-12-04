@@ -4,6 +4,7 @@ import { useHistory } from "react-router"
 import { changeLogsPage, createUser } from "../../redux/actions"
 import axios from 'axios'
 import './LoginPlan.scss'
+import { storeState } from "../../redux/type"
 
 export const LoginPlan: React.FC = () => {
     const {plan} = useSelector((state: storeState) => state)

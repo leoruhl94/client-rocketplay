@@ -5,7 +5,7 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { storeState } from "../../redux/type";
 
 // Componente about
 const PricingComponent: React.FC = () => {

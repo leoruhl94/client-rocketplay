@@ -6,7 +6,7 @@ import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
 import {GoogleLogout} from 'react-google-login'
-
+import {storeState} from "../../redux/type";
 interface Props{
     googleUser: any
 }

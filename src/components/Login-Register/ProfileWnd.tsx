@@ -5,7 +5,7 @@ import axios from "axios"
 import { changeProfile, Logout } from "../../redux/actions"
 import {GoogleLogin, GoogleLogout} from 'react-google-login'
 import './ProfileWnd.scss'
-
+import {storeState} from "../../redux/type";
 
 interface Props {
     dep: boolean

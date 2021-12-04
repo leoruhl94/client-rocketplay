@@ -6,7 +6,7 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 
 import { Icon } from "../../components/Icon/Icon";
 import { LoginAccountType } from "../../components/Login-Register/LoginAccountType";
-
+import {storeState} from "../../redux/type";
 // Interfaces
 interface User {
   accessToken: string;
