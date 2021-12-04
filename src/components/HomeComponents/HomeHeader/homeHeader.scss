@@ -23,12 +23,14 @@
         color: #fff;
         font-weight: bold;
         text-shadow: 2px 2px 5px #000;
+        animation: titles 1.5s ease-out;
     }
     .subTitle {
         font-size: 1.5rem;
         color: #fff;
         font-weight: bold;
         margin-top: 0.5rem;
+        animation: titles 1.5s ease-out;
     }
 }
 
@@ -41,6 +43,7 @@
     padding: 2rem 1rem;
     text-align: center;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    animation: titles 1.5s ease-out;
     p {
         color: #fff;
         font-size: 1.2rem;
@@ -67,6 +70,7 @@
     width: 200px;
     margin: 0 auto 2.5rem auto;
     font-size: 13rem;
+    animation: rocket 1.5s ease-out;
 }
 
 .curve-bg {
@@ -83,10 +87,35 @@
     }
 }
 
+
+@keyframes rocket {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translate3d(-50%, +100%, 0) rotate(30deg) ;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translate3d(0,0,0) rotate(0);
+    }
+}
+
+@keyframes titles {
+    from {
+        opacity: 0;
+        transform: translateX(-10%)
+        // transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        // transform: scale(1);
+    }
+}
+
 @media (min-width: 768px){
     .descriptionContainer {
         height: 3rem;
-        width: 60%;
+        width: 30%;
     }
 }
 

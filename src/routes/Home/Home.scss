@@ -51,82 +51,23 @@
 }
 
 @media (min-width: 768px) {
-    .logInButtonContainer {
-        position: initial;
-        margin: 0 auto;
-        margin-bottom: 2rem;
-        border-radius: 10px;
-        width: 30%;
-        background: none;
-        .logInButton {
-            width: 30%;
+    .allContainer{
+        position: relative;
+        .logInButtonContainer{
             position: absolute;
-            top: 32%;
-        }
-    }
-}
-
-@media (min-width: 992px) {
-    .logInButtonContainer {
-        .logInButton {
-            width: 30%;
-            position: absolute;
-            top: 32%;
-        }
-    }
-}
-
-@media (min-width: 1115px) {
-    .logInButtonContainer {
-        .logInButton {
-            width: 30%;
-            position: absolute;
-            top: 42%;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    .logInButtonContainer2 {
-        display: block;
-        position:initial;
-        margin: 0 auto;
-        margin-bottom: 2rem;
-        border-radius: 10px;
-        width: 30%;
-        background: none;
-        .logInButton {
-            width: 30%;
-            position: absolute;
-            top: 10%;
-        }
-    }
-}
-
-@media (min-width: 992px){
-    .logInButtonContainer2{
-        display: block;
-        .logInButton{
-            width: 30%;
-            position: absolute;
-            top: 10%;
-        }
-    }
-}
-
-@media (min-width: 992px){
-    .logInButtonContainer2{
-        display: block;
-        .logInButton{
-            width: 20%;
-            position: absolute;
+            width: 10%;
+            left: auto;
             top: 2%;
             right: 2%;
             background: transparent;
-            border: none;
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: white;
+            .logInButton{
+                width: 100%;
+                background: transparent;
+                box-shadow: none;
+                color: white;
+                font-size: 2rem;
+            }
         }
     }
 }
+

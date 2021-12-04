@@ -44,7 +44,7 @@ const AboutComponent: React.FC = () => {
             </div>
 
             <div className="About__header-container">
-                <div> 
+                <div className="About__detail-image-div"> 
                     <h1 className="about__title">Meet our team</h1>
                     <img className="detailImage" src="https://img.freepik.com/vector-gratis/mejores-amigos-agitando-mano_23-2148361691.jpg?size=626&ext=jpg" alt="" />
                 </div>

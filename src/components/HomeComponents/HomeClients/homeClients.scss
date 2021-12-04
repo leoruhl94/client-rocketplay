@@ -12,6 +12,7 @@
     transform: translate3d(0, 0, 0);
     position: relative;
     // box-shadow: 5px 5px 25px rgba(0,0,0,1) inset;
+    animation: opacity 1.5s ease-out;
     .client{
         width: 97%;
         margin: 1rem;
@@ -26,5 +27,21 @@
 @keyframes slideshow {
     100% { 
         -webkit-transform: translateX(-765%);
-      }
-  }
+    }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (min-width: 500px){
+    .clientContainer{
+        width: 58%;
+    }
+}

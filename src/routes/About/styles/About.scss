@@ -42,7 +42,7 @@
   width: 90%;
   padding: 10px;
   cursor: pointer;
-  height: 100px;
+  height: 110px;
 }
 
 /* Grilla para texto y descripción - En celulares no se ve la descripción, solo el nombre*/
@@ -162,6 +162,11 @@ $breakpoint-tablet: 768px;
     display: none;
   }
   /* About User - Gigantografía*/
+  .About__detail-image-div{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
   .detailImage {
     margin-top: 3%;
     margin-bottom: 3%;
