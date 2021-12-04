@@ -11,6 +11,12 @@ export const Home: React.FC = () => {
     
     return (
         <div className="allContainer">
+
+                 <SuperButton
+                    name="Testing"
+                    route="/testingMP"
+                    text="Testing"
+                />
             <HomeHeader />
             <HomeClients/>
             <HomeImages/>

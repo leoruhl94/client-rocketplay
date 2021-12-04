@@ -25,6 +25,7 @@ import { Redirect, useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { changeProfile } from "./redux/actions";
 import { VideoForm } from "./routes/Videos/VideoForm";
+import { TestingMP } from "./routes/TestingMP/TestingMP";
 
 const App: React.FC = () => {
     //const history = useHistory()
@@ -49,7 +50,13 @@ const App: React.FC = () => {
                 </Route>
                 {/* ...... Ruta pricing ..... */}
                 <Route exact path="/pricing" component={PricingComponent} />
+                {/* ...... Ruta TESTING MERCADO PAGO NO BORRAR ..... */}
+
+
+                <Route exact path="/testingMP" component={TestingMP} />
                 
+
+
                 <Route exact path="/logs" component={Logins}/>
                 {/* ...... Ruta Log In ..... */}
                 <Route exact path="/login" component={LoginSwitch}/>
