@@ -176,12 +176,13 @@ export const VideoDetail: React.FC = () => {
                     
                         {comment.map((x) => {
                             //console.log(x);
+                            const chars = {T: " / ", Z: ""}
                             return (
                                 <div className="VideoDetail__container-comment">
                                     <div className="VideoDetail__container-padder">
                                     <p className="VideoDetail__text_title">{x.name}</p>
                                     <p>{x.textDisplay}</p>
-                                    <p className="VideoDetail__comment-quote">{x.publishedAt}</p>
+                                    <p className="VideoDetail__comment-quote">{x.publishedAt.replace(/[TZ]/g, m => chars[m])}</p>
                                     </div>
                                 </div>
                             )
