@@ -11,8 +11,8 @@ export const AddChannel: React.FC<props> = ({dep, handleAdd}) => {
             <div className="addChannel__container">
                 <h2 className='addChannel__title'>Add Channel</h2>
                 <form className="addChannel__form">
-                    <input type="text" className="addChannel__form-name" placeholder="Name"/>
-                    <input type="textarea" className="addChannel__form-description" placeholder="Description"/>
+                    <input type="text" className="addChannel__form-name addChannel__inputs" placeholder="Name"/>
+                    <input type="textarea" className="addChannel__form-description addChannel__inputs" placeholder="Description"/>
                     <select className="addChannel__form-select">
                         <option value="public">Public</option>
                         <option value="private">Private</option>

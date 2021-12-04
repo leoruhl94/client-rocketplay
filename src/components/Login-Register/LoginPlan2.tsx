@@ -9,7 +9,7 @@ import { storeState } from "../../redux/type"
 export const LoginPlan: React.FC = () => {
     const {plan} = useSelector((state: storeState) => state)
     const {plans} = useSelector((state: storeState) => state)
-    const [input, setInput] = useState(plan ? plan : plans[0].name)
+    const [input, setInput] = useState(plan ? plan : plans[0]?.name)
     const dispatch = useDispatch()
     const history = useHistory()
 

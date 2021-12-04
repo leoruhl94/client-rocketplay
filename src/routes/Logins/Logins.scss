@@ -6,3 +6,9 @@
   top: 0;
   left: calc((var(--i) - var(--page))*100vw);
 }
+
+@media (min-width: 500px){
+  .slideComp{
+    display: flex;
+  }
+}

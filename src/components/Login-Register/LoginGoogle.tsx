@@ -36,7 +36,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
         </div>
         <label className='logs_keppSession-lbl'>
           <input type='checkbox' name='keepSession' className='logs_keppSession-cb' onChange={handleCheck} checked={keepSession}/>
-          Mantener sesion iniciada
+          Keep my account logged in
         </label>
       </div>
     )

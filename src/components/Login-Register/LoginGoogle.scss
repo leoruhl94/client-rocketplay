@@ -89,3 +89,20 @@
     height: 1.5rem;
   }
 }
+
+/*
+Media queries
+*/
+
+@media (min-width: 500px){
+  .Logs{
+    // background: red;
+    height: 70vh;
+    padding: 16px;
+    padding-top: 24px;
+    // border: 3px solid black;
+    border-radius: 10px;
+    background: $squareBackground;
+    // border-radius: 15px;
+  }
+}

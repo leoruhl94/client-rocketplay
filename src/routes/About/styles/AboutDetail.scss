@@ -278,6 +278,7 @@ $breakpoint-tablet: 1024px;
 
 ::-webkit-scrollbar {
     width: 10px;
+    z-index: 10;
 }
 
 
@@ -286,6 +287,7 @@ $breakpoint-tablet: 1024px;
  ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
+    z-index: 10;
 }
 
 
@@ -294,6 +296,7 @@ $breakpoint-tablet: 1024px;
  ::-webkit-scrollbar-thumb {
     background: linear-gradient(#6835A5, #1983FF);
     border-radius: 10px;
+    z-index: 10;
 }
 
 

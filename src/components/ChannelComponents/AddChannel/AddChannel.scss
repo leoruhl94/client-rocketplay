@@ -20,13 +20,19 @@
         .addChannel__title{
             color: white;
             text-align: center;
+            text-shadow: 1px 1px 3px black;
+            
         }
         .addChannel__form{
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin: 1rem 3rem;
-            gap: 1rem;
+            gap: 2rem;
+            select {
+                box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+                padding: 0.5rem 1rem;
+            }
             .addChannel__form-btns-cont{
                 display: flex;
                 justify-content: space-between;
@@ -37,11 +43,41 @@
                     border: none;
                     border-radius: 10px;
                     background: rgb(231, 226, 226);
+                    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+                    margin-bottom: 1rem;
+                    cursor: pointer;
                 }
             }
+        }
+        .addChannel__inputs{
+            outline: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
         }
     }
 }
 .addChannel__dep{
     right: -100vw;
+}
+
+@media (min-width: 1024px){
+    .addChannel{
+        align-items: center;
+        .addChannel__container{
+            width: 50%;
+            height: 50%;
+            // margin: 0 auto;
+            .addChannel__title{
+                margin-top: 0;
+            }
+            .addChannel__form{
+                gap: 2rem;
+
+                .addChannel__form-btn{
+                    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+                }
+            }
+        }
+    }
 }
