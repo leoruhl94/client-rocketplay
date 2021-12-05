@@ -27,7 +27,8 @@ const AboutDetailComponent: React.FC = () => {
     id: string;
   };
     let { id } = useParams<idParams>(); // useParams de reactJs pero con Ts
-    let icon = <Icon svg="linkedin"></Icon>
+    let icon = <Icon svg="arrowDown" classes="nonRotated"></Icon>
+    let iconTech = <Icon svg="arrowDown" classes="rotatedTech"></Icon>
     let boolAbout = true
     let boolTech = true
     
@@ -76,11 +77,17 @@ const AboutDetailComponent: React.FC = () => {
       boolAbout = false
       let about = document.getElementsByClassName('AboutDetail_about-me')[0]
       about.className = 'AboutDetail_about-me-sec'
+      let arrow = document.getElementsByClassName("nonRotated")[0]
+      arrow.setAttribute("class", "rotated svg-icon")
+      // console.log(arrow)
 
     }else{
       boolAbout = true
       let ab = document.getElementsByClassName('AboutDetail_about-me-sec')[0]
       ab.className = 'AboutDetail_about-me '
+      let ar = document.getElementsByClassName("rotated")[0]
+      ar.setAttribute("class", "nonRotated svg-icon")
+      // console.log(ar)
     }
   }
   // ..... End of About dropdown .....
@@ -90,11 +97,14 @@ const AboutDetailComponent: React.FC = () => {
       boolTech = false
       let about = document.getElementsByClassName('AboutDetail_about-tech')[0]
       about.className = 'AboutDetail_about-tech-sec'
-
+      let arrow = document.getElementsByClassName("rotatedTech")[0]
+      arrow.setAttribute("class", "nonRotatedTech svg-icon")
     }else{
       boolTech = true
       let ab = document.getElementsByClassName('AboutDetail_about-tech-sec')[0]
       ab.className = 'AboutDetail_about-tech '
+      let ar = document.getElementsByClassName("nonRotatedTech")[0]
+      ar.setAttribute("class", "rotatedTech svg-icon")
     }
   }
   // ..... End of tecnologies dropdown .....
@@ -135,10 +145,10 @@ const AboutDetailComponent: React.FC = () => {
           <div className="AboutDetail_profile-details">
             <h2 className="AboutDetail_profile-name">{user.name}</h2>
             <div className="AboutDetail_profile-links">
-              <a href={user.links.linkedin} className="AboutDetail_icon-link"> 
+              <a href={user.links.linkedin} className="AboutDetail_icon-link" target="_blank"> 
                 <Icon svg="linkedin"></Icon>
               </a>
-              <a href={user.links.github} className="AboutDetail_icon-link">
+              <a href={user.links.github} className="AboutDetail_icon-link" target="_blank">
                 <Icon svg="github"></Icon>
               </a>
             </div>
@@ -160,7 +170,7 @@ const AboutDetailComponent: React.FC = () => {
        <div className="AboutDetail_about-tech">
           <div className="AboutDetail__about-tech-drop">
           <h3  className="AboutDetail_about-tech-title">Tecnologies</h3>
-          <button onClick={handleWidthTech} className="AboutDetail__about-tech-button">{icon}</button>
+          <button onClick={handleWidthTech} className="AboutDetail__about-tech-button">{iconTech}</button>
           </div>
           <div  className="AboutDetail_about-tech-logos">
           {Images.map((x)=>{ return(<img className="AboutDetail__about-tech-logo" src={x.url} />)})}
