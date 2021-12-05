@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { URL_BASE } from "../../constants/constants"
 
 // Interfaces
 import { Props2 } from './Parts'
@@ -11,13 +12,13 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 // Estilización
 import "./styles/About.scss";
 
+
 const AboutComponent: React.FC = () => {
   const[ array, setArray ] = useState<Props2[]>([]);
 
   useEffect(() => {
     async function getAboutArray(){
-      // let res = await axios.get(`http://localhost:3002/aboutUs`)
-      let res = await axios.get(`https://api-rocketplay.herokuapp.com/aboutus`);
+       let res = await axios.get(`${URL_BASE}/aboutus`);
 
       setArray(res.data)
     }

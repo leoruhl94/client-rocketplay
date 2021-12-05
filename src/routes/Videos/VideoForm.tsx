@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import "./VideoForm.scss";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
-
+import {URL_BASE} from "../../constants/constants";
 import { Icon } from "../../components/Icon/Icon";
 import { LoginAccountType } from "../../components/Login-Register/LoginAccountType";
 import {storeState} from "../../redux/type";
@@ -47,7 +47,7 @@ export const VideoForm: React.FC = () => {
     };
 
     axios
-      .post("http://localhost:3002/uploadVideo", formData, config)
+      .post(`${URL_BASE}/uploadVideo`, formData, config)
       .then((r) => {
         // TODO: Devolver un feedback
         console.log("respuesta: ", r);

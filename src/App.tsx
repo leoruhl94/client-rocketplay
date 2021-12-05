@@ -23,7 +23,7 @@ import { Redirect, useLocation } from "react-router";
 // Redux
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
-import { TestingMP } from "./routes/TestingMP/TestingMP";
+
 
 
 const App: React.FC = () => {
@@ -68,25 +68,25 @@ const App: React.FC = () => {
             {/* ...... Ruta pricing ..... */}
             <Route exact path="/pricing" component={PricingComponent} />
             {/* ...... Ruta Log In ..... */}
-            <Route exact path="/logs" component={Logins}/>
+            <Route exact path="/login" component={Logins}/>
             {/* ...... Ruta Channel ..... */}
             <Route exact path="/home" render={() => 
                 !localStorage.getItem("user") ? 
-                <Redirect to="/logs"/> : 
+                <Redirect to="/login"/> : 
                 <Channels/>}/>
             {/* ...... Ruta Categories ..... */}
             <Route exact path='/home/:channel' render={({match}: any) =>  
                 !localStorage.getItem("user") ? 
-                <Redirect to="/logs"/> : 
+                <Redirect to="/login"/> : 
                 <Categories channel={match.params.channel}/>}/>
             {/* ...... Ruta Class ..... */}
             <Route exact path="/home/:channel/:class" render={({match}: any) => 
                 !localStorage.getItem("user") ? 
-                <Redirect to="/logs"/> : 
+                <Redirect to="/login"/> : 
                 <Class class={match.params.class}/>}/>
             {/* ...... Ruta Testing ..... */}
             <Route exact path="/testing" component={LoginAccountType}/>
-            <Route exact path="/testingMP" component={TestingMP} />
+
             {/* ...... Ruta Create Video ..... */}
             <Route exact path="/createVids" component={VideoForm}/>
             {/* ...... Ruta Video Detail ..... */}

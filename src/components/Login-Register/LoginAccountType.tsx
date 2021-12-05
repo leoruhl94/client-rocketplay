@@ -7,6 +7,7 @@ import axios from "axios";
 import "./loginAccountType.scss";
 import {GoogleLogout} from 'react-google-login'
 import {storeState} from "../../redux/type";
+import { CLIENT_ID } from "../../constants/constants";
 interface Props{
     googleUser: any
 }
@@ -66,7 +67,7 @@ export const LoginAccountType: React.FC = () => {
                                 </div>
                                 <div className="acctype-submit-div">
                                     <GoogleLogout
-                                        clientId="1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com"
+                                        clientId={CLIENT_ID}
                                         buttonText="Logout"
                                         className="acctype-google-btn"
                                         onLogoutSuccess={logout}

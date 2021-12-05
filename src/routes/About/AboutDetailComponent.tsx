@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { URL_BASE } from "../../constants/constants"
 
 // ----- ----- ----- Componentes ----- ----- -----
 import "./styles/AboutDetail.scss";
@@ -49,7 +50,7 @@ const AboutDetailComponent: React.FC = () => {
     // Traer los datos desde el backEnd - Hago función aparte para poder usar async await
     async function getAboutAPI() {
       // let res = await axios.get(`http://localhost:3002/aboutUs`);
-      let res = await axios.get(`https://api-rocketplay.herokuapp.com/aboutus`);
+      let res = await axios.get(`${URL_BASE}/aboutus`);
       let power: Props2 = res.data.filter((x: any) => {
         return parseInt(id) === x.id;
       });

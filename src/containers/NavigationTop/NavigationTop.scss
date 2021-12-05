@@ -1,0 +1,32 @@
+.navigationTop{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: fit-content;
+  
+    .navigationTop__navLink{
+        padding: 1rem;
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .navigationTop__navLink_onlyDesktop{
+        display: none;
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+    .navigationTop{
+        padding: 0 5%;
+        .navigationTop__navLink{
+            padding: 0.4rem 0.8rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .navigationTop__navLink_onlyDesktop{
+            display: block;
+        }
+    }
+  }

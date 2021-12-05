@@ -1,4 +1,5 @@
 import axios from "axios"
+import {URL_BASE} from "../constants/constants";
 
 export const CHANGE_PROFILE = 'CHANGE_PROFILE'
 export const CHANGE_LOGSPAGE = 'CHANGE_LOGSPAGE'
@@ -12,7 +13,7 @@ interface userDb {
 }
 export function getPlans(){
     return async(dispatch) => {
-        const data = await axios.get('http://localhost:3002/plans')
+        const data = await axios.get( `${URL_BASE}/plans`)
         let payload = data.data.map(data => {
             return {
                 name: data.name, 
@@ -38,7 +39,7 @@ export function refresh(user){
 }
 export function createUser(googleUser, isBusiness=false, plan: any=null){
     return async (dispatch) => {
-        const newUser = await axios.post('http://localhost:3002/users', {isBusiness, plan, name: googleUser.name, email: googleUser.email}) 
+        const newUser = await axios.post(`${URL_BASE}/users`, {isBusiness, plan, name: googleUser.name, email: googleUser.email}) 
         console.log({googleUser, isBusiness, plan});
         dispatch({type: PRICING_SELECT, payload: ''})
         dispatch({type: CHANGE_LOGSPAGE, payload: 0})
@@ -48,7 +49,7 @@ export function createUser(googleUser, isBusiness=false, plan: any=null){
 
 export function changeProfile(googleUser, history, keepSession){
     return async (dispatch) => {
-        const userDb: userDb = await axios.get('http://localhost:3002/users?email='+googleUser.email)
+        const userDb: userDb = await axios.get(`${URL_BASE}/users?email=`+googleUser.email)
         
         localStorage.setItem('keepSession', JSON.stringify({keepSession: keepSession})); 
         localStorage.setItem('user', JSON.stringify(googleUser)); 
@@ -62,7 +63,7 @@ export function changeProfile(googleUser, history, keepSession){
             // dispatch({type: KEEP_SESSION, payload: keepSession})
             dispatch({type: CHANGE_LOGSPAGE, payload: 1})
             dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
-            history.push('/logs')
+            history.push('/login')
         } 
     }   
 }
@@ -73,7 +74,7 @@ export function changeLogsPage(page){
 }
 export function Logout(history){
     localStorage.clear()
-    history.push('/logs')
+    history.push('/login')
     return (dispatch) => {
         dispatch({type: LOGOUT, payload: null})
         dispatch({type: CHANGE_LOGSPAGE, payload: 0})

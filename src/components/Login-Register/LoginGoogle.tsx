@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {GoogleLogin} from 'react-google-login'
+import { CLIENT_ID, COOKIES_POLICY_DEV } from "../../constants/constants"
 import {Icon} from '../Icon/Icon'
 import './LoginGoogle.scss'
 
@@ -22,7 +23,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
         </div>
         <div className="singleButton">
           <GoogleLogin
-            clientId='1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com'
+            clientId={CLIENT_ID}
             buttonText="Log in/Sign up with Google "
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
             className="botoncito"
@@ -30,7 +31,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
             responseType='code'
             onSuccess={g => {res(g, keepSession)}}
             onFailure={fail}
-            cookiePolicy={'single_host_origin'}
+            cookiePolicy={COOKIES_POLICY_DEV}
             prompt='consent'
           />
         </div>

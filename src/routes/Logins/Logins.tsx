@@ -19,6 +19,9 @@ import { changeProfile } from "../../redux/actions";
 //Styles
 import "./Logins.scss";
 
+//constantes
+import { URL_BASE } from "../../constants/constants";
+
 export const Logins: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch()
@@ -26,7 +29,7 @@ export const Logins: React.FC = () => {
   
   async function responseGoogle(googleUser, keepSession) {
     //Obtener Tokens mediante el code
-    const tokens = await axios.post('http://localhost:3002/loginUser', {code: googleUser.code})
+    const tokens = await axios.post(`${URL_BASE}/loginUser`, {code: googleUser.code})
     localStorage.setItem('tok', JSON.stringify(tokens))
 
     //Obtener datos del usuario

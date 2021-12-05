@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
 import axios from "axios";
 import { useLocation, useParams } from "react-router";
-
+import { URL_BASE } from "../../constants/constants";
 export const TestingMP: React.FC = () => {
   let id = "";
   const location = useLocation();
@@ -14,7 +14,7 @@ export const TestingMP: React.FC = () => {
     //   console.log(res.data);
   };
   const handleSomething = async () => {
-    let res = await axios.get(`http://localhost:3002/testMp/${id}`);
+    let res = await axios.get(`${URL_BASE}/testMp/${id}`);
     console.log(res.data);
   };
 

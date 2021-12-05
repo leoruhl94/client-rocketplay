@@ -22,7 +22,7 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     }
     function handleClick() {
         dispatch(pricingSelect(props.plan))
-        history.push('/logs')
+        history.push('/login')
     }
 
     return (

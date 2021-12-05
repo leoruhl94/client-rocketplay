@@ -9,7 +9,7 @@
     height: 610px;
     margin: 0 auto;
     padding: 0;
-    padding-top: 3rem;
+    // padding-top: 3rem;
 }
 
 .headerSubContainer {
@@ -34,6 +34,8 @@
     }
 }
 
+
+
 .descriptionContainer {
     width: 80%;
     height: 5rem;
@@ -44,8 +46,11 @@
     text-align: center;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
     animation: titles 1.5s ease-out;
+    display: flex;
+    justify-content: center;
     p {
-        color: #fff;
+-items: center;        color: #fff;
+        font-size: 1.2rem;
         font-size: 1.2rem;
         font-weight: bold;
         margin: auto;
@@ -112,10 +117,11 @@
     }
 }
 
-@media (min-width: 768px){
+/* @media (min-width: 952px){
     .descriptionContainer {
+        padding: 16px;
         height: 3rem;
         width: 30%;
     }
-}
+} */
 
