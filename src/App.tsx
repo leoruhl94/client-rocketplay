@@ -70,7 +70,7 @@ const App: React.FC = () => {
             {/* ...... Ruta Log In ..... */}
             <Route exact path="/login" component={Logins}/>
             {/* ...... Ruta Channel ..... */}
-            <Route exact path="/home" render={() => 
+            <Route exact path="/home" render={() =>  
                 !localStorage.getItem("user") ? 
                 <Redirect to="/login"/> : 
                 <Channels/>}/>

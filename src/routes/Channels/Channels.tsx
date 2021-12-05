@@ -15,7 +15,7 @@ export const Channels: React.FC = () => {
     return (
         <div>
             <NavProfileAndLocation/>
-            <ChannelNotFound/>
+            {/* <ChannelNotFound/> */}
                 <div className="singleChannelSuperContainer">
                     <SingleChannel channel='canal 1'/>
                     <SingleChannel channel='canal 1'/>
