@@ -30,8 +30,8 @@ import  axios from "axios";
 const App: React.FC = () => {
     const dispatch = useDispatch() 
     let location = useLocation();
-    const json = localStorage.getItem("lastRoute")
-    const lastRoute = json ? json : '/home'
+    // const json = localStorage.getItem("lastRoute")
+    // const lastRoute = json ? json : '/home'
     
     useEffect(() => {
         const ksJson = localStorage.getItem("keepSession")
@@ -58,10 +58,11 @@ const App: React.FC = () => {
     return ( // ..... Enrutamiento .....
         <Switch>
             {/* ..... Ruta principal ..... */}
-            <Route exact path="/" render={() => 
+            {/* <Route exact path="/" render={() => 
                 !localStorage.getItem("user") || !lastRoute ? 
                 <Home/> :
-                <Redirect to={lastRoute}/>}/>
+                <Redirect to={lastRoute}/>}/> */}
+            <Route exact path="/" component={Home}/>
             {/* ..... Ruta about ..... */}
             <Route exact path="/about" component={AboutComponent}/>
             {/* ..... Ruta preapproval ..... */}
