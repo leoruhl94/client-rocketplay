@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {GoogleLogin} from 'react-google-login'
-import { CLIENT_ID, COOKIES_POLICY_DEV } from "../../constants/constants"
+import { CLIENT_ID, COOKIES_POLICY} from "../../constants/constants"
 import {Icon} from '../Icon/Icon'
 import './LoginGoogle.scss'
 
@@ -31,7 +31,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
             responseType='code'
             onSuccess={g => {res(g, keepSession)}}
             onFailure={fail}
-            cookiePolicy={COOKIES_POLICY_DEV}
+            cookiePolicy={COOKIES_POLICY}
             prompt='consent'
           />
         </div>

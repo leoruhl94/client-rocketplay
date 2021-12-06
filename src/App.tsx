@@ -23,6 +23,7 @@ import { Redirect, useLocation } from "react-router";
 // Redux
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
+import  axios from "axios";
 
 
 
@@ -44,6 +45,8 @@ const App: React.FC = () => {
 
         //cargar los planes de pago en redux
         dispatch(getPlans())
+        // axios.get("http://127.0.0.1:3002/subscriptions/headers")
+        // .then(data=>data)
     }, [])
 
     useEffect(() => {

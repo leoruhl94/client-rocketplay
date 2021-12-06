@@ -19,7 +19,7 @@ export function getPlans(){
                 name: data.name, 
                 price: data.price, 
                 description: data.description, 
-                url: data.back_url,
+                url: data.link_checkout,
                 userLimit: data.userLimit
             }
         })
@@ -41,8 +41,8 @@ export function createUser(googleUser, isBusiness=false, plan: any=null){
     return async (dispatch) => {
         const newUser = await axios.post(`${URL_BASE}/users`, {isBusiness, plan, name: googleUser.name, email: googleUser.email}) 
         console.log({googleUser, isBusiness, plan});
-        dispatch({type: PRICING_SELECT, payload: ''})
-        dispatch({type: CHANGE_LOGSPAGE, payload: 0})
+        // dispatch({type: PRICING_SELECT, payload: ''})
+        // dispatch({type: CHANGE_LOGSPAGE, payload: 0})
         dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
     }
 }

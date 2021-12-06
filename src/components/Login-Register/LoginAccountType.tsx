@@ -22,6 +22,7 @@ export const LoginAccountType: React.FC = () => {
     function handleSubmit(e){
         e.preventDefault();
         if(input === 'business') {
+            dispatch(createUser(user, true))
             dispatch(changeLogsPage(2))
         } else {
             dispatch(createUser(user))

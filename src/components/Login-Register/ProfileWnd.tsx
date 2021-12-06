@@ -6,7 +6,7 @@ import { changeProfile, Logout } from "../../redux/actions";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import "./ProfileWnd.scss";
 import { storeState } from "../../redux/type";
-import { URL_BASE, CLIENT_ID, COOKIES_POLICY_DEV } from "../../constants/constants";
+import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../constants/constants";
 
 interface Props {
   dep: boolean;
@@ -72,7 +72,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
             responseGoogle(e, ks?.keepSession);
           }}
           onFailure={errorGoogle}
-          cookiePolicy={COOKIES_POLICY_DEV}
+          cookiePolicy={COOKIES_POLICY}
           prompt="consent"
         />
       </div>
