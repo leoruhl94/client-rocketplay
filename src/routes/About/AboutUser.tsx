@@ -30,7 +30,7 @@ const AboutUser: React.FC<Props2> = (props: Props2) => {
             <p className="About__profile-name">{props.name}</p>
             <br />
             <p className="About__profile-headline"> Fullstack Web Developer </p>
-            <p className="color"> </p>
+            {/* <p className="color"> </p> */}
           </Link>
         </div>
         {/* ..... Fin del row2 ..... */}

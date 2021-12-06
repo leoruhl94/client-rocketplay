@@ -39,9 +39,9 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
           <input type='checkbox' name='keepSession' className='logs_keppSession-cb' onChange={handleCheck} checked={keepSession}/>
           Keep my account logged in
         </label>
-        <Link to="/" className="logs-link-home">
+        {/* <Link to="/" className="logs-link-home">
           <h4 className="logs-home">Back home</h4>
-        </Link>
+        </Link> */}
       </div>
     )
 }

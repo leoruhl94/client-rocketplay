@@ -43,38 +43,33 @@ export const VideoForm: React.FC = () => {
     console.log(tokens.data.data);
     let formData = new FormData();
     formData.append("videoFile", input.file);
-    // console.log("FORM DATA 1", formData);
-    // formData.append("title[]", input.title);
-    // console.log("FORM DATA 2", formData);
-    // formData.append("tokens[]", JSON.stringify(tokens.data.data));
-    // console.log("FORM DATA 3", formData);
-    // for (var value of formData.entRTCSessionDescription) {
-    //   console.log(value);}
+    console.log("FORM DATA 1", formData);
+    formData.append("title", input.title);
+    console.log("FORM DATA 2", formData);
+    formData.append("tokens", JSON.stringify(tokens.data.data));
+    console.log("FORM DATA 3", formData);
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
     };
 
-    // formData.set()
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0]+ ', ' + pair[1]);
-    console.log("FORM DATA tok", formData.getAll("tokens"))
+    // console.log("FORM DATA tok", formData.getAll("tokens"))
 
-    console.log("EN ESTE PUNTO YA HICE POST Y NO PASO NADA OTRA VEZ :P");
     axios
-      .post(
-        `${URL_BASE}/uploadVideo`,
-        {
-          videoFile: input.file,
-          title: input.title,
-          tokens: JSON.stringify(tokens.data.data),
-        },
-        config
-      )
-      // .post(`${URL_BASE}/uploadVideo`, formData, config)
-      .then((r) => {
-        // TODO: Devolver un feedback
-        console.log("respuesta: ", r);
-      });
+    // .post(
+      //   `${URL_BASE}/uploadVideo`,
+      //   {
+        //     videoFile: input.file,
+        //     title: input.title,
+        //     tokens: JSON.stringify(tokens.data.data),
+        //   },
+        //   config
+        // )
+        .post(`${URL_BASE}/uploadVideo`, formData, config)
+        .then((r) => {
+          // TODO: Devolver un feedback
+          console.log("respuesta: ", r);
+        });
+        console.log("EN ESTE PUNTO YA HICE POST Y NO PASO NADA OTRA VEZ :P");
   }
   // ..... Captamos los cambios con esta función .....
   function handleChange(e) {
