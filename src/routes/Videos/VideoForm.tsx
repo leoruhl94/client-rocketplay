@@ -90,7 +90,7 @@ export const VideoForm: React.FC = () => {
     <article className="Video__container-main animated fadeIn fast">
       <section className="Video__container-form">
         {/* ..... ¿ This is necesary ? ..... */}
-        {logsPage === 1 ? <LoginAccountType /> : null}
+        {/* {logsPage === 1 ? <LoginAccountType /> : null} */}
         <h1 className="Video__title-main">Create a video</h1>
 
         {/* ..... Comenzamos con el formulario para subir las cosas ..... */}

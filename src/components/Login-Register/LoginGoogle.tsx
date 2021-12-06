@@ -14,7 +14,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
     function handleCheck(e) {
       setKeepSession(e.target.checked ? true : false)
     }
-
+  
     return (
         <div className="Logs">
             <h2 className="Logs_title">Log in / Sign up to start using our service</h2>

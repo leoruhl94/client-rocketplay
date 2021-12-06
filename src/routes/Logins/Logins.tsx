@@ -36,9 +36,9 @@ export const Logins: React.FC = () => {
   const json = localStorage.getItem("user");
   const user: User = json ? JSON.parse(json) : null;
 
-  useEffect(() => {
-    user && history.push("/home");
-  }, [user]);
+  // useEffect(() => {
+  //   user && history.push("/home");
+  // }, [user]);
 
   async function responseGoogle(googleUser, keepSession) {
     //Obtener Tokens mediante el code

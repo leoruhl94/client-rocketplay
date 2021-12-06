@@ -3,13 +3,11 @@
   height: 100%;
   position: fixed;
   transition: 0.2s;
-  top: 0;
+  top: 60px;
   left: calc((var(--i) - var(--page))*100vw);
   animation: fadeIn 1.5s ease-out;
 }
-.login_navTop{
-  z-index: 1;
- }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
