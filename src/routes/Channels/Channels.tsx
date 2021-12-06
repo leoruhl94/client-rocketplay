@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export const Channels: React.FC = () => {
     
-    useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
+    // useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
 
     return (
         <div>

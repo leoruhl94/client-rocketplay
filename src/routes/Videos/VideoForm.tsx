@@ -38,16 +38,16 @@ export const VideoForm: React.FC = () => {
     const js = localStorage.getItem("tok");
     const tokens = js && JSON.parse(js);
     console.log(tokens.data.data);
-    const formData = new FormData();
-    formData.append("videoFile", input.file);
-    formData.append("title", input.title);
-    formData.append("tokens", JSON.stringify(tokens.data.data));
+    // const formData = new FormData();
+    // formData.append("videoFile", input.file);
+    // formData.append("title", input.title);
+    // formData.append("tokens", JSON.stringify(tokens.data.data));
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
 
     axios
-      .post(`${URL_BASE}/uploadVideo`, formData, config)
+      .post(`${URL_BASE}/uploadVideo`, {videoFile: input.file, title: input.title, tokens: JSON.stringify(tokens.data.data)}, config)
       .then((r) => {
         // TODO: Devolver un feedback
         console.log("respuesta: ", r);
