@@ -3,7 +3,7 @@ import {GoogleLogin} from 'react-google-login'
 import { CLIENT_ID, COOKIES_POLICY} from "../../constants/constants"
 import {Icon} from '../Icon/Icon'
 import './LoginGoogle.scss'
-
+import {Link} from "react-router-dom";
 interface gFuncs{
     res: any,
     fail: any
@@ -39,6 +39,9 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
           <input type='checkbox' name='keepSession' className='logs_keppSession-cb' onChange={handleCheck} checked={keepSession}/>
           Keep my account logged in
         </label>
+        <Link to="/" className="logs-link-home">
+          <h4 className="logs-home">Back home</h4>
+        </Link>
       </div>
     )
 }

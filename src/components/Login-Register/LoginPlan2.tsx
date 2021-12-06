@@ -67,6 +67,7 @@ export const LoginPlan: React.FC = () => {
               externalLink={paymentUrl}
               value={1}
               handler={handleSubmit}
+              classes="acctype-superbutton-accept"
             ></SuperButton>
           </div>
         </form>

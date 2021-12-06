@@ -205,7 +205,7 @@
     } */
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
     /* Dimensionado del iframe de video de YT*/
     /* .VideoDetail__main-frame2 {
         height: 740px;
@@ -225,54 +225,58 @@
     } */
     .VideoDetail_Grid_Container{
         width: 100%;
-        height: 80vh;
+        // height: 80vh;
         margin: 0 auto;
         display: flex;
         justify-content: flex-start;
         gap: 2rem;
+        height: fit-content;
+        // padding-top: 16px;
         .VideoDetail__flex_helper{
-            width: 60%;
+            width: 65%;
             height: 100%;
             margin-top: 1.3rem;
         }
         .VideoDetail__main-frame2{
-            height: 70%;
+            height: 60vh;
             // margin-bottom: 1.2rem;
             // max-height: 65%;
             // width: 70%;
         }
         .VideoDetail__author-container{
             // display: flex;
-            height: 20%;
+            height: 15vh;
             width: 98%;
             padding:2.8% 1%;
             grid-template-columns: 18% 54% 10% 10%;
+        }
+        .VideoDetail__container-description_desktop{
+            // background: red;
+            display: block;
+            padding: 2rem 1rem;
+            background-color: #30444E;
+            color: white;
+            margin-top: 1.3rem;
+            border-radius: 10px;
+            width: 35%;
+            // box-shadow: 10px 10px 30px #2e2c2c;
+            // margin-bottom: 20px;
+            height: 70vh;
+            .VideoDetail__rly-description{
+                height: 100%;
+                overflow-y: auto;
+                p{
+                    font-size: 1.5rem;
+                    text-shadow: 1px 1px 3px black;
+                    margin: 0;
+                }
+            }
         }
     }
     .VideoDetail__container-description{
         display: none;
     }
-    .VideoDetail__container-description_desktop{
-        // background: red;
-        display: block;
-        padding: 2rem;
-        background-color: #30444E;
-        color: white;
-        margin-top: 1.3rem;
-        border-radius: 10px;
-        width: 35%;
-        // box-shadow: 10px 10px 30px #2e2c2c;
-        // margin-bottom: 20px;
-        height: 90%;
-        .VideoDetail__rly-description{
-            height: 90%;
-            overflow-y: auto;
-            p{
-                font-size: 1.5rem;
-                text-shadow: 1px 1px 3px black;
-            }
-        }
-    }
+    
     .VideoDetail__container-comment {
         border-radius: 0;
         background-color: transparent;

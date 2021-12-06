@@ -25,7 +25,7 @@ export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
 
   return (
     <section className="NavigationMobile">
-      <SuperButton name={"button_Back"} text="<" handler={handleGoBack} />
+      <SuperButton name={"button_Back"} icon="arrowDown" classIcon="NavigationMobile__arrow" classes="NavigationMobile__botoncitito" handler={handleGoBack} />
       <SuperButton
         icon="homeSolid"
         name={"button_home"}

@@ -17,7 +17,10 @@ export const Categories: React.FC<Props> = ({channel}) => {
                 {numToArr(5).map(x => 
                     <Link to={`/home/${channel}/${x}`} className="Categories-link">
                         <div className="Categories__item">
-                            {x}
+                            <div>{x}</div>
+                            <div className="singleChannelArrow">
+                                <p>{">"}</p>
+                            </div>
                         </div>
                     </Link>
                 )}
@@ -26,8 +29,9 @@ export const Categories: React.FC<Props> = ({channel}) => {
         </div>
     )
 }
+
 function numToArr(n: number){
     let arr: string[] = []
-    for(let i = 0; i < n; i++){arr.push(`Clase N°${i}`)}
+    for(let i = 0; i < n; i++){arr.push(`Category N°${i+1}`)}
     return arr
 }

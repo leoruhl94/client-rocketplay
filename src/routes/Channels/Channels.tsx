@@ -12,19 +12,30 @@ export const Channels: React.FC = () => {
     
     // useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
 
+    const [add, setAdd] = useState(false); 
+    
+    function handleAdd(){
+        setAdd(!add);
+    }
+
     return (
         <div>
             <NavProfileAndLocation/>
             {/* <ChannelNotFound/> */}
                 <div className="singleChannelSuperContainer">
-                    <SingleChannel channel='canal 1'/>
-                    <SingleChannel channel='canal 1'/>
-
-                    <SingleChannel channel='canal 2'/>
-                    <SingleChannel channel='canal 3'/>
-                    <Link to="/createVids">
+                    <div className="singleChannel-outer-div">
+                        <SingleChannel channel='Channel 1'/>
+                        <SingleChannel channel='Channel 2'/>
+                        <SingleChannel channel='Channel 3'/>
+                        <SingleChannel channel='Channel 4'/>
+                        <div className="channelsAddChannel2">
+                            <h4>Add channel</h4>
+                            <button onClick={handleAdd}>+</button>
+                        </div>
+                    </div>
+                    {/* <Link to="/createVids">
                     <button >Crear un video</button>
-                    </Link>
+                    </Link> */}
                 </div>
             <NavigationMobile back='home'/>
         </div>
