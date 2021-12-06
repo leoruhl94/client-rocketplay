@@ -65,7 +65,7 @@ export const SuperButton: React.FC<Props> = ({
             </span>
           </a>
         ) : (
-          <a href={externalLink}>
+          <a href={externalLink} className="SuperButton__link">
             <span className="SuperButton__text">{text}</span>
           </a>
         )

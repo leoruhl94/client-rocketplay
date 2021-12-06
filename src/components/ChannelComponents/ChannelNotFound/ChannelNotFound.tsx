@@ -3,11 +3,13 @@ import "./channelNotFound.scss";
 import { AddChannel } from "../AddChannel/AddChannel";
 
 export const ChannelNotFound: React.FC = () => {
+
     const [add, setAdd] = useState(false); 
     
     function handleAdd(){
         setAdd(!add);
     }
+
     return (
         <div className="channelsSuperContainer">
             <AddChannel dep={add} handleAdd={handleAdd}/>

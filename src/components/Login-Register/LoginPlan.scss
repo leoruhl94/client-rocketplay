@@ -1,9 +1,41 @@
+@import "../../styles/variables.scss";
+
 .loginPlan__container{
     position:absolute;
-    width: 100%;
+    width: 80%;
     color: white;
     text-align: center;
     top: calc(50vh - 200px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: $squareBackground;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 24px 0;
+    .loginPlan__title{
+        margin-top:0;
+    }
+    .acctype-superbutton-accept{
+        width: 40%;
+        padding: 15px ;
+        // margin: 0 auto;
+        margin-top: 2rem;
+        outline: none;
+        border: none;
+        border-radius: 10px ;
+        background: rgb(231, 226, 226) ;
+        font-size: 16px;
+        // text-decoration: none;
+        // outline: none;
+        // border: 1px solid white;
+        // border-radius: 0;
+        // background: white;
+        .superbutton__text{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+    }
     .loginPlan{
         height: 100%;
         width: 100%;
@@ -68,5 +100,11 @@
                 }
             }
         }
+    }
+}
+
+@media (min-width: 1024px){
+    .loginPlan__container{
+        width: 60%;
     }
 }
