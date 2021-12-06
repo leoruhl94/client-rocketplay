@@ -6,7 +6,6 @@
   top: 0;
   left: calc((var(--i) - var(--page))*100vw);
   animation: fadeIn 1.5s ease-out;
-  z-index: 0;
 }
 .login_navTop{
   z-index: 1;
