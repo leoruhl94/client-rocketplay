@@ -1,0 +1,20 @@
+.AboutComponent{
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    text-align: center;
+    // background-color: aquamarine;
+    // box-sizing: border-box;
+    // width: 100%;
+    // max-width: 100vmin;
+    .AboutComponent-image{
+        max-width: 90%;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+    .AboutComponent-title{
+        color: white;
+        text-shadow: 1px 1px 3px black;
+        font-size: 2rem;
+    }
+}

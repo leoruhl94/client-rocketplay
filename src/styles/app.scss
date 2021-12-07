@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Yatra+One&display=swap');
+@import "./variables.scss";
+
+body {
+    font-family: 'Ubuntu Condensed', 'Yatra One', sans-serif;
+    background: $mainBackground;
+}

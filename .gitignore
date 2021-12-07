@@ -121,8 +121,7 @@ output.json
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
-Icon
+
 
 
 # Thumbnails
@@ -187,6 +186,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+package-lock.json
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
