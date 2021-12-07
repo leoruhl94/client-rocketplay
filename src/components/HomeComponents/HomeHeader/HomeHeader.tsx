@@ -38,7 +38,7 @@ export const HomeHeader: React.FC = () => {
         <div className="descriptionContainer">  
         {/* description */}
           <p>
-            Rocket play provides the best tools for your enterprise in a single
+            Rocket Play provides the best tools for your enterprise in a single
             and compact platform.
           </p>
         </div>

@@ -35,14 +35,17 @@
 .inDivGrid {
   border-radius: 10px;
   background-color: #30444e;
-  display: grid;
-  grid-template-columns: 25% 75%;
+  // display: grid;
+  // grid-template-columns: 25% 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   margin: auto;
   margin-top: 20px;
   width: 90%;
   padding: 10px;
   cursor: pointer;
-  height: 100px;
+  height: 110px;
 }
 
 /* Grilla para texto y descripción - En celulares no se ve la descripción, solo el nombre*/
@@ -79,13 +82,12 @@
     align-items: center;
     line-height: 1rem;
     padding-left: 1.2rem;
-    display: grid;
+    // display: grid;
     .About__profile-name {
       font-weight: 500;
       padding: 0.5rem 0;
       font-size: 1.8rem;
       margin: auto;
-    
     }
     .About__profile-headline {
         display: inline;
@@ -162,6 +164,11 @@ $breakpoint-tablet: 768px;
     display: none;
   }
   /* About User - Gigantografía*/
+  .About__detail-image-div{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
   .detailImage {
     margin-top: 3%;
     margin-bottom: 3%;
@@ -186,9 +193,9 @@ $breakpoint-tablet: 768px;
   }
   /* About User - Contenedor de la imágen del componente */
   .About__profile-image {
-    border-radius: 15px;
-    width: 70%;
-    height: 100%;
+    border-radius: 100%;
+    width: 6rem;
+    height: 6rem;
     align-self: center;
     object-fit: cover;
     object-position: center center;
@@ -199,5 +206,16 @@ $breakpoint-tablet: 768px;
     height: 15px;
     background-color: rgb(30, 16, 156);
     border-radius: 30px;
+  }
+  .About__profile-text{
+    height: 100%;
+    .About__profile-name{
+      text-align: left;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgb(196, 152, 71);
+      overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+    }
   }
 }

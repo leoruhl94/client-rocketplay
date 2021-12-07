@@ -19,7 +19,7 @@ export const SingleChannel: React.FC<Props> = ({channel}) => {
                 {/* <img src="nothing" alt="PPP" /> */}
             </div>
             <div className="singleChannelText">
-                <h2>Channel X</h2>
+                <h2>{channel}</h2>
             </div>
             <div className="singleChannelArrow">
                 <p>{">"}</p>

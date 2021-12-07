@@ -18,6 +18,9 @@ export const HomeClients: React.FC = () => {
             <img className="client" src={screen} alt="placeholder" />
             <img className="client" src={screen} alt="placeholder" />
             <img className="client" src={screen} alt="placeholder" />
+            <img className="client" src={screen} alt="placeholder" />
+            <img className="client" src={screen} alt="placeholder" />
+            <img className="client" src={screen} alt="placeholder" />
         </div>
     )
 }

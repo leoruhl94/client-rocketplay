@@ -57,4 +57,17 @@
 	}
 }
 
-// @media (min-width:)
+@media (min-width: 1024px){
+    .channelsSuperContainer{
+
+        .channels{
+            // background: red;
+            width: 30%;
+            .channelsAddChannel{
+                button{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
 /* Estilización del componente detail */
+@import "../../../styles/variables.scss";
 
 .VideoDetail__main-article {
     display: flex;
@@ -19,6 +20,9 @@
 .VideoDetail-main-title {
     text-align: center;
     color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 1.5rem;
+    // display: none;
 }
 
 .VideoDetail-main-video {
@@ -42,22 +46,32 @@
 .VideoDetail__main-frame2-container{
     width: 100%;
     .VideoDetail__main-frame2 {
-        border-radius: 1rem 1rem 0rem 0rem;
-        box-shadow: 10px 10px 30px #2e2c2c;
+        // border-radius: 1rem 1rem 0rem 0rem;
+        border-radius: 10px 10px 0 0;
+        // box-shadow: 10px 10px 30px #2e2c2c;
         width: 100%;
         height: 56vw;
     }
 }
 
-.VideoDetail__container-description {
+.VideoDetail__container-description,
+ .VideoDetail__container2-description {
     padding: 5%;
     background-color: #30444E;
     color: white;
-    margin-top: 35px;
-    border-radius: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
     width: 90%;
-    box-shadow: 10px 10px 30px #2e2c2c;
-    margin-bottom: 20px;
+    // box-shadow: 10px 10px 30px #2e2c2c;
+    margin-bottom: 2rem;
+    // gap: 2rem;
+    // padding-bottom: 30px;
+}
+
+.VideoDetail__container2-description{
+    // padding-bottom: 30px;
+    margin-bottom: 4rem;
+    padding-bottom: 0.3rem;
 }
 
 .VideoDetail__rly-description {
@@ -65,16 +79,25 @@
     overflow-y: scroll;
     height: 200px;
     white-space: pre-line;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px black;
+    h3{
+        margin-top: 0;
+        font-size: 2rem;
+        border-bottom: 1px solid white;
+        padding-bottom: 0.5rem;
+    }
 }
 
 
 /* LIke / Dislike*/
 
 .VideoDetail__content-detail {
-    margin: 1rem;
-    color: chocolate;
-    width: 100%;
+    // margin: 1rem 0;
+    color: lightgray;
+    width: 70%;
     height: 60%;
+    margin: 0 auto;
 }
 
 .VideoDetail__container-comment {
@@ -83,15 +106,19 @@
     display: grid;
     height: 7%;
     grid-template-rows: 33% 33% 20%;
-    margin-bottom: 10px;
-    border-radius: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
     transition: 0.3s;
+    text-shadow: 1px 1px 3px black;
+    p{
+        padding: 0 1rem;
+    }
 }
 
 .VideoDetail__container-comment:hover {
     background-color: #6a7074;
     display: grid;
-    transform: scale(1.1);
+    transform: scale(1.005);
 }
 
 .VideoDetail__container-padder {
@@ -116,15 +143,25 @@
     display: grid;
     color: white;
     font-size: 1.3rem;
-    grid-template-columns: 18% 60% 7% 7%;
+    align-items: center;
+    grid-template-columns: 18% 44% 15% 15%;
     gap: 1%;
     background-color: #30444E;
     width: 90%;
     padding: 5%;
-    border-radius: 0 0 1rem 1rem;
-    box-shadow: 10px 10px 30px #141414;
+    border-radius: 0 0 10px 10px;
+    // box-shadow: 10px 10px 30px #141414;
 }
 
+.VideoDetail__container-description_desktop{
+    display: none;
+    border-radius: 10px;
+}
+
+.VideoDetail__flex_helper{
+    border-radius: 0px;
+    margin-top: 1rem;
+}
 
 /* Celulares - Mobile S */
 
@@ -168,9 +205,115 @@
     } */
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1024px) {
     /* Dimensionado del iframe de video de YT*/
     /* .VideoDetail__main-frame2 {
         height: 740px;
     } */
+    /* .VideoDetail__main-frame{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+    .VideoDetail_Grid_Container{
+        grid-column: 1 / 5;
+        // grid-row: 1 / 4;
+    }
+    .VideoDetail__container-description{
+        grid-column: 5 / 7;
+        // grid-row: 
+    } */
+    .VideoDetail_Grid_Container{
+        width: 100%;
+        // height: 80vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+        gap: 2rem;
+        height: fit-content;
+        // padding-top: 16px;
+        .VideoDetail__flex_helper{
+            width: 65%;
+            height: 100%;
+            margin-top: 1.3rem;
+        }
+        .VideoDetail__main-frame2{
+            height: 60vh;
+            // margin-bottom: 1.2rem;
+            // max-height: 65%;
+            // width: 70%;
+        }
+        .VideoDetail__author-container{
+            // display: flex;
+            height: 15vh;
+            width: 98%;
+            padding:2.8% 1%;
+            grid-template-columns: 18% 54% 10% 10%;
+        }
+        .VideoDetail__container-description_desktop{
+            // background: red;
+            display: block;
+            padding: 2rem 1rem;
+            background-color: #30444E;
+            color: white;
+            margin-top: 1.3rem;
+            border-radius: 10px;
+            width: 35%;
+            // box-shadow: 10px 10px 30px #2e2c2c;
+            // margin-bottom: 20px;
+            height: 70vh;
+            .VideoDetail__rly-description{
+                height: 100%;
+                overflow-y: auto;
+                p{
+                    font-size: 1.5rem;
+                    text-shadow: 1px 1px 3px black;
+                    margin: 0;
+                }
+            }
+        }
+    }
+    .VideoDetail__container-description{
+        display: none;
+    }
+    
+    .VideoDetail__container-comment {
+        border-radius: 0;
+        background-color: transparent;
+        // border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+ 
+        margin-bottom: 0;
+        // outline: 1px solid lightgray;
+        p{
+            padding: 0 1rem;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px black;
+            color: rgb(197, 196, 196);
+        }
+        .VideoDetail__text_title{
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        &:hover{
+            background-color: #3a4f5a;
+            transform: scale(1);
+        }
+    }
+    .VideoDetail__container2-description {
+        padding: 2% 5%;
+        margin-bottom: 0;
+        // border-collapse:collapse;
+    }
+    .VideoDetail-main-title{
+        opacity: 0;
+        display: none;
+        // margin-top: 1.3rem;
+    }
+    .VideoDetail__content-detail {
+        width: 50%;
+        height: 50%;
+        margin: 0 auto;
+    }
 }

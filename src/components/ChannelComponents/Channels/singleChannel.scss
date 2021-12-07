@@ -1,5 +1,6 @@
 .singleChannelSuperContainer{
     padding: 16px;
+    padding-top: 66px;
 }
 
 .singleChannelDiv{
@@ -11,6 +12,7 @@
     background: #286053;
     border-radius: 10px;
     margin-bottom: 1rem;
+    cursor: pointer;
     .singleChannelIcon{
         background: #3dd598;
         padding-top: 7px;
@@ -46,5 +48,13 @@
         color: rgb(230, 224, 224);
         text-shadow: 2px 2px 5px black;
         font-weight: 400;
+    }
+}
+
+@media (min-width: 1024px){
+    .singleChannelDiv{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

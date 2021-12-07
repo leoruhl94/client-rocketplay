@@ -59,6 +59,14 @@
     background-color: transparent;
     border: none;
     color: white;
+    .nonRotated{
+        transform: rotate(0);
+        color: white;
+    }
+    .rotated{
+        transform: rotate(180deg);
+        color: white;
+    }
 }
 
 .AboutDetail__about-me-button:hover {
@@ -66,6 +74,12 @@
     background-color: white;
     border: none;
     color: black;
+    .nonRotated{
+        color: black;
+    }
+    .rotated{
+        color: black;
+    }
 }
 
 .AboutDetail_about-me-title {
@@ -117,6 +131,14 @@
     background-color: transparent;
     border: none;
     color: white;
+    .nonRotatedTech{
+        transform: rotate(0);
+        color: white;
+    }
+    .rotatedTech{
+        transform: rotate(180deg);
+        color: white;
+    }
 }
 
 .AboutDetail__about-tech-button:hover {
@@ -124,6 +146,12 @@
     background-color: white;
     border: none;
     color: black;
+    .nonRotatedTech{
+        color: black;
+    }
+    .rotatedTech{
+        color: black;
+    }
 }
 
 .AboutDetail_about-tech-title {
@@ -231,7 +259,7 @@ $breakpoint-tablet: 1024px;
     .AboutDetail_about-tech {
         background-color: #30444e;
         margin-top: 3rem;
-        height: 400px;
+        height: 450px;
         border-radius: 15px;
         overflow: hidden;
         transition: 0.4s;
@@ -261,7 +289,7 @@ $breakpoint-tablet: 1024px;
     .AboutDetail_about-tech-logos {
         display: grid;
         grid-template-columns: 20% 20% 20% 20% 20%;
-        max-height: 300px;
+        max-height: 400px;
         overflow-y: auto;
         padding: 1rem;
     }
@@ -278,6 +306,7 @@ $breakpoint-tablet: 1024px;
 
 ::-webkit-scrollbar {
     width: 10px;
+    z-index: 10;
 }
 
 
@@ -286,6 +315,7 @@ $breakpoint-tablet: 1024px;
  ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
+    z-index: 10;
 }
 
 
@@ -294,6 +324,7 @@ $breakpoint-tablet: 1024px;
  ::-webkit-scrollbar-thumb {
     background: linear-gradient(#6835A5, #1983FF);
     border-radius: 10px;
+    z-index: 10;
 }
 
 

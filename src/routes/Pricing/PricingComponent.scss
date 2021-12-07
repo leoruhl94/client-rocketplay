@@ -1,5 +1,15 @@
 @import "../../styles/variables.scss";
 
+
+.PricingComponent-container{
+    box-sizing: border-box;
+    // width: 50vw;
+    // height: 50vh;
+    // background-color: aquamarine;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
 .pricingTitle{
     color: white;
     text-align: center;
@@ -10,10 +20,13 @@
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 60px;
+    // background-color: yellowgreen;
+    // width: 100%;
+    padding: 1rem;
 }
 @media only screen and (min-width: $smallDevices) {
     .pricingContainer{
         flex-direction: row;
-        flex-wrap: wrap;
+        // flex-wrap: wrap;
     }
 }

@@ -6,7 +6,7 @@ export const LoadingComponent: React.FC = () => {
     
     return(
         <div className="loadingContainer">
-            {numArrayGen(20).map(x => <SpanCircle i={x}/>)}
+            {numArrayGen(20).map(x => <SpanCircle key={x} i={x}/>)}
             <div className='rocketContainer'>
                 <svg
                     className="rocket"

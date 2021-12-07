@@ -1,8 +1,9 @@
 import React, {useState} from "react"
 import {GoogleLogin} from 'react-google-login'
+import { CLIENT_ID, COOKIES_POLICY} from "../../constants/constants"
 import {Icon} from '../Icon/Icon'
 import './LoginGoogle.scss'
-
+import {Link} from "react-router-dom";
 interface gFuncs{
     res: any,
     fail: any
@@ -13,7 +14,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
     function handleCheck(e) {
       setKeepSession(e.target.checked ? true : false)
     }
-
+  
     return (
         <div className="Logs">
             <h2 className="Logs_title">Log in / Sign up to start using our service</h2>
@@ -22,7 +23,7 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
         </div>
         <div className="singleButton">
           <GoogleLogin
-            clientId='1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com'
+            clientId={CLIENT_ID}
             buttonText="Log in/Sign up with Google "
             scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
             className="botoncito"
@@ -30,14 +31,17 @@ export const LoginGoogle: React.FC<gFuncs> = ({res, fail}) => {
             responseType='code'
             onSuccess={g => {res(g, keepSession)}}
             onFailure={fail}
-            cookiePolicy={'single_host_origin'}
+            cookiePolicy={COOKIES_POLICY}
             prompt='consent'
           />
         </div>
         <label className='logs_keppSession-lbl'>
           <input type='checkbox' name='keepSession' className='logs_keppSession-cb' onChange={handleCheck} checked={keepSession}/>
-          Mantener sesion iniciada
+          Keep my account logged in
         </label>
+        {/* <Link to="/" className="logs-link-home">
+          <h4 className="logs-home">Back home</h4>
+        </Link> */}
       </div>
     )
 }

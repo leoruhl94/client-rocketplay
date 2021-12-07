@@ -5,14 +5,16 @@ import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMo
 import { LoadingComponent } from "../../components/LoadingComponent/LoadingComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { storeState } from "../../redux/type";
+import { NavigationTop } from "../../containers/NavigationTop/NavigationTop";
 
 // Componente about
 const PricingComponent: React.FC = () => {
     const {plans} = useSelector((state: storeState) => state) 
 
     return (
-            <div>
+            <div className="PricingComponent-container">
+                <NavigationTop/>
                 <h1 className='pricingTitle'>Explore current top deals</h1>
                 {/* <h5>See our products</h5> */}
                 <div className='PricingContainer'>

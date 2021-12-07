@@ -3,7 +3,7 @@
 .acctype-super-container{
     position: absolute;
     // z-index: 1;
-    height: 100%;
+    height: 85%;
     width: 100%;
     top: 0;
     left: 0;
@@ -129,6 +129,15 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media (min-width: 1024px){
+    .acctype-super-container{
+
+        .acctype-container{
+            width: 50%;
         }
     }
 }

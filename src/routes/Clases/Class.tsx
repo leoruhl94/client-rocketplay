@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { VideoFrame } from "../Videos/VideoFrame/VideoFrame";
-import thumbnail from "../../images/individual-project-thumbnail.jpg";
+// import thumbnail from "../../images/individual-project-thumbnail.jpg";
 import "./Class.scss"
 import axios from "axios";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";

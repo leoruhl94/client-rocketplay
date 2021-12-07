@@ -3,10 +3,18 @@ import { SuperButton } from "../../components/Buttons/SuperButton/SuperButton";
 import "./NavigationMobile.scss";
 import { useHistory } from "react-router";
 
+interface User {
+  accessToken: '', 
+  name: '',
+  pic: ''
+}
+
 interface Props {
   back?: string;
 }
 export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
+  const json = localStorage.getItem("user");
+  const user: User = json ? JSON.parse(json) : null;
   let history = useHistory();
   // const [menu, setMenu] = useState(false);
   // const resetPath = () => {
@@ -25,7 +33,7 @@ export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
 
   return (
     <section className="NavigationMobile">
-      <SuperButton name={"button_Back"} text="<" handler={handleGoBack} />
+      <SuperButton name={"button_Back"} icon="arrowDown" classIcon="NavigationMobile__arrow" classes="NavigationMobile__botoncitito" handler={handleGoBack} />
       <SuperButton
         icon="homeSolid"
         name={"button_home"}

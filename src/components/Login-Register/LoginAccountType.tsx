@@ -6,7 +6,8 @@ import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
 import {GoogleLogout} from 'react-google-login'
-
+import {storeState} from "../../redux/type";
+import { CLIENT_ID } from "../../constants/constants";
 interface Props{
     googleUser: any
 }
@@ -21,6 +22,7 @@ export const LoginAccountType: React.FC = () => {
     function handleSubmit(e){
         e.preventDefault();
         if(input === 'business') {
+            dispatch(createUser(user, true))
             dispatch(changeLogsPage(2))
         } else {
             dispatch(createUser(user))
@@ -66,7 +68,7 @@ export const LoginAccountType: React.FC = () => {
                                 </div>
                                 <div className="acctype-submit-div">
                                     <GoogleLogout
-                                        clientId="1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com"
+                                        clientId={CLIENT_ID}
                                         buttonText="Logout"
                                         className="acctype-google-btn"
                                         onLogoutSuccess={logout}

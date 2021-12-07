@@ -107,6 +107,7 @@ export const VideoDetail: React.FC = () => {
    
   
     }, []);
+
     // ..... END OF useEffect((),[]) .....
 
   // ..... Funciones de Youtube frame .....
@@ -118,59 +119,70 @@ export const VideoDetail: React.FC = () => {
     <article className="VideoDetail__main-article">
       {/* ..... Main section ..... */}
       <section className="VideoDetail__main-frame">
-        {/* ..... Show videos ..... */}
-        <h1 className="VideoDetail-main-title">{video.title}</h1>
-        {/* Complete: Mostrar el video en un componente*/}
-        <div className="VideoDetail__main-frame2-container">
-          {/* ... frame section ... */}
-          <YouTube
-            videoId={id} // defaults -> null
-            // id={string}                       // defaults -> null
-            className="VideoDetail__main-frame2" // defaults -> null
-            // containerClassName={string}       // defaults -> ''
-            // opts={obj}                        // defaults -> {}
-            onReady={(e) => {
-              videodatallazo.onReady(e);
-            }} // Cuándo esté listo
-            // onPlay={func}                     // defaults -> noop
-            onPause={(e) => videodatallazo.onPause(e)} // defaults -> noop
-            // onEnd={func}                      // defaults -> noop
-            // onError={func}                    // defaults -> noop
-            // onStateChange={func}              // defaults -> noop
-            // onPlaybackRateChange={func}       // defaults -> noop
-            // onPlaybackQualityChange={func}    // defaults -> noop
-          />
-        </div>
-        <div className="VideoDetail__author-container">
-          <img className="VideoDetail__autor-logo" src={autor.icon} alt="..." />
-          <h3>{video.author}</h3>
-          {/* ..... Imágen de like */}
-          <Icon classes="VideoDetail__content-detail" svg="like"></Icon>
-          {/* ..... Imágen de dislike ..... */}
-          <Icon classes="VideoDetail__content-detail" svg="dislike"></Icon>
+        <div className="VideoDetail_Grid_Container">
+          <div className="VideoDetail__flex_helper">
+            {/* ..... Show videos ..... */}
+            <h1 className="VideoDetail-main-title">{video.title}</h1>
+            {/* Complete: Mostrar el video en un componente*/}
+            <div className="VideoDetail__main-frame2-container">
+              {/* ... frame section ... */}
+              <YouTube
+                videoId={id} // defaults -> null
+                // id={string}                       // defaults -> null
+                className="VideoDetail__main-frame2" // defaults -> null
+                // containerClassName={string}       // defaults -> ''
+                // opts={obj}                        // defaults -> {}
+                onReady={(e) => {
+                  videodatallazo.onReady(e);
+                }} // Cuándo esté listo
+                // onPlay={func}                     // defaults -> noop
+                onPause={(e) => videodatallazo.onPause(e)} // defaults -> noop
+                // onEnd={func}                      // defaults -> noop
+                // onError={func}                    // defaults -> noop
+                // onStateChange={func}              // defaults -> noop
+                // onPlaybackRateChange={func}       // defaults -> noop
+                // onPlaybackQualityChange={func}    // defaults -> noop
+              />
+            </div>
+            <div className="VideoDetail__author-container">
+              <img className="VideoDetail__autor-logo" src={autor.icon} alt="..." />
+              <h3>{video.author}</h3>
+              {/* ..... Imágen de like */}
+              <Icon classes="VideoDetail__content-detail" svg="likeOutline" ></Icon>
+              {/* ..... Imágen de dislike ..... */}
+              <Icon classes="VideoDetail__content-detail" svg="dislikeOutline"></Icon>
+            </div>
+          </div>
+          <div className="VideoDetail__container-description_desktop">
+                <div className="VideoDetail__rly-description">
+                <h3>Description</h3>
+                <p>{video.description}</p>
+                </div>
+            </div>
         </div>
         {/* ..... Sección de los detalles del video */}
         <section className="VideoDetail__main-video-detail">
             <div className="VideoDetail__container-description">
                 <div className="VideoDetail__rly-description">
-
+                <h3>Description</h3>
                 <p>{video.description}</p>
                 </div>
             </div>
 
             {/* ..... Acá van los comentarios ..... */}
 
-            <div className="VideoDetail__container-description">
+            <div className="VideoDetail__container2-description">
                 { comment.length > 0 ? <div className="VideoDetail__container-comments">
                     
                         {comment.map((x) => {
                             //console.log(x);
+                            const chars = {T: " / ", Z: ""}
                             return (
                                 <div className="VideoDetail__container-comment">
                                     <div className="VideoDetail__container-padder">
                                     <p className="VideoDetail__text_title">{x.name}</p>
                                     <p>{x.textDisplay}</p>
-                                    <p className="VideoDetail__comment-quote">{x.publishedAt}</p>
+                                    <p className="VideoDetail__comment-quote">{x.publishedAt.replace(/[TZ]/g, m => chars[m])}</p>
                                     </div>
                                 </div>
                             )

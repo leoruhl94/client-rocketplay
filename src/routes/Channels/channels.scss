@@ -1,5 +1,54 @@
 @import "../../styles/variables.scss";
 
+.singleChannel-outer-div{
+    background: $squareBackground;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+}
 
+.channelsAddChannel2 {
+    margin: 0;
+    // margin-top: 2rem;
+    // background: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    h4 {
+        color: white;
+        font-size: 1.5rem;
+        text-shadow: 1px 1px 3px black;
+        font-weight: 400;
+        margin: 1rem;
+    }
+    button {
+        // font-weight: bold;
+        font-size: 2rem;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        background: linear-gradient(180deg, #40DF9F 0%, #3ED598 100%);
+        color: white;
+        text-shadow: 1px 1px 3px black;
+    }
+}
 
+@media (min-width: 700px){
+    .singleChannel-outer-div{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
 
+@media (min-width: 1024px){
+    .singleChannel-outer-div{
+        width: 50%;
+        margin: 0 auto;
+    }
+}
