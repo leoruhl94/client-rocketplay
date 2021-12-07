@@ -35,14 +35,22 @@ const App: React.FC = () => {
     // const lastRoute = json ? json : '/home'
     
     useEffect(() => {
-        const ksJson = localStorage.getItem("keepSession")
+        /* const ksJson = localStorage.getItem("keepSession")
         const ks = ksJson && JSON.parse(ksJson)
-        if(!ks?.keepSession) {localStorage.clear()}
+        if(!ks?.keepSession) {localStorage.clear()} */
 
         //cargar en redux datos de la sesion abierta
         const js = localStorage.getItem("user")
         const user = js && JSON.parse(js)
-        if(js) dispatch(refresh(user))
+        const js2 = sessionStorage.getItem("user")
+        const user2 = js && JSON.parse(js)
+        if(js) {
+            auth?.login(user)
+            dispatch(refresh(user))
+        } else if(js2) {
+            auth?.login(user2)
+            dispatch(refresh(user2))
+        }
 
         //cargar los planes de pago en redux
         dispatch(getPlans())
@@ -93,22 +101,20 @@ const App: React.FC = () => {
             {/* ...... Ruta Channel ..... */}
             <PrivateRoute exact path="/home" component={Channels}/>
             {/* ...... Ruta Categories ..... */}
-            <Route exact path='/home/:channel' render={({match}: any) =>  
-                !localStorage.getItem("user") ? 
-                <Redirect to="/login"/> : 
-                <Categories channel={match.params.channel}/>}/>
+            <PrivateRoute exact path='/home/:channel' component={Categories}/>
+            {/* <Route exact path='/home/:channel' render={({match}: any) =>
+                <Categories channel={match.params.channel}/>}/> */}
             {/* ...... Ruta Class ..... */}
-            <Route exact path="/home/:channel/:class" render={({match}: any) => 
-                !localStorage.getItem("user") ? 
-                <Redirect to="/login"/> : 
-                <Class class={match.params.class}/>}/>
+            <PrivateRoute exact path='/home/:channel/:class' component={Class}/>
+            {/* <Route exact path="/home/:channel/:class" render={({match}: any) => 
+                <Class class={match.params.class}/>}/> */}
             {/* ...... Ruta Testing ..... */}
-            <Route exact path="/testing" component={LoginAccountType}/>
+            <PrivateRoute exact path="/testing" component={LoginAccountType}/>
 
             {/* ...... Ruta Create Video ..... */}
-            <Route exact path="/createVids" component={VideoForm}/>
+            <PrivateRoute exact path="/createVids" component={VideoForm}/>
             {/* ...... Ruta Video Detail ..... */}
-            <Route path="/videodetail/:id" component={VideoDetail} />
+            <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
         </Switch>   
     )
 } 

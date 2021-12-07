@@ -7,6 +7,7 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import "./ProfileWnd.scss";
 import { storeState } from "../../redux/type";
 import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../constants/constants";
+import { useAuth } from "../../auth/useAuth";
 
 interface Props {
   dep: boolean;
@@ -21,6 +22,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   const ks = ksJson && JSON.parse(ksJson);
   const history = useHistory();
   const dispatch = useDispatch();
+  const auth = useAuth() 
   const { profile } = useSelector((state: storeState) => state);
 
   async function responseGoogle(googleUser, keepSession) {
@@ -48,6 +50,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
     console.log(response);
   }
   function logout() {
+    auth?.logout();
     dispatch(Logout(history));
   }
 

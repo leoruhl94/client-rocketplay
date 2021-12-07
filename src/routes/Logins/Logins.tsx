@@ -21,6 +21,7 @@ import "./Logins.scss";
 
 //constantes
 import { URL_BASE } from "../../constants/constants";
+import { useAuth } from "../../auth/useAuth";
 
 interface User {
   accessToken: "";
@@ -32,6 +33,7 @@ export const Logins: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { logsPage } = useSelector((state: storeState) => state);
+  const auth = useAuth();
 
   const json = localStorage.getItem("user");
   const user: User = json ? JSON.parse(json) : null;
@@ -58,6 +60,7 @@ export const Logins: React.FC = () => {
     };
 
     //Loguear o Registrar usuario
+    auth?.login(userGoogle)
     dispatch(changeProfile(userGoogle, history, keepSession));
   }
 

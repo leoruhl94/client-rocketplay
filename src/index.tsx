@@ -7,6 +7,7 @@ import { HashRouter } from 'react-router-dom'
 import { FirebaseAppProvider } from 'reactfire'
 import { firebaseConfig } from './firebaseConfig.js'
 import  axios  from 'axios'
+import AuthProvider from './auth/AuthProvider'
 //import { LoadingComponent } from './components/LoadingComponent/LoadingComponent'
 
 setInterval(() => {
@@ -16,11 +17,13 @@ setInterval(() => {
 
 
 ReactDOM.render(
-<HashRouter> 
-    <React.Suspense fallback={'cargando...'}>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </React.Suspense>
-</HashRouter>
+<AuthProvider>
+    <HashRouter> 
+        <React.Suspense fallback={'cargando...'}>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </React.Suspense>
+    </HashRouter>
+</AuthProvider>
 , document.getElementById("root"))

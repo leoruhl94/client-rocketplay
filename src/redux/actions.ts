@@ -52,15 +52,22 @@ export function changeProfile(googleUser, history, keepSession){
         const userDb: userDb = await axios.get(`${URL_BASE}/users?email=`+googleUser.email)
         
         localStorage.setItem('keepSession', JSON.stringify({keepSession: keepSession})); 
-        localStorage.setItem('user', JSON.stringify(googleUser)); 
-
+        //localStorage.setItem('user', JSON.stringify(googleUser)); 
+        
         if(userDb.data.isRegistered) {
-            
+            console.log(keepSession)
+            if(keepSession){
+                localStorage.setItem('user', JSON.stringify(googleUser))
+            }else {
+                sessionStorage.setItem('user', JSON.stringify(googleUser))
+            }
             // dispatch({type: KEEP_SESSION, payload: keepSession})
             dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
             history.push("/home")
         }else{
             // dispatch({type: KEEP_SESSION, payload: keepSession})
+            const newUser = await axios.post(`${URL_BASE}/users`, {isBusiness: false, plan: null, name: googleUser.name, email: googleUser.email}) 
+            console.log(newUser)
             dispatch({type: CHANGE_LOGSPAGE, payload: 1})
             dispatch({type: REFRESH, payload: {name: googleUser.name, pic: googleUser.pic}})
             history.push('/login')
