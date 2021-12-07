@@ -1,5 +1,5 @@
-export const URL_BASE = "https://api-rocketplay.herokuapp.com";
-// export const URL_BASE = "http://localhost:3002";
+// export const URL_BASE = "https://api-rocketplay.herokuapp.com";
+export const URL_BASE = "http://localhost:3002";
 
 // export const COOKIES_POLICY = "single_host_origin"
 export const COOKIES_POLICY = "https://rocketplay.com.ar"
