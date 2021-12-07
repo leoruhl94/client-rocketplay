@@ -16,7 +16,7 @@ export const LoginPlan: React.FC = () => {
   console.log("Plan =>", plan)
   console.log("Plans =>", plans)
   
-  let paymentUrl = plans.find((x) => x.name === input).url 
+  let paymentUrl = plans.find((x) => x.name === input)?.url 
   console.log("P.URL =>", paymentUrl)
   function handleSubmit(e) {
     e.preventDefault();
