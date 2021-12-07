@@ -6,7 +6,7 @@ import YouTube from "react-youtube";
 import "./VideoDetail.scss";
 import { videodatallazo } from "./functions";
 import axios from "axios";
-import { Comments, CommentsYT } from './hardcode';
+import { CommentsYT } from './hardcode';
 import { Icon } from '../../../components/Icon/Icon';
 import { NavigationMobile } from '../../../containers/NavigationMobile/NavigationMobile';
 import { NavProfileAndLocation } from "../../../containers/NavProfileAndLocation/NavProfileAndLocation";

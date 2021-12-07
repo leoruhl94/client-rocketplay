@@ -1,0 +1,32 @@
+/* Artículo principal */
+
+.Menu__article-container {
+    color: white;
+}
+
+
+/* Container de los componentes */
+
+.Menu__list-container {
+    font-size: 1.5rem;
+    padding: 15px;
+    padding-left: 30px;
+    display: flexbox;
+}
+
+
+/* Iconito para mirar nomás*/
+
+.Menu__testing-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+
+/* Contenedores de cada sección*/
+
+.Menu__section-container {
+    display: flex;
+    align-items: center;
+}

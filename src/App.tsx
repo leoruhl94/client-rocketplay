@@ -24,6 +24,8 @@ import { Redirect, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import  axios from "axios";
+import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDetail";
+import { MenuComponent } from "./routes/Menu/MenuComponent";
 
 
 
@@ -99,6 +101,10 @@ const App: React.FC = () => {
             <Route exact path="/createVids" component={VideoForm}/>
             {/* ...... Ruta Video Detail ..... */}
             <Route path="/videodetail/:id" component={VideoDetail} />
+            {/* ...... Ruta Video Detail - VIMEO ..... */}
+            <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
+            {/* ...... Ruta Menu Component ..... */}
+            <Route path="/menu" component={MenuComponent} />
         </Switch>   
     )
 } 
