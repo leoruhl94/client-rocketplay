@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Icon } from "../../../components/Icon/Icon";
-import "./homeHeader.scss";
+import "./LandingHeader.scss";
 
-export const HomeHeader: React.FC = () => {
+export const LandingHeader: React.FC = () => {
   let div: any = document.querySelector(".headerContainer");
 
   return (

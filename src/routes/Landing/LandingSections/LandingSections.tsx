@@ -1,7 +1,7 @@
 import React from "react";
-import "./homeImages.scss"
+import "./LandingSections.scss"
 import {Link} from "react-router-dom"
-export const HomeImages: React.FC = () => {
+export const LandingSections: React.FC = () => {
         return (
             <div className="imagesContainer">
                 <div className="aboutImgContainer">
