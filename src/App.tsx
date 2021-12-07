@@ -3,7 +3,7 @@ import "./styles/normalize.css";
 import "./styles/app.scss";
 
 // Componentes
-import {Home} from "./routes/Home/Home";
+import {Landing} from "./routes/Landing/Landing";
 import AboutComponent from './routes/About/AboutComponent';
 import AboutDetailComponent from './routes/About/AboutDetailComponent';
 import {Logins} from "./routes/Logins/Logins"
@@ -24,12 +24,13 @@ import { Redirect, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import  axios from "axios";
-
-
+import { useAuth } from "./auth/useAuth";
+import { PrivateRoute } from "./auth/PrivateRoute";
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
     let location = useLocation();
+    const auth = useAuth()
     // const json = localStorage.getItem("lastRoute")
     // const lastRoute = json ? json : '/home'
     
@@ -72,9 +73,9 @@ const App: React.FC = () => {
             {/* ..... Ruta principal ..... */}
             {/* <Route exact path="/" render={() => 
                 !localStorage.getItem("user") || !lastRoute ? 
-                <Home/> :
+                <Landing/> :
                 <Redirect to={lastRoute}/>}/> */}
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" component={Landing}/>
             {/* ..... Ruta about ..... */}
             <Route exact path="/about" component={AboutComponent}/>
             {/* ..... Ruta preapproval ..... */}
@@ -90,10 +91,7 @@ const App: React.FC = () => {
                 <Logins/> :
                 <Redirect to="/"/> }/> */}
             {/* ...... Ruta Channel ..... */}
-            <Route exact path="/home" render={() =>  
-                !localStorage.getItem("user") ? 
-                <Redirect to="/login"/> : 
-                <Channels/>}/>
+            <PrivateRoute exact path="/home" component={Channels}/>
             {/* ...... Ruta Categories ..... */}
             <Route exact path='/home/:channel' render={({match}: any) =>  
                 !localStorage.getItem("user") ? 
