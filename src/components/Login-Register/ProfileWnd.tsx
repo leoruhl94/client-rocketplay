@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router" 
 import axios from "axios"
@@ -16,25 +16,27 @@ interface User {
     pic: string,
 }
 export const ProfileWnd: React.FC<Props> = ({dep}) => {
-    const json = localStorage.getItem('user')
-    const profile: User = json ? JSON.parse(json) : null
-    const history = useHistory()
+    const ksJson = localStorage.getItem("keepSession")
+    const ks = ksJson && JSON.parse(ksJson)
+    const history = useHistory();
     const dispatch = useDispatch()
-
-    async function responseGoogle(googleUser){
-        const {code} = googleUser
-        const tokens = await axios.post('http://localhost:3002/loginUser', {code: code})
-        //console.log('data: ',tokens.data)
+    const {profile} = useSelector((state: storeState) => state)
+    
+    async function responseGoogle(googleUser, keepSession) {
+        //Obtener Tokens mediante el code
+        const tokens = await axios.post('http://localhost:3002/loginUser', {code: googleUser.code})
         localStorage.setItem('tok', JSON.stringify(tokens))
+
+        //Obtener datos del usuario
         const data = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
         const userGoogle = {
-            accessToken: tokens.data.data.access_token,
             name: data.data.name,
             pic: data.data.picture,
             email: data.data.email, 
         }
-        console.log(userGoogle)
-        dispatch(changeProfile(googleUser, history))
+        
+        //Loguear o Registrar usuario 
+        dispatch(changeProfile(userGoogle, history, keepSession))
     }
     
     function errorGoogle(response){
@@ -55,12 +57,18 @@ export const ProfileWnd: React.FC<Props> = ({dep}) => {
             </div>
             <div className="profileWnd__cambiar">
                 <GoogleLogin
-                    clientId="1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com"
-                    buttonText="Cambiar Cuenta"
+                    clientId='1034475859743-iv8aok7263jflskvdkubpuosqp09kfj0.apps.googleusercontent.com'
+                    buttonText="Cambiar Cuenta "
+                    scope='profile email https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl'
                     className="profileWnd__googleBtn"
-                    onSuccess={responseGoogle}
-                    onFailure={(errorGoogle)}
-                    />
+                    accessType='offline'
+                    responseType='code'
+                    onSuccess={e => {responseGoogle(e, ks?.keepSession)}}
+                    onFailure={errorGoogle}
+                    cookiePolicy={'single_host_origin'}
+                    prompt='consent'
+                />
+                
             </div>
             <div className="profileWnd__cambiar">
                 <GoogleLogout

@@ -1,0 +1,86 @@
+@import "../../../styles/variables.scss";
+.video-frame-link{
+    text-decoration: none;
+}
+.video-frame-container{
+    background: $squareBackground;
+    border-radius: 15px;
+    width: 300px;
+    height: 270px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-top: 29px;
+    margin-bottom: 1rem;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    // max-width: 320px;
+    // flex-wrap: nowrap;
+    // flex-grow: 1;
+    .video-frame-video-div{
+        background: rgb(83, 83, 168);
+        width: 270px;
+        height: 175px;
+        margin: 0 auto;
+        border-radius: 10px;
+        position: relative;
+        h4{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+        }
+        .video-frame-thumbnail{
+            // aspect-ratio: 16/9;
+            width: 270px;
+            height: 175px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+    }
+    .video-frame-text-div{
+        display: flex;
+        flex-direction: row;
+        gap: 0rem;
+        justify-content: center;
+        height: 75px;
+        width: 270px;
+        margin: 0 auto;
+        margin-top: 1rem;
+        .video-frame-text-title{
+            width: 80%;
+            // background: yellow;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            h3{
+                margin: 0;
+                color: white;
+                font-weight: 400;
+                font-size: 1.2rem;
+                text-shadow: 1px 1px 3px black;
+            }
+        }
+        .video-frame-text-likes{
+            width: 20%;
+            // background: green;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            padding: 10px;
+            h3{
+                margin: 0;
+                color: white;
+                text-shadow: 1px 1px 3px black;
+                font-weight: 400;
+                font-size: 1.3rem;
+            }
+            .video-frame-like{
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+}

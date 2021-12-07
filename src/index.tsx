@@ -3,9 +3,7 @@ import * as ReactDOM from 'react-dom'
 import App from './App'
 import { Provider } from "react-redux"
 import store from './redux/store'
-import { FirebaseAppProvider } from 'reactfire'
-import { firebaseConfig } from './firebaseConfig.js'
-import  axios  from 'axios'
+import { HashRouter } from 'react-router-dom'
 //import { LoadingComponent } from './components/LoadingComponent/LoadingComponent'
 
 setInterval(() => {
@@ -15,11 +13,11 @@ setInterval(() => {
 
 
 ReactDOM.render(
-<FirebaseAppProvider firebaseConfig={firebaseConfig}>
+<HashRouter> 
     <React.Suspense fallback={'cargando...'}>
         <Provider store={store}>
             <App />
         </Provider>
     </React.Suspense>
-</FirebaseAppProvider>
+</HashRouter>
 , document.getElementById("root"))

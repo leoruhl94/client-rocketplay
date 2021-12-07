@@ -8,78 +8,88 @@ import AboutComponent from './routes/About/AboutComponent';
 import AboutDetailComponent from './routes/About/AboutDetailComponent';
 import {Logins} from "./routes/Logins/Logins"
 import PricingComponent from './routes/Pricing/PricingComponent';
-import {RegisterSwitch} from "./components/Login-Register/RegisterSwitch"
-import { LoginSwitch } from './components/Login-Register/LoginSwitch';
-import { LoginEmail } from './components/Login-Register/LoginEmail';
-import { RegisterEmail } from './components/Login-Register/RegisterEmail';
-import { BusinessSwitch } from './components/Login-Register/BusinessSwitch';
 import { Categories } from "./routes/Categories/Categories";
 import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
+import { Channels } from "./routes/Channels/Channels";
+import { Class } from "./routes/Clases/Class";
+import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
+import { VideoForm } from "./routes/Videos/VideoForm";
+import { PreApproval } from "./routes/PreApproval/PreApproval";
 
 // Navegación
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { Channels } from "./routes/Channels/Channels";
-import { Redirect, useHistory } from "react-router";
+import { Redirect, useHistory, useLocation } from "react-router";
 
 // Redux
 import { useDispatch } from "react-redux";
-import { changeProfile } from "./redux/actions";
-import { VideoForm } from "./routes/Videos/VideoForm";
+import { getPlans, refresh } from "./redux/actions";
+
 
 const App: React.FC = () => {
-    //const history = useHistory()
+    const dispatch = useDispatch() 
+    let location = useLocation();
     const json = localStorage.getItem("lastRoute")
-    const lastRoute = json || '/'
-    console.log(lastRoute)
-    return ( // ----------------------------------------------------
-        // ..... Enrutamiento .....
-        <HashRouter>
-            <Switch>
-                {/* ..... Ruta principal ..... */}
-                <Route exact path="/" render={() => 
-                    !localStorage.getItem("user") ? 
-                    <Home/> :
-                    <Redirect to={lastRoute && '/home'}/>}/>
-                {/* ..... Ruta about ..... */}
-                <Route exact path="/about">
-                    <AboutComponent></AboutComponent>
-                </Route>
-                <Route exact path="/about/:id">
-                    <AboutDetailComponent></AboutDetailComponent>
-                </Route>
-                {/* ...... Ruta pricing ..... */}
-                <Route exact path="/pricing" component={PricingComponent} />
-                
-                <Route exact path="/logs" component={Logins}/>
-                {/* ...... Ruta Log In ..... */}
-                <Route exact path="/login" component={LoginSwitch}/>
-                {/* ...... Ruta Log In Email..... */}
-                <Route exact path="/loginEmail" component={LoginEmail}/>
-                {/* ...... Ruta Register ..... */}
-                <Route exact path="/register" component={RegisterSwitch}/>
-                {/* ...... Ruta Register Email ..... */}
-                <Route exact path="/registerEmail" component={RegisterEmail}/>
-                {/* ...... Ruta Business Switch ..... */}
-                <Route exact path="/business" component={BusinessSwitch}/>
-                {/* ...... Ruta Business register ..... */}
-                <Route exact path="/business-register"/>
-                {/* ...... Ruta Channels ..... */}
-                <Route exact path="/home" render={() => 
-                    !localStorage.getItem("user") ? 
-                    <Redirect to="/logs"/> : 
-                    <Channels/>}/>
-                {/* ...... Ruta Categories ..... */}
-                <Route exact path='/home/:channel' render={({match}: any) => 
-                    !localStorage.getItem("user") ? 
-                    <Redirect to="/logs"/> : 
-                    <Categories channel={match.params.channel}/>}/>
-                <Route exact path="/testing" component={LoginAccountType}/>
-                {/* ...... Ruta Business register ..... */}
-                <Route exact path="/createVids" component={VideoForm}/>
-                
-            </Switch>   
+    const lastRoute = json ? json : '/home'
+    
+    useEffect(() => {
+        const ksJson = localStorage.getItem("keepSession")
+        const ks = ksJson && JSON.parse(ksJson)
+        if(!ks?.keepSession) {localStorage.clear()}
 
-        </HashRouter>
+        //cargar en redux datos de la sesion abierta
+        const js = localStorage.getItem("user")
+        const user = js && JSON.parse(js)
+        if(js) dispatch(refresh(user))
+
+        //cargar los planes de pago en redux
+        dispatch(getPlans())
+    }, [])
+
+    useEffect(() => {
+        if(location.pathname.startsWith('/home')){
+            localStorage.setItem('lastRoute', `${location.pathname}`)
+        }
+      }, [location]);
+
+    return ( // ..... Enrutamiento .....
+        <Switch>
+            {/* ..... Ruta principal ..... */}
+            <Route exact path="/" render={() => 
+                !localStorage.getItem("user") || !lastRoute ? 
+                <Home/> :
+                <Redirect to={lastRoute}/>}/>
+            {/* ..... Ruta about ..... */}
+            <Route exact path="/about" component={AboutComponent}/>
+            {/* ..... Ruta preapproval ..... */}
+            <Route exact path="/preapproval" component={PreApproval}/>
+            {/* ..... Ruta about detail ..... */}
+            <Route exact path="/about/:id" component={AboutDetailComponent}/>
+            {/* ...... Ruta pricing ..... */}
+            <Route exact path="/pricing" component={PricingComponent} />
+            {/* ...... Ruta Log In ..... */}
+            <Route exact path="/logs" component={Logins}/>
+            {/* ...... Ruta Channel ..... */}
+            <Route exact path="/home" render={() => 
+                !localStorage.getItem("user") ? 
+                <Redirect to="/logs"/> : 
+                <Channels/>}/>
+            {/* ...... Ruta Categories ..... */}
+            <Route exact path='/home/:channel' render={({match}: any) =>  
+                !localStorage.getItem("user") ? 
+                <Redirect to="/logs"/> : 
+                <Categories channel={match.params.channel}/>}/>
+            {/* ...... Ruta Class ..... */}
+            <Route exact path="/home/:channel/:class" render={({match}: any) => 
+                !localStorage.getItem("user") ? 
+                <Redirect to="/logs"/> : 
+                <Class class={match.params.class}/>}/>
+            {/* ...... Ruta Testing ..... */}
+            <Route exact path="/testing" component={LoginAccountType}/>
+            {/* ...... Ruta Create Video ..... */}
+            <Route exact path="/createVids" component={VideoForm}/>
+            {/* ...... Ruta Video Detail ..... */}
+            <Route path="/videodetail/:id" component={VideoDetail} />
+        </Switch>   
     )
 } 
 // ----------------------------------------------------

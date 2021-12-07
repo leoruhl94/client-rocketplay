@@ -1,12 +1,13 @@
 interface profile {
-    accessToken: string;
     name: string,
     pic: string
   }
   // --------------------------------
   type storeState = {
     profile: profile,
-    accountType: boolean
+    logsPage: number, 
+    plan: string,
+    plans: any[],
   }
   
   type storeAction = {
