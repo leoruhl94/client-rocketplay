@@ -55,6 +55,18 @@ const App: React.FC = () => {
         }
       }, [location]);
 
+// 1) Definir rutas publicas y privadas
+    //   -publicas: 
+    //   -privadas:
+// 2) Estados globales y locales
+// 3) Agregar Payment-failed y payment-pending
+// 4) mails de pagos y creaciones de cuentas etc (SMTP HOSTINGER o MP)
+// 5) Autorizacion segun tipo de usuario 
+// 6) REAGRUPAR Y PENSAR DE NUEVO 
+
+
+
+
     return ( // ..... Enrutamiento .....
         <Switch>
             {/* ..... Ruta principal ..... */}
