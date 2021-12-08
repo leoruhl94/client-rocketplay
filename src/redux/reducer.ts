@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH_PROFILE, PRICING_SELECT, GET_PLANS } from "./actions"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE, PRICING_SELECT, GET_PLANS } from "./actions"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer

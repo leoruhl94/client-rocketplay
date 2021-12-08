@@ -80,9 +80,9 @@ export function loginRegister(googleUser, keepSession) {
     }
 }
 
-export function changeProfile(googleUser, history, keepSession) {
-    console.log("TODAVIA NO TERMINASTE GIL, AUN SIGO VIVO")
-//   return async (dispatch) => {
+// export function changeProfile(googleUser, history, keepSession) {
+//     console.log("TODAVIA NO TERMINASTE GIL, AUN SIGO VIVO")
+// //   return async (dispatch) => {
 //     const userDb: userDb = await axios.get(
 //       `${URL_BASE}/users?email=` + googleUser.email
 //     );
@@ -123,11 +123,11 @@ export function changeProfile(googleUser, history, keepSession) {
     //   history.push("/login");
     // }
 //   };
-}
+// }
 export function changeLogsPage(page) {
-  return (dispatch) => {
-    dispatch({ type: CHANGE_LOGSPAGE, payload: page });
-  };
+//   return (dispatch) => {
+//     // dispatch({ type: CHANGE_LOGSPAGE, payload: page });
+//   };
 }
 export function Logout(history, auth) {
   localStorage.clear();
