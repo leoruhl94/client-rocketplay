@@ -19,10 +19,11 @@ export const PaymentsPlans: React.FC = () => {
   let paymentUrl = plans.find((x) => x.name === input)?.url;
   //console.log("P.URL =>", paymentUrl)
   function handleSubmit(e) {
-    e.preventDefault();
-    const json = localStorage.getItem("user");
-    const user = json && JSON.parse(json);
-    dispatch(createUser(user, true, input));
+    console.log("submit")
+    //e.preventDefault();
+    //const json = localStorage.getItem("user");
+    //const user = json && JSON.parse(json);
+    //dispatch(createUser(user, true, input));
     //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
     // window.open(plans.find((x) => x.name === input).url);
     // history.push('/preapproval')

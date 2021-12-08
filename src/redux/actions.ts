@@ -59,18 +59,19 @@ export function loginRegister(googleUser, keepSession) {
   console.log("LOGIN_REGISTER")
     return async (dispatch) => {
          
-      const newUser = await axios.post(`${URL_BASE}/v2/users`, {
-          isBusiness: false,
-          name: googleUser.name,
-          email: googleUser.email,
-      });
-      console.log(newUser);
-
       if (keepSession) {
         localStorage.setItem("user", JSON.stringify(googleUser));
       } else {
         sessionStorage.setItem("user", JSON.stringify(googleUser));
       }
+
+      /* const newUser = await  */axios.post(`${URL_BASE}/v2/users`, {
+          isBusiness: false,
+          name: googleUser.name,
+          email: googleUser.email,
+      }).then(r => console.log(r.data))
+      
+
       dispatch({
         type: REFRESH_PROFILE,
         payload: { name: googleUser.name, pic: googleUser.pic },
