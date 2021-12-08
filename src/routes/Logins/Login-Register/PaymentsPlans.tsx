@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, createUser } from "../../../redux/actions";
-import axios from "axios";
 import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";

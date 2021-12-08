@@ -31,53 +31,59 @@ export function pricingSelect(value) {
     dispatch({ type: PRICING_SELECT, payload: value });
   };
 }
-export function refresh(user) {
-  return (dispatch) => {
+
+export function refresh(info, tok=false) {
+  return async (dispatch) => {
+    let user = info;
+    if(tok){
+      const data = await axios.get(
+        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${info.data.data.id_token}`
+      );
+      const userGoogle = {
+        name: data.data.name,
+        pic: data.data.picture,
+        email: data.data.email,
+      };
+      user = userGoogle
+    }
     dispatch({ type: REFRESH_PROFILE, payload: { name: user.name, pic: user.pic } });
   };
 }
-export function createUser(googleUser, isBusiness = false, plan: any = null) {
-  return async (dispatch) => {
-    const newUser = await axios.post(`${URL_BASE}/users`, {
-      isBusiness,
-      plan,
-      name: googleUser.name,
-      email: googleUser.email,
-    });
-    console.log({ googleUser, isBusiness, plan });
-    // dispatch({type: PRICING_SELECT, payload: ''})
-    // dispatch({type: CHANGE_LOGSPAGE, payload: 0})
-    localStorage.setItem('user', JSON.stringify(googleUser));
-    dispatch({
-      type: REFRESH_PROFILE,
-      payload: { name: googleUser.name, pic: googleUser.pic },
-    });
-  };
-}
 
-export function loginRegister(googleUser, keepSession) {
+export function loginRegister(tokens, keepSession, auth, history) {
   console.log("LOGIN_REGISTER")
     return async (dispatch) => {
          
       if (keepSession) {
-        localStorage.setItem("user", JSON.stringify(googleUser));
+        localStorage.setItem("tok", JSON.stringify(tokens));
       } else {
-        sessionStorage.setItem("user", JSON.stringify(googleUser));
+        sessionStorage.setItem("tok", JSON.stringify(tokens));
       }
 
-      /* const newUser = await  */axios.post(`${URL_BASE}/v2/users`, {
-          isBusiness: false,
-          name: googleUser.name,
-          email: googleUser.email,
+      //Obtener datos del usuario
+      const data = await axios.get(
+        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`
+      );
+      const userGoogle = {
+        name: data.data.name,
+        pic: data.data.picture,
+        email: data.data.email,
+      };
+        
+      axios.post(`${URL_BASE}/v2/users`, {
+        isBusiness: false,
+        name: userGoogle.name,
+        email: userGoogle.email,
       }).then(r => console.log(r.data))
       
+      auth?.login(userGoogle);
 
       dispatch({
         type: REFRESH_PROFILE,
-        payload: { name: googleUser.name, pic: googleUser.pic },
+        payload: { name: userGoogle.name, pic: userGoogle.pic },
       });
-          
-      // dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
+      console.log('here')
+      history.push("/home");
     }
 }
 
@@ -132,6 +138,7 @@ export function changeLogsPage(page) {
 }
 export function Logout(history, auth) {
   localStorage.clear();
+  sessionStorage.clear();
   auth?.logout()
   history.push("/login");
   return (dispatch) => {

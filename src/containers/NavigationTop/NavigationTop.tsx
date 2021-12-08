@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./NavigationTop.scss";
 import { NavLink } from "react-router-dom";
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
+import { useAuth } from "../../auth/useAuth";
+import { useSelector } from "react-redux";
+import { storeState } from "src/redux/type";
 
-interface User {
-  accessToken: "";
-  name: "";
-  pic: "";
-}
+
 export const NavigationTop: React.FC = () => {
-  const json = localStorage.getItem("user");
-  const user: User = json ? JSON.parse(json) : null;
+  const auth = useAuth()
+  const user = auth?.user
+  const {profile} = useSelector((state: storeState) => state)
+  console.log('useAuth load profile')
   const [wndProfile, setWndProfile] = useState(false);
 
   return (
@@ -25,7 +26,7 @@ export const NavigationTop: React.FC = () => {
               setWndProfile(!wndProfile);
             }}
           >
-            <img className="Profile_image" src={user.pic} />
+            <img className="Profile_image" src={profile.pic} />
           </button>
           <ProfileWnd dep={wndProfile} />
         </ul>

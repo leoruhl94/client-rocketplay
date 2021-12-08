@@ -34,9 +34,9 @@ export const Logins: React.FC = () => {
   const [keepSession, setKeepSession] = useState(true);
   const auth = useAuth();
 
-  const userLocal = localStorage.getItem("user");
-  const userSession = sessionStorage.getItem("user");
-  // const user: User = json ? JSON.parse(json) : null;
+  const userLocal = localStorage.getItem("tok");
+  const userSession = sessionStorage.getItem("tok");
+
   if(!!userLocal || !!userSession ){
     history.push("/home")
   }
@@ -46,21 +46,9 @@ export const Logins: React.FC = () => {
     const tokens = await axios.post(`${URL_BASE}/loginUser`, {
       code: googleUser.code,
     });
-    localStorage.setItem("tok", JSON.stringify(tokens));
-    //Obtener datos del usuario
-    const data = await axios.get(
-      `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`
-    );
-    const userGoogle = {
-      name: data.data.name,
-      pic: data.data.picture,
-      email: data.data.email,
-    };
 
-    //Loguear o Registrar usuario
-    auth?.login(userGoogle);
-    dispatch(loginRegister(userGoogle, keepSession));
-    history.push("/home");
+    //Loguear o Registrar usuario 
+    dispatch(loginRegister(tokens, keepSession, auth, history));
   }
 
   function errorGoogle(response) {
