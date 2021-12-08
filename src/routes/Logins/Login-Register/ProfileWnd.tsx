@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import axios from "axios";
-import { changeProfile, Logout } from "../../../redux/actions";
+import {  Logout } from "../../../redux/actions";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import "./ProfileWnd.scss";
 import { storeState } from "../../../redux/type";
