@@ -2,7 +2,6 @@ import axios from "axios";
 import { URL_BASE } from "../constants/constants";
 
 export const CHANGE_PROFILE = "CHANGE_PROFILE";
-export const CHANGE_LOGSPAGE = "CHANGE_LOGSPAGE";
 export const LOGOUT = "LOGOUT";
 export const REFRESH = "REFRESH";
 export const PRICING_SELECT = "PRICING_SELECT";
@@ -56,7 +55,7 @@ export function createUser(googleUser, isBusiness = false, plan: any = null) {
   };
 }
 
-export function changeProfile(googleUser, history, keepSession) {
+export function changeProfile(googleUser, history, keepSession, setLogsPage:any = false) {
   return async (dispatch) => {
     const userDb: userDb = await axios.get(
       `${URL_BASE}/users?email=` + googleUser.email
@@ -90,7 +89,8 @@ export function changeProfile(googleUser, history, keepSession) {
         email: googleUser.email,
       });
       console.log(newUser);
-      dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
+      if(setLogsPage) setLogsPage(1)
+      //dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
       dispatch({
         type: REFRESH,
         payload: { name: googleUser.name, pic: googleUser.pic },
@@ -99,16 +99,12 @@ export function changeProfile(googleUser, history, keepSession) {
     }
   };
 }
-export function changeLogsPage(page) {
-  return (dispatch) => {
-    dispatch({ type: CHANGE_LOGSPAGE, payload: page });
-  };
-}
+
 export function Logout(history) {
   localStorage.clear();
   history.push("/login");
   return (dispatch) => {
     dispatch({ type: LOGOUT, payload: null });
-    dispatch({ type: CHANGE_LOGSPAGE, payload: 0 });
+    //dispatch({ type: CHANGE_LOGSPAGE, payload: 0 });
   };
 }

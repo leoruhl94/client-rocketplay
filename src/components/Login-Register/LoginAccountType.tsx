@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, createUser, Logout } from "../../redux/actions";
+import { createUser, Logout } from "../../redux/actions";
 import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
@@ -9,12 +9,12 @@ import { GoogleLogout } from "react-google-login";
 import { storeState } from "../../redux/type";
 import { CLIENT_ID } from "../../constants/constants";
 interface Props {
-  googleUser: any;
+  setLogsPage: any;
 }
-export const LoginAccountType: React.FC = () => {
+export const LoginAccountType: React.FC<Props> = ({setLogsPage}) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { logsPage, plan } = useSelector((state: storeState) => state);
+  const { plan } = useSelector((state: storeState) => state);
   const json = localStorage.getItem("user");
   const user = json && JSON.parse(json);
   const [input, setInput] = useState(plan ? "business" : "user");
@@ -23,7 +23,7 @@ export const LoginAccountType: React.FC = () => {
     e.preventDefault();
     if (input === "business") {
       dispatch(createUser(user, true));
-      dispatch(changeLogsPage(2));
+      setLogsPage(2)
     } else {
       dispatch(createUser(user));
       history.push("/home");
@@ -34,6 +34,7 @@ export const LoginAccountType: React.FC = () => {
     setInput(e.target.value);
   }
   function logout() {
+    setLogsPage(0)
     dispatch(Logout(history));
   }
 

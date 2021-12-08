@@ -23,7 +23,6 @@ interface Input {
 // -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
   // Caja de variables
-  const { logsPage } = useSelector((state: storeState) => state);
   const [user, setUser] = useState({});
 
   const [input, setInput] = useState<Input>({

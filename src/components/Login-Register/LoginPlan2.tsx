@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, createUser } from "../../redux/actions";
+import { createUser } from "../../redux/actions";
 import axios from "axios";
 import "./LoginPlan.scss";
 import { storeState } from "../../redux/type";
 import { SuperButton } from "../Buttons/SuperButton/SuperButton";
 
-export const LoginPlan: React.FC = () => {
+interface Props{
+  setLogsPage:any
+}
+export const LoginPlan: React.FC<Props> = ({setLogsPage}) => {
   const { plan } = useSelector((state: storeState) => state);
   const { plans } = useSelector((state: storeState) => state);
   const [input, setInput] = useState(plan ? plan : plans[0]?.name);
@@ -31,7 +34,8 @@ export const LoginPlan: React.FC = () => {
     setInput(e.target.value);
   }
   function handleBack() {
-    dispatch(changeLogsPage(1));
+    setLogsPage(1)
+    //dispatch(changeLogsPage(1));
   }
   return (
     <div className="loginPlan__container">

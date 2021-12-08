@@ -5,7 +5,6 @@ export interface profile {
   // --------------------------------
  export type storeState = {
     profile: profile,
-    logsPage: number, 
     plan: string,
     plans: any[],
   }

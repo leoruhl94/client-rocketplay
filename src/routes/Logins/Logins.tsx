@@ -1,5 +1,5 @@
 //Libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -32,7 +32,8 @@ interface User {
 export const Logins: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { logsPage } = useSelector((state: storeState) => state);
+  //const { logsPage } = useSelector((state: storeState) => state);
+  const [logsPage, setLogsPage] = useState<number>(0);
   const auth = useAuth();
 
   const json = localStorage.getItem("user");
@@ -61,7 +62,7 @@ export const Logins: React.FC = () => {
 
     //Loguear o Registrar usuario
     auth?.login(userGoogle)
-    dispatch(changeProfile(userGoogle, history, keepSession));
+    dispatch(changeProfile(userGoogle, history, keepSession, setLogsPage));
   }
 
   function errorGoogle(response) {
@@ -98,10 +99,10 @@ export const Logins: React.FC = () => {
         <LoginGoogle res={responseGoogle} fail={errorGoogle} />
       </div>
       <div className="slideComp" style={styleVar({ i: 1, page: logsPage })}>
-        <LoginAccountType />
+        <LoginAccountType setLogsPage={setLogsPage}/>
       </div>
       <div className="slideComp" style={styleVar({ i: 2, page: logsPage })}>
-        <LoginPlan />
+        <LoginPlan setLogsPage={setLogsPage}/>
       </div>
       <NavigationMobile />
     </div>
