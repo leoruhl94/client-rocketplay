@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
-import { CLIENT_ID, COOKIES_POLICY } from "../../constants/constants";
-import { Icon } from "../Icon/Icon";
+import { CLIENT_ID, COOKIES_POLICY } from "../../../constants/constants";
+import { Icon } from "../../../components/Icon/Icon";
 import "./LoginGoogle.scss";
 import { Link } from "react-router-dom";
 interface gFuncs {

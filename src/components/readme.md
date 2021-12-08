@@ -1,1 +1,0 @@
-## Aqui van componentes pequeños 

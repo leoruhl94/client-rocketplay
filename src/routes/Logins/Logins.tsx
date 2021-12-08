@@ -9,12 +9,12 @@ import { storeState } from "../../redux/type";
 //Components
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
-import { LoginAccountType } from "../../components/Login-Register/LoginAccountType";
-import { LoginGoogle } from "../../components/Login-Register/LoginGoogle";
-import { LoginPlan } from "../../components/Login-Register/LoginPlan2";
+import { LoginAccountType } from "./Login-Register/LoginAccountType";
+import { LoginGoogle } from "./Login-Register/LoginGoogle";
+import { LoginPlan } from "./Login-Register/LoginPlan2";
 
 //Redux
-import { changeProfile } from "../../redux/actions";
+import { changeProfile, loginRegister } from "../../redux/actions";
 
 //Styles
 import "./Logins.scss";
@@ -61,7 +61,7 @@ export const Logins: React.FC = () => {
 
     //Loguear o Registrar usuario
     auth?.login(userGoogle)
-    dispatch(changeProfile(userGoogle, history, keepSession));
+    dispatch(loginRegister(userGoogle, history, keepSession));
   }
 
   function errorGoogle(response) {

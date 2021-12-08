@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, createUser } from "../../redux/actions";
+import { changeLogsPage, createUser } from "../../../redux/actions";
 import axios from "axios";
 import "./LoginPlan.scss";
-import { storeState } from "../../redux/type";
-import { SuperButton } from "../Buttons/SuperButton/SuperButton";
+import { storeState } from "../../../redux/type";
+import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
 
 export const LoginPlan: React.FC = () => {
   const { plan } = useSelector((state: storeState) => state);

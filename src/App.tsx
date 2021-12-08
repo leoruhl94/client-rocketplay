@@ -9,7 +9,7 @@ import AboutDetailComponent from './routes/About/AboutDetailComponent';
 import {Logins} from "./routes/Logins/Logins"
 import PricingComponent from './routes/Pricing/PricingComponent';
 import { Categories } from "./routes/Categories/Categories";
-import { LoginAccountType } from "./components/Login-Register/LoginAccountType";
+import { LoginAccountType } from "./routes/Logins/Login-Register/LoginAccountType";
 import { Channels } from "./routes/Channels/Channels";
 import { Class } from "./routes/Clases/Class";
 import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";

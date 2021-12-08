@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useSelector } from "react-redux"
 import { useLocation } from "react-router"
 import { storeState } from "src/redux/type"
-import { ProfileWnd } from "../../components/Login-Register/ProfileWnd"
+import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd"
 import './NavProfileAndLocation.scss'
 
 interface User {

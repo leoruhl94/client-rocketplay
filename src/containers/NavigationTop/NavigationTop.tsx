@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./NavigationTop.scss";
 import { NavLink } from "react-router-dom";
-import { ProfileWnd } from "../../components/Login-Register/ProfileWnd";
+import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
 
 interface User {
   accessToken: "";

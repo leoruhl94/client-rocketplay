@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import axios from "axios";
-import { changeProfile, Logout } from "../../redux/actions";
+import { changeProfile, Logout } from "../../../redux/actions";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import "./ProfileWnd.scss";
-import { storeState } from "../../redux/type";
-import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../constants/constants";
-import { useAuth } from "../../auth/useAuth";
+import { storeState } from "../../../redux/type";
+import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../../constants/constants";
+import { useAuth } from "../../../auth/useAuth";
 
 interface Props {
   dep: boolean;
@@ -32,7 +32,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
     });
     localStorage.setItem("tok", JSON.stringify(tokens));
 
-    //Obtener datos del usuario
+    //Obtener datos del usuario 
     const data = await axios.get(
       `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`
     );

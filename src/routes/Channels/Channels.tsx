@@ -4,7 +4,7 @@ import { ChannelNotFound } from "../../components/ChannelComponents/ChannelNotFo
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import "./channels.scss";
 import { useSelector } from "react-redux";
-import { ProfileWnd } from "../../components/Login-Register/ProfileWnd";
+import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { Link } from "react-router-dom";
 

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { changeLogsPage, createUser, Logout } from "../../redux/actions";
+import { changeLogsPage, createUser, Logout } from "../../../redux/actions";
 import axios from "axios";
 // import google from "../../images/google.png";
 import "./loginAccountType.scss";
 import { GoogleLogout } from "react-google-login";
-import { storeState } from "../../redux/type";
-import { CLIENT_ID } from "../../constants/constants";
+import { storeState } from "../../../redux/type";
+import { CLIENT_ID, URL_BASE } from "../../../constants/constants";
 interface Props {
   googleUser: any;
 }
@@ -22,10 +22,14 @@ export const LoginAccountType: React.FC = () => {
   function handleSubmit(e) {
     e.preventDefault();
     if (input === "business") {
-      dispatch(createUser(user, true));
+      // dispatch(createUser(user, true));
+      axios.put(`${URL_BASE}/v2/users`,{
+        isBusiness:true,
+        email: user.email
+      })
       dispatch(changeLogsPage(2));
     } else {
-      dispatch(createUser(user));
+      // dispatch(createUser(user));
       history.push("/home");
     }
   }

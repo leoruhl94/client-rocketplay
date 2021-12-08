@@ -4,7 +4,7 @@ import { URL_BASE } from "../constants/constants";
 export const CHANGE_PROFILE = "CHANGE_PROFILE";
 export const CHANGE_LOGSPAGE = "CHANGE_LOGSPAGE";
 export const LOGOUT = "LOGOUT";
-export const REFRESH = "REFRESH";
+export const REFRESH_PROFILE = "REFRESH_PROFILE";
 export const PRICING_SELECT = "PRICING_SELECT";
 export const GET_PLANS = "GET_PLANS";
 
@@ -34,7 +34,7 @@ export function pricingSelect(value) {
 }
 export function refresh(user) {
   return (dispatch) => {
-    dispatch({ type: REFRESH, payload: { name: user.name, pic: user.pic } });
+    dispatch({ type: REFRESH_PROFILE, payload: { name: user.name, pic: user.pic } });
   };
 }
 export function createUser(googleUser, isBusiness = false, plan: any = null) {
@@ -50,54 +50,82 @@ export function createUser(googleUser, isBusiness = false, plan: any = null) {
     // dispatch({type: CHANGE_LOGSPAGE, payload: 0})
     localStorage.setItem('user', JSON.stringify(googleUser));
     dispatch({
-      type: REFRESH,
+      type: REFRESH_PROFILE,
       payload: { name: googleUser.name, pic: googleUser.pic },
     });
   };
 }
 
-export function changeProfile(googleUser, history, keepSession) {
-  return async (dispatch) => {
-    const userDb: userDb = await axios.get(
-      `${URL_BASE}/users?email=` + googleUser.email
-    );
+export function loginRegister(googleUser, history, keepSession) {
+  console.log("LOGIN_REGISTER")
+    return async (dispatch) => {
+        localStorage.setItem(
+            "keepSession",
+            JSON.stringify({ keepSession: keepSession })
+          );
+        const newUser = await axios.post(`${URL_BASE}/v2/users`, {
+            isBusiness: false,
+            name: googleUser.name,
+            email: googleUser.email,
+          });
+          console.log(newUser);
 
-    localStorage.setItem(
-      "keepSession",
-      JSON.stringify({ keepSession: keepSession })
-    );
+          if (keepSession) {
+            localStorage.setItem("user", JSON.stringify(googleUser));
+          } else {
+            sessionStorage.setItem("user", JSON.stringify(googleUser));
+          }
+          dispatch({
+            type: REFRESH_PROFILE,
+            payload: { name: googleUser.name, pic: googleUser.pic },
+          });
+          dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
+    }
+}
+
+export function changeProfile(googleUser, history, keepSession) {
+    console.log("TODAVIA NO TERMINASTE GIL, AUN SIGO VIVO")
+//   return async (dispatch) => {
+//     const userDb: userDb = await axios.get(
+//       `${URL_BASE}/users?email=` + googleUser.email
+//     );
+
+    // localStorage.setItem(
+    //   "keepSession",
+    //   JSON.stringify({ keepSession: keepSession })
+    // );
     // localStorage.setItem('user', JSON.stringify(googleUser));
 
-    if (userDb.data.isRegistered) {
-      console.log(keepSession);
-      if (keepSession) {
-        localStorage.setItem("user", JSON.stringify(googleUser));
-      } else {
-        sessionStorage.setItem("user", JSON.stringify(googleUser));
-      }
-      // dispatch({type: KEEP_SESSION, payload: keepSession})
-      dispatch({
-        type: REFRESH,
-        payload: { name: googleUser.name, pic: googleUser.pic },
-      });
-      history.push("/home");
-    } else {
-      // dispatch({type: KEEP_SESSION, payload: keepSession})
-      const newUser = await axios.post(`${URL_BASE}/users`, {
-        isBusiness: false,
-        plan: null,
-        name: googleUser.name,
-        email: googleUser.email,
-      });
-      console.log(newUser);
-      dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
-      dispatch({
-        type: REFRESH,
-        payload: { name: googleUser.name, pic: googleUser.pic },
-      });
-      history.push("/login");
-    }
-  };
+    // if (userDb.data.isRegistered) {
+    //   console.log(keepSession);
+    //   if (keepSession) {
+    //     localStorage.setItem("user", JSON.stringify(googleUser));
+    //   } else {
+    //     sessionStorage.setItem("user", JSON.stringify(googleUser));
+    //   }
+    // //   dispatch({type: KEEP_SESSION, payload: keepSession})
+    // //   dispatch({
+    // //     type: REFRESH_PROFILE,
+    // //     payload: { name: googleUser.name, pic: googleUser.pic },
+    // //   });
+    // //   history.push("/home");
+    // } else {
+    // //   dispatch({type: KEEP_SESSION, payload: keepSession})
+    //   const newUser = await axios.post(`${URL_BASE}/users`, {
+    //     isBusiness: false,
+    //     plan: null,
+    //     name: googleUser.name,
+    //     email: googleUser.email,
+    //   });
+    //   console.log(newUser);
+    //   dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
+    //   dispatch({
+    //     type: REFRESH_PROFILE,
+    //     payload: { name: googleUser.name, pic: googleUser.pic },
+    //   });
+    //   history.push("/login");
+    // }
+//   };
 }
 export function changeLogsPage(page) {
   return (dispatch) => {
