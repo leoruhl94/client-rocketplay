@@ -5,7 +5,6 @@ import "./VideoForm.scss";
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { URL_BASE } from "../../constants/constants";
 import { Icon } from "../../components/Icon/Icon";
-import { LoginAccountType } from "../../routes/Logins/Login-Register/LoginAccountType";
 import { storeState } from "../../redux/type";
 // Interfaces
 

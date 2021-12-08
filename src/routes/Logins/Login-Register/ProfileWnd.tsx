@@ -8,6 +8,7 @@ import "./ProfileWnd.scss";
 import { storeState } from "../../../redux/type";
 import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
+import { Link } from "react-router-dom";
 
 interface Props {
   dep: boolean;
@@ -18,14 +19,14 @@ interface User {
   pic: string;
 }
 export const ProfileWnd: React.FC<Props> = ({ dep }) => {
-  const ksJson = localStorage.getItem("keepSession");
-  const ks = ksJson && JSON.parse(ksJson);
+  // const ksJson = localStorage.getItem("keepSession");
+  // const ks = ksJson && JSON.parse(ksJson);
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 
   const { profile } = useSelector((state: storeState) => state);
 
-  async function responseGoogle(googleUser, keepSession) {
+  /* async function responseGoogle(googleUser, keepSession) {
     //Obtener Tokens mediante el code
     const tokens = await axios.post(`${URL_BASE}/loginUser`, {
       code: googleUser.code,
@@ -44,14 +45,13 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
 
     //Loguear o Registrar usuario
     dispatch(changeProfile(userGoogle, history, keepSession));
-  }
+  } */
 
   function errorGoogle(response) {
     console.log(response);
   }
   function logout() {
-    auth?.logout();
-    dispatch(Logout(history));
+    dispatch(Logout(history, auth));
   }
 
   return (
@@ -63,7 +63,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           <span>super admin</span>
         </div>
       </div>
-      <div className="profileWnd__cambiar">
+      {/* <div className="profileWnd__cambiar">
         <GoogleLogin
           clientId={CLIENT_ID}
           buttonText="Cambiar Cuenta "
@@ -78,7 +78,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           cookiePolicy={COOKIES_POLICY}
           prompt="consent"
         />
-      </div>
+      </div> */}
       <div className="profileWnd__cambiar">
         <GoogleLogout
           clientId={CLIENT_ID}
@@ -86,6 +86,12 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           className="profileWnd__googleBtn"
           onLogoutSuccess={logout}
         />
+      </div>
+      <div className="profileWnd__cambiar">
+        <Link to="/payment"> Get a Business Account</Link>
+      </div>
+      <div className="profileWnd__cambiar">
+        <Link to="/payment"> Cancel Subscription</Link>
       </div>
     </div>
   );

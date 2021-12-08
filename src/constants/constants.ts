@@ -1,3 +1,5 @@
+import CSS from "csstype";
+
 // export const URL_BASE = "https://api-rocketplay.herokuapp.com";
 export const URL_BASE = "http://localhost:3002";
 
@@ -13,3 +15,13 @@ export const REFRESH_PROFILE = "REFRESH_PROFILE"
 export const PRICING_SELECT = 'PRICING_SELECT'
 export const GET_PLANS = 'GET_PLANS' 
 export const SAVE_USER = 'SAVE_USER'
+
+export function styleVar(vars: any) {
+    const cssVars: CSS.Properties = {};
+    if (typeof vars === "object") {
+      for (let prop in vars) {
+        cssVars["--" + prop] = vars[prop];
+      }
+    }
+    return cssVars;
+  }

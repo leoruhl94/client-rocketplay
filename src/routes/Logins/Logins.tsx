@@ -1,26 +1,25 @@
 //Libraries
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import axios from "axios";
-import CSS from "csstype";
-import { storeState } from "../../redux/type";
+import GoogleLogin from "react-google-login";
 
 //Components
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
-import { LoginAccountType } from "./Login-Register/LoginAccountType";
-import { LoginGoogle } from "./Login-Register/LoginGoogle";
-import { LoginPlan } from "./Login-Register/LoginPlan2";
+// import { LoginAccountType } from "./Login-Register/LoginAccountType";
+// import { LoginGoogle } from "./Login-Register/LoginGoogle";
+// import { PaymentsPlans } from "./Login-Register/PaymentsPlans";
 
 //Redux
-import { changeProfile, loginRegister } from "../../redux/actions";
+import { loginRegister } from "../../redux/actions";
 
 //Styles
 import "./Logins.scss";
 
 //constantes
-import { URL_BASE } from "../../constants/constants";
+import { CLIENT_ID, COOKIES_POLICY, URL_BASE } from "../../constants/constants";
 import { useAuth } from "../../auth/useAuth";
 
 interface User {
@@ -32,23 +31,22 @@ interface User {
 export const Logins: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { logsPage } = useSelector((state: storeState) => state);
+  const [keepSession, setKeepSession] = useState(true);
   const auth = useAuth();
 
-  const json = localStorage.getItem("user");
-  const user: User = json ? JSON.parse(json) : null;
+  const userLocal = localStorage.getItem("user");
+  const userSession = sessionStorage.getItem("user");
+  // const user: User = json ? JSON.parse(json) : null;
+  if(!!userLocal || !!userSession ){
+    history.push("/home")
+  }
 
-  // useEffect(() => {
-  //   user && history.push("/home");
-  // }, [user]);
-
-  async function responseGoogle(googleUser, keepSession) {
+  async function responseGoogle(googleUser) {
     //Obtener Tokens mediante el code
     const tokens = await axios.post(`${URL_BASE}/loginUser`, {
       code: googleUser.code,
     });
     localStorage.setItem("tok", JSON.stringify(tokens));
-
     //Obtener datos del usuario
     const data = await axios.get(
       `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`
@@ -60,23 +58,20 @@ export const Logins: React.FC = () => {
     };
 
     //Loguear o Registrar usuario
-    auth?.login(userGoogle)
-    dispatch(loginRegister(userGoogle, history, keepSession));
+    auth?.login(userGoogle);
+    dispatch(loginRegister(userGoogle, keepSession));
+    history.push("/home");
   }
 
   function errorGoogle(response) {
     console.log(response);
   }
 
-  function styleVar(vars: any) {
-    const cssVars: CSS.Properties = {};
-    if (typeof vars === "object") {
-      for (let prop in vars) {
-        cssVars["--" + prop] = vars[prop];
-      }
-    }
-    return cssVars;
+  function handleCheck(e) {
+    setKeepSession(e.target.checked ? true : false);
   }
+
+  
   return (
     <div>
       <section className={`navigationTop login_navTop`}>
@@ -94,15 +89,40 @@ export const Logins: React.FC = () => {
         </NavLink>
       </section>
 
-      <div className="slideComp" style={styleVar({ i: 0, page: logsPage })}>
-        <LoginGoogle res={responseGoogle} fail={errorGoogle} />
+      {/* <LoginGoogle res={responseGoogle} fail={errorGoogle} /> */}
+      <div className="Logs">
+        <h2 className="Logs_title">
+          Log in / Sign up to start using our service
+        </h2>
+        <div className="Logs_logo">
+          <Icon svg="logoDarkColor" />
+        </div>
+        <div className="singleButton">
+          <GoogleLogin
+            clientId={CLIENT_ID}
+            buttonText="Log in/Sign up with Google "
+            scope="profile email" /*https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.force-ssl" */
+            className="botoncito"
+            accessType="offline"
+            responseType="code"
+            onSuccess={responseGoogle}
+            onFailure={errorGoogle}
+            cookiePolicy={COOKIES_POLICY}
+            /* prompt="consent" */
+          />
+        </div>
+        <label className="logs_keppSession-lbl">
+          <input
+            type="checkbox"
+            name="keepSession"
+            className="logs_keppSession-cb"
+            onChange={handleCheck}
+            checked={keepSession}
+          />
+          Keep my account logged in
+        </label>
       </div>
-      <div className="slideComp" style={styleVar({ i: 1, page: logsPage })}>
-        <LoginAccountType />
-      </div>
-      <div className="slideComp" style={styleVar({ i: 2, page: logsPage })}>
-        <LoginPlan />
-      </div>
+
       <NavigationMobile />
     </div>
   );

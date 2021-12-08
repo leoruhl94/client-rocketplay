@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { changeLogsPage, createUser } from "../../../redux/actions";
 import axios from "axios";
-import "./LoginPlan.scss";
+import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
 
-export const LoginPlan: React.FC = () => {
+export const PaymentsPlans: React.FC = () => {
   const { plan } = useSelector((state: storeState) => state);
   const { plans } = useSelector((state: storeState) => state);
   const [input, setInput] = useState(plan ? plan : plans[0]?.name);
@@ -31,7 +31,7 @@ export const LoginPlan: React.FC = () => {
     setInput(e.target.value);
   }
   function handleBack() {
-    dispatch(changeLogsPage(1));
+    history.goBack()
   }
   return (
     <div className="loginPlan__container">

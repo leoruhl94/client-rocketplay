@@ -18,15 +18,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          {/* <stop offset="0.95" stop-color="#fff" stop-opacity="0" /> */}
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          {/* <stop offset="0.95" stopColor="#fff" stopOpacity="0" /> */}
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_29"
@@ -36,11 +36,11 @@ export const Logos = {
           y2="971.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">
@@ -89,15 +89,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_29"
@@ -107,11 +107,11 @@ export const Logos = {
           y2="971.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">
@@ -160,11 +160,11 @@ export const Logos = {
           y2="975.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_23"
@@ -174,15 +174,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">

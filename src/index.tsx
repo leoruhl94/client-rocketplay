@@ -17,13 +17,14 @@ setInterval(() => {
 
 
 ReactDOM.render(
-<AuthProvider>
-    <HashRouter> 
-        <React.Suspense fallback={'cargando...'}>
-            <Provider store={store}>
+
+<HashRouter> 
+    <React.Suspense fallback={'cargando...'}>
+        <Provider store={store}>
+            <AuthProvider>
                 <App />
-            </Provider>
-        </React.Suspense>
-    </HashRouter>
-</AuthProvider>
+            </AuthProvider>
+        </Provider>
+    </React.Suspense>
+</HashRouter>
 , document.getElementById("root"))

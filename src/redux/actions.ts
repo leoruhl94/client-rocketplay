@@ -56,30 +56,28 @@ export function createUser(googleUser, isBusiness = false, plan: any = null) {
   };
 }
 
-export function loginRegister(googleUser, history, keepSession) {
+export function loginRegister(googleUser, keepSession) {
   console.log("LOGIN_REGISTER")
     return async (dispatch) => {
-        localStorage.setItem(
-            "keepSession",
-            JSON.stringify({ keepSession: keepSession })
-          );
-        const newUser = await axios.post(`${URL_BASE}/v2/users`, {
-            isBusiness: false,
-            name: googleUser.name,
-            email: googleUser.email,
-          });
-          console.log(newUser);
+         
+      const newUser = await axios.post(`${URL_BASE}/v2/users`, {
+          isBusiness: false,
+          name: googleUser.name,
+          email: googleUser.email,
+      });
+      console.log(newUser);
 
-          if (keepSession) {
-            localStorage.setItem("user", JSON.stringify(googleUser));
-          } else {
-            sessionStorage.setItem("user", JSON.stringify(googleUser));
-          }
-          dispatch({
-            type: REFRESH_PROFILE,
-            payload: { name: googleUser.name, pic: googleUser.pic },
-          });
-          dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
+      if (keepSession) {
+        localStorage.setItem("user", JSON.stringify(googleUser));
+      } else {
+        sessionStorage.setItem("user", JSON.stringify(googleUser));
+      }
+      dispatch({
+        type: REFRESH_PROFILE,
+        payload: { name: googleUser.name, pic: googleUser.pic },
+      });
+          
+      // dispatch({ type: CHANGE_LOGSPAGE, payload: 1 });
     }
 }
 
@@ -132,11 +130,11 @@ export function changeLogsPage(page) {
     dispatch({ type: CHANGE_LOGSPAGE, payload: page });
   };
 }
-export function Logout(history) {
+export function Logout(history, auth) {
   localStorage.clear();
+  auth?.logout()
   history.push("/login");
   return (dispatch) => {
     dispatch({ type: LOGOUT, payload: null });
-    dispatch({ type: CHANGE_LOGSPAGE, payload: 0 });
   };
 }
