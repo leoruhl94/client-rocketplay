@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { truncateCategory } from "../../../../redux/actions";
 import { storeState } from "src/redux/type";
 import { Categories } from "./hardcode";
@@ -14,7 +14,7 @@ export const MenuCategories: React.FC = () => {
     (state: storeState) => state.categories
   );
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const icondel = <Icon svg="delete"></Icon>;
   const iconcancel = <Icon svg="cancel"></Icon>;
 
@@ -43,17 +43,23 @@ export const MenuCategories: React.FC = () => {
       let id = document.querySelectorAll(".Category__button-container");
       id.forEach((x) => { x.className = "Category__button-container Category__btn-display";  })
     }
-    console.log(bool);
+  }
+
+  function backed(){
+    history.goBack()
   }
 
   return (
     <div>
+        <button onClick={backed}>Go back Soldier</button>
+
+
       <article className="Menu__Categories">
         {/* TODO: Show videos  */}
         <h1>Configuration</h1>
 
         {/* ..... Add a category ..... */}
-        <Link to="categories/addcategory" className="Menu__Category-container">
+        <Link to="categories/edit" className="Menu__Category-container">
           {/* Title container */}
           <div className="Category__description-container">
             <h2 className="Category__title">Edit Categories</h2>
