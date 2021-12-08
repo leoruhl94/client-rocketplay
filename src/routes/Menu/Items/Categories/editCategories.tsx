@@ -59,7 +59,7 @@ export const EditCategories: React.FC = () => {
                 </div>
                 {/* Close container */}
                 <div>
-                  <Link to="" ><button
+                  <Link to={x.title} ><button
                     value={x.title}
                     className="Category__button-container"
                   >

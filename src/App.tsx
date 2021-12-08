@@ -112,6 +112,8 @@ const App: React.FC = () => {
             <Route exact path="/menu/categories/addcategory" component={AddCategory} />
             {/* ...... Ruta Menu Component - Edit Category ..... */}
             <Route exact path="/menu/categories/edit" component={EditCategories} />
+            {/* ...... Ruta Menu Component by Id ..... */}
+            <Route exact path="/menu/categories/edit" component={EditCategories} />
             {/* ...... Ruta Menu Component ..... */}
             <Route exact path="/menu" component={MenuComponent} />
         </Switch>   
