@@ -2,7 +2,6 @@ import axios from "axios";
 import { URL_BASE } from "../constants/constants";
 
 export const CHANGE_PROFILE = "CHANGE_PROFILE";
-export const CHANGE_LOGSPAGE = "CHANGE_LOGSPAGE";
 export const LOGOUT = "LOGOUT";
 export const REFRESH_PROFILE = "REFRESH_PROFILE";
 export const PRICING_SELECT = "PRICING_SELECT";

@@ -11,7 +11,6 @@ const initialState: storeState = {
     
     */ 
     profile: {name: 'Not logged in', pic: ''},
-    logsPage: 0,
     plan: '',
     plans: []
   }
@@ -24,8 +23,6 @@ const reducer = (
     switch (action.type) {
       case CHANGE_PROFILE: 
         return state
-      case CHANGE_LOGSPAGE: 
-        return {...state, logsPage: action.payload}
       case PRICING_SELECT: 
         return {...state, plan: action.payload}
       case GET_PLANS: 
