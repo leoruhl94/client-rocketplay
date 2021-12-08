@@ -1,0 +1,35 @@
+* {
+    --yellow: #FFC542;
+    --grey: #30444E;
+}
+
+.Add__Category-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--grey);
+}
+
+.Add__title-text {
+    text-align: center;
+    color: white;
+}
+
+.Add__Input-text {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.Add__Input-btn {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: rebeccapurple;
+    border: none;
+}

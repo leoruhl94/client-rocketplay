@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import { postCategory } from "../../../../redux/actions";
 
+//Estilización
+import './addCategory.scss'
 
 export const AddCategory : React.FC = () => {
     
@@ -23,12 +25,15 @@ export const AddCategory : React.FC = () => {
     }
 
     // Complete: Formulario para subir una categoría
-    return (<article>
+    return (<article className="Add__Category-container">
+            <div className="Add__title-text">
+                <h1>Add a new category</h1>
+            </div>
             {/* Complete: Tomar nombre */}
             {/* Neh: Tomar videos para poner categorías */}
             <form onSubmit={handleUpload}>
-                <input onChange={handleData} type="text" />
-                <input type="submit" />
+                <input className="Add__Input-text" placeholder="Name..." onChange={handleData} type="text"required />
+                <input className="Add__Input-btn" type="submit" />
             </form>
 
 
