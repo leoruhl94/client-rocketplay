@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { truncateCategory } from "../../../../redux/actions";
+import { putCategory, truncateCategory } from "../../../../redux/actions";
 import { storeState } from "src/redux/type";
 import { Categories } from "./hardcode";
 import "./MenuCategories.scss";
@@ -17,59 +17,96 @@ export const MenuCategories: React.FC = () => {
   const history = useHistory();
   const icondel = <Icon svg="plusOutline"></Icon>;
   const iconcancel = <Icon svg="cancel"></Icon>;
-  const iconPencil = <Icon svg="pencil"></Icon>
-  const iconDelete = <Icon svg="deletex"></Icon>
+  const iconPencil = <Icon svg="pencil"></Icon>;
+  const iconDelete = <Icon svg="deletex"></Icon>;
 
   const [icon, setIcon] = useState(icondel);
   const [bool, setBool] = useState<boolean>(false);
+  const [logger, setLogger] = useState<string>("");
 
-
-  const [selected, setSelected ] = useState<string>('')
-  const [input, setInput] = useState<string>('')
+  const [selected, setSelected] = useState<string>("");
+  const [input, setInput] = useState<string>("");
 
   //TODO: useEffect para traerme las categorías del backEnd
 
   // Esto para eliminar las categorías
   function truncateCategories(e) {
-    console.log(e.target.value);
-    dispatch(truncateCategory(e.target.value));
+    //Complete: ELiminar las categorías del state
+    console.log(e);
+    dispatch(truncateCategory(e));
   }
 
   // Toggle 'x' and 'pencil'
   function editTruncate(e) {
+    // TODO: Cuándo nosotros demos click al botón va a hacer un toggle del modo edición y modo vista
     setBool(!bool);
     if (bool === true) {
       setIcon(icondel);
       let id = document.querySelectorAll(".Category__button-container");
-      id.forEach((x) => { x.className = "Category__button-container Category__btn-display";  })
+      id.forEach((x) => {
+        x.className = "Category__button-container Category__btn-display";
+      });
     } else {
-        setIcon(iconcancel);
-        let id = document.querySelectorAll(
-          ".Category__button-container"
-          );
-          id.forEach((x) => { x.className = "Category__button-container";  })
-      }
+      setIcon(iconcancel);
+      let id = document.querySelectorAll(".Category__button-container");
+      id.forEach((x) => {
+        x.className = "Category__button-container";
+      });
+    }
   }
 
+  // /******************************** */
+  function handleUpload(e) {
+    // Complete: Verificar el state local del seleccionado
+    // TODO: Tomar los datos del input del popup
+    // TODO: Hacer la actualización de título en redux
+    // TODO: Hacer la actualización del título pasando el nuevo título y el user al backEnd
+    // Complete: La categoría nueva no puede ser igual a una existente
+    e.preventDefault();
+    console.log(selected);
+
+    const even = (x) => input === x.title;
+    if (categories.some(even)) {
+      // True -> The category already exists!!!
+      setLogger("The category already exists");
+      return;
+    }else{
+      // false -> Category uploaded
+      console.log(input);
+      dispatch(putCategory(selected,input));
+      setLogger("Category succesfully updated");
+
+    }
+
+  }
+
+  function handleData(e) {
+    //TODO: Almacenar los cambios del nuevo título
+    setInput(e.target.value);
+    console.log(input);
+  }
+
+  // *****************************
+
   // Vamos para atrás
-  function backed(){
-    history.goBack()
+  function backed() {
+    history.goBack();
   }
 
   // editamos las categorías
-  function editCategories(e){
-
-    console.log(e.target.value);
-    setSelected(e.target.value);
-    // TODO: Popup con css directo
+  function editCategories(e) {
+    // TODO: Pasamos el valor al state local
+    setSelected(e);
+    // TODO: Levantamos un popUp
+    // TODO: El popup debe tener la data para mostrar
+    console.log(e);
   }
 
   // Captamos cambios del popup
 
   return (
     <div>
-        <button onClick={backed}>Go back Soldier</button>
-
+      <button onClick={backed}>Go back Soldier</button>
 
       <article className="Menu__Categories">
         <h1>Configuration</h1>
@@ -83,12 +120,8 @@ export const MenuCategories: React.FC = () => {
         </Link>
       </article>
 
-
-
-
       {/* ..... Mapping article ..... */}
       <article className="Menu__Categories">
-
         <div className="Menu__Toggle-btns">
           <h1>Categories</h1>
           <h4 className="Menu__Delete-btn" onClick={editTruncate}>
@@ -121,22 +154,25 @@ export const MenuCategories: React.FC = () => {
                 </div>
                 {/* Close container */}
                 {/* ..... Delete Change ..... */}
-
+                <div onClick={(e) => truncateCategories(x.title)}>
                   <button
                     value={x.title}
-                    onClick={e => truncateCategories(e)}
+                    //onClick={e => truncateCategories(e)}
                     className="Category__button-container Category__btn-display"
                   >
                     {iconDelete}
                   </button>
+                </div>
                 {/* ..... Edit Change  ..... */}
+                <div onClick={(e) => editCategories(x.title)}>
                   <button
                     value={x.title}
-                    onClick={e => editCategories(e)}
+                    //onClick={e => editCategories(e)}
                     className="Category__button-container Category__btn-display"
                   >
                     {iconPencil}
                   </button>
+                </div>
               </div>
             );
           })
@@ -150,16 +186,24 @@ export const MenuCategories: React.FC = () => {
         </Link>
       </article>
 
-          {/* ..... Pop Up ..... */}
-          {/* <section className="Menu__Popup-container">
-              <div className="Menu__Popup-frame">
-              <form onSubmit={handleUpload}>
-                <input className="Add__Input-text" placeholder="Name..." onChange={handleData} type="text" required />
-                <input className="Add__Input-btn" type="submit" />
-            </form>
-              </div>
-          </section> */}
-
+      {/* ..... Pop Up ..... */}
+      <section className="Menu__Popup-container">
+        <div className="Menu__Popup-frame">
+          <form onSubmit={handleUpload}>
+            <input
+              className="Add__Input-text"
+              placeholder="New name..."
+              onChange={handleData}
+              type="text"
+              required
+            />
+            <input className="Add__Input-btn" type="submit" />
+          </form>
+        </div>
+        <div className="Add__Category-logger">
+                {logger}
+            </div>
+      </section>
     </div>
   );
 };

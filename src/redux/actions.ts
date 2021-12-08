@@ -9,6 +9,7 @@ export const PRICING_SELECT = 'PRICING_SELECT'
 export const GET_PLANS = 'GET_PLANS'    
 export const POST_CATEGORY = 'POST_CATEGORY'    
 export const TRUNCATE_CATEGORY = 'TRUNCATE_CATEGORY'    
+export const PUT_CATEGORY = 'PUT_CATEGORY'    
 
 
 interface userDb {
@@ -112,5 +113,26 @@ export function truncateCategory(data){
     // Le pasamos el nombre completo para hacer un filter
     return (dispatch) => {
         dispatch({type: TRUNCATE_CATEGORY, payload: data})
+    }
+}
+
+// TODO: Debe actualizar categorías
+export function putCategory(data, newData){
+
+    async function postInBack(){
+        // TODO: Mandarlo al backEnd
+        // A la ruta del backEnd -> nombreSchema, oldTitle, newTitle
+        // const categoryData = await axios.post()
+    }
+    
+    // Se va para el reducer
+    let obj = {
+        title : data,
+        newTitle : newData
+    }
+
+    // Le pasamos el nombre completo para hacer un filter
+    return (dispatch) => {
+        dispatch({type: PUT_CATEGORY, payload: obj})
     }
 }

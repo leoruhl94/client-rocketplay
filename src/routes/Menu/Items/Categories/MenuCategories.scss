@@ -75,6 +75,9 @@
     text-overflow: ellipsis;
 }
 
+
+/* Le digo que desaparezca*/
+
 .Category__btn-display {
     display: none;
 }
@@ -82,4 +85,13 @@
 .Category__Videos {
     padding-top: 8px;
     margin: 0;
+}
+
+.Menu__Popup-container {
+    background-color: #30444E;
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH, PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY } from "./actions"
+import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH, PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "./actions"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -64,6 +64,23 @@ const reducer = (
           ...state,
           categories : catfiltered
         }
+        case PUT_CATEGORY:
+
+        const newArr = state.categories.map((x) => {
+          // Si es el necesario, lo cambiamos
+          if(x.title === action.payload.title){
+            x.title = action.payload.newTitle
+            return x
+          }else{ 
+            // Si no es, mandamos lo mismo
+            return x
+          }
+        })
+
+        return {
+            ...state,
+            categories : newArr
+          }
     }
     return state
   }
