@@ -26,6 +26,7 @@ import  axios from "axios";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
 import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
+import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
@@ -114,6 +115,9 @@ const App: React.FC = () => {
 
             {/* ...... Ruta Create Video ..... */}
             <PrivateRoute exact path="/createVids" component={VideoForm}/>
+
+            {/* ...... Ruta paidRej ..... */}
+            <PrivateRoute exact path="/paidrejection" component={PaidRejection}/>
             {/* ...... Ruta Video Detail ..... */}
             <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
         </Switch>   

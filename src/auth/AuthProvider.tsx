@@ -18,10 +18,10 @@ interface User {
 
 function AuthProvider({children}) {
     const dispatch = useDispatch()
-    const itemLocal = localStorage.getItem("user")
-    const itemSession = sessionStorage.getItem("user")
+    const itemLocal = localStorage.getItem("tok")
+    const itemSession = sessionStorage.getItem("tok")
     let userFinal =  itemLocal ? JSON.parse(itemLocal): (itemSession? JSON.parse(itemSession) : null);
-    userFinal && dispatch(refresh(userFinal))
+    userFinal && dispatch(refresh(userFinal, true))
     
     // const js = localStorage.getItem("user")
     // const userLocal = js && JSON.parse(js)
