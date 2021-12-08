@@ -60,9 +60,23 @@
     height: 100%;
 }
 
+.Menu__Toggle-btns {
+    display: grid;
+    grid-template-columns: 80% 15%;
+}
+
+.Menu__Delete-btn {
+    font-size: 1.6rem;
+    color: rgb(158, 57, 57);
+}
+
 .Category__title {
     margin: 0;
     text-overflow: ellipsis;
+}
+
+.Category__btn-display {
+    display: none;
 }
 
 .Category__Videos {
