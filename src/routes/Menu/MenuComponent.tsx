@@ -1,49 +1,69 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 // Estilizaciones
-import './MenuComponent.scss'
+import "./MenuComponent.scss";
 
 // *********************************************
-export const MenuComponent : React.FC = () => {
-    // Var box
-    
+export const MenuComponent: React.FC = () => {
+  // Var box
 
-    // ----- ----- ----- ------
-    return (<article className="Menu__article-container">
-        <h1>Soy el menu</h1>
+  // ----- ----- ----- ------
+  return (
+    <article className="Menu__article-container">
+      <h1 className="Menu__main-title">Dashboard</h1>
 
-
-        <div className="Menu__list-container">
-
+      <div className="Menu__list-container">
+        
+        
         {/* ..... Channels section ..... */}
         {/* TODO: Channels section */}
-
-        <section  className="Menu__section-container">
-        <img className="Menu__testing-image" src="https://img.icons8.com/office/16/000000/react.png"/>
-        <p>Channels</p>
+        <section className="">
+          <Link className="Menu__section-container" to="/menu/channels">
+            <img
+              className="Menu__testing-image"
+              src="https://img.icons8.com/office/16/000000/react.png"
+            />
+            <span>Channel</span>
+          </Link>
         </section>
 
         {/* ..... Categories section ..... */}
-        {/* TODO: Channels section */}
-        <section  className="Menu__section-container">
-        <img className="Menu__testing-image" src="https://img.icons8.com/office/16/000000/react.png"/>
-        <p>Categories</p>
+        {/* TODO: Categories section */}
+        <section className="">
+          <Link className="Menu__section-container" to="/menu/categories">
+            <img
+              className="Menu__testing-image"
+              src="https://img.icons8.com/office/16/000000/react.png"
+            />
+            <span>Categories</span>
+          </Link>
         </section>
 
         {/* ..... Subscriptions section ..... */}
-        {/* TODO: Channels section */}
-        <section  className="Menu__section-container">
-        <img className="Menu__testing-image" src="https://img.icons8.com/office/16/000000/react.png"/>
-        <p>Subscriptions</p>
+        {/* TODO: Subscriptions section */}
+        <section className="">
+          <Link className="Menu__section-container" to="menu/subscriptions">
+            <img
+              className="Menu__testing-image"
+              src="https://img.icons8.com/office/16/000000/react.png"
+            />
+            <span>Subscriptions</span>
+          </Link>
         </section>
 
         {/* ..... My Videos section ..... */}
-        {/* TODO: Channels section */}
-        <section  className="Menu__section-container">
-        <img className="Menu__testing-image" src="https://img.icons8.com/office/16/000000/react.png"/>
-        <p>My Videos</p>
+        {/* TODO: My Videos section */}
+        <section className="">
+          <Link className="Menu__section-container" to="/menu/channels">
+            <img
+              className="Menu__testing-image"
+              src="https://img.icons8.com/office/16/000000/react.png"
+            />
+            <span>My Videos</span>
+          </Link>
         </section>
-
-        </div>
-    </article>)
-}
+      </div>
+    </article>
+  );
+};

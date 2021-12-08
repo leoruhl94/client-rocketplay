@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH, PRICING_SELECT, GET_PLANS } from "./actions"
+import { CHANGE_PROFILE, CHANGE_LOGSPAGE, LOGOUT, REFRESH, PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY } from "./actions"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -13,7 +13,25 @@ const initialState: storeState = {
     profile: {name: 'Not logged in', pic: ''},
     logsPage: 0,
     plan: '',
-    plans: []
+    plans: [],
+    categories : [
+                  // {
+                  //     title : "IT",
+                  //     videos : 38
+                  // },
+                  // {
+                  //     title : "Data Science",
+                  //     videos : 38
+                  // },
+                  // {
+                  //     title : "Javascript",
+                  //     videos : 104
+                  // },
+                  // {
+                  //     title : "React",
+                  //     videos : 21
+                  // },
+                ]
   }
 
   // ..... ..... ..... .....
@@ -36,6 +54,15 @@ const reducer = (
         return {
           ...state,
           profile: {name: action.payload.name, pic: action.payload.pic},
+        }
+      case POST_CATEGORY:
+        state.categories.push(action.payload) 
+        return state
+      case TRUNCATE_CATEGORY:
+        let catfiltered = state.categories.filter(x => x.title !== action.payload)
+        return {
+          ...state,
+          categories : catfiltered
         }
     }
     return state

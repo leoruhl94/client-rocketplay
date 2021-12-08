@@ -1,0 +1,71 @@
+* {
+    --yellow: #FFC542;
+    --grey: #30444E;
+}
+
+.Menu__Categories {
+    color: white;
+    width: 80%;
+    padding: 15px;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: var(--grey);
+}
+
+.Menu__Category-container {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    color: var(--yellow);
+    background-color: #6835A5;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    text-decoration: none;
+}
+
+.Category__description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Category__button-container {
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    color: var(--yellow);
+    border: none;
+    background-color: transparent;
+    margin: auto;
+}
+
+.Category__Notfound {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 15px;
+    color: rgb(153, 145, 76);
+    background-color: #474343;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    text-decoration: none;
+}
+
+.Category__Notfound-img {
+    width: 100%;
+    height: 100%;
+}
+
+.Category__title {
+    margin: 0;
+    text-overflow: ellipsis;
+}
+
+.Category__Videos {
+    padding-top: 8px;
+    margin: 0;
+}

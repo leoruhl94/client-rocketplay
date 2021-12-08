@@ -7,6 +7,9 @@ export const LOGOUT = 'LOGOUT'
 export const REFRESH = "REFRESH"
 export const PRICING_SELECT = 'PRICING_SELECT'
 export const GET_PLANS = 'GET_PLANS'    
+export const POST_CATEGORY = 'POST_CATEGORY'    
+export const TRUNCATE_CATEGORY = 'TRUNCATE_CATEGORY'    
+
 
 interface userDb {
     data: any, 
@@ -79,4 +82,35 @@ export function Logout(history){
         dispatch({type: LOGOUT, payload: null})
         dispatch({type: CHANGE_LOGSPAGE, payload: 0})
     } 
+}
+// Complete: Puedo agregar categorías
+export function postCategory(data){
+
+    async function postInBack(){
+        // TODO: Mandarlo al backEnd
+        // const categoryData = await axios.post()
+    }
+    
+    let obj = {
+        title : data,
+        videos : 0
+    }
+
+    return (dispatch) => {
+        dispatch({type: POST_CATEGORY, payload: obj})
+    }
+}
+
+// TODO: Debe eliminar categorías
+export function truncateCategory(data){
+
+    async function postInBack(){
+        // TODO: Mandarlo al backEnd
+        // const categoryData = await axios.post()
+    }
+    
+    // Le pasamos el nombre completo para hacer un filter
+    return (dispatch) => {
+        dispatch({type: TRUNCATE_CATEGORY, payload: data})
+    }
 }

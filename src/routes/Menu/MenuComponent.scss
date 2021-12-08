@@ -4,14 +4,20 @@
     color: white;
 }
 
+.Menu__main-title {
+    width: 100%;
+    text-align: center;
+}
+
 
 /* Container de los componentes */
 
 .Menu__list-container {
     font-size: 1.5rem;
-    padding: 15px;
     padding-left: 30px;
-    display: flexbox;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80%;
 }
 
 
@@ -27,6 +33,9 @@
 /* Contenedores de cada sección*/
 
 .Menu__section-container {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
     display: flex;
     align-items: center;
 }
