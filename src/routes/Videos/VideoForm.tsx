@@ -25,7 +25,7 @@ interface Input {
   category: string,
   thumb: any,
 }
-
+ 
 // -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
   // Caja de variables
