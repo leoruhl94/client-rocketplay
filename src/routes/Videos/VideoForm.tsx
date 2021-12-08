@@ -47,7 +47,7 @@ export const VideoForm: React.FC = () => {
   // ..... Con esta función subimos los cambios .....
   async function handleUpload(e) {
     e.preventDefault();
-    let response = await axios.get("http://localhost:3002/uploadVideo/aws-client")
+    let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
     // console.log(response)
     const { creds, bucket } = response.data
     const target = { Bucket: bucket, Key: input.title, Body: input.file, ContentType: input.file.type}
