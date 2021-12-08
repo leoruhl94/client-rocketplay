@@ -28,7 +28,6 @@ import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDe
 import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
-import { EditCategories } from "./routes/Menu/Items/Categories/editCategories";
 
 
 
@@ -110,10 +109,6 @@ const App: React.FC = () => {
             <Route exact path="/menu/categories" component={MenuCategories} />
             {/* ...... Ruta Menu Component - Add Category ..... */}
             <Route exact path="/menu/categories/addcategory" component={AddCategory} />
-            {/* ...... Ruta Menu Component - Edit Category ..... */}
-            <Route exact path="/menu/categories/edit" component={EditCategories} />
-            {/* ...... Ruta Menu Component by Id ..... */}
-            <Route exact path="/menu/categories/edit/:name" component={EditCategories} />
             {/* ...... Ruta Menu Component ..... */}
             <Route exact path="/menu" component={MenuComponent} />
         </Switch>   

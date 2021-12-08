@@ -1,25 +1,41 @@
+// Importaciones core
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// Routing
 import { Link, useHistory } from "react-router-dom";
+
+// .. actions y redux
 import { putCategory, truncateCategory } from "../../../../redux/actions";
 import { storeState } from "src/redux/type";
+
+// .. INterfaces
 import { Categories } from "./hardcode";
+
+// Styling
 import "./MenuCategories.scss";
+
+// Icon library
 import { Icon } from "../../../../components/Icon/Icon";
 
 // ****************************************
 export const MenuCategories: React.FC = () => {
   // Var box
+  
+  // Hooks varios
   const categories: Categories[] = useSelector(
     (state: storeState) => state.categories
   );
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // .. Iconos
   const icondel = <Icon svg="plusOutline"></Icon>;
   const iconcancel = <Icon svg="cancel"></Icon>;
   const iconPencil = <Icon svg="pencil"></Icon>;
   const iconDelete = <Icon svg="deletex"></Icon>;
-
+  
+  // .. useStates
   const [icon, setIcon] = useState(icondel);
   const [bool, setBool] = useState<boolean>(false);
   const [logger, setLogger] = useState<string>("");
@@ -110,14 +126,6 @@ export const MenuCategories: React.FC = () => {
 
       <article className="Menu__Categories">
         <h1>Configuration</h1>
-
-        {/* ..... Add a category ..... */}
-        <Link to="categories/edit" className="Menu__Category-container">
-          {/* Title container */}
-          <div className="Category__description-container">
-            <h2 className="Category__title">Edit Categories</h2>
-          </div>
-        </Link>
       </article>
 
       {/* ..... Mapping article ..... */}
