@@ -21,11 +21,26 @@ export const MenuCategories : React.FC = () => {
     }
 
 return(<div>
-        {/* ..... Main article ..... */}
+    <article className="Menu__Categories">
+            {/* TODO: Show categories (Marcos) */}
+            {/* TODO: Show videos  */}
+            <h1>Configuration</h1>
+            
+                        {/* ..... Add a category ..... */}
+                        <Link to="categories/addcategory" className="Menu__Category-container">
+                        {/* Title container */}
+                        <div className="Category__description-container">
+                            <h2 className="Category__title">Add a new category</h2>
+                        </div>
+                        </Link>
+            
+
+        </article>
+        {/* ..... Mapping article ..... */}
         <article className="Menu__Categories">
             {/* TODO: Show categories (Marcos) */}
             {/* TODO: Show videos  */}
-            <h1>Categories Route</h1>
+            <h1>Categories</h1>
             
             { categories.length === 0 ? <div className="Category__Notfound">
                         {/* Title container */}
