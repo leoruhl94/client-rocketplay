@@ -194,8 +194,8 @@ export const VideoDetail: React.FC = () => {
 
         </section>
         {/* ... End of frame section ... */}
-        {/* TODO: Mostrar back button */}
-        {/* TODO: Ocupar la navbar */}
+        {/* Unlisted: Mostrar back button */}
+        {/* Complete: Ocupar la navbar */}
       </section>
       <NavigationMobile/> 
     </article></>

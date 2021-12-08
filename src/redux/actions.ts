@@ -102,7 +102,7 @@ export function postCategory(data){
     }
 }
 
-// TODO: Debe eliminar categorías
+// Complete: Debe eliminar categorías
 export function truncateCategory(data){
 
     async function postInBack(){
@@ -116,7 +116,7 @@ export function truncateCategory(data){
     }
 }
 
-// TODO: Debe actualizar categorías
+// Complete: Debe actualizar categorías
 export function putCategory(data, newData){
 
     async function postInBack(){

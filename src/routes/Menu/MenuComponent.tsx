@@ -29,7 +29,7 @@ export const MenuComponent: React.FC = () => {
         </section>
 
         {/* ..... Categories section ..... */}
-        {/* TODO: Categories section */}
+        {/* Complete: Categories section */}
         <section className="">
           <Link className="Menu__section-container" to="/menu/categories">
             <img

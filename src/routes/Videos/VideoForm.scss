@@ -9,27 +9,28 @@
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-  }
-  
-  .fast {
+}
+
+.fast {
     -webkit-animation-duration: 0.4s;
     animation-duration: 0.4s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-  }
-  
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  
-  .fadeIn {
+}
+
+.fadeIn {
     animation-name: fadeIn;
-  }
+}
+
 
 /* Contenedor main */
 
@@ -50,7 +51,7 @@
     align-items: center;
     padding: 15px;
     border-radius: 15px;
-    /* TODO: Cambiar el color */
+    /* Complete: Cambiar el color */
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
     background-color: var(--var-container-color);
     width: 80%;
@@ -79,7 +80,8 @@
 .inputDiv {
     position: relative;
 }
-.Video__title-placeholder{
+
+.Video__title-placeholder {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,34 +89,32 @@
 
 .Video__file-uploader-btn {
     background-color: #fff;
-    border:none;
-    font-size:1.6rem;
+    border: none;
+    font-size: 1.6rem;
     margin-top: 15px;
     padding: 15px;
     width: 100%;
     border-radius: 15px;
     /* Only SASS */
-    &:hover{
+    &:hover {
         background-color: rgb(204, 204, 204);
-    border:none;
-    
-    margin-top: 15px;
-    padding: 15px;
-    width: 100%;
-    border-radius: 15px;
+        border: none;
+        margin-top: 15px;
+        padding: 15px;
+        width: 100%;
+        border-radius: 15px;
     }
     /* Pro -> TIP*/
 }
+
 // .Video__file-uploader-btn:hover {
 //     background-color: rgb(204, 204, 204);
 //     border:none;
-    
 //     margin-top: 15px;
 //     padding: 15px;
 //     width: 100%;
 //     border-radius: 15px;
 // }
-
 .Video__file-uploader-textfield {
     height: 30px;
 }

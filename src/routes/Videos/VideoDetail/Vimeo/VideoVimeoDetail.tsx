@@ -53,9 +53,9 @@ export const VideoVimeoDetail: React.FC = () => {
   };
   let { id } = useParams<idParams>();
 
-  // TODO: ¿Debería pedir el resto de información al backEnd? - a debatir
+  // Unlisted: ¿Debería pedir el resto de información al backEnd? - a debatir
   // Complete: Descripción, name, comentarios, 
-  // TODO: Los channels que hizo marcos
+  // Unlisted: Los channels que hizo marcos
 
   // ..... useEffect .....
   useEffect(() => {
@@ -164,7 +164,7 @@ export const VideoVimeoDetail: React.FC = () => {
 
         </section>
         {/* ... End of frame section ... */}
-        {/* TODO: Mostrar back button */}
+        {/* Unlisted: Mostrar back button */}
       </section>
       <NavigationMobile/> 
     </article>

@@ -66,7 +66,7 @@ export const VideoForm: React.FC = () => {
         // )
         .post(`${URL_BASE}/uploadVideo`, formData, config)
         .then((r) => {
-          // TODO: Devolver un feedback
+          // Complete: Devolver un feedback
           console.log("respuesta: ", r);
         });
         console.log("EN ESTE PUNTO YA HICE POST Y NO PASO NADA OTRA VEZ :P");
@@ -84,8 +84,7 @@ export const VideoForm: React.FC = () => {
   }
 
   return (
-    // TODO: Estilización de la creación de videos .....
-    // TODO: Proponer el popUp Component .....
+    // COmplete: Estilización de la creación de videos .....
 
     <article className="Video__container-main animated fadeIn fast">
       <section className="Video__container-form">

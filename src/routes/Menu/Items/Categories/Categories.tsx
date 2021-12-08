@@ -38,7 +38,7 @@ export const MenuCategories: React.FC = () => {
 
   // Toggle 'x' and 'pencil'
   function editTruncate(e) {
-    // TODO: Cuándo nosotros demos click al botón va a hacer un toggle del modo edición y modo vista
+    // Complete: Cuándo nosotros demos click al botón va a hacer un toggle del modo edición y modo vista
     setBool(!bool);
     if (bool === true) {
       setIcon(icondel);
@@ -58,8 +58,8 @@ export const MenuCategories: React.FC = () => {
   // /******************************** */
   function handleUpload(e) {
     // Complete: Verificar el state local del seleccionado
-    // TODO: Tomar los datos del input del popup
-    // TODO: Hacer la actualización de título en redux
+    // Compete: Tomar los datos del input del popup
+    // Complete: Hacer la actualización de título en redux
     // TODO: Hacer la actualización del título pasando el nuevo título y el user al backEnd
     // Complete: La categoría nueva no puede ser igual a una existente
     e.preventDefault();
@@ -81,7 +81,7 @@ export const MenuCategories: React.FC = () => {
   }
 
   function handleData(e) {
-    //TODO: Almacenar los cambios del nuevo título
+    //Complete: Almacenar los cambios del nuevo título
     setInput(e.target.value);
     console.log(input);
   }
@@ -95,10 +95,10 @@ export const MenuCategories: React.FC = () => {
 
   // editamos las categorías
   function editCategories(e) {
-    // TODO: Pasamos el valor al state local
+    // Complete: Pasamos el valor al state local
     setSelected(e);
     // TODO: Levantamos un popUp
-    // TODO: El popup debe tener la data para mostrar
+    // Complete: El popup debe tener la data para mostrar
     console.log(e);
   }
 
@@ -200,6 +200,8 @@ export const MenuCategories: React.FC = () => {
             <input className="Add__Input-btn" type="submit" />
           </form>
         </div>
+        {/* ..... Muestra el estado de la acción ..... */}
+        {/* TODO: Si sale todo bien, muestra verde el texto */}
         <div className="Add__Category-logger">
                 {logger}
             </div>
