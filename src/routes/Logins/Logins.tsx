@@ -1,5 +1,5 @@
 //Libraries
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -8,9 +8,7 @@ import GoogleLogin from "react-google-login";
 //Components
 import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
-// import { LoginAccountType } from "./Login-Register/LoginAccountType";
-// import { LoginGoogle } from "./Login-Register/LoginGoogle";
-// import { PaymentsPlans } from "./Login-Register/PaymentsPlans";
+import { useAuth } from "../../auth/useAuth";
 
 //Redux
 import { loginRegister } from "../../redux/actions";
@@ -20,14 +18,7 @@ import "./Logins.scss";
 
 //constantes
 import { CLIENT_ID, COOKIES_POLICY, URL_BASE } from "../../constants/constants";
-import { useAuth } from "../../auth/useAuth";
 import { storeState } from "src/redux/type";
-
-interface User {
-  accessToken: "";
-  name: "";
-  pic: "";
-}
 
 export const Logins: React.FC = () => {
   const history = useHistory();
@@ -36,16 +27,14 @@ export const Logins: React.FC = () => {
   const auth = useAuth();
   const { plan } = useSelector((state: storeState) => state);
 
-  const userLocal = localStorage.getItem("tok");
-  const userSession = sessionStorage.getItem("tok");
-  
   let lastRoute = localStorage.getItem("lastRoute") || '';
-
-  console.log(lastRoute)
-  if (!!userLocal || !!userSession) {
-    if (plan && lastRoute === "/pricing") history.push("/payment");
-    else history.push("/home");
-  }
+  useEffect(()=>{
+    if (auth?.isLogged()) {
+      if (plan && lastRoute === "/pricing") history.push("/payment");
+      else history.push("/home");
+    }
+    console.log(auth?.isLogged(), ">>>>>>>>>>>>>>>>>")
+  },[auth?.isLogged()])
 
   async function responseGoogle(googleUser) {
     //Obtener Tokens mediante el code
@@ -54,7 +43,7 @@ export const Logins: React.FC = () => {
     });
 
     //Loguear o Registrar usuario
-    dispatch(loginRegister(tokens, keepSession, auth, history));
+    dispatch(loginRegister(tokens, keepSession, auth));
   }
 
   function errorGoogle(response) {

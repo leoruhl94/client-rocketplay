@@ -15,7 +15,7 @@ export const PreApproval: React.FC = () => {
   const auth = useAuth() 
 
   let id = location.search.slice(16);
-
+  
   const postSubscriptions = async () => {
     let response:any = await axios.post(`${URL_BASE}/subscriptions`, {
       subscription_id: id,
@@ -26,13 +26,12 @@ export const PreApproval: React.FC = () => {
   if (!!auth?.user?.email && !!id) {
     postSubscriptions();
   }
-  
+  console.log("Preapproval",auth?.user?.email, id)
 
   // useEffect(() => {
   //    history.push("/home");
   // }, [res.message]);
 
-  // console.log("approval", location.search.slice(16));
 
   return (
     <div className="preapproval">

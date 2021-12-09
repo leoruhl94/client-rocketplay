@@ -35,6 +35,20 @@ const App: React.FC = () => {
     const auth = useAuth()
     
     useEffect(() => {
+        // const itemLocal = localStorage.getItem("tok")
+        // const itemSession = sessionStorage.getItem("tok")
+        // let tokens =  itemLocal ? JSON.parse(itemLocal): (itemSession? JSON.parse(itemSession) : null);
+        // axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
+        // .then(r => {
+        //     const user = {
+        //     name: r.data.name,
+        //     pic: r.data.picture,
+        //     email: r.data.email,
+        //     };
+        //     dispatch(refresh(user))
+        //     console.log("USER app", user)
+        // })
+
         //cargar los planes de pago en redux
         // const json = localStorage.getItem("lastRoute")
         // const lastRoute = json ? json : '/'
@@ -43,7 +57,7 @@ const App: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        console.log(location)
+        // console.log(location)
         if(!location.pathname.startsWith('/login')){
             localStorage.setItem('lastRoute', `${location.pathname}`)
         }

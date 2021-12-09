@@ -50,7 +50,7 @@ export function refresh(info, tok=false) {
   };
 }
 
-export function loginRegister(tokens, keepSession, auth, history) {
+export function loginRegister(tokens, keepSession, auth) {
   console.log("LOGIN_REGISTER")
     return async (dispatch) => {
          
@@ -59,31 +59,21 @@ export function loginRegister(tokens, keepSession, auth, history) {
       } else {
         sessionStorage.setItem("tok", JSON.stringify(tokens));
       }
-
-      //Obtener datos del usuario
-      const data = await axios.get(
-        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`
-      );
-      const userGoogle = {
-        name: data.data.name,
-        pic: data.data.picture,
-        email: data.data.email,
-      };
-        
+     const user = await auth?.login(tokens.data.data.id_token);
+     
       axios.post(`${URL_BASE}/v2/users`, {
         isBusiness: false,
-        name: userGoogle.name,
-        email: userGoogle.email,
-      }).then(r => console.log(r.data))
-      
-      auth?.login(userGoogle);
+        name: user.name,
+        email: user.email,
+      })
 
-      dispatch({
-        type: REFRESH_PROFILE,
-        payload: { name: userGoogle.name, pic: userGoogle.pic },
-      });
-      console.log('here')
-      //history.push("/home");
+      console.log('LLEGUE HASTA EL FINAL')
+    }
+}
+export function refreshProfile(user) {
+    return {
+      type: REFRESH_PROFILE,
+      payload: { name: user.name, pic: user.pic },
     }
 }
 
