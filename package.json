@@ -39,8 +39,8 @@
     "webpack-dev-server": "^4.5.0"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.44.0",
-    "@aws-sdk/lib-storage": "^3.44.0",
+    "@aws-sdk/client-s3": "^3.24.0",
+    "@aws-sdk/lib-storage": "^3.24.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
@@ -61,6 +61,7 @@
     "reactfire": "^4.2.1",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.0"
+    "redux-thunk": "^2.4.0",
+    "s3": "^4.4.0"
   }
 }

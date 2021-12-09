@@ -8,6 +8,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
+import { s3 } from "s3"
 // Interfaces
 
 interface User {
@@ -46,93 +47,50 @@ export const VideoForm: React.FC = () => {
   const [textFile, setTextFile] = useState<string>(
     "Drag and drop a file or select add Video"
   );
-    console.log("SOY EL UPLOAD ID", uploadIdState.uploadId)
+    // console.log("SOY EL UPLOAD ID", uploadIdState.uploadId)
   // ..... Con esta función subimos los cambios .....
-  // async function handleUpload(e) {
-  //   e.preventDefault();
+  async function handleUpload(e) {
+    e.preventDefault();
 
-    async function startUpload(e){
-      e.preventDefault();
-      try {
-        const params = {
-          fileName: input.title,
-          fileType: input.file.type
-        };
+    let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
+    const { creds, bucket } = response.data
+    console.log(creds)
+
+    let client = new S3Client({region: "us-east-1", credentials: creds})
+    const target = { Bucket: bucket, Key: input.title, Body: input.file, ContentType: input.file.type}
+
+    try {
+      const upload = new Upload({
+        client: client,
+        leavePartsOnError: false,
+        params: target,        
+      })
+
+      upload.on("httpUploadProgress", (progress) => {
+        console.log(progress)
+      })
   
-        let resp = await axios.get(`${URL_BASE}/uploadVideo/start-upload`, {params})
-        
-        // var uploadIdTest = resp.data.uploadId
-        
-        setUploadIdState({uploadId: resp.data.uploadId})
-        uploadMultipartFile(resp.data.uploadId)
-      } catch (err) {
-        console.log(err)
-      }
+      let videoPromise = upload.done()
+
+      const targetThumb = {Bucket: bucket, Key: input.title + "+thumb", Body: input.thumb, ContentType: input.thumb.type }
+      const uploadThumb = new Upload({
+        client: client,
+        leavePartsOnError: false,
+        params: targetThumb,
+      })
+  
+      uploadThumb.on("httpUploadProgress", (progress) => {
+        console.log(progress)
+      })
+  
+      let thumbPromise = uploadThumb.done()
+
+      Promise.all([videoPromise, thumbPromise])
+      .then(() => console.log("termine de subir los dos"))
+
+    } catch (err){
+      console.log(err)
     }
-
-    async function uploadMultipartFile(uploadId){
-      try {
-        const CHUNK_SIZE = 5000000 // 5 MB
-        const fileSize = input.file.size
-        const CHUNKS_COUNT = Math.floor(fileSize / CHUNK_SIZE) + 1
-        let promisesArray: any = []
-        let start, end, blob
-
-        for (let index = 1; index < CHUNKS_COUNT + 1; index++){
-          start = (index - 1) * CHUNK_SIZE
-          end = (index) * CHUNK_SIZE
-          blob = (index < CHUNKS_COUNT) ? input.file.slice(start, end) : input.file.slice(start)
-          // console.log(uploadIdState)
-          let getUploadUrlResp = await axios.get(`${URL_BASE}/uploadVideo/get-upload-url`, {
-            params: {
-              fileName: input.title,
-              partNumber: index,
-              uploadId: uploadId
-            }
-          })
-          let { presignedUrl } = getUploadUrlResp.data
-          console.log('   Presigned URL ' + index + ': ' + presignedUrl + ' filetype ' + input.file.type)
-
-          let uploadResp = axios.put(presignedUrl, blob, {
-            headers: {
-              'Content-Type': 'video/mp4'
-            }
-          });
-          promisesArray.push(uploadResp)
-        }
-
-        let resolvedArray = await Promise.all(promisesArray)
-        console.log(resolvedArray, ' resolvedAr')
-
-        let uploadPartsArray: any = []
-        resolvedArray.forEach((resolvedPromise: any, index: any) => {
-          uploadPartsArray.push({
-            ETag: resolvedPromise.headers.etag,
-            PartNumber: index + 1,
-          })
-        })
-
-        let completeUploadResp = await axios.post(`${URL_BASE}/uploadVideo/complete-upload`, {
-          params: {
-            fileName: input.title,
-            parts: uploadPartsArray,
-            uploadId: uploadIdState.uploadId
-          }
-        })
-
-        console.log(completeUploadResp.data, "complete upload response")
-
-
-      } catch(err){
-        console.log(err)
-      }
-    }
-
-    
-
-
-
-
 
     // e.preventDefault();
     // const js = localStorage.getItem("tok");
@@ -164,7 +122,7 @@ export const VideoForm: React.FC = () => {
     //       console.log("respuesta: ", r);
     //     });
     //     console.log("EN ESTE PUNTO YA HICE POST Y NO PASO NADA OTRA VEZ :P");
-  // }
+  }
   // ..... Captamos los cambios con esta función .....
   function handleChange(e) {
     if (e.target.name === "video") {
@@ -200,7 +158,7 @@ export const VideoForm: React.FC = () => {
         <h1 className="Video__title-main">Create a video</h1>
 
         {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
-        <form onSubmit={/* handleUpload */(e) => startUpload(e)}>
+        <form onSubmit={/* handleUpload */(e) => handleUpload(e)}>
           {/* ..... Title ..... */}
           <div className="inputDiv">
             <input
@@ -276,7 +234,7 @@ export const VideoForm: React.FC = () => {
         </form>
         {/* ..... ..... ..... ..... */}
         <video title="Testing" width="300px" height="300px" controls>
-            <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test10"/>
+            <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/senosvamarquitos"/>
         </video>
         <img src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test11thumb"/>
         <NavigationMobile />
@@ -285,54 +243,3 @@ export const VideoForm: React.FC = () => {
     // TODO: Control de errores debería llegar al front
   );
 };
-
-
-/*
-let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
-    const { creds, bucket } = response.data
-
-    let client = new S3({region: "us-east-1", credentials: creds})
-    const target = { Bucket: bucket, Key: input.title, Body: input.file, ContentType: input.file.type}
-
-    try {
-
-
-
-      const upload = new Upload({
-        client: client,
-        leavePartsOnError: false,
-        params: target,
-      })
-      // console.log(typeof upload)
-      upload.on("httpUploadProgress", (progress) => {
-        console.log(progress)
-      })
-  
-      upload.done()
-
-
-
-
-
-      // .then((e) => console.log("done", e))
-  
-      const targetThumb = {Bucket: bucket, Key: input.title + "thumb", Body: input.thumb, ContentType: input.thumb.type }
-      const uploadThumb = new Upload({
-        client: new S3Client({region: "us-east-1", credentials: creds}),
-        leavePartsOnError: false,
-        params: targetThumb,
-      })
-  
-      uploadThumb.on("httpUploadProgress", (progress) => {
-        console.log(progress)
-      })
-  
-      await uploadThumb.done()
-  
-      // Promise.all([videoPromise, thumbPromise])
-      // .then(() => console.log("termine de subir los dos"))
-    } catch (err){
-      console.log(err)
-    }
-
-*/
