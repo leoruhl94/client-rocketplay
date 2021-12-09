@@ -83,7 +83,7 @@ export function loginRegister(tokens, keepSession, auth, history) {
         payload: { name: userGoogle.name, pic: userGoogle.pic },
       });
       console.log('here')
-      history.push("/home");
+      //history.push("/home");
     }
 }
 

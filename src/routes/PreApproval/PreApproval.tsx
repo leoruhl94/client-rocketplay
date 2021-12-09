@@ -7,24 +7,23 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { storeState } from "../../redux/type";
 import { URL_BASE } from "../../constants/constants";
+import { useAuth } from "../../auth/useAuth";
 
 export const PreApproval: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-
-  const json = localStorage.getItem("user");
-  const user = json && JSON.parse(json);
+  const auth = useAuth() 
 
   let id = location.search.slice(16);
 
   const postSubscriptions = async () => {
     let response:any = await axios.post(`${URL_BASE}/subscriptions`, {
       subscription_id: id,
-      mail: user.email,
+      mail: auth?.user?.email,
     });
     history.push("/home");
   };
-  if (!!user && !!id) {
+  if (!!auth?.user && !!id) {
     postSubscriptions();
   }
   

@@ -19,8 +19,7 @@ interface User {
   pic: string;
 }
 export const ProfileWnd: React.FC<Props> = ({ dep }) => {
-  // const ksJson = localStorage.getItem("keepSession");
-  // const ks = ksJson && JSON.parse(ksJson);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
+import { pricingSelect } from "../../../redux/actions";
 
 export const PaymentsPlans: React.FC = () => {
   const { plan } = useSelector((state: storeState) => state);
@@ -16,12 +17,14 @@ export const PaymentsPlans: React.FC = () => {
 
   let paymentUrl = plans.find((x) => x.name === input)?.url;
   //console.log("P.URL =>", paymentUrl)
+  useEffect(() => {
+    dispatch(pricingSelect(""));
+  }, []);
   function handleSubmit(e) {
-    console.log("submit")
+    console.log("submit");
     //e.preventDefault();
     //const json = localStorage.getItem("user");
     //const user = json && JSON.parse(json);
-    //dispatch(createUser(user, true, input));
     //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
     // window.open(plans.find((x) => x.name === input).url);
     // history.push('/preapproval')
@@ -30,7 +33,7 @@ export const PaymentsPlans: React.FC = () => {
     setInput(e.target.value);
   }
   function handleBack() {
-    history.goBack()
+    history.goBack();
   }
   return (
     <div className="loginPlan__container">

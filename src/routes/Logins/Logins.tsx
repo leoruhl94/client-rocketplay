@@ -1,7 +1,7 @@
 //Libraries
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
 
@@ -21,6 +21,7 @@ import "./Logins.scss";
 //constantes
 import { CLIENT_ID, COOKIES_POLICY, URL_BASE } from "../../constants/constants";
 import { useAuth } from "../../auth/useAuth";
+import { storeState } from "src/redux/type";
 
 interface User {
   accessToken: "";
@@ -33,12 +34,17 @@ export const Logins: React.FC = () => {
   const dispatch = useDispatch();
   const [keepSession, setKeepSession] = useState(true);
   const auth = useAuth();
+  const { plan } = useSelector((state: storeState) => state);
 
   const userLocal = localStorage.getItem("tok");
   const userSession = sessionStorage.getItem("tok");
+  
+  let lastRoute = localStorage.getItem("lastRoute") || '';
 
-  if(!!userLocal || !!userSession ){
-    history.push("/home")
+  console.log(lastRoute)
+  if (!!userLocal || !!userSession) {
+    if (plan && lastRoute === "/pricing") history.push("/payment");
+    else history.push("/home");
   }
 
   async function responseGoogle(googleUser) {
@@ -47,7 +53,7 @@ export const Logins: React.FC = () => {
       code: googleUser.code,
     });
 
-    //Loguear o Registrar usuario 
+    //Loguear o Registrar usuario
     dispatch(loginRegister(tokens, keepSession, auth, history));
   }
 
@@ -59,7 +65,6 @@ export const Logins: React.FC = () => {
     setKeepSession(e.target.checked ? true : false);
   }
 
-  
   return (
     <div>
       <section className={`navigationTop login_navTop`}>

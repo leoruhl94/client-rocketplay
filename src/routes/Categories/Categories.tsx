@@ -9,7 +9,6 @@ interface Props {
   }
 export const Categories: React.FC<Props> = ({channel}) => {
 
-    /* useEffect(()=> {localStorage.setItem('lastRoute', '/home/'+channel)}, []) */
     return(
         <div className="Categories__container">
             <NavProfileAndLocation/> 

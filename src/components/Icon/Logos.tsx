@@ -47,7 +47,7 @@ export const Logos = {
         />
         <style>
           {
-            "brokenRocket-cls-1{opacity:.3}.cls-4{fill:none;stroke:#a3a3a3;stroke-width:2px;stroke-linecap:round;stroke-miterlimit:10}.cls-7{fill:#a3a3a3}"
+            ".brokenRocket-cls-1{fill:black;opacity:.3}.brokenRocket-cls-4{fill:none;stroke:#a3a3a3;stroke-width:2px;stroke-linecap:round;stroke-miterlimit:10}.brokenRocket-cls-7{fill:#a3a3a3}"
           }
         </style>
       </defs>
@@ -102,7 +102,7 @@ export const Logos = {
             d="M859 1439.83 801.27 1421v-46.94l-42.08-26.95-19.42-12.44 17.5-36.67"
           />
           <path
-            className="brokenRocket-cls-7"
+            className="brokenRocket-cls-7 smoke"
             d="M247.23 252.53C194.5 377.54 181 484.82 229 559.26c22.81 35.38 46.23 42.76 65.86 77.25 36 63.19 27.42 161.54-60.64 313.69 18.71-67 32.58-161.88-13.67-243.2-27.86-49-58-58.8-78.68-95.6-30.52-54.4-33.01-155.14 105.36-358.87ZM367 624.38c-12.52-110.45-1.72-195.71 10.38-253 18.16-86 42.06-122.32 34.94-184C402.44 102.16 341.39 39.26 292.52 0 318.4 44.39 349 113.23 342.69 194.75c-6.69 86-49.37 120.13-56.86 198.63-4.96 51.96 4.9 129.55 81.17 231Z"
           />
           <path

@@ -13,8 +13,7 @@ interface Props {
   back?: string;
 }
 export const NavigationMobile: React.FC<Props> = ({back = ''}) => {
-  const json = localStorage.getItem("user");
-  const user: User = json ? JSON.parse(json) : null;
+
   let history = useHistory();
   // const [menu, setMenu] = useState(false);
   // const resetPath = () => {

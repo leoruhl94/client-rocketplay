@@ -5,19 +5,12 @@ import { storeState } from "src/redux/type"
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd"
 import './NavProfileAndLocation.scss'
 
-interface User {
-    accessToken: '', 
-    name: '',
-    pic: ''
-  }
 interface Props{
     header?: string
 }
 export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) => {
-    //const json = localStorage.getItem('user')
     const location = useLocation()
     let headerRoute = location.pathname?.slice(1).split('/').join(' > ')
-    //const profile: User = json ? JSON.parse(json) : null
     const {profile} = useSelector((state: storeState) => state)
     const [wndProfile, setWndProfile] = useState(false) 
     if(headerRoute.startsWith('videodetail')){
