@@ -34,16 +34,21 @@ export const MenuCategories: React.FC = () => {
   const iconcancel = <Icon svg="cancel"></Icon>;
   const iconPencil = <Icon svg="pencil"></Icon>;
   const iconDelete = <Icon svg="deletex"></Icon>;
-  
+  //Menu__Popup-container
   // .. useStates
   const [icon, setIcon] = useState(icondel);
   const [bool, setBool] = useState<boolean>(false);
+  const [popUp, setPopUp] = useState<boolean>(false);
+
   const [logger, setLogger] = useState<string>("");
 
   const [selected, setSelected] = useState<string>("");
   const [input, setInput] = useState<string>("");
 
   //TODO: useEffect para traerme las categorías del backEnd
+
+
+  // ----------------------------------------- Functions -----------------------------------------
 
   // Esto para eliminar las categorías
   function truncateCategories(e) {
@@ -71,7 +76,7 @@ export const MenuCategories: React.FC = () => {
     }
   }
 
-  // /******************************** */
+  // /********************************/********************************/******************************** */
   function handleUpload(e) {
     // Complete: Verificar el state local del seleccionado
     // Compete: Tomar los datos del input del popup
@@ -93,7 +98,10 @@ export const MenuCategories: React.FC = () => {
       console.log(input);
       dispatch(putCategory(selected,input));
       setLogger("Category succesfully updated");
-
+      let id = document.querySelectorAll(".Menu__Popup-container");
+      id.forEach((x) => {
+        x.className = "Menu__Popup-container Category__btn-display";
+      });
     }
 
   }
@@ -111,11 +119,26 @@ export const MenuCategories: React.FC = () => {
     history.goBack();
   }
 
-  // editamos las categorías
+  // Editamos las categorías
   function editCategories(e) {
     // Complete: Pasamos el valor al state local
     setSelected(e);
+    // TODO: El popUp debe alternar entre visible y none para el uso de categorías
     // TODO: Levantamos un popUp
+    if (popUp === true) {
+      let id = document.querySelectorAll(".Menu__Popup-container");
+      id.forEach((x) => {
+        x.className = "Menu__Popup-container Category__btn-display";
+      });
+    } else {
+      let id = document.querySelectorAll(".Menu__Popup-container");
+      id.forEach((x) => {
+        x.className = "Menu__Popup-container";
+      });
+    }
+    setPopUp(!popUp);
+
+
     // Complete: El popup debe tener la data para mostrar
     console.log(e);
   }
@@ -123,7 +146,7 @@ export const MenuCategories: React.FC = () => {
   // Captamos cambios del popup
 
   return (
-    <div>
+    <div className="">
       <button onClick={backed}>Go back Soldier</button>
 
       <article className="Menu__Categories">
@@ -197,7 +220,7 @@ export const MenuCategories: React.FC = () => {
       </article>
 
       {/* ..... Pop Up ..... */}
-      <section className="Menu__Popup-container">
+      <section className="Menu__Popup-container Category__btn-display">
         <h2 className="Menu__Popup-selected">Edit {selected}</h2>
         <div className="Menu__Popup-frame">
           <form onSubmit={handleUpload}>

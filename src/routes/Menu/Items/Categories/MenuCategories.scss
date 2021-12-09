@@ -31,6 +31,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Category__button-container {
@@ -73,7 +75,6 @@
 
 .Category__title {
     margin: 0;
-    text-overflow: ellipsis;
 }
 
 
@@ -89,7 +90,10 @@
 }
 
 .Menu__Popup-container {
-    background-color: #30444E;
+    background-color: #474343;
+    position: fixed;
+    top: 10%;
+    left: 8%;
     margin: auto;
     margin-top: 50px;
     padding: 10px;
