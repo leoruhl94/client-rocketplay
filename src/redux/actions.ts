@@ -7,8 +7,16 @@ export const REFRESH_PROFILE = "REFRESH_PROFILE";
 export const PRICING_SELECT = "PRICING_SELECT";
 export const GET_PLANS = "GET_PLANS";
 
-interface userDb {
-  data: any;
+interface User {
+  email?:String, 
+  name?:String,
+  pic?:String
+}
+interface AuthContextI {
+  user?:User, 
+  isLogged?:any,
+  login?:any,
+  logout?:any
 }
 export function getPlans() {
   return async (dispatch) => {

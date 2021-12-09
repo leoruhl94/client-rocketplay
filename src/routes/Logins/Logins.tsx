@@ -42,6 +42,10 @@ export const Logins: React.FC = () => {
   let lastRoute = localStorage.getItem("lastRoute") || '';
 
   console.log(lastRoute)
+  /* if (auth?.isLogged) {
+    if (plan && lastRoute === "/pricing") history.push("/payment");
+    else history.push("/home");
+  } */
   if (!!userLocal || !!userSession) {
     if (plan && lastRoute === "/pricing") history.push("/payment");
     else history.push("/home");
