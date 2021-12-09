@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { refresh } from "../redux/actions";
+import axios from 'axios'
 
 export const AuthContext = createContext<AuthContextI | null>(null);
 
@@ -17,27 +18,25 @@ interface User {
   }
 
 function AuthProvider({children}) {
+    const [user, setUser] = useState<User | null>(null)
     const dispatch = useDispatch()
     const itemLocal = localStorage.getItem("tok")
     const itemSession = sessionStorage.getItem("tok")
-    let userFinal =  itemLocal ? JSON.parse(itemLocal): (itemSession? JSON.parse(itemSession) : null);
-    userFinal && dispatch(refresh(userFinal, true))
+    let tokens =  itemLocal ? JSON.parse(itemLocal): (itemSession? JSON.parse(itemSession) : null);
+    tokens && dispatch(refresh(tokens, true))
     
-    // const js = localStorage.getItem("user")
-    // const userLocal = js && JSON.parse(js)
-    // const js2 = sessionStorage.getItem("user")
-    // const userSession = js && JSON.parse(js)
-    // let storage = null
-    // if(js) {
-    //     storage = userLocal
-    //     dispatch(refresh(storage))
-    // } else if(js2) {
-    //     storage = userSession
-    //     dispatch(refresh(storage))
-    // }
-    // const [user, setUser] = useState<User | null>(storage ? storage : null)
-    const [user, setUser] = useState<User | null>(userFinal)
-
+    axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
+    .then(r => {
+        const user = {
+        name: r.data.name,
+        pic: r.data.picture,
+        email: r.data.email,
+        };
+        setUser(user)
+        console.log("USER then", user)
+    })
+    
+    console.log("USER ", user)
      const contextValue:any = {
         user,
         login(user){

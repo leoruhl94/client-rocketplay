@@ -23,7 +23,7 @@ export const PreApproval: React.FC = () => {
     });
     history.push("/home");
   };
-  if (!!auth?.user && !!id) {
+  if (!!auth?.user?.email && !!id) {
     postSubscriptions();
   }
   
