@@ -52,14 +52,12 @@ export const MenuCategories: React.FC = () => {
 
   // Esto para eliminar las categorías
   function truncateCategories(e) {
-    //Complete: ELiminar las categorías del state
     console.log(e);
     dispatch(truncateCategory(e));
   }
 
   // Toggle 'x' and 'pencil'
   function editTruncate(e) {
-    // Complete: Cuándo nosotros demos click al botón va a hacer un toggle del modo edición y modo vista
     setBool(!bool);
     if (bool === true) {
       setIcon(icondel);
@@ -78,11 +76,7 @@ export const MenuCategories: React.FC = () => {
 
   // /********************************/********************************/******************************** */
   function handleUpload(e) {
-    // Complete: Verificar el state local del seleccionado
-    // Compete: Tomar los datos del input del popup
-    // Complete: Hacer la actualización de título en redux
     // TODO: Hacer la actualización del título pasando el nuevo título y el user al backEnd
-    // Complete: La categoría nueva no puede ser igual a una existente
     e.preventDefault();
     console.log(selected);
 
@@ -98,6 +92,7 @@ export const MenuCategories: React.FC = () => {
       console.log(input);
       dispatch(putCategory(selected,input));
       setLogger("Category succesfully updated");
+      setPopUp(!popUp)
       let id = document.querySelectorAll(".Menu__Popup-container");
       id.forEach((x) => {
         x.className = "Menu__Popup-container Category__btn-display";
@@ -107,9 +102,8 @@ export const MenuCategories: React.FC = () => {
   }
 
   function handleData(e) {
-    //Complete: Almacenar los cambios del nuevo título
     setInput(e.target.value);
-    console.log(input);
+    //console.log(input);
   }
 
   // *****************************
@@ -121,10 +115,11 @@ export const MenuCategories: React.FC = () => {
 
   // Editamos las categorías
   function editCategories(e) {
-    // Complete: Pasamos el valor al state local
     setSelected(e);
-    // TODO: El popUp debe alternar entre visible y none para el uso de categorías
-    // TODO: Levantamos un popUp
+    setLogger('')
+    
+    // TODO: La animación no debe ser tosca 
+    
     if (popUp === true) {
       let id = document.querySelectorAll(".Menu__Popup-container");
       id.forEach((x) => {
@@ -139,8 +134,7 @@ export const MenuCategories: React.FC = () => {
     setPopUp(!popUp);
 
 
-    // Complete: El popup debe tener la data para mostrar
-    console.log(e);
+    //console.log(e);
   }
 
   // Captamos cambios del popup
@@ -236,9 +230,11 @@ export const MenuCategories: React.FC = () => {
         </div>
         {/* ..... Muestra el estado de la acción ..... */}
         {/* TODO: Si sale todo bien, muestra verde el texto */}
+        <div className="Prueba">
         <div className="Add__Category-logger">
                 {logger}
             </div>
+        </div>
       </section>
     </div>
   );

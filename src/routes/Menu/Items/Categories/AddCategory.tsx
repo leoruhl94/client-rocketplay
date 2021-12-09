@@ -10,6 +10,8 @@ import { storeState } from '../../../../redux/type';
 
 export const AddCategory : React.FC = () => {
     
+    // TODO: Los videos aunque sean 0 deben venir de igual manera del backEnd
+
     const [input, setInput] = useState<string>('');
     const [logger, setLogger] = useState<string>('');
 
@@ -32,18 +34,14 @@ export const AddCategory : React.FC = () => {
         }
     }
     function handleData(e){
-        //Complete: Subir todo
         setInput(e.target.value)
         console.log(input);
     }
 
-    // Complete: Formulario para subir una categoría
     return (<article className="Add__Category-container">
             <div className="Add__title-text">
                 <h1>Add a new category</h1>
             </div>
-            {/* Complete: Tomar nombre */}
-            {/* Neh: Tomar videos para poner categorías */}
             <form onSubmit={handleUpload}>
                 <input className="Add__Input-text" placeholder="Name..." onChange={handleData} type="text" required />
                 <input className="Add__Input-btn" type="submit" />
