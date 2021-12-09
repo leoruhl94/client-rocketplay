@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { refresh, refreshProfile } from "../redux/actions";
+import { useDispatch } from "react-redux";
+import { refreshProfile } from "../redux/actions";
 import axios from "axios";
 
 export const AuthContext = createContext<AuthContextI | null>(null);
