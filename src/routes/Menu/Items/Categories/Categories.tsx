@@ -86,6 +86,8 @@ export const MenuCategories: React.FC = () => {
       // True -> The category already exists!!!
       setLogger("The category already exists");
       return;
+    }else if(selected === ''){
+      setLogger("No category selected");
     }else{
       // false -> Category uploaded
       console.log(input);
@@ -196,6 +198,7 @@ export const MenuCategories: React.FC = () => {
 
       {/* ..... Pop Up ..... */}
       <section className="Menu__Popup-container">
+        <h2 className="Menu__Popup-selected">Edit {selected}</h2>
         <div className="Menu__Popup-frame">
           <form onSubmit={handleUpload}>
             <input

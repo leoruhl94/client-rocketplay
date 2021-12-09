@@ -1,6 +1,7 @@
 * {
     --yellow: #FFC542;
     --grey: #30444E;
+    --succesfull: #58a164;
 }
 
 .Menu__Categories {
@@ -94,4 +95,8 @@
     padding: 10px;
     border-radius: 10px;
     width: 80%;
+}
+
+.Menu__Popup-selected {
+    color: white;
 }
