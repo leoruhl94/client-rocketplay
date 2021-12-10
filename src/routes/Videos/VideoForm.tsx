@@ -8,6 +8,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
+
 // Interfaces
 
 interface User {
@@ -25,6 +26,9 @@ interface Input {
   category: string,
   thumb: any,
 }
+interface UploadId {
+  uploadId: string;
+}
  
 // -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
@@ -39,51 +43,54 @@ export const VideoForm: React.FC = () => {
     category: "",
     thumb: null,
   });
-
+  const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
   const [textFile, setTextFile] = useState<string>(
     "Drag and drop a file or select add Video"
   );
-
+    // console.log("SOY EL UPLOAD ID", uploadIdState.uploadId)
   // ..... Con esta función subimos los cambios .....
   async function handleUpload(e) {
     e.preventDefault();
+
     let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
-    // console.log(response)
     const { creds, bucket } = response.data
+    console.log(creds)
+
+    let client = new S3Client({region: "us-east-1", credentials: creds})
     const target = { Bucket: bucket, Key: input.title, Body: input.file, ContentType: input.file.type}
-    const upload = new Upload({
-      client: new S3Client({region: "us-east-1", credentials: creds}),
-      leavePartsOnError: false,
-      params: target,
-    })
-    // console.log(typeof upload)
-    upload.on("httpUploadProgress", (progress) => {
-      console.log(progress)
-    })
 
-    let videoPromise = upload.done()
-    // .then((e) => console.log("done", e))
+    try {
+      const upload = new Upload({
+        client: client,
+        leavePartsOnError: false,
+        params: target,        
+      })
 
-    const targetThumb = {Bucket: bucket, Key: input.title + "thumb", Body: input.thumb, ContentType: input.thumb.type }
-    const uploadThumb = new Upload({
-      client: new S3Client({region: "us-east-1", credentials: creds}),
-      leavePartsOnError: false,
-      params: targetThumb,
-    })
+      upload.on("httpUploadProgress", (progress) => {
+        console.log(progress)
+      })
+  
+      let videoPromise = upload.done()
 
-    uploadThumb.on("httpUploadProgress", (progress) => {
-      console.log(progress)
-    })
+      const targetThumb = {Bucket: bucket, Key: input.title + "+thumb", Body: input.thumb, ContentType: input.thumb.type }
+      const uploadThumb = new Upload({
+        client: client,
+        leavePartsOnError: false,
+        params: targetThumb,
+      })
+  
+      uploadThumb.on("httpUploadProgress", (progress) => {
+        console.log(progress)
+      })
+  
+      let thumbPromise = uploadThumb.done()
 
-    let thumbPromise = uploadThumb.done()
+      Promise.all([videoPromise, thumbPromise])
+      .then(() => console.log("termine de subir los dos"))
 
-    Promise.all([videoPromise, thumbPromise])
-    .then(() => console.log("termine de subir los dos"))
-
-
-
-
-
+    } catch (err){
+      console.log(err)
+    }
 
     // e.preventDefault();
     // const js = localStorage.getItem("tok");
@@ -151,7 +158,7 @@ export const VideoForm: React.FC = () => {
         <h1 className="Video__title-main">Create a video</h1>
 
         {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
-        <form onSubmit={handleUpload}>
+        <form onSubmit={/* handleUpload */(e) => handleUpload(e)}>
           {/* ..... Title ..... */}
           <div className="inputDiv">
             <input
@@ -227,7 +234,7 @@ export const VideoForm: React.FC = () => {
         </form>
         {/* ..... ..... ..... ..... */}
         <video title="Testing" width="300px" height="300px" controls>
-            <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test10"/>
+            <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/senosvamarquitos"/>
         </video>
         <img src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test11thumb"/>
         <NavigationMobile />
