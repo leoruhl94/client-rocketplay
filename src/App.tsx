@@ -14,6 +14,7 @@ import { Class } from "./routes/Clases/Class";
 import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 import { VideoForm } from "./routes/Videos/VideoForm";
 import { PreApproval } from "./routes/PreApproval/PreApproval";
+import {VideoDetailAWS} from "./routes/Videos/VideoDetail/VideoDetailAWS";
 
 // Navegación
 import { Route, Switch } from "react-router-dom";
@@ -62,7 +63,7 @@ const App: React.FC = () => {
             <Route exact path="/login" component={Logins}/>
             <PrivateRoute exact path="/createvids" component={VideoForm}/>
             <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
-
+            <Route path="/videodetailaws/:id" component={VideoDetailAWS}/>
 
 {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
