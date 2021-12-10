@@ -13,7 +13,7 @@ export const Channels: React.FC = () => {
     
     // useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
 
-    const [add, setAdd] = useState(true); 
+    const [add, setAdd] = useState(false); 
     
     function handleAdd(){
         setAdd(!add);

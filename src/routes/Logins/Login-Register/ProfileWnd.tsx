@@ -89,6 +89,12 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         text='Get business'
         classes='profileWnd__cancelSub'
       />
+      <SuperButton
+        name='Upload'
+        route="/createvids"
+        text='Upload Video'
+        classes='profileWnd__cancelSub'
+      />
       {/* <div className="profileWnd__cambiar">
         <Link to="/payment"> Get a Business Account</Link>
       </div> */}

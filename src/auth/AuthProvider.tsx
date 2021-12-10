@@ -37,6 +37,7 @@ function AuthProvider({ children }) {
   const contextValue: any = {
     user,
     async login(token) {
+        console.log("ENTRE LOGIN AUTH ", token)
         let res = await axios.get(
             `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
         );
