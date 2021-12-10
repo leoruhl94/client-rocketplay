@@ -12,12 +12,12 @@ import { useAuth } from "../../auth/useAuth";
 export const PreApproval: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-  const auth = useAuth() 
+  const auth = useAuth();
 
   let id = location.search.slice(16);
-  
+
   const postSubscriptions = async () => {
-    let response:any = await axios.post(`${URL_BASE}/subscriptions`, {
+    let response: any = await axios.post(`${URL_BASE}/subscriptions`, {
       subscription_id: id,
       mail: auth?.user?.email,
     });
@@ -26,12 +26,12 @@ export const PreApproval: React.FC = () => {
   if (!!auth?.user?.email && !!id) {
     postSubscriptions();
   }
-  console.log("Preapproval",auth?.user?.email, id)
+  console.log("Preapproval", auth?.user?.email, id);
 
   // useEffect(() => {
-  //    history.push("/home");
-  // }, [res.message]);
-
+  //   //    history.push("/home");
+  //   !!auth?.user?.email && !!id && postSubscriptions();
+  // }, [auth?.user]);
 
   return (
     <div className="preapproval">

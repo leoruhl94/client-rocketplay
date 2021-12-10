@@ -66,7 +66,7 @@ export function loginRegister(tokens, keepSession, auth) {
       } else {
         sessionStorage.setItem("tok", JSON.stringify(tokens));
       }
-     const user = await auth?.login(tokens.data.data.id_token);
+      const user = await auth?.login(tokens.data.data.id_token);
      
       axios.post(`${URL_BASE}/v2/users`, {
         isBusiness: false,

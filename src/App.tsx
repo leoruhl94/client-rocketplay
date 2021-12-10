@@ -35,20 +35,7 @@ const App: React.FC = () => {
     const auth = useAuth()
     
     useEffect(() => {
-        // const itemLocal = localStorage.getItem("tok")
-        // const itemSession = sessionStorage.getItem("tok")
-        // let tokens =  itemLocal ? JSON.parse(itemLocal): (itemSession? JSON.parse(itemSession) : null);
-        // axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.data.data.id_token}`)
-        // .then(r => {
-        //     const user = {
-        //     name: r.data.name,
-        //     pic: r.data.picture,
-        //     email: r.data.email,
-        //     };
-        //     dispatch(refresh(user))
-        //     console.log("USER app", user)
-        // })
-
+  
         //cargar los planes de pago en redux
         // const json = localStorage.getItem("lastRoute")
         // const lastRoute = json ? json : '/'
@@ -70,8 +57,8 @@ const App: React.FC = () => {
             <Route exact path="/about/:id" component={AboutDetailComponent}/>
             <Route exact path="/pricing" component={PricingComponent} />
             <PrivateRoute exact path="/payment" component={PaymentsPlans}/>
-            <PrivateRoute exact path="/preapproval" component={PreApproval}/>
-            <PrivateRoute exact path="/paidrejection" component={PaidRejection}/>
+            <Route exact path="/preapproval" component={PreApproval}/>
+            <Route exact path="/paidrejection" component={PaidRejection}/>
             <Route exact path="/login" component={Logins}/>
             <PrivateRoute exact path="/createVids" component={VideoForm}/>
             <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
