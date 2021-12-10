@@ -1,51 +1,52 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Icon } from "../../components/Icon/Icon";
 
 const NavigationMobileMagic: React.FC = () => {
   return (
     <div className="navigarionMobileMagic">
-      <ul>
-        <li className="navigationMobileMagic__list">
-          <Link to="/">
+      <ul className="navigarionMobileMagic__list navigarionMobileMagic__active">
+        <li className="navigationMobileMagic__listItem">
+          <NavLink to="/">
             <span className="navigationMobileMagic__icon">
               <Icon svg="homeSolid" />
             </span>
             <span className="navigarionMobileMagic__text">Back</span>
-          </Link>
+          </NavLink>
         </li>
         <li className="navigationMobileMagic__list">
-          <Link to="/">
+          <NavLink to="/" className="navigationMobileMagic__navLink">
             <span className="navigationMobileMagic__icon">
               <Icon svg="search" />
             </span>
             <span className="navigarionMobileMagic__text">Search</span>
-          </Link>
+          </NavLink>
         </li>
         <li className="navigationMobileMagic__list">
-          <Link to="/">
+          <NavLink to="/">
             <span className="navigationMobileMagic__icon">
               <Icon svg="homeSolid" />
             </span>
             <span className="navigarionMobileMagic__text">Home</span>
-          </Link>
+          </NavLink>
         </li>
         <li className="navigationMobileMagic__list">
-          <Link to="/">
+          <NavLink to="/">
             <span className="navigationMobileMagic__icon">
               <Icon svg="bellSolid" />
             </span>
             <span className="navigarionMobileMagic__text">Channels</span>
-          </Link>
+          </NavLink>
         </li>
         <li className="navigationMobileMagic__list">
-          <Link to="/">
+          <NavLink to="/">
             <span className="navigationMobileMagic__icon">
               <Icon svg="settings" />
             </span>
             <span className="navigarionMobileMagic__text">Settings</span>
-          </Link>
+          </NavLink>
         </li>
+        <div className="navigarionMobileMagic__indicator"></div>
       </ul>
     </div>
   );

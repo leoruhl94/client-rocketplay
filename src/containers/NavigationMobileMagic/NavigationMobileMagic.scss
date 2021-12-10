@@ -1,10 +1,78 @@
 .navigarionMobileMagic{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #222327;
+
+    width: 400px;
+    height: 70;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
     .navigationMobileMagic__list{
-        .navigationMobileMagic__icon{
-            color:black
+        display: flex;
+        width: 350px;
+        .navigationMobileMagic__listItem{
+            position: relative;
+            list-style: none;
+            width: 70;
+            height: 70;
+            z-index: 1;
+            .navigationMobileMagic__navLink{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                font-weight: 500;
+
+                .navigationMobileMagic__icon{
+                    position: relative;
+                    display: block;
+                    line-height: 75px;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    transition: 0.5s;
+                    color:#d3d3d3;
+                    &hover{
+                     transform: translateY(-35px)
+                    }
+                }
+                .navigarionMobileMagic__text{
+                    position: absolute;
+                    color:#d3d3d3;
+                    font-weight: 400;
+                    font-size: 0.75em;
+                    letter-spacing: 0.05em;
+                    transition: 0.5s;    
+                    opacity: 0; 
+                    transform: translateY(20px);
+                    .navigarionMobileMagic__active{
+                        opacity: 1; 
+                        transform: translateY(10px);
+
+                    }
+                    &hover{
+                        opacity: 1; 
+                        transform: translateY(10px);
+                    }
+                }
+            }
         }
-        .navigarionMobileMagic__text{
-            color:black
+        .navigarionMobileMagic__active{
+
+        }
+        .navigarionMobileMagic__indicator{
+            position: absolute;
+            top: -50%;
+            width: 70px;
+            height: 70px;
+            background: #29fd53;
+            border-radius: 50%;
         }
     }
 }
