@@ -21,7 +21,6 @@ export const AddCategory : React.FC = () => {
     const categories : Categories[] = useSelector((state : storeState) => state.categories)
 
     function handleUpload(e){
-        //Complete: Mandar al state por ahora
         e.preventDefault()
         const even = (x) => input === x.title
         if(categories.some(even)){

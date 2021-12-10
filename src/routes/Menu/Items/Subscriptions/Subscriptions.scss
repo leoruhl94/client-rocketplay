@@ -1,0 +1,78 @@
+* {
+    --yellow-super: #FFC542;
+}
+
+.Subs__main-article {
+    background-color: var(--grey);
+    width: 90%;
+    height: 100%;
+    color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    /* Margin */
+    margin: auto;
+}
+
+.Subs__margin-reset {
+    margin: 0;
+}
+
+.Subs__div-switcher {
+    top: 0%;
+    padding: 10px;
+    background-color: #625B39;
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    .Subs__switcher-title {
+        color: var(--yellow-super);
+        padding: 9px;
+    }
+    .Subs__switcher-name {
+        color: var(--yellow-super);
+        padding-left: 12px;
+        padding-bottom: 10px;
+    }
+    .Subs__switcher-icon {
+        margin: auto;
+    }
+    .Subs__icon {
+        font-size: 3rem;
+        color: var(--yellow-super);
+    }
+    margin-bottom: 35px;
+}
+
+.Subs__div-details {
+    height: 100%;
+    background-color: #526168;
+    border-radius: 10px;
+    margin: 0;
+    .Subs__details-headers {
+        padding: 12px;
+        width: 90%;
+        margin: 0px;
+        margin: auto;
+        text-align: center;
+    }
+    .Subs__details-card {
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+    .Subs__details-icon-card {
+        font-size: 3.3rem;
+        margin: auto;
+    }
+    .Subs__payment-date {
+        padding-left: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    .Subs__functions-list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        text-decoration: underline;
+    }
+}

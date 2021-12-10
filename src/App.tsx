@@ -28,6 +28,7 @@ import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDe
 import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
+import { Subscriptions } from "./routes/Menu/Items/Subscriptions/Subscriptions";
 
 
 
@@ -105,8 +106,9 @@ const App: React.FC = () => {
             <Route path="/videodetail/:id" component={VideoDetail} />
             {/* ...... Ruta Video Detail - VIMEO ..... */}
             <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
-            {/* ...... Ruta Menu Category Component ..... */}
+            {/* ...... Rutas Menu Component ..... */}
             <Route exact path="/menu/categories" component={MenuCategories} />
+            <Route exact path="/menu/subscriptions" component={Subscriptions} />
             {/* ...... Ruta Menu Component - Add Category ..... */}
             <Route exact path="/menu/categories/addcategory" component={AddCategory} />
             {/* ...... Ruta Menu Component ..... */}
