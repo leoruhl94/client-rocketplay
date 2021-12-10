@@ -9,6 +9,8 @@ import { storeState } from "../../../redux/type";
 import { URL_BASE, CLIENT_ID, COOKIES_POLICY} from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
 import { Link } from "react-router-dom";
+import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
+import { async } from "@firebase/util";
 
 interface Props {
   dep: boolean;
@@ -31,6 +33,16 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   function logout() {
     dispatch(Logout(history, auth));
   }
+  
+  const handleOnUpdateSubscriptions = async( value:String ) =>{
+    
+    let res = await axios.put(`${URL_BASE}/subscriptions`,{
+      email: auth?.user?.email,
+      status: value
+    })
+
+    console.log(res.data)
+  }
 
   return (
     <div className={`profileWnd ${dep ? "profileWndDep" : ""}`}>
@@ -50,12 +62,36 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           onLogoutSuccess={logout}
         />
       </div>
-      <div className="profileWnd__cambiar">
+      <SuperButton
+        name='activeSub'
+        value="authorized"
+        text='Active'
+        classes='profileWnd__activeSub'
+        handler={handleOnUpdateSubscriptions}
+      />
+      <SuperButton
+        name='pauseSub'
+        value="paused"
+        text='Pause'
+        classes='profileWnd__pauseSub'
+        handler={handleOnUpdateSubscriptions}
+      />
+      <SuperButton
+        name='cancelSub'
+        value="cancelled"
+        text='Cancel'
+        classes='profileWnd__cancelSub'
+        handler={handleOnUpdateSubscriptions}
+      />
+      <SuperButton
+        name='getBusinessAccount'
+        route="/payment"
+        text='Get business'
+        classes='profileWnd__cancelSub'
+      />
+      {/* <div className="profileWnd__cambiar">
         <Link to="/payment"> Get a Business Account</Link>
-      </div>
-      <div className="profileWnd__cambiar">
-        <Link to="/payment"> Cancel Subscription</Link>
-      </div>
+      </div> */}
     </div>
   );
 };

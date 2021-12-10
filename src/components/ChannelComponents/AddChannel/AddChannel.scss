@@ -1,3 +1,10 @@
+.addChannel__blackScreen{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 50%;
+}
 .addChannel{
     position: fixed;
     display: flex;
@@ -20,14 +27,14 @@
         .addChannel__title{
             color: white;
             text-align: center;
+            margin-top: 3rem;
             text-shadow: 1px 1px 3px black;
-            
         }
         .addChannel__form{
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin: 1rem 3rem;
+            margin: 1rem 3rem 3rem 3rem;
             gap: 2rem;
             select {
                 box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
@@ -48,6 +55,41 @@
                     cursor: pointer;
                 }
             }
+            .addChannel__result{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: calc(100% - 3rem);
+                background: #22343C;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                .addChannel__result-icon-cont{
+                    display: flex;
+                    align-items: center;
+                    .addChannel__result-icon{
+                        font-size: 3rem;
+                        padding: 0 0.5rem;
+                        padding-top: 7px;
+                    }
+                    span{
+                        font-size: 1.5rem;
+                    }
+                }
+                button{
+                    width: 30%;
+                    padding: 0.5rem;
+                    background: rgb(231, 226, 226);;
+                    outline: none;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: 0.2s;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
         }
         .addChannel__inputs{
             outline: none;
@@ -63,21 +105,11 @@
 
 @media (min-width: 1024px){
     .addChannel{
+        width: 50%;
         align-items: center;
         .addChannel__container{
-            width: 50%;
-            height: 50%;
-            // margin: 0 auto;
-            .addChannel__title{
-                margin-top: 0;
-            }
-            .addChannel__form{
-                gap: 2rem;
-
-                .addChannel__form-btn{
-                    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
-                }
-            }
+            width: 90%;
+            height: 50%;         
         }
     }
 }
