@@ -6,7 +6,7 @@ import YouTube from "react-youtube";
 import "./VideoDetail.scss";
 import { videodatallazo } from "./functions";
 import axios from "axios";
-import { Comments, CommentsYT } from './hardcode';
+import { CommentsYT } from './hardcode';
 import { Icon } from '../../../components/Icon/Icon';
 import { NavProfileAndLocation } from "../../../containers/NavProfileAndLocation/NavProfileAndLocation";
 // ..... Componente principal del archivo .....
@@ -193,8 +193,8 @@ export const VideoDetail: React.FC = () => {
 
         </section>
         {/* ... End of frame section ... */}
-        {/* TODO: Mostrar back button */}
-        {/* TODO: Ocupar la navbar */}
+        {/* Unlisted: Mostrar back button */}
+        {/* Complete: Ocupar la navbar */}
       </section>
 
     </article></>

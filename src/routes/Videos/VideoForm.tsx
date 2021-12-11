@@ -147,11 +147,6 @@ export const VideoForm: React.FC = () => {
   }
 
   return (
-    // TODO: Estilización de la creación de videos .....
-    // TODO: Proponer el popUp Component .....
-    // Avatar - Autor - Descripcion - UUID (video) - Link AWS - Titulo video - Likes -
-    // Canal - Categorias de ese canal - tags 
-
 
     <article className="Video__container-main animated fadeIn fast">
       <section className="Video__container-form">

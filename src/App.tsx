@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/normalize.css";
 import "./styles/app.scss";
+import axios from "axios";
 
 // Componentes
 import { Landing } from "./routes/Landing/Landing";
@@ -22,7 +23,6 @@ import { Redirect, useLocation, useHistory } from "react-router";
 // Redux
 import { useDispatch } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
-import axios from "axios";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
 import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
@@ -30,7 +30,11 @@ import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 import { NavigationMobileMagic } from "./components/Navs/NavigationMobileMagic/NavigationMobileMagic";
 import { Workspaces } from "./routes/Workspaces/Workspaces";
 import { MenuToggleContainer } from "./components/MenuToggleContainer/MenuToggleContainer";
-
+import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDetail";
+import { MenuComponent } from "./routes/Menu/MenuComponent";
+import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
+import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
+import { Subscriptions } from "./routes/Menu/Items/Subscriptions/Subscriptions";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -66,9 +70,10 @@ const App: React.FC = () => {
         <Route exact path="/login" component={Logins} />
         <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
         <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
+        <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
 
         {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
-        
+
         <Route exact path="/h" component={MenuToggleContainer} />
         <PrivateRoute exact path="/home" component={Workspaces} />
         {/* ...... Ruta Categories ..... */}
@@ -76,8 +81,15 @@ const App: React.FC = () => {
         {/* ...... Ruta Class ..... */}
         <PrivateRoute exact path="/home/:channel/:class" component={Class} />
 
-        {/* ...... Ruta Testing ..... */}
-        {/* <PrivateRoute exact path="/testing" component={LoginAccountType}/> */}
+        {/* ...... Ruta Menu Component ..... */}
+        <Route exact path="/menu" component={MenuComponent} />
+        <Route exact path="/menu/categories" component={MenuCategories} />
+        <Route exact path="/menu/subscriptions" component={Subscriptions} />
+        <Route
+          exact
+          path="/menu/categories/addcategory"
+          component={AddCategory}
+        />
       </Switch>
       <NavigationMobileMagic />
     </>

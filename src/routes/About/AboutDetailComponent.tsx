@@ -181,8 +181,8 @@ const AboutDetailComponent: React.FC = () => {
 
        </section>
         {/* 
-        TODO: Podría simplificar esto, tecnicamente las clases de tecnologies y about cambian en un solo lugar. El resto son igualitas
-        TODO: Investigar si se puede mapear esto
+        Unlisted: Podría simplificar esto, tecnicamente las clases de tecnologies y about cambian en un solo lugar. El resto son igualitas
+        Unlisted: Investigar si se puede mapear esto. El componente completo
         */}
 
         {/* Navbar para los celulares, en desktop no se muestra ..... */}
@@ -195,7 +195,7 @@ const AboutDetailComponent: React.FC = () => {
 
 export default AboutDetailComponent;
 
-// // TODO: Mostrar el user completo del state
+// // Unlisted: Mostrar el user completo del state
 // <article className="aboutArticle animated fadeIn fast">
 
 // {/* Sección información principal */}
