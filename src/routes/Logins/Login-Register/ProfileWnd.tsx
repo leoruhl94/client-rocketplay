@@ -35,7 +35,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   }
   
   const handleOnUpdateSubscriptions = async( value:String ) =>{
-    
+    console.log(value);
     let res = await axios.put(`${URL_BASE}/subscriptions`,{
       email: auth?.user?.email,
       status: value
