@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./VideoForm.scss";
@@ -8,6 +8,7 @@ import { Icon } from "../../components/Icon/Icon";
 import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
+import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
 
 // Interfaces
 
@@ -26,8 +27,17 @@ interface Input {
   category: string,
   thumb: any,
 }
+interface Errors {
+  title: string;
+  video: string;
+  image: string;
+}
 interface UploadId {
   uploadId: string;
+}
+interface Previews{
+  video: any,
+  img: any
 }
  
 // -----------------------------------------------------------------------------------------
@@ -35,6 +45,7 @@ export const VideoForm: React.FC = () => {
   // Caja de variables
   const [user, setUser] = useState({});
   const [selectBool, setSelectBool] = useState(false);
+  const [success, setSuccess] = useState(true);
   const [input, setInput] = useState<Input>({
     file: null,
     title: "",
@@ -43,14 +54,48 @@ export const VideoForm: React.FC = () => {
     category: "",
     thumb: null,
   });
+  const [errors, setErrors] = useState<Errors>({
+    title: "",
+    video: 'Should upload a video',
+    image: 'Should upload an image',
+  });
   const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
+  const [previews, setPreviews] = useState<Previews>({video: undefined, img: undefined});
   const [textFile, setTextFile] = useState<string>(
-    "Drag and drop a file or select add Video"
+    "Drag and drop or select a file "
   );
     // console.log("SOY EL UPLOAD ID", uploadIdState.uploadId)
   // ..... Con esta función subimos los cambios .....
-  async function handleUpload(e) {
-    e.preventDefault();
+
+  useEffect(() => {
+    if (!input.file) {
+        setPreviews({...previews, video: undefined});
+        return
+    } else if (input.file) {
+      const objectUrl = URL.createObjectURL(input.file) 
+      setPreviews({...previews, video: undefined})
+      setTimeout(() => {setPreviews({...previews, video: objectUrl});}, 1)
+    } 
+  }, [input.file])
+
+  useEffect(() => {
+    if (!input.thumb) {
+        setPreviews({...previews, img: undefined});
+        return
+    } else if (input.thumb) {
+      const objectUrl = URL.createObjectURL(input.thumb) 
+      setPreviews({...previews, img: objectUrl});
+    } 
+  }, [input.thumb])
+
+  async function handleUpload() {
+
+    if(errors.title) return alert('Fix: '+errors.title)
+    if(errors.video) return alert('Fix: '+errors.video)
+    if(errors.image) return alert('Fix: '+errors.image)
+
+    let boton = document.querySelector('.Video__file-uploader-btn')
+    boton && boton.setAttribute("disabled", "true")
 
     let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
     const { creds, bucket } = response.data
@@ -72,7 +117,7 @@ export const VideoForm: React.FC = () => {
   
       let videoPromise = upload.done()
 
-      const targetThumb = {Bucket: bucket, Key: input.title + "+thumb", Body: input.thumb, ContentType: input.thumb.type }
+      const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
       const uploadThumb = new Upload({
         client: client,
         leavePartsOnError: false,
@@ -86,9 +131,13 @@ export const VideoForm: React.FC = () => {
       let thumbPromise = uploadThumb.done()
 
       Promise.all([videoPromise, thumbPromise])
-      .then(() => console.log("termine de subir los dos"))
+      .then(() => {
+        setSuccess(true)
+        console.log("termine de subir los dos")
+      })
 
     } catch (err){
+      boton && boton.setAttribute("disabled", "false")
       console.log(err)
     }
 
@@ -126,17 +175,32 @@ export const VideoForm: React.FC = () => {
   // ..... Captamos los cambios con esta función .....
   function handleChange(e) {
     if (e.target.name === "video") {
-      setInput({ ...input, file: e.target.files[0] });
-      setTextFile(e.target.value);
+      if(e.target.value) setErrors({ ...errors, video: '' })
+      e.target.files[0] && setInput({ ...input, file: e.target.files[0] });
+      setTextFile(e.target.files[0].name || "Drag and drop a file or select add Video");
       console.log(e.target.files[0]);
       return;
     }
     if(e.target.name === "thumb"){
+      if(e.target.value) setErrors({ ...errors, image: '' })
       setInput({
         ...input,
         thumb: e.target.files[0]
       })
       return;
+    }
+    if(e.target.name === "title"){
+      if(e.target.value.includes('.')){
+        setErrors({
+          ...errors,
+          title: 'The title should not contain dots'
+        })
+      }else{
+        setErrors({
+          ...errors,
+          title: ''
+        })
+      }
     }
     setInput({ ...input, [e.target.name]: e.target.value });
   }
@@ -147,94 +211,158 @@ export const VideoForm: React.FC = () => {
   }
 
   return (
-
+    <>
+    {success ? <SuccessWnd text="Successfully Uploaded"/> : null}
     <article className="Video__container-main animated fadeIn fast">
       <section className="Video__container-form">
         <h1 className="Video__title-main">Create a video</h1>
 
         {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
-        <form onSubmit={/* handleUpload */(e) => handleUpload(e)}>
-          {/* ..... Title ..... */}
-          <div className="inputDiv">
-            <input
-              className="Video__file-uploader-text"
-              type="text"
-              name="title"
-              value={input.title}
-              id="title"
-              placeholder="Title"
-              onChange={(e) => handleChange(e)}
-              required
-            />
-          </div>
-          {/* ..... Description ..... */}
-          <div>
-            <textarea /* type="text" */ className="Video__file-uploader-text" name="description" id="description" value={input.description} placeholder="Description" onChange={(e) => handleChange(e) } />
-          </div>
-          {/* ..... Selects (Channels y Categories) ..... */}
-          <div>
-            <select name="channel" id="channel" onChange={handleDoubleSelect}>
-              <option value="" selected disabled>Select a channel</option>
-              <option value="primeroA">Primero A</option>
-              <option value="primeroB">Primero B</option>
-              <option value="segundoA">Segundo A</option>
-              <option value="segundoB">Segundo B</option>
-            </select>
-            {
-              selectBool ? (
-                <select name="category" id="category" onChange={handleDoubleSelect}>
-                  <option value="" selected disabled>Select a category</option>
-                  <option value="math">Math</option>
-                  <option value="science">Science</option>
-                  <option value="history">History</option>
-                  <option value="geography">Geography</option>
-                </select>
-              ) : <></>
-            }
-          </div>
-          {/* ..... Tags ..... */}
-          <div>
-            <select name="tags" id="tags">
-              <option value="" selected>Select a tag</option>
-              <option value="ecuaciones">Ecuaciones</option>
-              <option value="fracciones">Fracciones</option>
-              <option value="predicado">Predicado</option>
-              <option value="Eli se me ocurrio como hacerlo">Eli se me ocurrio como hacerlo</option>
-            </select>
-          </div>
-          {/* ..... File ..... */}
-          {/* <input className="Video__file-uploader-textfield" type="file" name="video" onChange={handleChange} />         */}
-          <div className="image-upload-wrap">
+        <form >
+          <div className='Section__Container'>
+            {/* ..... Title ..... */}
+            <div >
+              <h2 className='Section__title'>Title (required)</h2>
+              <div className="inputDiv">
+                <input
+                  className={`Video__file-uploader-text${errors.title?' invalid':''}`}
+                  type="text"
+                  name="title"
+                  value={input.title}
+                  id="title"
+                  placeholder="Add a descriptive and simple title to your video"
+                  onChange={(e) => handleChange(e)}
+                  required
+                />
+              </div>
+              <span className='form__error'>{errors.title}</span>
+            </div>
+
+            {/* ..... Description ..... */}
             <div>
+              <h2 className='Section__title'>Description</h2>
+              <textarea className="Video__file-uploader-description" name="description" id="description" value={input.description} placeholder="Add an overview to your video" onChange={(e) => handleChange(e) } />
+            </div>
+          </div>
+
+          {/* ..... File ..... */}
+          <div className='Section__Container'>
+            <h2 className='Section__title'>Video (required)</h2>
+            <p className='Section__description'>Upload a video from your computer</p>
+            {previews.video ? 
+            <video className="Video__preview" title="Testing" width="300px" controls>
+                <source src={previews.video}/>
+            </video> 
+            : <div className="image-upload-wrap">
+              <div>
+                <input
+                  className="file-upload-input"
+                  type="file"
+                  //accept=".mp4"
+                  accept="video/*"
+                  name="video"
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              <div className="drag-text">
+                <h3>{textFile}</h3>
+              </div>
+            </div>}
+
+            <div className="file-upload-selectButton">
+              <h3>Select Video</h3>
               <input
-                className="file-upload-input"
+                className="file-upload-input-selectButton"
                 type="file"
-                accept=".mp4"
+                //accept=".mp4"
+                accept="video/*"
                 name="video"
                 onChange={(e) => handleChange(e)}
-                required
-              />
-            </div>
-            <div className="drag-text">
-              <h3>{textFile}</h3>
+                />
             </div>
           </div>
-          <div>
-            <input type="file" onChange={(e) => handleChange(e)} name="thumb"></input>
+          
+          {/* ..... image upload ..... */}
+          <div className='Section__Container'>
+            <h2 className='Section__title'>Thumbnail</h2>
+            <p className='Section__description'>Add a thumbnail for your video</p>
+            {previews.img ? <div className='Image__preview-cont'><img src={previews.img} className="Image__preview" alt="preview"/></div>
+            : <div className="image-upload-wrap">
+              <div>
+                <input
+                  className="file-upload-input"
+                  type="file"
+                  accept="image/*"
+                  name="thumb"
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              <div className="drag-text">
+                <h3>{textFile}</h3>
+              </div>
+            </div>}
+            <div className="file-upload-selectButton">
+              <h3>Select Image</h3>
+              <input
+                className="file-upload-input-selectButton"
+                type="file"
+                accept="image/*"
+                name="thumb"
+                onChange={(e) => handleChange(e)}
+                />
+            </div>
           </div>
+          
+          <div className='Section__Container'>
+            {/* ..... Selects (Channels y Categories) ..... */}
+            <div>
+              <h2 className='Section__title'>Workspace and Category (required)</h2>
+              <p className='Section__description'>Choose which workspace and category the video will belong to</p>
+              <div>
+                <select name="channel" id="channel" onChange={handleDoubleSelect}>
+                  <option value="" selected disabled>Select a workspace</option>
+                  <option value="primeroA">Primero A</option>
+                  <option value="primeroB">Primero B</option>
+                  <option value="segundoA">Segundo A</option>
+                  <option value="segundoB">Segundo B</option>
+                </select>
+                {
+                  selectBool ? (
+                    <select name="category" id="category" onChange={handleDoubleSelect}>
+                      <option value="" selected disabled>Select a category</option>
+                      <option value="math">Math</option>
+                      <option value="science">Science</option>
+                      <option value="history">History</option>
+                      <option value="geography">Geography</option>
+                    </select>
+                  ) : <></>
+                }
+              </div>
+            </div>
+
+            {/* ..... Tags ..... */}
+            <div>
+              <h2 className='Section__title'>Tags</h2>
+              <p className='Section__description'>Tag your video so users can find it faster</p>
+              <select name="tags" id="tags">
+                <option value="" selected>Select a tag</option>
+                <option value="ecuaciones">Ecuaciones</option>
+                <option value="fracciones">Fracciones</option>
+                <option value="predicado">Predicado</option>
+                <option value="Eli se me ocurrio como hacerlo">Eli se me ocurrio como hacerlo</option>
+              </select>
+            </div>
+          </div>
+
           {/* ..... Upload ..... */}
-          <button className="Video__file-uploader-btn" type="submit">
+          <button className="Video__file-uploader-btn" type="button" onClick={handleUpload}>
             Upload video
           </button>
         </form>
         {/* ..... ..... ..... ..... */}
-        <video title="Testing" width="300px" height="300px" controls>
-            <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/senosvamarquitos"/>
-        </video>
-        <img src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test11thumb"/>
-
+        
       </section>
-    </article>
+    </article></>
     // TODO: Control de errores debería llegar al front
   );
 };

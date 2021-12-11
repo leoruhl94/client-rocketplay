@@ -1,0 +1,67 @@
+.SuccessWnd__Screen{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .SuccessWnd__wnd{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        min-width: 350px;
+        padding: 2rem;
+        border-radius: 1rem;
+        background: #30444E;
+        .SuccessWnd__wnd--text{
+            color: white;
+            font-size: 2rem;
+        }
+        .SuccessWnd__wnd--icon{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 10px solid green;
+            margin: 1rem;
+            .SuccessWnd__wnd--iconCheck--cont{
+                position: relative;
+                height: 100%;
+                animation: ckeck 1s linear ;
+                overflow: hidden;
+                .SuccessWnd__wnd--iconCheck{
+                    position: absolute;
+                    border-left: 10px solid green;
+                    border-bottom: 10px solid green;
+                    transform: rotate(-45deg);
+                    left: 45px;
+                    top: 45px;
+                    width: 100px;
+                    height: 60px;
+                }
+                @keyframes ckeck{
+                    from{
+                        width: 0%;
+                    }
+                    to{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .SuccessWnd__wnd--btn{
+            background: white;
+            width: 50%;
+            height: 3rem;
+            border-radius: 1.5rem;
+            font-size: 2rem;
+            margin-top: 1rem;
+            &:hover{
+                background: rgb(204, 204, 204);
+            }
+        }
+    }
+}
