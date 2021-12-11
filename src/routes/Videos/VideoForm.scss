@@ -1,5 +1,5 @@
 /* Var box*/
-
+@import "../../styles/variables.scss";
 * {
     --var-container-color: #30444E
 }
@@ -40,6 +40,7 @@
     /* Horizontalmente - En este caso al centro */
     justify-content: center;
     padding: 15px;
+    margin-bottom: 3rem;
 }
 
 
@@ -53,7 +54,10 @@
     /* TODO: Cambiar el color */
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
     background-color: var(--var-container-color);
-    width: 80%;
+    width: 100%;
+    form{
+        margin: 0;
+    }
 }
 
 
@@ -66,16 +70,48 @@
 }
 
 // Input file
+.Video__file-uploader-description {
+    padding: 15px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    height: 10rem;
+}
 .Video__file-uploader-text {
     padding: 15px;
     width: 100%;
     background-color: rgb(255, 255, 255);
     border: none;
     outline: none;
-    border-radius: 15px;
-    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
 }
-
+.invalid{
+    border: 2px solid red;
+}
+.form__error{
+    color: red;
+    font-size: 1rem;
+}
+.Video__preview{
+    border-radius: 0.5rem;
+    width: 100%;
+    max-height: 200px;
+}
+.Image__preview-cont{
+    display: flex;
+    justify-content: center;
+    .Image__preview{
+        border-radius: 0.5rem;
+        max-height: 178px;
+        height: auto;
+        max-width: 100%;
+        width: auto;
+    }
+}
 .inputDiv {
     position: relative;
 }
@@ -96,12 +132,7 @@
     /* Only SASS */
     &:hover{
         background-color: rgb(204, 204, 204);
-    border:none;
-    
-    margin-top: 15px;
-    padding: 15px;
-    width: 100%;
-    border-radius: 15px;
+        border:none;
     }
     /* Pro -> TIP*/
 }
@@ -178,6 +209,82 @@
     border-radius: 5px;
     position: relative;
 }
+.file-upload-selectButton{
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background-color: white;
+    margin: 1rem 0;
+    .file-upload-input-selectButton{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+    h3{
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        margin: 0.8rem 0;
+
+    }
+}
+.Section__title{
+    color: white;
+    margin-top: 2.5rem;
+}
+.Section__description{
+    color: white;
+    font-size: 1rem;
+}
+.Image__upload-container{
+    width: 100%;
+    background: linear-gradient(180deg, #40DF9F 0%, #3ED598 100%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    .Image__preview{
+        width: 90%;
+        margin: 5% 0;
+        margin-bottom: 0;
+        border-radius: 1rem;
+    }
+    .Image__upload-selectButton{
+        position: relative;
+        width: 90%;
+        height: 3rem;
+        background: #22343C;
+        border-radius: 1rem;
+        margin: 1rem;
+        &:hover{
+            background: #334d58;
+            
+        }
+        .Image__upload-input-selectButton{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 0;
+            cursor: pointer;
+        }
+        span{
+            font-size: 1.2rem;
+            color: white;
+            width: 100%;
+            height: 100%;
+            margin: 0.8rem 0;
+            text-align: center;
+            position: absolute;
+        }
+    }
+}
 
 .image-dropping,
 .image-upload-wrap:hover {
@@ -209,6 +316,24 @@
 }
 
 #description{
-    margin-top: 1rem;
     resize: none;
+}
+
+@media only screen and (min-width: $smallDevices){
+    .Video__container-form{
+        width: 80%;
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .Section__Container{
+                margin: 1rem;
+                width: 40%;
+            }
+            .Video__file-uploader-btn{
+                width: 85%;
+                margin-bottom: 1rem;
+            }
+        }
+    }
 }

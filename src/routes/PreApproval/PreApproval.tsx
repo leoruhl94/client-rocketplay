@@ -8,11 +8,13 @@ import { useSelector } from "react-redux";
 import { storeState } from "../../redux/type";
 import { URL_BASE } from "../../constants/constants";
 import { useAuth } from "../../auth/useAuth";
+import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
 
 export const PreApproval: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const auth = useAuth() 
+  const [success, setSuccess] = useState(false);
 
   let id = location.search.slice(16);
   
@@ -22,23 +24,24 @@ export const PreApproval: React.FC = () => {
       mail: auth?.user?.email,
     });
     console.log('response postSubscriptions >>>>',response);
-    history.push("/home");
+    setSuccess(true)
   };
   if (!!auth?.user?.email && !!id) {
     postSubscriptions();
   }
   console.log("Preapproval",auth?.user?.email, id)
-
+  
   // useEffect(() => {
-  //    history.push("/home");
-  // }, [res.message]);
-
-
-  return (
-    <div className="preapproval">
-      <div className="preapproval__loading">
+    //    history.push("/home");
+    // }, [res.message]);
+    
+    
+    return (
+      <div className="preapproval">
+      {success ? <SuccessWnd text='succesful transaction'/> : 
+        <div className="preapproval__loading">
         <LoadingComponent />
-      </div>
+      </div>}
     </div>
   );
 };
