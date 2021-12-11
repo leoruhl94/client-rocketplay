@@ -13,16 +13,16 @@
 .pricingTitle{
     color: white;
     text-align: center;
-    padding: 50px 20px 30px;
+    padding: 20px 30px;
 }
 .pricingContainer{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-bottom: 60px;
     // background-color: yellowgreen;
     // width: 100%;
     padding: 1rem;
+    padding-bottom: 60px;
 }
 @media only screen and (min-width: $smallDevices) {
     .pricingContainer{
