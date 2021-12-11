@@ -12,19 +12,30 @@
     flex-direction: column;
     /* Margin */
     margin: auto;
+    margin-top: 25px;
 }
 
 .Subs__margin-reset {
     margin: 0;
 }
 
+.Subs__dropdown {
+    background-color: transparent;
+    border: none;
+}
+
 .Subs__div-switcher {
     top: 0%;
+    transition: 0.4s;
     padding: 10px;
+    height: 70px;
     background-color: #625B39;
     border-radius: 25px;
-    display: grid;
-    grid-template-columns: 70% 30%;
+    overflow: hidden;
+    .Subs__switcher-container {
+        display: grid;
+        grid-template-columns: 70% 30%;
+    }
     .Subs__switcher-title {
         color: var(--yellow-super);
         padding: 9px;
@@ -44,8 +55,13 @@
     margin-bottom: 35px;
 }
 
+.Subs__div-switcher-two {
+    height: 220px;
+    transition: 0.4s;
+}
+
 .Subs__div-details {
-    height: 100%;
+    height: 400px;
     background-color: #526168;
     border-radius: 10px;
     margin: 0;
@@ -74,5 +90,51 @@
         flex-direction: column;
         padding-left: 20px;
         text-decoration: underline;
+    }
+    .Subs__div-extra {
+        margin: auto;
+        margin-top: 30px;
+    }
+}
+
+.Subs__popup {
+    background-color: #1e2e35;
+    box-shadow: 10px 10px 10px #141d22;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 25px;
+    text-align: center;
+    .popup__normal-title {
+        font-size: 1.1rem;
+    }
+    .popup-normal-text {
+        width: 90%;
+        margin: auto;
+        padding: 4px;
+        border-radius: 10px;
+        border: none;
+    }
+    .popup-normal-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #FFC542;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+    .popup-danger-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ff4242;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
     }
 }

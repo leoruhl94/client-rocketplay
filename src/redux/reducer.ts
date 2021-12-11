@@ -14,8 +14,10 @@ const initialState: storeState = {
     logsPage: 0,
     plan: '',
     plans: [],
-    categories : [
-                  // {
+    categories : []
+  }
+
+  /*                  // {
                   //     title : "IT",
                   //     videos : 38
                   // },
@@ -30,9 +32,7 @@ const initialState: storeState = {
                   // {
                   //     title : "React",
                   //     videos : 21
-                  // },
-                ]
-  }
+                  // },*/ 
 
   // ..... ..... ..... .....
 const reducer = (
