@@ -17,6 +17,9 @@ export const NavigationMobileMagic: React.FC = () => {
       history.push("/");
     }
   };
+  const handleDisplayMenu = (path) => {
+      history.push(`${path}`);
+  };
   const handleGoBack = () => {
     if (location.pathname === "/home") {
       history.push("/");
@@ -43,7 +46,7 @@ export const NavigationMobileMagic: React.FC = () => {
         </li>
         <li className={`navigationMobileMagic__listItem ${!auth?.isLogged()?"display__none":""}`}>
           <button
-            // onClick={handleDisplaySeach}
+            onClick={()=>handleDisplayMenu("search")}
             className="navigationMobileMagic__button"
           >
             <div>
@@ -69,10 +72,10 @@ export const NavigationMobileMagic: React.FC = () => {
         </li>
         <li className={`navigationMobileMagic__listItem ${!auth?.isLogged()?"display__none":""}`}>
           <button
-            // onClick={handleDisplayNotifications}
+            onClick={()=>handleDisplayMenu("notifications")}
             className="navigationMobileMagic__button"
           >
-            <div>
+           <div>
               <span className="navigationMobileMagic__icon">
                 <Icon svg="bellSolid" />
               </span>
@@ -82,7 +85,7 @@ export const NavigationMobileMagic: React.FC = () => {
         </li>
         <li className={`navigationMobileMagic__listItem ${!auth?.isLogged()?"display__none":""}`}>
           <button
-            // onClick={handleDisplayMenu}
+            onClick={()=>handleDisplayMenu("settings")}
             className="navigationMobileMagic__button"
           >
             <div>

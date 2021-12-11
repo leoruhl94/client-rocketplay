@@ -35,6 +35,9 @@ import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
 import { Subscriptions } from "./routes/Menu/Items/Subscriptions/Subscriptions";
+import { SearchMenu } from "./routes/SearchMenu/SearchMenu";
+import { NotificationsMenu } from "./routes/NotificationsMenu/NotificationsMenu";
+import { SettingMenu } from "./routes/SettingMenu/SettingMenu";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -71,10 +74,12 @@ const App: React.FC = () => {
         <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
         <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
         <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
+        <Route exact path="/settings" component={SettingMenu} />
+        <Route exact path="/notifications" component={NotificationsMenu} />
+        <Route exact path="/search" component={SearchMenu} />
 
         {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
-
-        <Route exact path="/h" component={MenuToggleContainer} />
+        
         <PrivateRoute exact path="/home" component={Workspaces} />
         {/* ...... Ruta Categories ..... */}
         <PrivateRoute exact path="/home/:channel" component={Categories} />

@@ -7,6 +7,7 @@ import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { Link } from "react-router-dom";
 import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
+import { Icon } from "../../components/Icon/Icon";
 
 export const Workspaces: React.FC = () => {
   // useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
@@ -14,16 +15,24 @@ export const Workspaces: React.FC = () => {
   const [add, setAdd] = useState(false);
 
   function handleAdd() {
-   
+    setAdd(!add)
   }
  function handleFind() {
    
  }
   return (
-    <div>
+    <>
       <NavProfileAndLocation />
+      <div className="Workspaces__container">
+
+        <div className="Workspaces__button_add">
+        Join a Workspace 
+        <button className="Workspaces__button_add" onClick={handleAdd} ><Icon svg="plusCircle"/></button>
+        </div >
+      </div>
+       <AddChannel dep={add} handleAdd={handleAdd} />
       {/* <ChannelNotFound/> */}
-      {/* <AddChannel dep={add} handleAdd={handleAdd} />
+      {/*
       <div className="singleChannelSuperContainer">
         <div className="singleChannel-outer-div">
           <SingleChannel channel="Workspace 1" />
@@ -35,10 +44,8 @@ export const Workspaces: React.FC = () => {
             <button onClick={handleAdd}>+</button>
           </div>
         </div> */}
-        {/* <Link to="/createVids">
-                    <button >Crear un video</button>
-                    </Link> */}
+
       {/* </div> */}
-    </div>
+    </>
   );
 };

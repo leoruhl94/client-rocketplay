@@ -91,7 +91,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
       />
       <SuperButton
         name='Upload'
-        route="/createvids"
+        route="/uploadvideo"
         text='Upload Video'
         classes='profileWnd__cancelSub'
       />
