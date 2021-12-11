@@ -4,7 +4,7 @@
   min-width: 350px;
   width: 100%;
   max-width: 768px;
-  height: 70px;
+  height: 50px;
   position: fixed;
   bottom: -1;
   border-radius: 10px 10px 0 0;
@@ -17,19 +17,15 @@
     width: 100%;
 
     .navigationMobileMagic__listItem {
-      margin: 0;
       padding: 0;
-      box-sizing: border-box;
       list-style: none;
       position: relative;
       display: block;
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
       z-index: 1;
       .navigationMobileMagic__button {
-        margin: 0;
         padding: 0;
-        box-sizing: border-box;
         position: relative;
         display: flex;
         justify-content: center;
@@ -70,8 +66,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
 
           .navigationMobileMagic__icon {
@@ -96,7 +92,7 @@
           position: absolute;
           color: #d3d3d3;
           font-weight: 400;
-          font-size: 0.75em;
+          font-size: 0.85em;
           letter-spacing: 0.05em;
           transition: 0.5s;
           opacity: 0;
@@ -109,13 +105,13 @@
           }
           .navigationMobileMagic__icon {
             transition: 0.5s;
-            transform: translateY(-35px);
+            transform: translateY(-28px);
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background: #6952dc;
             border-radius: 50%;
             border: 6px solid #22343c;

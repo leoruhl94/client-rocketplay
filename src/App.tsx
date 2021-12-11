@@ -29,6 +29,8 @@ import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
 import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 import { NavigationMobileMagic } from "./components/Navs/NavigationMobileMagic/NavigationMobileMagic";
 import { Workspaces } from "./routes/Workspaces/Workspaces";
+import { MenuToggleContainer } from "./components/MenuToggleContainer/MenuToggleContainer";
+
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -66,8 +68,8 @@ const App: React.FC = () => {
         <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
 
         {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
-
-        <Route exact path="/h" component={NavigationMobileMagic} />
+        
+        <Route exact path="/h" component={MenuToggleContainer} />
         <PrivateRoute exact path="/home" component={Workspaces} />
         {/* ...... Ruta Categories ..... */}
         <PrivateRoute exact path="/home/:channel" component={Categories} />
