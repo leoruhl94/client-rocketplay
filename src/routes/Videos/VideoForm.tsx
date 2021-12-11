@@ -29,6 +29,8 @@ interface Input {
 }
 interface Errors {
   title: string;
+  video: string;
+  image: string;
 }
 interface UploadId {
   uploadId: string;
@@ -43,6 +45,7 @@ export const VideoForm: React.FC = () => {
   // Caja de variables
   const [user, setUser] = useState({});
   const [selectBool, setSelectBool] = useState(false);
+  const [success, setSuccess] = useState(true);
   const [input, setInput] = useState<Input>({
     file: null,
     title: "",
@@ -53,6 +56,8 @@ export const VideoForm: React.FC = () => {
   });
   const [errors, setErrors] = useState<Errors>({
     title: "",
+    video: 'Should upload a video',
+    image: 'Should upload an image',
   });
   const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
   const [previews, setPreviews] = useState<Previews>({video: undefined, img: undefined});
@@ -83,10 +88,15 @@ export const VideoForm: React.FC = () => {
     } 
   }, [input.thumb])
 
-  async function handleUpload(e) {
-    e.preventDefault();
+  async function handleUpload() {
 
     if(errors.title) return alert('Fix: '+errors.title)
+    if(errors.video) return alert('Fix: '+errors.video)
+    if(errors.image) return alert('Fix: '+errors.image)
+
+    let boton = document.querySelector('.Video__file-uploader-btn')
+    boton && boton.setAttribute("disabled", "true")
+
     let response = await axios.get(`${URL_BASE}/uploadVideo/aws-client`)
     const { creds, bucket } = response.data
     console.log(creds)
@@ -107,7 +117,7 @@ export const VideoForm: React.FC = () => {
   
       let videoPromise = upload.done()
 
-      const targetThumb = {Bucket: bucket, Key: input.title + "+thumb", Body: input.thumb, ContentType: input.thumb.type }
+      const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
       const uploadThumb = new Upload({
         client: client,
         leavePartsOnError: false,
@@ -121,9 +131,13 @@ export const VideoForm: React.FC = () => {
       let thumbPromise = uploadThumb.done()
 
       Promise.all([videoPromise, thumbPromise])
-      .then(() => console.log("termine de subir los dos"))
+      .then(() => {
+        setSuccess(true)
+        console.log("termine de subir los dos")
+      })
 
     } catch (err){
+      boton && boton.setAttribute("disabled", "false")
       console.log(err)
     }
 
@@ -161,12 +175,14 @@ export const VideoForm: React.FC = () => {
   // ..... Captamos los cambios con esta función .....
   function handleChange(e) {
     if (e.target.name === "video") {
+      if(e.target.value) setErrors({ ...errors, video: '' })
       e.target.files[0] && setInput({ ...input, file: e.target.files[0] });
       setTextFile(e.target.files[0].name || "Drag and drop a file or select add Video");
       console.log(e.target.files[0]);
       return;
     }
     if(e.target.name === "thumb"){
+      if(e.target.value) setErrors({ ...errors, image: '' })
       setInput({
         ...input,
         thumb: e.target.files[0]
@@ -195,14 +211,14 @@ export const VideoForm: React.FC = () => {
   }
 
   return (
-
+    <>
+    {success ? <SuccessWnd text="Successfully Uploaded"/> : null}
     <article className="Video__container-main animated fadeIn fast">
-      <SuccessWnd text="Successfully Uploaded"/>
       <section className="Video__container-form">
         <h1 className="Video__title-main">Create a video</h1>
 
         {/* ..... Comenzamos con el formulario para subir las cosas ..... */}
-        <form onSubmit={/* handleUpload */(e) => handleUpload(e)}>
+        <form >
           <div className='Section__Container'>
             {/* ..... Title ..... */}
             <div >
@@ -246,7 +262,6 @@ export const VideoForm: React.FC = () => {
                   accept="video/*"
                   name="video"
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="drag-text">
@@ -263,7 +278,6 @@ export const VideoForm: React.FC = () => {
                 accept="video/*"
                 name="video"
                 onChange={(e) => handleChange(e)}
-                required
                 />
             </div>
           </div>
@@ -281,7 +295,6 @@ export const VideoForm: React.FC = () => {
                   accept="image/*"
                   name="thumb"
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="drag-text">
@@ -296,7 +309,6 @@ export const VideoForm: React.FC = () => {
                 accept="image/*"
                 name="thumb"
                 onChange={(e) => handleChange(e)}
-                required
                 />
             </div>
           </div>
@@ -343,14 +355,14 @@ export const VideoForm: React.FC = () => {
           </div>
 
           {/* ..... Upload ..... */}
-          <button className="Video__file-uploader-btn" type="submit">
+          <button className="Video__file-uploader-btn" type="button" onClick={handleUpload}>
             Upload video
           </button>
         </form>
         {/* ..... ..... ..... ..... */}
         
       </section>
-    </article>
+    </article></>
     // TODO: Control de errores debería llegar al front
   );
 };
