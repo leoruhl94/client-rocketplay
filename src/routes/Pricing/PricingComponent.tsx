@@ -1,7 +1,7 @@
 import { PricingDetailComponent } from "./PricingDetailComponent";
 import React, { useEffect } from "react";
 import "./PricingComponent.scss";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 import { useDispatch, useSelector } from "react-redux";
 import { storeState } from "../../redux/type";
 import { NavigationTop } from "../../containers/NavigationTop/NavigationTop";
@@ -29,7 +29,7 @@ const PricingComponent: React.FC = () => {
           />
         ))}
       </div>
-      <NavigationMobile />
+
     </div>
   );
 };

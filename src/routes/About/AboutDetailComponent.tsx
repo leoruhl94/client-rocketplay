@@ -7,7 +7,6 @@ import { URL_BASE } from "../../constants/constants"
 // ----- ----- ----- Componentes ----- ----- -----
 import "./styles/AboutDetail.scss";
 import { Props2 } from "./Parts";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
 import { Images } from "./info";
 
@@ -187,7 +186,7 @@ const AboutDetailComponent: React.FC = () => {
         */}
 
         {/* Navbar para los celulares, en desktop no se muestra ..... */}
-        <NavigationMobile />
+
         {/* TODO: Footer para desktops, en mobile no se mostrará ..... */}
       </article>
     </div>

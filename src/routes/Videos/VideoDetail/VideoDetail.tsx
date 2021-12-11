@@ -8,7 +8,6 @@ import { videodatallazo } from "./functions";
 import axios from "axios";
 import { Comments, CommentsYT } from './hardcode';
 import { Icon } from '../../../components/Icon/Icon';
-import { NavigationMobile } from '../../../containers/NavigationMobile/NavigationMobile';
 import { NavProfileAndLocation } from "../../../containers/NavProfileAndLocation/NavProfileAndLocation";
 // ..... Componente principal del archivo .....
 export const VideoDetail: React.FC = () => {
@@ -197,7 +196,7 @@ export const VideoDetail: React.FC = () => {
         {/* TODO: Mostrar back button */}
         {/* TODO: Ocupar la navbar */}
       </section>
-      <NavigationMobile/> 
+
     </article></>
   );
 };

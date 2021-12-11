@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./VideoForm.scss";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 import { URL_BASE } from "../../constants/constants";
 import { Icon } from "../../components/Icon/Icon";
 import { storeState } from "../../redux/type";
@@ -237,7 +237,7 @@ export const VideoForm: React.FC = () => {
             <source src="https://rocketplay2021.s3.us-east-1.amazonaws.com/senosvamarquitos"/>
         </video>
         <img src="https://rocketplay2021.s3.us-east-1.amazonaws.com/test11thumb"/>
-        <NavigationMobile />
+
       </section>
     </article>
     // TODO: Control de errores debería llegar al front

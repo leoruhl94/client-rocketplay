@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SingleChannel } from "../../components/ChannelComponents/Channels/SingleChannel";
 import { ChannelNotFound } from "../../components/ChannelComponents/ChannelNotFound/ChannelNotFound";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import "./channels.scss";
 import { useSelector } from "react-redux";
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
@@ -39,7 +38,7 @@ export const Channels: React.FC = () => {
                     <button >Crear un video</button>
                     </Link> */}
                 </div>
-            <NavigationMobile back='home'/>
+
         </div>
     )
 }
