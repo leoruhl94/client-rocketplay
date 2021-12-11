@@ -1,0 +1,140 @@
+* {
+    --yellow-super: #FFC542;
+}
+
+.Subs__main-article {
+    background-color: var(--grey);
+    width: 90%;
+    height: 100%;
+    color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    /* Margin */
+    margin: auto;
+    margin-top: 25px;
+}
+
+.Subs__margin-reset {
+    margin: 0;
+}
+
+.Subs__dropdown {
+    background-color: transparent;
+    border: none;
+}
+
+.Subs__div-switcher {
+    top: 0%;
+    transition: 0.4s;
+    padding: 10px;
+    height: 70px;
+    background-color: #625B39;
+    border-radius: 25px;
+    overflow: hidden;
+    .Subs__switcher-container {
+        display: grid;
+        grid-template-columns: 70% 30%;
+    }
+    .Subs__switcher-title {
+        color: var(--yellow-super);
+        padding: 9px;
+    }
+    .Subs__switcher-name {
+        color: var(--yellow-super);
+        padding-left: 12px;
+        padding-bottom: 10px;
+    }
+    .Subs__switcher-icon {
+        margin: auto;
+    }
+    .Subs__icon {
+        font-size: 3rem;
+        color: var(--yellow-super);
+    }
+    margin-bottom: 35px;
+}
+
+.Subs__div-switcher-two {
+    height: 220px;
+    transition: 0.4s;
+}
+
+.Subs__div-details {
+    height: 400px;
+    background-color: #526168;
+    border-radius: 10px;
+    margin: 0;
+    .Subs__details-headers {
+        padding: 12px;
+        width: 90%;
+        margin: 0px;
+        margin: auto;
+        text-align: center;
+    }
+    .Subs__details-card {
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+    .Subs__details-icon-card {
+        font-size: 3.3rem;
+        margin: auto;
+    }
+    .Subs__payment-date {
+        padding-left: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    .Subs__functions-list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        text-decoration: underline;
+    }
+    .Subs__div-extra {
+        margin: auto;
+        margin-top: 30px;
+    }
+}
+
+.Subs__popup {
+    background-color: #1e2e35;
+    box-shadow: 10px 10px 10px #141d22;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 25px;
+    text-align: center;
+    .popup__normal-title {
+        font-size: 1.1rem;
+    }
+    .popup-normal-text {
+        width: 90%;
+        margin: auto;
+        padding: 4px;
+        border-radius: 10px;
+        border: none;
+    }
+    .popup-normal-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #FFC542;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+    .popup-danger-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ff4242;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+}

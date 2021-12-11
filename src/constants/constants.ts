@@ -15,6 +15,9 @@ export const REFRESH_PROFILE = "REFRESH_PROFILE"
 export const PRICING_SELECT = 'PRICING_SELECT'
 export const GET_PLANS = 'GET_PLANS' 
 export const SAVE_USER = 'SAVE_USER'
+export const POST_CATEGORY = 'POST_CATEGORY'
+export const TRUNCATE_CATEGORY = 'TRUNCATE_CATEGORY'
+export const PUT_CATEGORY = 'PUT_CATEGORY'
 
 export function styleVar(vars: any) {
     const cssVars: CSS.Properties = {};

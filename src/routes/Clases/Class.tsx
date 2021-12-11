@@ -4,7 +4,7 @@ import { VideoFrame } from "../Videos/VideoFrame/VideoFrame";
 // import thumbnail from "../../images/individual-project-thumbnail.jpg";
 import "./Class.scss"
 import axios from "axios";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 
 interface Props {
@@ -70,7 +70,7 @@ export const Class: React.FC<Props> = ({class: string}) => {
                 <VideoFrame title="Y un titulo muy largo a ver si rompe" likes={87} thumbnail={thumbnail} videoId={videoInfo.videoId}/>
                 <VideoFrame title="Y un titulo muy largo a ver si rompe" likes={87} thumbnail={thumbnail} videoId={videoInfo.videoId}/> */}
             </div>
-            <NavigationMobile></NavigationMobile>
+
         </div></>
     )
 }

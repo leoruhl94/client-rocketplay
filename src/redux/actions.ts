@@ -1,22 +1,18 @@
 import axios from "axios";
-import { URL_BASE } from "../constants/constants";
+import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "../constants/constants";
 
-export const CHANGE_PROFILE = "CHANGE_PROFILE";
-export const LOGOUT = "LOGOUT";
-export const REFRESH_PROFILE = "REFRESH_PROFILE";
-export const PRICING_SELECT = "PRICING_SELECT";
-export const GET_PLANS = "GET_PLANS";
+
 
 interface User {
-  email?:String, 
-  name?:String,
-  pic?:String
+  email?: String;
+  name?: String;
+  pic?: String;
 }
 interface AuthContextI {
-  user?:User, 
-  isLogged?:any,
-  login?:any,
-  logout?:any
+  user?: User;
+  isLogged?: any;
+  login?: any;
+  logout?: any;
 }
 export function getPlans() {
   return async (dispatch) => {
@@ -40,10 +36,10 @@ export function pricingSelect(value) {
   };
 }
 
-export function refresh(info, tok=false) {
+export function refresh(info, tok = false) {
   return async (dispatch) => {
     let user = info;
-    if(tok){
+    if (tok) {
       const data = await axios.get(
         `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${info.data.data.id_token}`
       );
@@ -52,43 +48,94 @@ export function refresh(info, tok=false) {
         pic: data.data.picture,
         email: data.data.email,
       };
-      user = userGoogle
+      user = userGoogle;
     }
-    dispatch({ type: REFRESH_PROFILE, payload: { name: user.name, pic: user.pic } });
+    dispatch({
+      type: REFRESH_PROFILE,
+      payload: { name: user.name, pic: user.pic },
+    });
   };
 }
 
 export function loginRegister(tokens, keepSession, auth) {
-    return async (dispatch) => {
-         
-      if (keepSession) {
-        localStorage.setItem("tok", JSON.stringify(tokens));
-      } else {
-        sessionStorage.setItem("tok", JSON.stringify(tokens));
-      }
-      const user = await auth?.login(tokens.data.data.id_token);
-     
-      axios.post(`${URL_BASE}/v2/users`, {
-        isBusiness: false,
-        name: user.name,
-        email: user.email,
-      })
+  return async (dispatch) => {
+    if (keepSession) {
+      localStorage.setItem("tok", JSON.stringify(tokens));
+    } else {
+      sessionStorage.setItem("tok", JSON.stringify(tokens));
     }
+    const user = await auth?.login(tokens.data.data.id_token);
+
+    axios.post(`${URL_BASE}/users`, {
+      isBusiness: false,
+      name: user.name,
+      email: user.email,
+    });
+  };
 }
 export function refreshProfile(user) {
-    return {
-      type: REFRESH_PROFILE,
-      payload: { name: user.name, pic: user.pic },
-    }
+  return {
+    type: REFRESH_PROFILE,
+    payload: { name: user.name, pic: user.pic },
+  };
 }
-
 
 export function Logout(history, auth) {
   localStorage.clear();
   sessionStorage.clear();
-  auth?.logout()
+  auth?.logout();
   history.push("/login");
   return (dispatch) => {
     dispatch({ type: LOGOUT, payload: null });
+  };
+}
+
+// Complete: Puedo agregar categorías
+export function postCategory(data) {
+  async function postInBack() {
+    // TODO: Mandarlo al backEnd
+    // const categoryData = await axios.post()
+  }
+
+  let obj = {
+    title: data,
+    videos: 0,
+  };
+
+  return (dispatch) => {
+    dispatch({ type: POST_CATEGORY, payload: obj });
+  };
+}
+
+// Complete: Debe eliminar categorías
+export function truncateCategory(data) {
+  async function postInBack() {
+    // TODO: Mandarlo al backEnd
+    // const categoryData = await axios.post()
+  }
+
+  // Le pasamos el nombre completo para hacer un filter
+  return (dispatch) => {
+    dispatch({ type: TRUNCATE_CATEGORY, payload: data });
+  };
+}
+
+// Complete: Debe actualizar categorías
+export function putCategory(data, newData) {
+  async function postInBack() {
+    // TODO: Mandarlo al backEnd
+    // A la ruta del backEnd -> nombreSchema, oldTitle, newTitle
+    // const categoryData = await axios.post()
+  }
+
+  // Se va para el reducer
+  let obj = {
+    title: data,
+    newTitle: newData,
+  };
+
+  // Le pasamos el nombre completo para hacer un filter
+  return (dispatch) => {
+    dispatch({ type: PUT_CATEGORY, payload: obj });
   };
 }

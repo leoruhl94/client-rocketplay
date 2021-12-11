@@ -33,22 +33,27 @@ function AuthProvider({ children }) {
     tokens && contextValue.login(tokens.data.data.id_token);
   }, []);
 
-  console.log("USER authProv ", user);
+  // console.log("USER authProv ", user);
   const contextValue: any = {
     user,
     async login(token) {
-        console.log("ENTRE LOGIN AUTH ", token)
+      // console.log("ENTRE LOGIN AUTH ", token)
+      try {
         let res = await axios.get(
-            `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
         );
         const user = {
-            name: res?.data.name,
-            pic: res?.data.picture,
-            email: res?.data.email,
+          name: res?.data.name,
+          pic: res?.data.picture,
+          email: res?.data.email,
         };
         setUser(user);
         dispatch(refreshProfile(user));
         return user;
+      } catch (error) {
+        console.log("token invalido")
+        console.log(error)
+      }
     },
     logout() {
       setUser(null);

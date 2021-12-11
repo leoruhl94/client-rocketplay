@@ -1,3 +1,5 @@
+//Styles
+import "./Logins.scss";
 //Libraries
 import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
@@ -6,16 +8,10 @@ import axios from "axios";
 import GoogleLogin from "react-google-login";
 
 //Components
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
 import { Icon } from "../../components/Icon/Icon";
 import { useAuth } from "../../auth/useAuth";
-
 //Redux
 import { loginRegister } from "../../redux/actions";
-
-//Styles
-import "./Logins.scss";
-
 //constantes
 import { CLIENT_ID, COOKIES_POLICY, URL_BASE } from "../../constants/constants";
 import { storeState } from "src/redux/type";
@@ -33,7 +29,7 @@ export const Logins: React.FC = () => {
       if (plan && lastRoute === "/pricing") history.push("/payment");
       else history.push("/home");
     }
-    console.log(auth?.isLogged(), ">>>>>>>>>>>>>>>>>")
+    console.log(auth?.isLogged(), ">>>>>>>")
   },[auth?.isLogged()])
 
   async function responseGoogle(googleUser) {
@@ -105,7 +101,6 @@ export const Logins: React.FC = () => {
         </label>
       </div>
 
-      <NavigationMobile />
     </div>
   );
 };

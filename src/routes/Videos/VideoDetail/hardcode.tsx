@@ -1,24 +1,5 @@
-// Hardcode para poder mostrarlo
 
 // ----------------------------------------------------------------------
-// Lo que tendrán los videos
-export interface Videos {
-    id : string,
-    description : string,
-    categories : [{ id: number, name: string}],
-    
-
-}
-// ----------------------------------------------------------------------
-// Lo que tendrán los comentarios
-export interface Comments {
-    name : string,
-    authorId : string,    // Quién realizó el comentario
-    description : string, // El comentario en si
-    // asociated video - Muestra el id del video al que se comentó
-    createdAt : string // El día en que se publicó
-}
-
 
 export interface CommentsYT {/* Un video de youtube tiene descripción y datos del autor*/ 
     name : string,
@@ -26,13 +7,39 @@ export interface CommentsYT {/* Un video de youtube tiene descripción y datos d
     authorChannelUrl : string,
     textDisplay : string,
     publishedAt : string
-
+    
 }
 
-// Creo que serían los que tienen los autores
-export interface Author {
-    id : string,
+// Vimeo section --------------------------------
+// Los videos de vimeo
+export interface VimeoInt {
+    created_time : string,
+    description : string,
+    metadata: { comments : string, credits : string, likes : string, pictures : string },
     name : string,
-    description : string
-    iamge : string
+    user : {
+        name : string,
+        createdTime : string,
+        link : string,
+        location : string,
+        gender : string,
+        pictures : string,
+        uri : string
+    }
+} 
+
+export interface CommentsVimeo {
+    uri : string,
+    text : string,
+    created_on : string,
+    link : string,
+    user : {
+        uri: string,
+        name : string,
+        link : string,
+        pictures : {
+            base_link : string
+        }
+    }
+
 }

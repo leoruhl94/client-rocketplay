@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Yatra+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Yatra+One&display=swap");
 @import "./variables.scss";
 
 body {
-    font-family: 'Ubuntu Condensed', 'Yatra One', sans-serif;
-    background: $mainBackground;
+  font-family: "Ubuntu Condensed", "Yatra One", sans-serif;
+  background: $mainBackground;
 }
+.display__none{
+    display: none !important;
+}
+
+
+
+
+  

@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./VideoForm.scss";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 import { URL_BASE } from "../../constants/constants";
 import { Icon } from "../../components/Icon/Icon";
 import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
 import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
-
 
 // Interfaces
 
@@ -196,11 +195,6 @@ export const VideoForm: React.FC = () => {
   }
 
   return (
-    // TODO: Estilización de la creación de videos .....
-    // TODO: Proponer el popUp Component .....
-    // Avatar - Autor - Descripcion - UUID (video) - Link AWS - Titulo video - Likes -
-    // Canal - Categorias de ese canal - tags 
-
 
     <article className="Video__container-main animated fadeIn fast">
       <SuccessWnd text="Successfully Uploaded"/>
@@ -355,7 +349,6 @@ export const VideoForm: React.FC = () => {
         </form>
         {/* ..... ..... ..... ..... */}
         
-        <NavigationMobile />
       </section>
     </article>
     // TODO: Control de errores debería llegar al front

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile"
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation"
 import {Link} from "react-router-dom";
 import './Categories.scss'
@@ -24,7 +23,7 @@ export const Categories: React.FC<Props> = ({channel}) => {
                     </Link>
                 )}
             </div>
-            <NavigationMobile back="/home"/>
+
         </div>
     )
 }
