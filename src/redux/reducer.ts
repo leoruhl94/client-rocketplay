@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "./actions"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "../constants/constants"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer

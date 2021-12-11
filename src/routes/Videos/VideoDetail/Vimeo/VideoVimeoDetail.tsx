@@ -11,7 +11,6 @@ import { CommentsYT, VimeoInt } from '../hardcode';
 
 // Extras
 import { Icon } from '../../../../components/Icon/Icon';
-import { NavigationMobile } from '../../../../containers/NavigationMobile/NavigationMobile';
 
 
 // ..... Componente principal del archivo .....
@@ -166,7 +165,6 @@ export const VideoVimeoDetail: React.FC = () => {
         {/* ... End of frame section ... */}
         {/* Unlisted: Mostrar back button */}
       </section>
-      <NavigationMobile/> 
     </article>
   );
 };

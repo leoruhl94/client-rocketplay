@@ -14,14 +14,16 @@ export const Workspaces: React.FC = () => {
   const [add, setAdd] = useState(false);
 
   function handleAdd() {
-    setAdd(!add);
+   
   }
-
+ function handleFind() {
+   
+ }
   return (
     <div>
       <NavProfileAndLocation />
       {/* <ChannelNotFound/> */}
-      <AddChannel dep={add} handleAdd={handleAdd} />
+      {/* <AddChannel dep={add} handleAdd={handleAdd} />
       <div className="singleChannelSuperContainer">
         <div className="singleChannel-outer-div">
           <SingleChannel channel="Workspace 1" />
@@ -32,11 +34,11 @@ export const Workspaces: React.FC = () => {
             <h4>Join a Workspace </h4>
             <button onClick={handleAdd}>+</button>
           </div>
-        </div>
+        </div> */}
         {/* <Link to="/createVids">
                     <button >Crear un video</button>
                     </Link> */}
-      </div>
+      {/* </div> */}
     </div>
   );
 };

@@ -1,14 +1,7 @@
 import axios from "axios";
-import { URL_BASE } from "../constants/constants";
+import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "../constants/constants";
 
-export const CHANGE_PROFILE = "CHANGE_PROFILE";
-export const LOGOUT = "LOGOUT";
-export const REFRESH_PROFILE = "REFRESH_PROFILE";
-export const PRICING_SELECT = "PRICING_SELECT";
-export const GET_PLANS = "GET_PLANS";
-export const POST_CATEGORY = "POST_CATEGORY";
-export const TRUNCATE_CATEGORY = "TRUNCATE_CATEGORY";
-export const PUT_CATEGORY = "PUT_CATEGORY";
+
 
 interface User {
   email?: String;
