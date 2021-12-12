@@ -21,8 +21,9 @@ interface User {
   email?: String;
   name?: String;
   pic?: String;
-  workspaces?: string[];
+  workspaces?: string[]  | null;
   subscriptions?: sub[]
+  isBusiness?: Boolean
 }
 
 function AuthProvider({ children }) {
@@ -55,7 +56,8 @@ function AuthProvider({ children }) {
           pic: res?.data.picture,
           email: res?.data.email,
           workspaces: dbUserInfo?.data.workspaces,
-          subscriptions: dbUserInfo?.data.subscriptions.map(s => {return {id: s.id, status: s.status}})
+          subscriptions: dbUserInfo?.data.subscriptions.map((s:sub) => {return {id: s.id, status: s.status}}),
+          isBusiness: dbUserInfo?.data.isBusiness
         };
         setUser(user);
         dispatch(refreshProfile(user));

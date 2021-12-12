@@ -14,15 +14,9 @@ import { URL_BASE } from "../../constants/constants";
 import { useAuth } from "../../auth/useAuth";
 
 export const Workspaces: React.FC = () => {
-  
   const [add, setAdd] = useState(false);
-  const auth = useAuth()
-  
-  const getWorkspaces = async () => {
-    let foundUser = await axios.get(`${URL_BASE}/users`, {params:{email:auth?.user?.email}})
-    console.log(foundUser.data)
-  }
-  getWorkspaces()
+  const auth = useAuth();
+
   function handleAdd() {
     setAdd(!add);
   }
@@ -32,12 +26,17 @@ export const Workspaces: React.FC = () => {
       <NavProfileAndLocation />
       <section className="Workspaces__container">
         <div className="Workspaces__list">
-          <h2 className="Workspaces__title">You do not belong to a workspace yet</h2>
+          <h2 className={`Workspaces__title ${auth?.user?.workspaces ? "": "display__none"}`}>
+            You do not belong to a workspace yet
+          </h2>
           <AddChannel dep={add} handleAdd={handleAdd} />
           <div className="Workspaces__button_container">
+            
             <button className="Workspaces__button" onClick={handleAdd}>
-            Join a Workspace
-              <span className="Workspaces__button_icon"><Icon svg="plusCircle" /></span>
+              Join a Workspace
+              <span className="Workspaces__button_icon">
+                <Icon svg="plusCircle" />
+              </span>
             </button>
           </div>
         </div>
