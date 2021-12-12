@@ -17,7 +17,6 @@ interface props{
 export const Workspaces: React.FC<props> = ({transition}) => {
   const [add, setAdd] = useState(false);
   const auth = useAuth();
-  console.log('transition workspace: ',transition)
 
   function handleAdd() {
     setAdd(!add);

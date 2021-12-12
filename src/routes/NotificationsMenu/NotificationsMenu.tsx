@@ -12,7 +12,7 @@ interface props{
 export const NotificationsMenu: React.FC<props> = ({transition}) => {
     const { notifications } = useSelector((state: storeState) => state)
     const dispatch = useDispatch()
-    console.log('transition notifications: ',transition)
+
     useEffect(() => {
         dispatch(readNotifications())
     },[])

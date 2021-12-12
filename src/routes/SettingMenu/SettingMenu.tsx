@@ -8,7 +8,7 @@ interface props{
     transition: any;
   } 
 export const SettingMenu: React.FC<props> = ({transition}) => {
-    console.log(transition)
+
     return(
         <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}>
                 <h1>HOLA MUNDO</h1>

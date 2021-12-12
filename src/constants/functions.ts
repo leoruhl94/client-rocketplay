@@ -50,28 +50,40 @@ export function pageTransition (dir){
     if(dir==='left'){
         pageTransition = {
             in: {
-                x: 0
+                x: 0,
+                position: 'fixed',
+                width: '100%'
             },
             out: {
-                x: '-100%'
+                x: '-100%',
+                position: 'fixed',
+                width: '100%'
             }
         }
     }else if(dir==='right'){
         pageTransition = {
             in: {
-                x: 0
+                x: 0,
+                position: 'fixed',
+                width: '100%'
             },
             out: {
-                x: '100%'
+                x: '100%',
+                position: 'fixed',
+                width: '100%'
             }
         }
     }else{
         pageTransition = {
             in: {
-                x: 0
+                x: 0,
+                position: 'fixed',
+                width: '100%'
             },
             out: {
-                x: '-100%'
+                x: 0,
+                position: 'fixed',
+                width: '100%'
             }
         }
     }
