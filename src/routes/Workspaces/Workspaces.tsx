@@ -39,14 +39,7 @@ export const Workspaces: React.FC = () => {
       <AddChannel dep={add} handleAdd={handleAdd} />
       <section className="Workspaces__container">
         <div className="Workspaces__list">
-<<<<<<< HEAD
           <h2 className="Workspaces__title">You do not belong to a workspace yet</h2>
-=======
-          <h2 className={`Workspaces__title ${auth?.user?.workspaces ? "": "display__none"}`}>
-            You do not belong to a workspace yet
-          </h2>
-          <AddChannel dep={add} handleAdd={handleAdd} />
->>>>>>> 28b07a90b8e4e298afd3aa22fe26b0fad559ec0b
           <div className="Workspaces__button_container">
             
             <button className="Workspaces__button" onClick={handleAdd}>
