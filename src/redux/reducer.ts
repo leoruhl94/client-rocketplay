@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "../constants/constants"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS } from "../constants/constants"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -13,7 +13,8 @@ const initialState: storeState = {
     profile: {name: 'Not logged in', pic: ''},
     plan: '',
     plans: [],
-    categories : []
+    categories : [],
+    notifications : []
   }
 
   /*                  // {
@@ -74,9 +75,16 @@ const reducer = (
           }
         })
 
+        
         return {
+          ...state,
+          categories : newArr
+        }
+        
+        case POST_NOTIFICATIONS :
+          return {
             ...state,
-            categories : newArr
+            notifications : [...state.notifications, action.payload]
           }
     }
     return state

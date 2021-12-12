@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY } from "../constants/constants";
+import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS } from "../constants/constants";
 
 
 
@@ -138,4 +138,14 @@ export function putCategory(data, newData) {
   return (dispatch) => {
     dispatch({ type: PUT_CATEGORY, payload: obj });
   };
+}
+
+
+//Notifications
+
+export function postNotifications(data){
+
+  return (dispatch) => {
+    dispatch({ type: POST_NOTIFICATIONS, payload : data })
+  }
 }

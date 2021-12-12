@@ -35,13 +35,18 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   }
   
   const handleOnUpdateSubscriptions = async( value:String ) =>{
-    
+    console.log(value);
     let res = await axios.put(`${URL_BASE}/subscriptions`,{
       email: auth?.user?.email,
       status: value
     })
 
     console.log(res.data)
+  }
+  const handleDestroyAllSchemas = async( value:String ) =>{
+    
+    let res = await axios.get(`${URL_BASE}/deleteall`)
+
   }
 
   return (
@@ -94,6 +99,13 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         route="/uploadvideo"
         text='Upload Video'
         classes='profileWnd__cancelSub'
+      />
+       <SuperButton
+        name='destroySchemas'
+        value="destroyed"
+        text='Destroy'
+        classes='profileWnd__cancelSub'
+        handler={handleOnUpdateSubscriptions}
       />
       {/* <div className="profileWnd__cambiar">
         <Link to="/payment"> Get a Business Account</Link>

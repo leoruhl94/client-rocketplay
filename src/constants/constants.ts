@@ -19,6 +19,10 @@ export const POST_CATEGORY = 'POST_CATEGORY'
 export const TRUNCATE_CATEGORY = 'TRUNCATE_CATEGORY'
 export const PUT_CATEGORY = 'PUT_CATEGORY'
 
+
+// NOTIFICATIONS
+export const POST_NOTIFICATIONS = 'POST_NOTIFICATIONS'
+
 export function styleVar(vars: any) {
     const cssVars: CSS.Properties = {};
     if (typeof vars === "object") {
