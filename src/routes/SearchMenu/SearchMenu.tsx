@@ -2,14 +2,17 @@ import React from "react";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
 import './SearchMenu.scss'
+import { motion } from "framer-motion";
 
-
-export const SearchMenu: React.FC = () => {
+interface props{ 
+    transition: any;
+  } 
+export const SearchMenu: React.FC<props> = ({transition}) => {
     
     return(
-        <MenuToggleContainer>
+        <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}>
             <SearchBar/>
             <h1>HOLA MUNDO</h1>
-        </MenuToggleContainer>
+        </motion.div>
      )
 }

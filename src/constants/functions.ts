@@ -43,3 +43,37 @@ export function testFunction(){
     });
     setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
 }
+
+export function pageTransition (dir){
+    let pageTransition:any = {}
+    
+    if(dir==='left'){
+        pageTransition = {
+            in: {
+                x: 0
+            },
+            out: {
+                x: '-100%'
+            }
+        }
+    }else if(dir==='right'){
+        pageTransition = {
+            in: {
+                x: 0
+            },
+            out: {
+                x: '100%'
+            }
+        }
+    }else{
+        pageTransition = {
+            in: {
+                x: 0
+            },
+            out: {
+                x: '-100%'
+            }
+        }
+    }
+    return pageTransition
+}

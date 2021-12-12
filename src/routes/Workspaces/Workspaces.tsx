@@ -6,22 +6,29 @@ import { AddWorkspace } from "./AddWorkspace/AddWorkspace";
 import { Icon } from "../../components/Icon/Icon";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
+import { pageTransition } from "../../constants/functions";
+import { motion } from "framer-motion";
 
 import { useAuth } from "../../auth/useAuth";
 
-export const Workspaces: React.FC = () => {
+interface props{ 
+  transition: any;
+} 
+export const Workspaces: React.FC<props> = ({transition}) => {
   const [add, setAdd] = useState(false);
   const auth = useAuth();
+  console.log('transition workspace: ',transition)
 
   function handleAdd() {
     setAdd(!add);
   }
-  console.log("--", auth?.user?.workspaces);
+  //console.log("--", auth?.user?.workspaces);
   function handleFind() {}
-  return (
-    <>
-      <NavProfileAndLocation />
-      <AddWorkspace dep={add} handleAdd={handleAdd} />
+
+  return (<>
+    <AddWorkspace dep={add} handleAdd={handleAdd} />
+    <NavProfileAndLocation />
+    <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}> 
       <section className="Workspaces__container">
         <div className="Workspaces__list">
           <h2
@@ -54,9 +61,10 @@ export const Workspaces: React.FC = () => {
           </div>
         </div>
       </section>
+    </motion.div>
     </>
-  );
-};
+  )
+}
 
 import "./WorkspaceItem.scss";
 import { Link } from "react-router-dom";
