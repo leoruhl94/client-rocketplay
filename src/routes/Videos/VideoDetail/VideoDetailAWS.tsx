@@ -25,6 +25,7 @@ interface commentsObj {
     videoId: number;
     schemaName: string;
     timestamp: string;
+    memberId: number;
 }
 
 export const VideoDetailAWS: React.FC = () => {
@@ -93,8 +94,20 @@ export const VideoDetailAWS: React.FC = () => {
         
     }, [])
 
+    const [input, setInput] = useState("")
+
+    const handleInput = (e) => {
+        setInput(e.target.value)
+    }
+
     const handleCommentSubmit = (e) => {
         e.preventDefault()
+        axios.post(`${URL_BASE}/comments`, {
+            schemaName: params.schema,
+            description: input,
+            videoId: videoData.videoId,
+            memberId: 2
+        }).then(r => alert(r.data.message))
     }
 
     return (
@@ -132,7 +145,7 @@ export const VideoDetailAWS: React.FC = () => {
             <div className="awsDetail-comments-super-container">
                 <div className="awsDetail-postcomment-container">
                     <form onSubmit={handleCommentSubmit}>
-                        <input type="text" id="post-comment" className="awsDetail-postcomment-input" placeholder="Post a comment..."/>
+                        <input type="text" id="post-comment" className="awsDetail-postcomment-input" placeholder="Post a comment..." onChange={handleInput} value={input}/>
                         <button type="submit" className="awsDetail-postcomment-button">Submit Comment</button>
                     </form>
                 </div>
@@ -141,7 +154,7 @@ export const VideoDetailAWS: React.FC = () => {
                         commentData.length > 0 ?
                         commentData.map(el => {
                             return (
-                                <div className="awsDetail-single-comment">
+                                <div className="awsDetail-single-comment" key={el.commentId}>
                                     <h4 className="awsDetail-comment-author">{el.memberName}</h4>
                                     <p className="awsDetail-comment-p">{el.text}</p>
                                 </div>
