@@ -25,15 +25,19 @@ export const PreApproval: React.FC = () => {
     });
     console.log('response postSubscriptions >>>>',response);
     setSuccess(true)
+    // history.push("/home")
   };
   if (!!auth?.user?.email && !!id) {
     postSubscriptions();
   }
-  console.log("Preapproval",auth?.user?.email, id)
+  console.log("Preapproval ____",auth?.user, id)
   
   // useEffect(() => {
-    //    history.push("/home");
-    // }, [res.message]);
+  //   console.log("ENTRE AQUI")
+  //   if (!!auth?.user?.email && !!id) {
+  //     postSubscriptions();
+  //   }
+  //   }, []);
     
     
     return (

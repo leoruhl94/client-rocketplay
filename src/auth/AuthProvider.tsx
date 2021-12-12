@@ -47,43 +47,77 @@ function AuthProvider({ children }) {
     user,
     async login(token) {
       // console.log("ENTRE LOGIN AUTH ", token)
+      let userLogged: User = {};
       try {
         let res = await axios.get(
           `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
         );
-        // const dbUserInfo = await axios.get(`${URL_BASE}/users`, {params:{email:res?.data.email}})
+        dispatch(
+          refreshProfile({
+            name: res?.data.name,
+            email: res?.data.email,
+            pic: res?.data.picture,
+          })
+        );
+        console.log("____res___", res?.data.email);
+        const userInfo = await axios.get(`${URL_BASE}/users`, {
+          params: { email: res?.data.email },
+        });
+        console.log("____db___", userInfo);
+        if (!userInfo.data) {
+          const userCreated = await axios.post(`${URL_BASE}/users`, {
+            isBusiness: false,
+            name: res?.data.name,
+            email: res?.data.email,
+          });
+
+          console.log("____userCreated___", userCreated);
+          userLogged = {
+            name: userCreated?.data.name,
+            pic: res?.data.picture,
+            email: userCreated?.data.mail,
+            workspaces: userCreated?.data.workspaces,
+            workspacesTitles: userCreated?.data.workspacesTitles,
+            isBusiness: userCreated?.data.isBusiness,
+          };
+        } else {
+          userLogged = {
+            name: userInfo?.data.name,
+            pic: res?.data.picture,
+            email: userInfo?.data.mail,
+            workspaces: userInfo?.data.workspaces,
+            workspacesTitles: userInfo?.data.workspacesTitles,
+            subscriptions: userInfo?.data.subscriptions.map((s: sub) => {
+              return { id: s.id, status: s.status };
+            }),
+            isBusiness: userInfo?.data.isBusiness,
+          };
+          // setUser(user);
+        }
+        console.log("____db___", userInfo);
         // const user = {
         //   name: res?.data.name,
         //   pic: res?.data.picture,
         //   email: res?.data.email,
-        //   workspaces: dbUserInfo?.data.workspaces,
-        //   subscriptions: dbUserInfo?.data.subscriptions.map((s:sub) => {return {id: s.id, status: s.status}}),
-        //   isBusiness: dbUserInfo?.data.isBusiness
         // };
-        const user = {
-          name: res?.data.name,
-          pic: res?.data.picture,
-          email: res?.data.email,
-        };
-        axios
-          .get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
-          .then((response)=>{
-            const user = {
-              name: res?.data.name,
-              pic: res?.data.picture,
-              email: res?.data.email,
-              workspaces: response?.data.workspaces,
-              workspacesTitles: response?.data.workspacesTitles,
-              subscriptions: response?.data.subscriptions.map((s: sub) => {
-                return { id: s.id, status: s.status };
-              }),
-              isBusiness: response?.data.isBusiness,
-            };
-            setUser(user);
-            dispatch(refreshProfile(user));
-          });
-        setUser(user);
-        dispatch(refreshProfile(user));
+        // axios
+        //   .get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
+        //   .then((response)=>{
+        //     const user = {
+        //       name: res?.data.name,
+        //       pic: res?.data.picture,
+        //       email: res?.data.email,
+        //       workspaces: response?.data.workspaces,
+        //       workspacesTitles: response?.data.workspacesTitles,
+        //       subscriptions: response?.data.subscriptions.map((s: sub) => {
+        //         return { id: s.id, status: s.status };
+        //       }),
+        //       isBusiness: response?.data.isBusiness,
+        //     };
+        //     setUser(user);
+        //     dispatch(refreshProfile(user));
+        //   });
+        setUser(userLogged);
         return user;
       } catch (error) {
         console.log("token invalido");
