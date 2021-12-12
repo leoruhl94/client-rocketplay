@@ -8,29 +8,40 @@ import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/Na
 import { Link } from "react-router-dom";
 import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
 import { Icon } from "../../components/Icon/Icon";
+import axios from "axios";
+import { URL_BASE } from "../../constants/constants";
+
+import { useAuth } from "../../auth/useAuth";
 
 export const Workspaces: React.FC = () => {
-  // useEffect(()=> {localStorage.setItem('lastRoute', '/home')}, [])
-
+  
   const [add, setAdd] = useState(false);
-
-  function handleAdd() {
-    setAdd(!add)
+  const auth = useAuth()
+  
+  const getWorkspaces = async () => {
+    let foundUser = await axios.get(`${URL_BASE}/users`, {params:{email:auth?.user?.email}})
+    console.log(foundUser.data)
   }
- function handleFind() {
-   
- }
+  getWorkspaces()
+  function handleAdd() {
+    setAdd(!add);
+  }
+  function handleFind() {}
   return (
     <>
       <NavProfileAndLocation />
-      <div className="Workspaces__container">
-
-        <div className="Workspaces__button_add">
-        Join a Workspace 
-        <button className="Workspaces__button_add" onClick={handleAdd} ><Icon svg="plusCircle"/></button>
-        </div >
-      </div>
-       <AddChannel dep={add} handleAdd={handleAdd} />
+      <section className="Workspaces__container">
+        <div className="Workspaces__list">
+          <h2 className="Workspaces__title">You do not belong to a workspace yet</h2>
+          <AddChannel dep={add} handleAdd={handleAdd} />
+          <div className="Workspaces__button_container">
+            <button className="Workspaces__button" onClick={handleAdd}>
+            Join a Workspace
+              <span className="Workspaces__button_icon"><Icon svg="plusCircle" /></span>
+            </button>
+          </div>
+        </div>
+      </section>
       {/* <ChannelNotFound/> */}
       {/*
       <div className="singleChannelSuperContainer">
