@@ -9,6 +9,7 @@ import { pageTransition } from "../../constants/functions";
 import { motion } from "framer-motion";
 
 import { useAuth } from "../../auth/useAuth";
+import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 
 interface props{ 
   transition: any;
@@ -24,6 +25,7 @@ export const Workspaces: React.FC<props> = ({transition}) => {
   function handleFind() {}
 
   return (<>
+    <NavProfileAndLocation></NavProfileAndLocation>
     <AddWorkspace dep={add} handleAdd={handleAdd} />
     <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}> 
       <section className="Workspaces__container">

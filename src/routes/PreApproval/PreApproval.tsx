@@ -25,6 +25,7 @@ export const PreApproval: React.FC = () => {
     });
     console.log('response postSubscriptions >>>>',response);
     setSuccess(true)
+    // history.push("/home")
   };
   console.log("Preapproval",auth?.user?.email, id)
   

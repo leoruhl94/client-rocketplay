@@ -92,9 +92,10 @@ const App: React.FC = () => {
         <PrivateRoute exact path="/uploadvideo" component={VideoForm}/>
         <PrivateRoute path="/videodetail/:id" component={VideoDetail}/>
         <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
-        <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/>
+        {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
         <PrivateRoute exact path="/notifications" component={NotificationsMenu} thisPage={4}/>
         <PrivateRoute exact path="/search" component={SearchMenu} thisPage={2}/>
+        <Route exact path="/settings" component={SettingMenu} />
 
         {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
         
