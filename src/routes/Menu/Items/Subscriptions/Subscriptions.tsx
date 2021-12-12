@@ -14,7 +14,7 @@ import { getDates } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
-import { SuperToast } from '../../../../components/Toast/SuperToast';
+import { SuperToast, testFunction } from '../../../../components/Toast/SuperToast';
 
 interface User {
   accessToken: string;
@@ -96,24 +96,14 @@ export const Subscriptions: React.FC = () => {
     // isBussiness : true
     console.log(res.data);
     setNotification(res.data.message)
-    testFunction()
+    // testFunction()
     dispatch(postNotifications(res.data))
   };
-
-  function testFunction(){
-    // Ya se muestra la palabra jajaja
-     let x = document.querySelectorAll("#snackbar");
-     x.forEach((i) => {
-       i.className = "show";
-     });
-     setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
-    //TODO: Agregar al redux notificaciones para mapear
-    
-  }
 
   // Returned
   return (
     <article className="Subs__main-article">
+      <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast>
       {/* ..... Subscription plan ..... */}
       <section className="">
         {/* ..... Subscriptions ..... */}
@@ -163,7 +153,7 @@ export const Subscriptions: React.FC = () => {
               Next payment day : 10/{getDates().month}/{getDates().year}
             </h3>
             <button onClick={testFunction} >Show Snackbar</button>
-            <div id="snackbar">{notification ? notification : 'This is a notification'}</div>
+            {/* <div id="snackbar">{notification ? notification : 'This is a notification'}</div> */}
           </div>
           <div className="Subs__functions-list">
             {/* <h3
