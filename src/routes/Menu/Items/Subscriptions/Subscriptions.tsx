@@ -14,6 +14,7 @@ import { getDates } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
+import { SuperToast } from '../../../../components/Toast/SuperToast';
 
 interface User {
   accessToken: string;
@@ -101,12 +102,13 @@ export const Subscriptions: React.FC = () => {
 
   function testFunction(){
     // Ya se muestra la palabra jajaja
-    let x = document.querySelectorAll("#snackbar");
-    x.forEach((i) => {
-      i.className = "show";
-    });
-    setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
+     let x = document.querySelectorAll("#snackbar");
+     x.forEach((i) => {
+       i.className = "show";
+     });
+     setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
     //TODO: Agregar al redux notificaciones para mapear
+    
   }
 
   // Returned
@@ -161,7 +163,7 @@ export const Subscriptions: React.FC = () => {
               Next payment day : 10/{getDates().month}/{getDates().year}
             </h3>
             <button onClick={testFunction} >Show Snackbar</button>
-            <div id="snackbar">{notification}</div>
+            <div id="snackbar">{notification ? notification : 'This is a notification'}</div>
           </div>
           <div className="Subs__functions-list">
             {/* <h3
@@ -175,7 +177,6 @@ export const Subscriptions: React.FC = () => {
               handleChecked={() => {handleOnUpdateSubscriptions('authorized')}}
               handleUnchecked={() => handleOnUpdateSubscriptions('paused')}
             ></SuperToggle>
-
             <h3
               onClick={(e) => popUpDanger(e, "Cancel")}
               className="Subs__margin-reset"
