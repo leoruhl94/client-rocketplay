@@ -6,3 +6,40 @@ export async function getGoogleData(token:String) {
       );
     return data.data
 }
+
+export const getDates = () => {
+  const fecha = new Date()
+  const day = fecha.getDate()
+  let monthly : number = 0
+
+  if(day < 10){
+      let month = fecha.getMonth() + 1
+      monthly = month
+  }else{
+      if(fecha.getMonth() < 10){
+          let monthTwo = fecha.getMonth() + 2 
+          monthly = monthTwo
+      }else{
+          let month = 1
+          monthly = month
+      }
+  }
+
+  const year = fecha.getFullYear()
+
+  return {
+      year : year,
+      month : monthly,
+      day : day
+  }
+}
+
+
+export function testFunction(){
+    // Ya se muestra la palabra jajaja
+    let x = document.querySelectorAll("#snackbar");
+    x.forEach((i) => {
+      i.className = "show";
+    });
+    setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
+}

@@ -1,4 +1,4 @@
-import { Categories } from '../routes/Menu/Items/Categories/hardcode';
+import { Categories, Notifications } from '../routes/Menu/Items/Categories/hardcode';
 export interface profile {
     name: string,
     pic: string
@@ -8,7 +8,8 @@ export interface profile {
     profile: profile,
     plan: string,
     plans: any[],
-    categories : Categories[]
+    categories : Categories[],
+    notifications : Notifications[]
   }
   
  export type storeAction = {
