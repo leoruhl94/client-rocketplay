@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Workspaces.scss";
 import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
-import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { AddWorkspace } from "./AddWorkspace/AddWorkspace";
 import { Icon } from "../../components/Icon/Icon";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
-import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
+import { pageTransition } from "../../constants/functions";
+import { motion } from "framer-motion";
+
 import { useAuth } from "../../auth/useAuth";
 
-export const Workspaces: React.FC = () => {
+interface props{ 
+  transition: any;
+} 
+export const Workspaces: React.FC<props> = ({transition}) => {
   const [add, setAdd] = useState(false);
   const auth = useAuth();
 
   function handleAdd() {
     setAdd(!add);
   }
-  console.log("--", auth?.user?.workspacesTitles);
+  //console.log("--", auth?.user?.workspaces);
   function handleFind() {}
-  return (
-    <>
-      <NavProfileAndLocation />
-            {/* <MenuToggleContainer> */}
 
-         
-      <AddWorkspace dep={add} handleAdd={handleAdd} />
+  return (<>
+    <AddWorkspace dep={add} handleAdd={handleAdd} />
+    <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}> 
       <section className="Workspaces__container">
         <div className="Workspaces__list">
           <h2
@@ -52,10 +53,10 @@ export const Workspaces: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* </MenuToggleContainer> */}
+    </motion.div>
     </>
-  );
-};
+  )
+}
 
 import "./WorkspaceItem.scss";
 import { Link } from "react-router-dom";

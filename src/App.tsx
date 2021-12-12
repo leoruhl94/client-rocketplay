@@ -38,6 +38,8 @@ import { Subscriptions } from "./routes/Menu/Items/Subscriptions/Subscriptions";
 import { SearchMenu } from "./routes/SearchMenu/SearchMenu";
 import { NotificationsMenu } from "./routes/NotificationsMenu/NotificationsMenu";
 import { SettingMenu } from "./routes/SettingMenu/SettingMenu";
+import { AnimatePresence, motion } from 'framer-motion'
+import { NavProfileAndLocation } from './containers/NavProfileAndLocation/NavProfileAndLocation'
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -60,31 +62,33 @@ const App: React.FC = () => {
     }
   }, [location]);
 
+  
   return (
-    <>
+    <><AnimatePresence>
+      <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation}></PrivateRoute>
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/about" component={AboutComponent} />
         <Route exact path="/about/:id" component={AboutDetailComponent} />
         <Route exact path="/pricing" component={PricingComponent} />
-        <PrivateRoute exact path="/payment" component={PaymentsPlans} />
+        <PrivateRoute exact path="/payment" component={PaymentsPlans} thisPage={1}/>
         <Route exact path="/preapproval" component={PreApproval} />
         <Route exact path="/paidrejection" component={PaidRejection} />
         <Route exact path="/login" component={Logins} />
-        <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
-        <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
+        <PrivateRoute exact path="/uploadvideo" component={VideoForm}/>
+        <PrivateRoute path="/videodetail/:id" component={VideoDetail}/>
         <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
-        <Route exact path="/settings" component={SettingMenu} />
-        <Route exact path="/notifications" component={NotificationsMenu} />
-        <Route exact path="/search" component={SearchMenu} />
+        <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/>
+        <PrivateRoute exact path="/notifications" component={NotificationsMenu} thisPage={4}/>
+        <PrivateRoute exact path="/search" component={SearchMenu} thisPage={2}/>
 
         {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
         
-        <PrivateRoute exact path="/home" component={Workspaces} />
+        <PrivateRoute exact path="/home" component={Workspaces} thisPage={3}/>
         {/* ...... Ruta Categories ..... */}
-        <PrivateRoute exact path="/home/:channel" component={Categories} />
+        <PrivateRoute exact path="/home/:channel" component={Categories} thisPage={3}/>
         {/* ...... Ruta Class ..... */}
-        <PrivateRoute exact path="/home/:channel/:class" component={Class} />
+        <PrivateRoute exact path="/home/:channel/:class" component={Class} thisPage={3}/>
 
         {/* ...... Ruta Menu Component ..... */}
         <Route exact path="/menu" component={MenuComponent} />
@@ -94,8 +98,9 @@ const App: React.FC = () => {
           exact
           path="/menu/categories/addcategory"
           component={AddCategory}
-        />
+          />
       </Switch>
+      </AnimatePresence>
       <NavigationMobileMagic />
     </>
   );

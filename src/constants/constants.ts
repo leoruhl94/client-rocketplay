@@ -23,6 +23,7 @@ export const PUT_CATEGORY = 'PUT_CATEGORY'
 // NOTIFICATIONS
 export const POST_NOTIFICATIONS = 'POST_NOTIFICATIONS'
 export const READ_NOTIFICATIONS = 'READ_NOTIFICATIONS'
+export const CHANGE_PAGE = 'CHANGE_PAGE'
 
 
 export function styleVar(vars: any) {

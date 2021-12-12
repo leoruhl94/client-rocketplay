@@ -9,7 +9,8 @@ export interface profile {
     plan: string,
     plans: any[],
     categories : Categories[],
-    notifications : Notifications[]
+    notifications : Notifications[],
+    page: number
   }
   
  export type storeAction = {

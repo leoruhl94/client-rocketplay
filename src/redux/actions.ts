@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS } from "../constants/constants";
+import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants";
 
 
 
@@ -153,5 +153,10 @@ export function readNotifications(){
 
   return (dispatch) => {
     dispatch({ type: READ_NOTIFICATIONS, payload : false })
+  }
+}
+export function changePage(n){
+  return (dispatch) => {
+    dispatch({ type: CHANGE_PAGE, payload : n })
   }
 }
