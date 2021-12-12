@@ -16,6 +16,7 @@ import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/Su
 import { postNotifications } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
 import { discovery_v1 } from "googleapis";
+import { Link } from "react-router-dom";
 
 interface User {
   accessToken: string;
@@ -41,8 +42,13 @@ export const Subscriptions: React.FC = () => {
   const plan: string = useSelector((state: storeState) => {
     return state.plan;
   });
+  
+  let usuario = auth?.user?.subscriptions
+  console.log(auth?.user?.subscriptions)
+
 
   let logged = auth?.isLogged() ? auth?.isLogged() : false;
+  
   console.log(logged);
   // TODO: Si no es de negocios no se muestra el toggle, el payment y el cancel.
 
@@ -118,10 +124,10 @@ export const Subscriptions: React.FC = () => {
           <section className="Subs__switcher-container">
             <div>
               <h2 className="Subs__margin-reset Subs__switcher-title">
-                Your current plan is :
+                Your plan id is :
               </h2>
               <p className="Subs__margin-reset Subs__switcher-name">
-                {plan.length > 0 ? plan : "Not logged"}
+                {usuario ? usuario[0].id : "Not logged"}
               </p>
             </div>
             {/* ..... Button ..... */}
@@ -144,11 +150,12 @@ export const Subscriptions: React.FC = () => {
             </h3>
           </div>
           <div className="Subs__functions-list">
-
+            <div className="Subs__toggle-list">
             <SuperToggle
               handleChecked={() => {handleOnUpdateSubscriptions('authorized')}}
               handleUnchecked={() => handleOnUpdateSubscriptions('paused')}
             ></SuperToggle>
+            </div>
             <h3
               onClick={(e) => popUpDanger(e, "Cancel")}
               className="Subs__margin-reset"
@@ -158,7 +165,15 @@ export const Subscriptions: React.FC = () => {
           </div>
         </div> 
         : 
-        <div className="Subs__div-details"><h3>You must be logged in to see options</h3></div>}
+        <div className="Subs__div-details">
+          <h3>You must be logged in to see options</h3>
+          {/* ..... TODO: Decoración CSS */}
+          <Link to="/login">
+            <div>
+            <h3>Log In / Sign Up</h3>
+            </div>
+          </Link>
+          </div>}
 
         <section className="Subs__popup Subs__popup-two">
           <div className="popup__normal-title">
