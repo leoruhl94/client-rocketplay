@@ -45,7 +45,7 @@ export const VideoForm: React.FC = () => {
   // Caja de variables
   const [user, setUser] = useState({});
   const [selectBool, setSelectBool] = useState(false);
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   const [input, setInput] = useState<Input>({
     file: null,
     title: "",

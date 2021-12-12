@@ -24,9 +24,6 @@ export const PrivateRoute: React.FC<Props> = ({component : Component, currPage=0
     const page = storagePage ? Number(storagePage) : undefined
     let transition //= (thisPage && page && thisPage !== page) ? ((page - thisPage > 0) ? 'left' : 'right') : undefined
     transition = (thisPage && page && thisPage !== page) ? ((page - thisPage > 0) ? 'left' : 'right') : undefined
-    console.log('thisPage: '+thisPage)
-    console.log('page: '+page)
-    console.log('transition: '+transition)
     useEffect(() => {
         //console.log(transition)
         sessionStorage.setItem('page',thisPage.toString())

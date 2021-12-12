@@ -47,6 +47,20 @@ const App: React.FC = () => {
   let location = useLocation();
   const auth = useAuth();
 
+  const itemLocal = localStorage.getItem("tok");
+  const itemSession = sessionStorage.getItem("tok");
+  let tokens = itemLocal
+  ? JSON.parse(itemLocal)
+  : itemSession
+  ? JSON.parse(itemSession)
+  : null;
+  
+  if(!auth?.isLogged()){
+    if(tokens){
+      auth?.login(tokens.data.data.id_token)
+    }
+  }
+
   useEffect(() => {
     //cargar los planes de pago en redux
     // const json = localStorage.getItem("lastRoute")
@@ -64,15 +78,15 @@ const App: React.FC = () => {
 
   
   return (
-    <><AnimatePresence>
-      <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation}></PrivateRoute>
+    !auth?.user && tokens ? <h1>cargando...</h1> : <><AnimatePresence>
+      <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation}/>
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/about" component={AboutComponent} />
         <Route exact path="/about/:id" component={AboutDetailComponent} />
         <Route exact path="/pricing" component={PricingComponent} />
         <Route exact path="/payment" component={PaymentsPlans}/>
-        <Route exact path="/preapproval" component={PreApproval} />
+        <PrivateRoute exact path="/preapproval" component={PreApproval} />
         <Route exact path="/paidrejection" component={PaidRejection} />
         <Route exact path="/login" component={Logins} />
         <PrivateRoute exact path="/uploadvideo" component={VideoForm}/>

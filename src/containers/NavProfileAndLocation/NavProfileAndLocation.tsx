@@ -17,7 +17,7 @@ export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) =>
         headerRoute = header
     }
     
-    return (
+    return (<>
         <nav className="channelsNav">
             <ul className="title">{`${headerRoute}`}</ul>
             <ul className="channelsNavUl ">
@@ -27,5 +27,7 @@ export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) =>
                 <ProfileWnd dep={wndProfile}/>
             </ul>
         </nav>
+        <div className="channelsNav__ocupaEspacio"></div>
+        </>
     )
 }

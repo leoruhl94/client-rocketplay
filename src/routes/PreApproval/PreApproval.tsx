@@ -26,14 +26,14 @@ export const PreApproval: React.FC = () => {
     console.log('response postSubscriptions >>>>',response);
     setSuccess(true)
   };
-  if (!!auth?.user?.email && !!id) {
-    postSubscriptions();
-  }
   console.log("Preapproval",auth?.user?.email, id)
   
-  // useEffect(() => {
-    //    history.push("/home");
-    // }, [res.message]);
+  useEffect(() => {
+      if (!!auth?.user?.email && !!id) {
+        postSubscriptions();
+      }
+      console.log('useEffect preApproval')
+    }, []);
     
     
     return (
