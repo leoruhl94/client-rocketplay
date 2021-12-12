@@ -1,13 +1,13 @@
 @import "../../../styles/variables.scss";
 
-.addChannel__blackScreen{
+.AddWorkspace__blackScreen{
     position: fixed;
     width: 100vw;
     height: 100vh;
     background: black;
     opacity: 50%;
 }
-.addChannel{
+.AddWorkspace{
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@
     right: 0;
     background: #22343C;
     transition: 0.2s;
-    .addChannel__container{
+    .AddWorkspace__container{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,13 +26,13 @@
         border-radius: 1rem;
         margin: 0 1rem;
         font-size: 1.2rem;
-        .addChannel__title{
+        .AddWorkspace__title{
             color: white;
             text-align: center;
             margin-top: 3rem;
             text-shadow: 1px 1px 3px black;
         }
-        .addChannel__form{
+        .AddWorkspace__form{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -42,10 +42,10 @@
                 box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
                 padding: 0.5rem 1rem;
             }
-            .addChannel__form-btns-cont{
+            .AddWorkspace__form-btns-cont{
                 display: flex;
                 justify-content: space-between;
-                .addChannel__form-btn{
+                .AddWorkspace__form-btn{
                     width: 40%;
                     padding: 15px;
                     outline: none;
@@ -57,7 +57,7 @@
                     cursor: pointer;
                 }
             }
-            .addChannel__result{
+            .AddWorkspace__result{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -67,16 +67,16 @@
                 color: white;
                 padding: 1rem 1.5rem;
                 border-radius: 10px;
-                .addChannel__result-icon-cont{
+                .AddWorkspace__result-icon-cont{
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-                    .addChannel__result-icon{
+                    .AddWorkspace__result-icon{
                         font-size: 3rem;
                         padding: 0 0.5rem;
                         padding-top: 7px;
                     }
-                    .addChannel__result-name{
+                    .AddWorkspace__result-name{
                         width: 140px;
                         font-size: 1.5rem;
                         overflow: hidden;
@@ -84,7 +84,7 @@
 		                text-overflow: ellipsis;
                     }
                 }
-                .addChannel__result-btn{
+                .AddWorkspace__result-btn{
                     width: 30%;
                     padding: 0.5rem;
                     background: rgb(231, 226, 226);;
@@ -99,7 +99,7 @@
                 }
             }
         }
-        .addChannel__inputs{
+        .AddWorkspace__inputs{
             outline: none;
             border: none;
             padding: 0.5rem 1rem;
@@ -107,26 +107,26 @@
         }
     }
 }
-.addChannel__dep{
+.AddWorkspace__dep{
     right: -100vw;
 }
 
 @media (min-width: 1024px){
-    .addChannel{
+    .AddWorkspace{
         width: 50%;
         align-items: center;
-        .addChannel__container{
+        .AddWorkspace__container{
             width: 90%;       
         }
     }
 }
 @media only screen and (max-width: $smallDevices) {
-    .addChannel__container{
-        .addChannel__form{
-            .addChannel__result{
+    .AddWorkspace__container{
+        .AddWorkspace__form{
+            .AddWorkspace__result{
                 flex-direction: column;
                 justify-content: flex-start;
-                .addChannel__result-btn{
+                .AddWorkspace__result-btn{
                     width: 100% !important;
                 }
             }

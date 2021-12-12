@@ -46,6 +46,6 @@ export const PreApproval: React.FC = () => {
   );
 };
 
-function async(arg0: () => React.FC) {
-  throw new Error("Function not implemented.");
-}
+// function async(arg0: () => React.FC) {
+//   throw new Error("Function not implemented.");
+// }
