@@ -26,6 +26,7 @@ export const Subscriptions: React.FC = () => {
   // Var box
 
   const dispatch = useDispatch()
+  const auth = useAuth();
   // Icono del dropdown
   const leftArrow = <Icon classes="Subs__icon" svg="crownIcn"></Icon>;
   // useStates
@@ -34,7 +35,6 @@ export const Subscriptions: React.FC = () => {
   const [ notification, setNotification] = useState('')
   const [pop, setPop] = useState("This will never shows");
   const [boolPopD, setBoolPopD] = useState(false);
-  const auth = useAuth();
 
   // Obtenemos los planes de subscripción
   const plan: string = useSelector((state: storeState) => {
@@ -49,12 +49,18 @@ export const Subscriptions: React.FC = () => {
     const planText = plan.length > 0 ? plan : "Not Logged";
     if (input === planText) {
       // Cerramos el popUp
+      
       popUpDanger(e, "Cancel");
       // TODO: Conectar la función para el backEnd así lo saca
     } else {
-      popUpDanger(e, "Cancel");
+      setNotification('Incorrect')
+      testFunction()
+      setInput('')
+      // popUpDanger(e, "Cancel");
     }
   }
+
+  // console.log(auth?.user);
 
   // Show 'Cancel Subscription' Popup
   function popUpDanger(e, status: string) {
@@ -78,6 +84,11 @@ export const Subscriptions: React.FC = () => {
     setBoolPopD(!boolPopD);
   }
 
+  function handleData(e){
+    setInput(e.target.value)
+    console.log(input);
+  }
+
   const handleOnUpdateSubscriptions = async (value: String) => {
     console.log(value);
     let res = await axios.put(`${URL_BASE}/subscriptions`, {
@@ -87,7 +98,8 @@ export const Subscriptions: React.FC = () => {
     // isBussiness : true
     console.log(res.data);
     setNotification(res.data.message)
-    // Sumamos la notificación a un array
+    // Sumamos la notificación a un array y  mandamos un toast
+    testFunction()
     dispatch(postNotifications(res.data))
   };
 
@@ -127,7 +139,6 @@ export const Subscriptions: React.FC = () => {
             <h3 className="Subs__margin-reset">
               Next payment day : 10/{getDates().month}/{getDates().year}
             </h3>
-            <button onClick={testFunction} >Show Snackbar</button>
           </div>
           <div className="Subs__functions-list">
 
@@ -149,7 +160,7 @@ export const Subscriptions: React.FC = () => {
             <h3>{pop}</h3>
           </div>
           <form onSubmit={handleUploadNormal}>
-            <input className="popup-normal-text" value={input} type="text" />
+            <input className="popup-normal-text" value={input} onChange={handleData} type="text" required />
             <p>
               If you're sure, type {plan.length > 0 ? plan : "Not logged"} to
               continue
