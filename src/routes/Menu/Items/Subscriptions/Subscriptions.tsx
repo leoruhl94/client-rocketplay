@@ -10,11 +10,11 @@ import axios from "axios";
 import { URL_BASE } from "../../../../constants/constants";
 
 //import { plans } from './SubsHardcode';
-import { getDates } from "../../../../constants/functions";
+import { getDates, testFunction } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
-import { SuperToast, testFunction } from '../../../../components/Toast/SuperToast';
+import { SuperToast } from '../../../../components/Toast/SuperToast';
 
 interface User {
   accessToken: string;
@@ -41,17 +41,10 @@ export const Subscriptions: React.FC = () => {
     return state.plan;
   });
 
-  // Complete: Subscriptions plan section
-  // Complete: The section must be yellow
-  // Complete: The section must contain a button that will change the suscription plan
-  // Unlisted: If the suscription plan upgrade, it will show 'overlay Continue change Plan'
-  // Unlisted: If the suscription plan downgrade, it will show 'Danger zone premium to standard'
-  // TODO: Si no es de negocios no se muestra.
-  // Complete: Data section
-  // Complete: The section must be a soft grey
+  // TODO: Si no es de negocios no se muestra el toggle, el payment y el cancel.
 
   function handleUploadNormal(e) {
-    // TODO: Función que almacena las cosas que pasarán si la persona acepta el popUp
+    // Complete: Función que almacena las cosas que pasarán si la persona acepta el popUp
     e.preventDefault();
     const planText = plan.length > 0 ? plan : "Not Logged";
     if (input === planText) {
@@ -62,8 +55,6 @@ export const Subscriptions: React.FC = () => {
       popUpDanger(e, "Cancel");
     }
   }
-
-  // Función utilizada para mostrar los planes
 
   // Show 'Cancel Subscription' Popup
   function popUpDanger(e, status: string) {
@@ -96,7 +87,7 @@ export const Subscriptions: React.FC = () => {
     // isBussiness : true
     console.log(res.data);
     setNotification(res.data.message)
-    // testFunction()
+    // Sumamos la notificación a un array
     dispatch(postNotifications(res.data))
   };
 
@@ -125,43 +116,20 @@ export const Subscriptions: React.FC = () => {
           </section>
 
           <section className="Subs__div-extra">
-            {/* {
-                         plans.map((x) => {
-                             return(
-                                 <div>
-                                     <h3>{x.name}</h3>
-                                 </div>
-                             )
-                         })
-                    } */}
+            {/* HERE: Se puede mapear planes para hacer dropdown */}
           </section>
         </div>
         <div className="Subs__div-details">
           <div className="Subs__details-headers">
             <h1 className="Subs__margin-reset">Credit Data</h1>
           </div>
-          {/* <div className="Subs__details-card">
-                    <Icon classes="Subs__details-icon-card" svg="credit_card"></Icon>
-                    <div>
-                        <h2>
-                        **** **** **** 0123
-                        </h2>
-                        </div>
-                </div> */}
           <div className="Subs__payment-date">
             <h3 className="Subs__margin-reset">
               Next payment day : 10/{getDates().month}/{getDates().year}
             </h3>
             <button onClick={testFunction} >Show Snackbar</button>
-            {/* <div id="snackbar">{notification ? notification : 'This is a notification'}</div> */}
           </div>
           <div className="Subs__functions-list">
-            {/* <h3
-              onClick={(e) => popUpDanger(e, "")}
-              className="Subs__margin-reset"
-            >
-              Pause subscription
-            </h3> */}
 
             <SuperToggle
               handleChecked={() => {handleOnUpdateSubscriptions('authorized')}}
@@ -189,20 +157,6 @@ export const Subscriptions: React.FC = () => {
             <input className="popup-danger-btn" type="submit" value="Delete" />
           </form>
         </section>
-
-        {/* 
-        ..... Popup Continue change plan ..... 
-        <section className="Subs__popup">
-        <div className="popup__normal-title">
-        <h3>You want to change your plan to PLAN_NAME, Are you sure?</h3>
-        </div>
-        <form onSubmit={handleUploadNormal}>
-        <input className="popup-normal-text" value={input} type="text" />
-        <p>If you're sure, type "Secure" to continue</p>
-        <input className="popup-normal-btn" type="submit" value="Change" />
-        </form>
-        </section>
-    */}
       </section>
     </article>
   );

@@ -33,3 +33,13 @@ export const getDates = () => {
       day : day
   }
 }
+
+
+export function testFunction(){
+    // Ya se muestra la palabra jajaja
+    let x = document.querySelectorAll("#snackbar");
+    x.forEach((i) => {
+      i.className = "show";
+    });
+    setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
+}

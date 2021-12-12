@@ -75,16 +75,16 @@ const reducer = (
           }
         })
 
+        
+        return {
+          ...state,
+          categories : newArr
+        }
+        
         case POST_NOTIFICATIONS :
-
           return {
             ...state,
             notifications : [...state.notifications, action.payload]
-          }
-
-        return {
-            ...state,
-            categories : newArr
           }
     }
     return state
