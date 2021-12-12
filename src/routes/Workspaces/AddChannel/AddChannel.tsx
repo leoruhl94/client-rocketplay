@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './AddChannel.scss'
-// import { Icon } from '../../Icon/Icon'
+import { Icon } from '../../../components/Icon/Icon'
 
 interface props{
     dep: boolean,
@@ -28,9 +28,9 @@ export const AddChannel: React.FC<props> = ({dep, handleAdd}) => {
                     </div>
                     {result ? <div className='addChannel__result'>
                         <div className='addChannel__result-icon-cont'>
-                            {/* <div className='addChannel__result-icon'><Icon svg='rocketColor'/></div> */}
+                            <div className='addChannel__result-icon'><Icon svg='rocketColor'/></div>
                             <span>{result}</span>
-                        </div>
+                        </div> 
                         <button type='button'>JOIN</button>
                     </div> : null}
                 </form>

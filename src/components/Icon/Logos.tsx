@@ -125,7 +125,7 @@ export const Logos = {
       <defs>
         <style>
           {
-            ".logoDarkColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.logoDarkColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.logoDarkColor-cls-3,.logoDarkColor-cls-6{fill:#354952;}.logoDarkColor-cls-4{opacity:0.3;}.logoDarkColor-cls-5,.logoDarkColor-cls-7{fill:#fff;}.logoDarkColor-cls-6,.logoDarkColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.logoDarkColor-cls-6{stroke-width:25px;}.logoDarkColor-cls-7{stroke-width:29px;}"
+            ".logoDarkColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.logoDarkColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.logoDarkColor-cls-3,.logoDarkColor-cls-6{fill:#354952;}.logoDarkColor-cls-4{fill:black;opacity:0.3;}.logoDarkColor-cls-5,.logoDarkColor-cls-7{fill:#fff;}.logoDarkColor-cls-6,.logoDarkColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.logoDarkColor-cls-6{stroke-width:25px;}.logoDarkColor-cls-7{stroke-width:29px;}"
           }
         </style>
         <linearGradient

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { Link } from "react-router-dom";
-import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
+import { AddChannel } from "./AddChannel/AddChannel";
 import { Icon } from "../../components/Icon/Icon";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
@@ -15,7 +15,7 @@ import { useAuth } from "../../auth/useAuth";
 
 export const Workspaces: React.FC = () => {
   
-  const [add, setAdd] = useState(false);
+  const [add, setAdd] = useState(true);
   const auth = useAuth()
   
   const getWorkspaces = async () => {
@@ -30,10 +30,10 @@ export const Workspaces: React.FC = () => {
   return (
     <>
       <NavProfileAndLocation />
+      <AddChannel dep={add} handleAdd={handleAdd} />
       <section className="Workspaces__container">
         <div className="Workspaces__list">
           <h2 className="Workspaces__title">You do not belong to a workspace yet</h2>
-          <AddChannel dep={add} handleAdd={handleAdd} />
           <div className="Workspaces__button_container">
             <button className="Workspaces__button" onClick={handleAdd}>
             Join a Workspace
