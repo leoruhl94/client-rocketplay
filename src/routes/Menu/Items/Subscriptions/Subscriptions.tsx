@@ -12,6 +12,7 @@ import { URL_BASE } from "../../../../constants/constants";
 //import { plans } from './SubsHardcode';
 import { getDates } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
+import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 
 interface User {
   accessToken: string;
@@ -40,7 +41,7 @@ export const Subscriptions: React.FC = () => {
   // Complete: The section must contain a button that will change the suscription plan
   // Unlisted: If the suscription plan upgrade, it will show 'overlay Continue change Plan'
   // Unlisted: If the suscription plan downgrade, it will show 'Danger zone premium to standard'
-
+  // TODO: Si no es de negocios no se muestra.
   // Complete: Data section
   // Complete: The section must be a soft grey
 
@@ -87,7 +88,7 @@ export const Subscriptions: React.FC = () => {
       email: auth?.user?.email,
       status: value,
     });
-
+    // isBussiness : true
     console.log(res.data);
   };
 
@@ -151,12 +152,11 @@ export const Subscriptions: React.FC = () => {
               Pause subscription
             </h3> */}
 
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
+            <SuperToggle
+              handleChecked={() => {handleOnUpdateSubscriptions('authorized')}}
+              handleUnchecked={() => handleOnUpdateSubscriptions('paused')}
+            ></SuperToggle>
 
-            {/* TODO: Si está pausada debe mostrar el activate */}
             <h3
               onClick={(e) => popUpDanger(e, "Cancel")}
               className="Subs__margin-reset"
@@ -165,11 +165,6 @@ export const Subscriptions: React.FC = () => {
             </h3>
           </div>
         </div>
-
-        <label className="switch">
-          <input type="checkbox" />
-          <span className="slider round"></span>
-        </label>
 
         <section className="Subs__popup Subs__popup-two">
           <div className="popup__normal-title">
