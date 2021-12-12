@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { Link } from "react-router-dom";
-import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
+
 
 export const Channels: React.FC = () => {
     
@@ -22,7 +22,7 @@ export const Channels: React.FC = () => {
         <div>
             <NavProfileAndLocation/>
             {/* <ChannelNotFound/> */}
-            <AddChannel dep={add} handleAdd={handleAdd}/>
+
                 <div className="singleChannelSuperContainer">
                     <div className="singleChannel-outer-div">
                         <SingleChannel channel='Channel 1'/>

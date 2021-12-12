@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import './AddChannel.scss'
+import './AddWorkspace.scss'
 import { Icon } from '../../../components/Icon/Icon'
 
 interface props{
     dep: boolean,
     handleAdd: any
 }
-export const AddChannel: React.FC<props> = ({dep, handleAdd}) => {
+export const AddWorkspace: React.FC<props> = ({dep, handleAdd}) => {
     const [search, setSearch] = useState('')
     const [result, setResult] = useState('Workspace')
     function handleSearch(e){

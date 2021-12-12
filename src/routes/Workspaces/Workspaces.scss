@@ -23,6 +23,7 @@
         color: rgba(255, 255, 255, 0.89);
         font-size: 2rem;
         text-align: center;
+        padding-bottom: 1rem;
     }  
     .Workspaces__button_container{
         .Workspaces__button{
@@ -34,12 +35,13 @@
             align-items: center;
             align-self: center;
             color: rgba(255, 255, 255, 0.89);
-            
+            font-size: 1.2rem;
+                   
             .Workspaces__button_icon{
                 margin-left: 5px;
                 font-size: 1.5rem;
                 // color: black;
-                color: 25C685;
+                color: #25C685;
             }
         }
     }
