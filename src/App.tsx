@@ -15,6 +15,8 @@ import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 import { VideoForm } from "./routes/Videos/VideoForm";
 import { PreApproval } from "./routes/PreApproval/PreApproval";
 import {VideoDetailAWS} from "./routes/Videos/VideoDetail/VideoDetailAWS";
+import { VideoFrameAWS } from "./routes/Videos/VideoFrame/VideoFrameAWS";
+import { ClassAWS } from "./routes/Clases/ClassAWS";
 
 // Navegación
 import { Route, Switch } from "react-router-dom";
@@ -28,6 +30,8 @@ import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
 import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
 import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
+import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
+import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
 
 const App: React.FC = () => {
     const dispatch = useDispatch() 
@@ -63,7 +67,11 @@ const App: React.FC = () => {
             <Route exact path="/login" component={Logins}/>
             <PrivateRoute exact path="/createvids" component={VideoForm}/>
             <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
-            <Route path="/videodetailaws/:id" component={VideoDetailAWS}/>
+            <Route path="/videodetailaws/:schema/:title" component={VideoDetailAWS}/>
+            <Route path="/videoframeaws/:category" component={VideoFrameAWS}/>
+            <Route exact path="/homeaws" component={ChannelsAWS}/>
+            <Route exact path="/homeaws/:channel" component={CategoriesAWS}/>
+            <Route exact path="/homeaws/:channel/:category" component={ClassAWS} />
 
 {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
