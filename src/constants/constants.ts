@@ -22,6 +22,8 @@ export const PUT_CATEGORY = 'PUT_CATEGORY'
 
 // NOTIFICATIONS
 export const POST_NOTIFICATIONS = 'POST_NOTIFICATIONS'
+export const READ_NOTIFICATIONS = 'READ_NOTIFICATIONS'
+
 
 export function styleVar(vars: any) {
     const cssVars: CSS.Properties = {};
