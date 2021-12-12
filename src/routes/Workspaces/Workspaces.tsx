@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { SingleChannel } from "../../components/ChannelComponents/Channels/SingleChannel";
-import { ChannelNotFound } from "../../components/ChannelComponents/ChannelNotFound/ChannelNotFound";
 import "./Workspaces.scss";
 import { useSelector } from "react-redux";
 import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
@@ -14,7 +13,6 @@ import { URL_BASE } from "../../constants/constants";
 import { useAuth } from "../../auth/useAuth";
 
 export const Workspaces: React.FC = () => {
-<<<<<<< HEAD
   
   const [add, setAdd] = useState(true);
   const auth = useAuth()
@@ -24,11 +22,6 @@ export const Workspaces: React.FC = () => {
     console.log(foundUser.data)
   }
   getWorkspaces()
-=======
-  const [add, setAdd] = useState(false);
-  const auth = useAuth();
-
->>>>>>> 28b07a90b8e4e298afd3aa22fe26b0fad559ec0b
   function handleAdd() {
     setAdd(!add);
   }
