@@ -5,10 +5,10 @@ import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
 import { pricingSelect } from "../../../redux/actions";
+import { PlanRatio } from "./PlanRatio";
 
 export const PaymentsPlans: React.FC = () => {
-  const { plan } = useSelector((state: storeState) => state);
-  const { plans } = useSelector((state: storeState) => state);
+  const { plan, plans } = useSelector((state: storeState) => state);
   const [input, setInput] = useState(plan ? plan : plans[0]?.name);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -40,6 +40,9 @@ export const PaymentsPlans: React.FC = () => {
       <div className="loginPlan">
         <h2 className="loginPlan__title">Choose your account plan</h2>
         <form onSubmit={handleSubmit} className="loginPlan__form">
+        {plans.map((x) => (
+          <PlanRatio plan={x}/>
+        ))}
           {plans.map((x) => (
             <div key={x.name} className="loginPlan__option-container">
               <input

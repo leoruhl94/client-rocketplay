@@ -71,7 +71,7 @@ const App: React.FC = () => {
         <Route exact path="/about" component={AboutComponent} />
         <Route exact path="/about/:id" component={AboutDetailComponent} />
         <Route exact path="/pricing" component={PricingComponent} />
-        <PrivateRoute exact path="/payment" component={PaymentsPlans} thisPage={1}/>
+        <Route exact path="/payment" component={PaymentsPlans}/>
         <Route exact path="/preapproval" component={PreApproval} />
         <Route exact path="/paidrejection" component={PaidRejection} />
         <Route exact path="/login" component={Logins} />
