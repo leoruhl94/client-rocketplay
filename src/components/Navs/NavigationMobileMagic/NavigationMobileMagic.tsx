@@ -4,10 +4,13 @@ import { Icon } from "../../Icon/Icon";
 import "./NavigationMobileMagic.scss";
 import { useLocation, useHistory } from "react-router";
 import { useAuth } from "../../../auth/useAuth";
+import { storeState } from "src/redux/type";
+import { useSelector } from "react-redux";
 export const NavigationMobileMagic: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const auth = useAuth();
+  const { notifications } = useSelector((state: storeState) => state);
 
   const handleOnclickHome = () => {
     console.log(location,auth?.isLogged());
@@ -18,7 +21,7 @@ export const NavigationMobileMagic: React.FC = () => {
     }
   };
   const handleDisplayMenu = (path) => {
-      history.push(`${path}`);
+      history.push(`/${path}`);
   };
   const handleGoBack = () => {
     if (location.pathname === "/home") {
@@ -76,7 +79,8 @@ export const NavigationMobileMagic: React.FC = () => {
             className="navigationMobileMagic__button"
           >
            <div>
-              <span className="navigationMobileMagic__icon">
+              <span className='navigationMobileMagic__icon'>
+                {notifications.find(x => x.readed === false) ? <span className='pendingNotification'/>:null}
                 <Icon svg="bellSolid" />
               </span>
             </div>

@@ -6,4 +6,5 @@ export interface Categories {
 export interface Notifications {
     message : string,
     status : string
+    readed : boolean
 }
