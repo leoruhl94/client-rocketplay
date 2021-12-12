@@ -13,6 +13,7 @@ export const AddWorkspace: React.FC<props> = ({dep, handleAdd}) => {
         e.preventDefault()
         setResult(search)
         console.log(search)
+        
     }
 
     return(<>
