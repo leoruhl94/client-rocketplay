@@ -1,7 +1,7 @@
 @import "../../styles/variables.scss";
 
 .Workspaces__container {
-  background-color: chartreuse;
+//   background-color: chartreuse;
   width: 100%;
   height: 100%;
   padding: 50px 0.5rem;
@@ -9,7 +9,9 @@
   //   background: $squareBackground;
   .Workspaces__list {
     margin: 0.5rem 0;
-    background-color: coral;
+    // background-color: coral;
+    background-color: 1F2E35;
+    box-shadow: 2px 3px 10px 0 black;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -23,13 +25,21 @@
         text-align: center;
     }  
     .Workspaces__button_container{
-        width: 100%;
-        text-align: center;
         .Workspaces__button{
             background: transparent;
+            // background-color: wheat;
+            border: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            align-self: center;
+            color: rgba(255, 255, 255, 0.89);
             
             .Workspaces__button_icon{
                 margin-left: 5px;
+                font-size: 1.5rem;
+                // color: black;
+                color: 25C685;
             }
         }
     }
