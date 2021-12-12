@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Workspaces.scss";
 import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
-import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { AddWorkspace } from "./AddWorkspace/AddWorkspace";
 import { Icon } from "../../components/Icon/Icon";
 import axios from "axios";
@@ -26,7 +25,6 @@ export const Workspaces: React.FC<props> = ({transition}) => {
 
   return (<>
     <AddWorkspace dep={add} handleAdd={handleAdd} />
-    <NavProfileAndLocation />
     <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}> 
       <section className="Workspaces__container">
         <div className="Workspaces__list">

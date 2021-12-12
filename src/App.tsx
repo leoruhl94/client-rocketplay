@@ -39,6 +39,7 @@ import { SearchMenu } from "./routes/SearchMenu/SearchMenu";
 import { NotificationsMenu } from "./routes/NotificationsMenu/NotificationsMenu";
 import { SettingMenu } from "./routes/SettingMenu/SettingMenu";
 import { AnimatePresence, motion } from 'framer-motion'
+import { NavProfileAndLocation } from './containers/NavProfileAndLocation/NavProfileAndLocation'
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const App: React.FC = () => {
   
   return (
     <><AnimatePresence>
-      <Route path="/" component={NavigationMobileMagic}></Route>
+      <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation}></PrivateRoute>
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/about" component={AboutComponent} />
