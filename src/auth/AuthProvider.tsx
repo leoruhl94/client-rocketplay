@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { refreshProfile } from "../redux/actions";
 import axios from "axios";
+import { URL_BASE } from "../constants/constants";
 
 export const AuthContext = createContext<AuthContextI | null>(null);
 
@@ -12,10 +13,16 @@ interface AuthContextI {
   login?: any;
   logout?: any;
 }
+interface sub{
+  id?: string;
+  status?: string;
+}
 interface User {
   email?: String;
   name?: String;
   pic?: String;
+  workspaces?: string[];
+  subscriptions?: sub[]
 }
 
 function AuthProvider({ children }) {
@@ -42,10 +49,13 @@ function AuthProvider({ children }) {
         let res = await axios.get(
           `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
         );
+        const dbUserInfo = await axios.get(`${URL_BASE}/users`, {params:{email:res?.data.email}})
         const user = {
           name: res?.data.name,
           pic: res?.data.picture,
           email: res?.data.email,
+          workspaces: dbUserInfo?.data.workspaces,
+          subscriptions: dbUserInfo?.data.subscriptions.map(s => {return {id: s.id, status: s.status}})
         };
         setUser(user);
         dispatch(refreshProfile(user));
