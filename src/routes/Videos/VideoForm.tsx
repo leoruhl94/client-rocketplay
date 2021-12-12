@@ -72,7 +72,7 @@ export const VideoForm: React.FC = () => {
   
       let videoPromise = upload.done()
 
-      const targetThumb = {Bucket: bucket, Key: input.title + "+thumb", Body: input.thumb, ContentType: input.thumb.type }
+      const targetThumb = {Bucket: bucket, Key: input.title + "thumb", Body: input.thumb, ContentType: input.thumb.type }
       const uploadThumb = new Upload({
         client: client,
         leavePartsOnError: false,
