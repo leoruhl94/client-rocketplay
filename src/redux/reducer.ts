@@ -13,7 +13,8 @@ const initialState: storeState = {
     profile: {name: 'Not logged in', pic: ''},
     plan: '',
     plans: [],
-    categories : []
+    categories : [],
+    notifications : []
   }
 
   /*                  // {

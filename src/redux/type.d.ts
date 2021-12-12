@@ -8,7 +8,8 @@ export interface profile {
     profile: profile,
     plan: string,
     plans: any[],
-    categories : Categories[]
+    categories : Categories[],
+    notifications : []
   }
   
  export type storeAction = {

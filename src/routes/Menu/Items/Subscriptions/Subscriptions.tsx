@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // Styling
 import "./Subscriptions.scss";
 import { Icon } from "../../../../components/Icon/Icon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { storeState } from "src/redux/type";
 import axios from "axios";
 import { URL_BASE } from "../../../../constants/constants";
@@ -13,6 +13,7 @@ import { URL_BASE } from "../../../../constants/constants";
 import { getDates } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
+import { postNotifications } from "../../../../redux/actions";
 
 interface User {
   accessToken: string;
@@ -22,11 +23,14 @@ interface User {
 // Component
 export const Subscriptions: React.FC = () => {
   // Var box
+
+  const dispatch = useDispatch()
   // Icono del dropdown
-  const leftArrow = <Icon classes="Subs__icon" svg="arrowRight"></Icon>;
+  const leftArrow = <Icon classes="Subs__icon" svg="crownIcn"></Icon>;
   // useStates
   const [input, setInput] = useState("");
   const [icon, setIcon] = useState(leftArrow);
+  const [ notification, setNotification] = useState('')
   const [pop, setPop] = useState("This will never shows");
   const [boolPopD, setBoolPopD] = useState(false);
   const auth = useAuth();
@@ -90,7 +94,20 @@ export const Subscriptions: React.FC = () => {
     });
     // isBussiness : true
     console.log(res.data);
+    setNotification(res.data.message)
+    testFunction()
+    dispatch(postNotifications(res.data))
   };
+
+  function testFunction(){
+    // Ya se muestra la palabra jajaja
+    let x = document.querySelectorAll("#snackbar");
+    x.forEach((i) => {
+      i.className = "show";
+    });
+    setTimeout(function(){ x[0].className = x[0].className.replace("show", ""); }, 3000);
+    //TODO: Agregar al redux notificaciones para mapear
+  }
 
   // Returned
   return (
@@ -143,6 +160,8 @@ export const Subscriptions: React.FC = () => {
             <h3 className="Subs__margin-reset">
               Next payment day : 10/{getDates().month}/{getDates().year}
             </h3>
+            <button onClick={testFunction} >Show Snackbar</button>
+            <div id="snackbar">{notification}</div>
           </div>
           <div className="Subs__functions-list">
             {/* <h3
