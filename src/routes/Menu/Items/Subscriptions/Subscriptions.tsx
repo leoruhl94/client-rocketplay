@@ -15,6 +15,7 @@ import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
+import { discovery_v1 } from "googleapis";
 
 interface User {
   accessToken: string;
@@ -41,6 +42,8 @@ export const Subscriptions: React.FC = () => {
     return state.plan;
   });
 
+  let logged = auth?.isLogged() ? auth?.isLogged() : false;
+  console.log(logged);
   // TODO: Si no es de negocios no se muestra el toggle, el payment y el cancel.
 
   function handleUploadNormal(e) {
@@ -131,7 +134,7 @@ export const Subscriptions: React.FC = () => {
             {/* HERE: Se puede mapear planes para hacer dropdown */}
           </section>
         </div>
-        <div className="Subs__div-details">
+        {logged? <div className="Subs__div-details">
           <div className="Subs__details-headers">
             <h1 className="Subs__margin-reset">Credit Data</h1>
           </div>
@@ -153,7 +156,9 @@ export const Subscriptions: React.FC = () => {
               Cancel subscription
             </h3>
           </div>
-        </div>
+        </div> 
+        : 
+        <div className="Subs__div-details"><h3>You must be logged in to see options</h3></div>}
 
         <section className="Subs__popup Subs__popup-two">
           <div className="popup__normal-title">
