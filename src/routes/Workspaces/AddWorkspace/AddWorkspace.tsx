@@ -29,9 +29,9 @@ export const AddWorkspace: React.FC<props> = ({dep, handleAdd}) => {
                     {result ? <div className='addChannel__result'>
                         <div className='addChannel__result-icon-cont'>
                             <div className='addChannel__result-icon'><Icon svg='rocketColor'/></div>
-                            <span>{result}</span>
+                            <span className='addChannel__result-name'>{result}</span>
                         </div> 
-                        <button type='button'>JOIN</button>
+                        <button className='addChannel__result-btn' type='button'>JOIN</button>
                     </div> : null}
                 </form>
             </div>

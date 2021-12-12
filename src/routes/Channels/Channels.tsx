@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { SingleChannel } from "../../components/ChannelComponents/Channels/SingleChannel";
-import { ChannelNotFound } from "../../components/ChannelComponents/ChannelNotFound/ChannelNotFound";
 import "./channels.scss";
 import { useSelector } from "react-redux";
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
@@ -22,7 +21,6 @@ export const Channels: React.FC = () => {
         <div>
             <NavProfileAndLocation/>
             {/* <ChannelNotFound/> */}
-
                 <div className="singleChannelSuperContainer">
                     <div className="singleChannel-outer-div">
                         <SingleChannel channel='Channel 1'/>
