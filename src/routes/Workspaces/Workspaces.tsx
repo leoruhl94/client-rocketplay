@@ -30,23 +30,18 @@ export const Workspaces: React.FC<props> = ({transition}) => {
         <div className="Workspaces__list">
           <h2
             className={`Workspaces__title ${
-              !auth?.user?.workspaces ? "display__none" : ""
+              auth?.user?.workspacesTitles?.length ? "display__none" : ""
             }`}
           >
             You do not belong to a workspace yet
           </h2>
 
-          {/* BORRAR ESTO QUE ESTA HARDCODEADO */}
-          <WorkspaceItem workspace={"habia una vex"} />
-          <WorkspaceItem workspace={"habia una vex"} />
-          <WorkspaceItem workspace={"habia una vex"} />
-          {/* BORRAR ESTO QUE ESTA HARDCODEADO */}
-
-          {auth?.user?.workspaces
-            ? auth.user.workspaces.map((item) => {
+          {auth?.user?.workspacesTitles?.length
+            ? auth.user.workspacesTitles.map((item) => {
                 return <WorkspaceItem key={item} workspace={item} />;
               })
             : ""}
+
 
           <div className="Workspaces__button_container">
             <button className="Workspaces__button" onClick={handleAdd}>
@@ -65,6 +60,7 @@ export const Workspaces: React.FC<props> = ({transition}) => {
 
 import "./WorkspaceItem.scss";
 import { Link } from "react-router-dom";
+
 interface Props {
   workspace: string;
 }

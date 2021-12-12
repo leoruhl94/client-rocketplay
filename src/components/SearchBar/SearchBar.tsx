@@ -4,9 +4,16 @@ import { useDispatch } from "react-redux";
 import { Icon } from "../Icon/Icon";
 import { useHistory } from "react-router";
 import React from "react";
-export const SearchBar:React.FC = () => {
+
+interface Props {
+ 
+  handler?(value: any): any;
+}
+export const SearchBar:React.FC<Props> = ({
+  handler
+}) => {
   const [search, setSearch] = useState("");
-  let dispatch = useDispatch();
+
   let history = useHistory();
 
   const onChange = (e) => {
@@ -16,7 +23,7 @@ export const SearchBar:React.FC = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    handler && handler(search)
     setSearch("");
     history.push({search:`?name=${search}`})
   };
