@@ -52,7 +52,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
               ? auth?.user?.workspacesTitles.map((item, i) => {
                   return (
                     <WorkspaceItem
-                      key={item}
+                      key={i}
                       workspace={item}
                       path={
                         auth?.user?.workspaces?.length

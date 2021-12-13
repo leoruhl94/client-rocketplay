@@ -77,7 +77,7 @@ export function loginRegister(tokens, keepSession, auth) {
 export function refreshProfile(user) {
   return {
     type: REFRESH_PROFILE,
-    payload: { name: user.name, pic: user.pic },
+    payload: user ? { name: user.name, pic: user.pic } : null,
   };
 }
 

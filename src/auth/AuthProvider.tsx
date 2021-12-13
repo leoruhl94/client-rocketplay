@@ -66,7 +66,7 @@ function AuthProvider({ children }) {
         const response = await axios.get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
         
         console.log(response)
-
+        
         if(response.data) userInfo = {
           name: res?.data.name,
           pic: res?.data.picture,
@@ -81,7 +81,7 @@ function AuthProvider({ children }) {
 
         setUser(userInfo);
         return userInfo;
-
+        
       } catch (error) {
         this.logout()
         console.log("token invalido");
@@ -91,8 +91,9 @@ function AuthProvider({ children }) {
     logout() {
       localStorage.clear();
       sessionStorage.clear();
-      history.push('/login')
       setUser(null);
+      dispatch(refreshProfile(false));
+      history.push('/login')
     },
     isLogged() {
       return !!this.user;

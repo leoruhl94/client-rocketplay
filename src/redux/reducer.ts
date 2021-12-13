@@ -52,7 +52,7 @@ const reducer = (
       case REFRESH_PROFILE:
         return {
           ...state,
-          profile: {name: action.payload.name, pic: action.payload.pic},
+          profile: action.payload || {name:'',pic:''},
         }
       case POST_CATEGORY:
         state.categories.push(action.payload) 

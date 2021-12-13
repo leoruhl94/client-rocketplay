@@ -31,8 +31,9 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace
     e.preventDefault();
     console.log("search", search);
     let res = await axios.get(`${URL_BASE}/workspace/find`, {
-      params: { code: search },
+      params: { code: search.split(' ').join('')},
     });
+    console.log('se busco: '+search.split(' ').join(''))
     setResult(res.data);
     console.log("result", res.data);
   };
