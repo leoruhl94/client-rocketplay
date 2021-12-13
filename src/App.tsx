@@ -97,8 +97,8 @@ const App: React.FC = () => {
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
           <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
-          <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
-          <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
+          {/* <PrivateRoute path="/videodetail/:id" component={VideoDetail} /> */}
+          {/* <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} /> */}
           {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
           <PrivateRoute
             exact
@@ -114,10 +114,9 @@ const App: React.FC = () => {
           />
           <Route exact path="/settings" component={SettingMenu} />
           <Route
-            path="/videodetailaws/:schema/:title"
+            path="/videodetail/:schema/:title"
             component={VideoDetailAWS}
           />
-          <Route path="/videoframeaws/:category" component={VideoFrameAWS} />
           <Route exact path="/home/:schema" component={ChannelsAWS} />
           <Route exact path="/home/:schema/:channel" component={CategoriesAWS} />
           <Route

@@ -4,10 +4,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
 
-interface Props {
-    schemaName: string;
-}
-
 interface CategoryState {
     categoryName: string;
     categoryId: number;
@@ -17,14 +13,14 @@ interface CategoryState {
     isprivate: boolean;
 }
 
-export const CategoriesAWS: React.FC<Props> = ({schemaName}) => {
+export const CategoriesAWS: React.FC = () => {
 
-    let schemaName2 = "Marcos"
+    let params: any = useParams()
 
     const [categoryState, setCategoryState] = useState<CategoryState[]>([])
 
     useEffect(() => {
-        axios.get(`${URL_BASE}/category?schemaName=${schemaName2}`)
+        axios.get(`${URL_BASE}/category?schemaName=${params.schema}`)
         .then(r => {
             let array:any[] = []
             r.data.map(el => {
@@ -49,7 +45,7 @@ export const CategoriesAWS: React.FC<Props> = ({schemaName}) => {
                     categoryState.length > 0 ?
                     categoryState.map(el => {
                         return (
-                            <Link to={`/homeaws/${el.channelName}/${el.categoryId}`} className="Categories-link">
+                            <Link to={`/home/${params.schema}/${el.channelName}/${el.categoryId}`} className="Categories-link">
                                 <div className="Categories__item">
                                     <div>{el.categoryName}</div>
                                     <div className="singleChannelArrow">

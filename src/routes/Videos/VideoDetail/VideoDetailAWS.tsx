@@ -104,7 +104,7 @@ export const VideoDetailAWS: React.FC = () => {
             schemaName: params.schema,
             description: input,
             videoId: videoData.videoId,
-            memberId: 2
+            memberId: 1
         }).then(r => alert(r.data.message))
     }
 

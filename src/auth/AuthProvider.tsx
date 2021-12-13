@@ -87,11 +87,15 @@ function AuthProvider({ children }) {
             dispatch(refreshProfile(user));
             return user;
           } catch (error) {
+            this.logout()
             console.log("token invalido");
             console.log(error);
           }
         },
         logout() {
+
+          localStorage.clear();
+          sessionStorage.clear();
           setUser(null);
         },
         isLogged() {
