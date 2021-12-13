@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS } from "../constants/constants"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -14,7 +14,8 @@ const initialState: storeState = {
     plan: '',
     plans: [],
     categories : [],
-    notifications : []
+    notifications : [{message:"Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updatedYour subscription was updatedYour subscription was updated",status:"authorized", readed: false}],
+    page: 3
   }
 
   /*                  // {
@@ -85,6 +86,16 @@ const reducer = (
           return {
             ...state,
             notifications : [...state.notifications, action.payload]
+          }
+        case READ_NOTIFICATIONS :
+          return {
+            ...state,
+            notifications : state.notifications.map(n => {return {...n, readed: true}})
+          }
+        case CHANGE_PAGE :
+          return {
+            ...state,
+            page : action.payload
           }
     }
     return state

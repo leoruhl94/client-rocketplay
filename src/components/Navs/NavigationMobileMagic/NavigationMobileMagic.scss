@@ -8,7 +8,7 @@
   position: fixed;
   bottom: -1;
   border-radius: 10px 10px 0 0;
-  z-index: 1;
+  z-index: 2;
   .navigationMobileMagic__list {
     margin: 0;
     padding: 0;
@@ -60,6 +60,7 @@
           border-top-left-radius: 20px;
         }
         div {
+          position: relative;
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -69,7 +70,7 @@
           width: 60px;
           height: 60px;
           border-radius: 50%;
-
+          
           .navigationMobileMagic__icon {
             margin: 0;
             padding: 0;
@@ -83,6 +84,16 @@
             text-align: center;
             color: #d3d3d3;
             border-radius: 50%;
+            .pendingNotification{
+                contain: '';
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: aquamarine;
+                position: absolute;
+                top: -3;
+                right: 0;
+            }
           }
         }
         .navigationMobileMagic__text {

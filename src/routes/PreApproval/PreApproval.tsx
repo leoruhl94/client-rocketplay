@@ -25,15 +25,16 @@ export const PreApproval: React.FC = () => {
     });
     console.log('response postSubscriptions >>>>',response);
     setSuccess(true)
+    // history.push("/home")
   };
-  if (!!auth?.user?.email && !!id) {
-    postSubscriptions();
-  }
   console.log("Preapproval",auth?.user?.email, id)
   
-  // useEffect(() => {
-    //    history.push("/home");
-    // }, [res.message]);
+  useEffect(() => {
+      if (!!auth?.user?.email && !!id) {
+        postSubscriptions();
+      }
+      console.log('useEffect preApproval')
+    }, []);
     
     
     return (
@@ -46,6 +47,6 @@ export const PreApproval: React.FC = () => {
   );
 };
 
-function async(arg0: () => React.FC) {
-  throw new Error("Function not implemented.");
-}
+// function async(arg0: () => React.FC) {
+//   throw new Error("Function not implemented.");
+// }

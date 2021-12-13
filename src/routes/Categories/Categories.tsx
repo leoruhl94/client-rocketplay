@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation"
 import {Link} from "react-router-dom";
 import './Categories.scss'
 
@@ -10,7 +9,6 @@ export const Categories: React.FC<Props> = ({channel}) => {
 
     return(
         <div className="Categories__container">
-            <NavProfileAndLocation/> 
             <div className="Categories">
                 {numToArr(5).map(x => 
                     <Link to={`/home/${channel}/${x}`} className="Categories-link">

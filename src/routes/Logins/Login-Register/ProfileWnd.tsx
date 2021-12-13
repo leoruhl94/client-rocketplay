@@ -43,9 +43,9 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
 
     console.log(res.data)
   }
-  const handleDestroyAllSchemas = async( value:String ) =>{
+  const handleDestroy = async( value:String ) =>{
     
-    let res = await axios.get(`${URL_BASE}/deleteall`)
+    let res = await axios.delete(`${URL_BASE}/workspace/deleteall`)
 
   }
 
@@ -105,7 +105,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         value="destroyed"
         text='Destroy'
         classes='profileWnd__cancelSub'
-        handler={handleOnUpdateSubscriptions}
+        handler={handleDestroy}
       />
       {/* <div className="profileWnd__cambiar">
         <Link to="/payment"> Get a Business Account</Link>

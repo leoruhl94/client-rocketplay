@@ -1,21 +1,21 @@
 .MenuToggleContainer{
     display: block;
-    position: fixed;
+    // position: fixed;
     bottom: calc( 0px + 40px);
-    left: 0px;
+    // left: 0px;
     min-height: calc(100vh - 100px);
     // height: 100%;
     width: 100%;
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.342);
-    border-radius: 15px 15px 0 0;
-    animation: slideToTop 0.5s linear 
+    // border-radius: 15px 15px 0 0;
+    //animation: slideToTop 0.3s linear 
 }
-@keyframes slideToTop {
-    from {
-        bottom: -100vh;
-    }
-    to {
-        bottom: 0;
-    }
-}
+// @keyframes slideToTop {
+//     from {
+//         bottom: -100vh;
+//     }
+//     to {
+//         bottom: 0;
+//     }
+// }

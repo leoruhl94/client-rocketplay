@@ -1,7 +1,18 @@
 import axios from "axios";
-import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS } from "../constants/constants";
-
-
+import {
+  URL_BASE,
+  CHANGE_PROFILE,
+  LOGOUT,
+  REFRESH_PROFILE,
+  PRICING_SELECT,
+  GET_PLANS,
+  POST_CATEGORY,
+  TRUNCATE_CATEGORY,
+  PUT_CATEGORY,
+  POST_NOTIFICATIONS,
+  READ_NOTIFICATIONS,
+  CHANGE_PAGE,
+} from "../constants/constants";
 
 interface User {
   email?: String;
@@ -64,7 +75,7 @@ export function loginRegister(tokens, keepSession, auth) {
     } else {
       sessionStorage.setItem("tok", JSON.stringify(tokens));
     }
-    const user = await auth?.login(tokens.data.data.id_token);
+    let user = await auth?.login(tokens.data.data.id_token);
 
     axios.post(`${URL_BASE}/users`, {
       isBusiness: false,
@@ -140,12 +151,20 @@ export function putCategory(data, newData) {
   };
 }
 
-
 //Notifications
 
-export function postNotifications(data){
-
+export function postNotifications(data) {
   return (dispatch) => {
-    dispatch({ type: POST_NOTIFICATIONS, payload : data })
-  }
+    dispatch({ type: POST_NOTIFICATIONS, payload: { ...data, readed: false } });
+  };
+}
+export function readNotifications() {
+  return (dispatch) => {
+    dispatch({ type: READ_NOTIFICATIONS, payload: false });
+  };
+}
+export function changePage(n) {
+  return (dispatch) => {
+    dispatch({ type: CHANGE_PAGE, payload: n });
+  };
 }

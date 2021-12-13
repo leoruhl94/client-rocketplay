@@ -1,0 +1,21 @@
+.SettingMenu__container{
+    background-color: aquamarine;
+    height: 100%;
+    font-size: 1.5rem;
+    padding: 1rem;
+
+    .SettingMenu__ul{
+        margin: 0;
+        padding: 0;
+        background-color: azure;
+        li{
+            list-style: none;
+            
+        }
+    }
+    .SettingMenu__submenu{
+        margin: 0;
+        padding: 0;
+
+    }
+}
