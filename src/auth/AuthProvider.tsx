@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { refreshProfile } from "../redux/actions";
 import axios from "axios";
 import { URL_BASE } from "../constants/constants";
+import { useHistory } from "react-router";
 
 export const AuthContext = createContext<AuthContextI | null>(null);
 
@@ -30,6 +31,7 @@ interface User {
 function AuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
   const dispatch = useDispatch();
+  const history = useHistory();
   /* const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -45,13 +47,16 @@ function AuthProvider({ children }) {
   // console.log("USER authProv ", user);
   const contextValue: any = {
     user,
-    async login(token) {
+    async login(tokens) {
       // console.log("ENTRE LOGIN AUTH ", token)
 
       try {
         let res = await axios.get(
-          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+          `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
           );
+        /* let res = await axios.get(
+          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+          ); */
           // const dbUserInfo = await axios.get(`${URL_BASE}/users`, {params:{email:res?.data.email}})
           // const user = {
             //   name: res?.data.name,
@@ -93,13 +98,14 @@ function AuthProvider({ children }) {
           }
         },
         logout() {
-
           localStorage.clear();
           sessionStorage.clear();
           setUser({});
           setTimeout(()=>{
             setUser(null);
           }, 10)
+          history.push('/login')
+          // setUser(null);
         },
         isLogged() {
           return !!this.user;

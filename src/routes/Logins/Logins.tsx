@@ -29,7 +29,6 @@ export const Logins: React.FC = () => {
       if (plan && lastRoute === "/pricing") history.push("/payment");
       else history.push("/home");
     }
-    console.log(auth?.isLogged(), ">>>>>>>")
   },[auth?.isLogged()])
 
   async function responseGoogle(googleUser) {

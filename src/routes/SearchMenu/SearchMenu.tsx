@@ -32,7 +32,10 @@ interface InfoSubmit {
   title?: string; 
 }
 
-export const SearchMenu: React.FC = () => {
+interface props{ 
+    transition: any;
+  } 
+export const SearchMenu: React.FC<props> = ({transition}) => {
   const auth = useAuth();
   const [schemaName, setSchemaName] = useState("");
   const [categoryState, setCategoryState] = useState<Categories[]>()
@@ -103,7 +106,7 @@ const handleCategorySelect = (e) => {
 }
 
   return (
-    <MenuToggleContainer>
+    <MenuToggleContainer transition={transition}>
       <select onChange={handleWorkspaceSelect} name="schemaName" id="">
         <option value="all">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((w, i) => (
@@ -176,7 +179,7 @@ const handleCategorySelect = (e) => {
 
 import "./VideoItem.scss";
 import { Link } from "react-router-dom";
-import { Icon } from "src/components/Icon/Icon";
+import { Icon } from "../../components/Icon/Icon";
 
 interface Props {
   videoid: string;

@@ -13,8 +13,7 @@
 }
 
 .headerSubContainer {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
     text-align: center;
     padding: 1rem;
     border-radius: 15px;
@@ -38,7 +37,7 @@
 
 .descriptionContainer {
     width: 80%;
-    height: 5rem;
+    height: auto;
     margin: 3rem auto 0 auto;
     background: $squareBackground;
     border-radius: 10px;

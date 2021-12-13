@@ -62,7 +62,7 @@ const App: React.FC = () => {
 
   if (!auth?.isLogged()) {
     if (tokens) {
-      auth?.login(tokens.data.data.id_token);
+      auth?.login(tokens.data.data);
     }
   }
 
@@ -112,7 +112,7 @@ const App: React.FC = () => {
             component={SearchMenu}
             thisPage={2}
           />
-          <Route exact path="/settings" component={SettingMenu} />
+          <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/>
           <Route
             path="/videodetail/:schema/:title"
             component={VideoDetailAWS}
