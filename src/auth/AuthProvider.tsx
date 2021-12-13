@@ -48,7 +48,6 @@ function AuthProvider({ children }) {
   const contextValue: any = {
     user,
     async login(tokens) {
-      // console.log("ENTRE LOGIN AUTH ", token)
 
       try {
         let res = await axios.get(
@@ -71,6 +70,7 @@ function AuthProvider({ children }) {
               pic: res?.data.picture,
               email: res?.data.email,
             };
+            dispatch(refreshProfile(user));
             axios
             .get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
             .then((response)=>{
@@ -104,7 +104,7 @@ function AuthProvider({ children }) {
           setTimeout(()=>{
             setUser(null);
           }, 10)
-          history.push('/login')
+          // history.push('/login')
           // setUser(null);
         },
         isLogged() {
