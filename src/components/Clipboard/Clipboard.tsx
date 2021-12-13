@@ -1,5 +1,7 @@
 import React from "react";
 import './Clipboard.scss'
+import { SuperToast } from '../Toast/SuperToast';
+import { testFunction } from "../../constants/functions";
 
 interface Props {
     value : string
@@ -29,7 +31,10 @@ export const Clipboard : React.FC<Props> = ({value}) =>{
 
 
     // ... Clipboard ...
-    return(<button className="Clipboard__button" onClick={() => copyToClipboard(value)}>
+    return(<section>           
+        <SuperToast value={"Copied to clipboard : " + value}></SuperToast>
+        <button className="Clipboard__button" onClick={() => {copyToClipboard(value);testFunction()}}>
         Copy to Clipboard
-    </button>)
+    </button>
+    </section>)
 }

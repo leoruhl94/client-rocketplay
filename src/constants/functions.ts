@@ -35,7 +35,7 @@ export const getDates = () => {
 }
 
 
-export function testFunction(){
+export function testFunction(value? : string){
     // Ya se muestra la palabra jajaja
     let x = document.querySelectorAll("#snackbar");
     x.forEach((i) => {
