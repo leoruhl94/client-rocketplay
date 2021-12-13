@@ -29,7 +29,7 @@ interface InfoSubmit {
   schemaName: string;
   channel?: string;
   category?: string;
-  title?: string; 
+  
 }
 
 interface props{ 
@@ -44,18 +44,19 @@ export const SearchMenu: React.FC<props> = ({transition}) => {
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
     channel: "",
-    category: "",
-    title: ""
+    category: ""
   })
 
   const handleSubmit = async (value) => {
     console.log(schemaName);
-    setInfoSubmit({...infoSubmit, title: value})
+    console.log(value)
+    // setInfoSubmit({...infoSubmit, title: value})
+    console.log(infoSubmit)
     if (!schemaName) {
       console.log("sale gatito porque no hay esquema");
     } else {
       let res = await axios.get(`${URL_BASE}/searchBar`, {
-        params: infoSubmit,
+        params: {...infoSubmit, title: value},
       });
       console.log(res.data)
       setVideos(res.data);

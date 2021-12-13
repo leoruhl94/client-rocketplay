@@ -88,8 +88,8 @@ function AuthProvider({ children }) {
               setUser(user);
               dispatch(refreshProfile(user));
             });
-            setUser(user);
-            dispatch(refreshProfile(user));
+            // setUser(user);
+            // dispatch(refreshProfile(user));
             return user;
           } catch (error) {
             this.logout()

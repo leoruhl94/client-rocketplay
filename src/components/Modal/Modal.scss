@@ -1,35 +1,37 @@
-.Modal{
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
-
-} 
-.Modal__open{
-
+.Modal {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
-.ModalContainer{
-
+.Modal__open {
+  display: flex;
 }
-.Modal_close{
-
+.ModalContainer {
+  position: relative;
+}
+.Modal__button_close {
+  position: absolute;
 }
 
-.Modal__container{
-    display: block;
-    // position: fixed;
-    bottom: calc( 0px + 40px);
-    // left: 0px;
-    min-height: calc(100vh - 100px);
-    // height: 100%;
-    width: 100%;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.342);
-    // border-radius: 15px 15px 0 0;
-    //animation: slideToTop 0.3s linear 
+.Modal__container {
+  display: block;
+  // position: fixed;
+  bottom: calc(0px + 40px);
+  // left: 0px;
+  min-height: calc(100vh - 100px);
+  // height: 100%;
+  width: 100%;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.342);
+  // border-radius: 15px 15px 0 0;
+  //animation: slideToTop 0.3s linear
 }
 // @keyframes slideToTop {
 //     from {
