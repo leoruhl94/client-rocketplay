@@ -2,15 +2,16 @@ import React from "react";
 import "./singleChannel.scss"
 import {Icon} from '../../Icon/Icon'
 import { useHistory } from "react-router";
+import {useParams} from "react-router";
 
 interface Props {
     channel: string
 }
 export const SingleChannelAWS: React.FC<Props> = ({channel}) => {
     const history = useHistory()
-
+    let params: any = useParams()
     function handleClick(){
-        history.push('/homeaws/'+channel)
+        history.push(`/home/${params.schema}/${channel}`)
     }
     return (
         <div className="singleChannelDiv" onClick={handleClick}>

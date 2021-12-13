@@ -7,10 +7,18 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../auth/useAuth";
 
+interface video {
+  videoid: string;
+  thumbnail: string;
+  title: string;
+  category: string;
+  channelName: string;
+}
+
 export const SearchMenu: React.FC = () => {
   const auth = useAuth();
-  const [schemaName, setSchemaName] = useState(null);
-  const [videos, setVideos] = useState([]);
+  const [schemaName, setSchemaName] = useState("");
+  const [videos, setVideos] = useState<video[]>([]);
   const handleSubmit = async (value) => {
     console.log(schemaName);
     if (!schemaName) {
@@ -19,6 +27,7 @@ export const SearchMenu: React.FC = () => {
       let res = await axios.get(`${URL_BASE}/searchBar`, {
         params: { schemaName, title: value },
       });
+      console.log(res.data)
       setVideos(res.data);
     }
   };
@@ -37,19 +46,23 @@ export const SearchMenu: React.FC = () => {
           <option key={w} value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""}>
             {w}
           </option>
-        ))}
+        ))} 
       </select>
       <SearchBar handler={handleSubmit} />
       <div className="">
-        {videos?.map((v) => (
+        {
+          videos.length > 0 ?
+        videos?.map((item) => (
           <VideoItem
-            videoid="aa"
-            thumbnail="s"
-            title="titletitletitle"
-            category="category"
-            channelName="channelName"
+            key = {item.videoid}
+            schemaName={schemaName}
+            videoid={item.videoid}
+            thumbnail={item.thumbnail}
+            title={item.title}
+            category={item.category}
+            channelName={item.channelName}
           />
-        ))}
+        )) : <></>}
       </div>
     </MenuToggleContainer>
   );
@@ -82,6 +95,7 @@ interface Props {
   title: string;
   category: string;
   channelName: string;
+  schemaName: string;
 }
 const VideoItem: React.FC<Props> = ({
   videoid,
@@ -89,9 +103,10 @@ const VideoItem: React.FC<Props> = ({
   title,
   category,
   channelName,
+  schemaName,
 }) => {
   return (
-    <Link to={`/home/${videoid}`} className="VideoItem">
+    <Link to={`/videodetail/${schemaName}/${title}`} className="VideoItem">
       <div className="VideoItem__image_container">
         <img
           className="VideoItem__image"

@@ -12,7 +12,7 @@ interface Props {
 
 export const VideoFrameAWS: React.FC<Props> = ({schemaName, videoTitle, thumbnail, likes}) => {
     return (
-        <Link to={`/videodetailaws/${schemaName}/${videoTitle}`} className="video-frame-link" key={videoTitle}>
+        <Link to={`/videodetail/${schemaName}/${videoTitle}`} className="video-frame-link" key={videoTitle}>
         <div className="video-frame-container">
             <div className="video-frame-video-div">
                 {/* Frame */}

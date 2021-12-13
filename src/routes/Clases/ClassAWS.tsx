@@ -22,10 +22,8 @@ export const ClassAWS: React.FC<Props> = ({schemaName}) => {
 
     const [categoryState, setCategoryState] = useState<CategoryState[]>([])
 
-    let schemaName2 = "Marcos"
-
     useEffect(() => {
-        axios.get(`${URL_BASE}/video/category?schemaName=${schemaName2}&categoryId=${params.category}`)
+        axios.get(`${URL_BASE}/video/category?schemaName=${params.schema}&categoryId=${params.category}`)
         .then(r => {
             let array: any[] = []
             console.log(r.data)
@@ -52,7 +50,7 @@ export const ClassAWS: React.FC<Props> = ({schemaName}) => {
                 {
                     categoryState.length > 0 ?
                     categoryState.map(el => {
-                        return <VideoFrameAWS schemaName={schemaName2} videoTitle={el.videoTitle} thumbnail={el.thumbnail} likes={23}/>
+                        return <VideoFrameAWS schemaName={params.schema} videoTitle={el.videoTitle} thumbnail={el.thumbnail} likes={23}/>
                     })
                     :
                     <></>

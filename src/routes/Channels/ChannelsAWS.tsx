@@ -6,6 +6,7 @@ import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/Na
 // import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
+import {useParams} from "react-router";
 
 interface Channels {
     channelId: number;
@@ -16,6 +17,8 @@ interface Channels {
 
 export const ChannelsAWS: React.FC = () => {
     
+    let params: any = useParams()
+
     const [add, setAdd] = useState(false); 
     
     function handleAdd(){
@@ -24,10 +27,8 @@ export const ChannelsAWS: React.FC = () => {
 
     const [channelsState, setChannelsState] = useState<Channels[]>([])
 
-    let schemaName2 = "Marcos"
-
     useEffect(() => {
-        axios.get(`${URL_BASE}/channels?schemaName=${schemaName2}`)
+        axios.get(`${URL_BASE}/channels?schemaName=${params.schema}`)
         .then(r => {
             let array: any[] = []
             r.data.map(el => {
