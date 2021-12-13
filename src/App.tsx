@@ -86,7 +86,7 @@ const App: React.FC = () => {
   ) : (
     <>
       <AnimatePresence>
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
+        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />

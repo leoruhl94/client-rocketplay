@@ -1,18 +1,7 @@
 import axios from "axios";
-import {
-  URL_BASE,
-  CHANGE_PROFILE,
-  LOGOUT,
-  REFRESH_PROFILE,
-  PRICING_SELECT,
-  GET_PLANS,
-  POST_CATEGORY,
-  TRUNCATE_CATEGORY,
-  PUT_CATEGORY,
-  POST_NOTIFICATIONS,
-  READ_NOTIFICATIONS,
-  CHANGE_PAGE,
-} from "../constants/constants";
+import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants";
+
+
 
 interface User {
   email?: String;
@@ -28,13 +17,14 @@ interface AuthContextI {
 export function getPlans() {
   return async (dispatch) => {
     const data = await axios.get(`${URL_BASE}/plans`);
+    //const data = await axios.get(`https://api-rocketplay.herokuapp.com/plans`);
     let payload = data.data.map((data) => {
       return {
-        name: data.name,
-        price: data.price,
-        description: data.description,
-        url: data.link_checkout,
-        userLimit: data.userLimit,
+        name: data?.name,
+        price: data?.price,
+        description: data?.description,
+        url: data?.link_checkout,
+        userLimit: data?.userLimit,
       };
     });
     dispatch({ type: GET_PLANS, payload });
@@ -52,7 +42,7 @@ export function refresh(info, tok = false) {
     let user = info;
     if (tok) {
       const data = await axios.get(
-        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${info.access_token}`
+        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${info.data.data.id_token}`
       );
       const userGoogle = {
         name: data.data.name,
@@ -75,7 +65,7 @@ export function loginRegister(tokens, keepSession, auth) {
     } else {
       sessionStorage.setItem("tok", JSON.stringify(tokens));
     }
-    let user = await auth?.login(tokens.data.data);
+    const user = await auth?.login(tokens.data.data);
 
     axios.post(`${URL_BASE}/users`, {
       isBusiness: false,
@@ -151,20 +141,23 @@ export function putCategory(data, newData) {
   };
 }
 
+
 //Notifications
 
-export function postNotifications(data) {
+export function postNotifications(data){
+
   return (dispatch) => {
-    dispatch({ type: POST_NOTIFICATIONS, payload: { ...data, readed: false } });
-  };
+    dispatch({ type: POST_NOTIFICATIONS, payload : {...data, readed: false} })
+  }
 }
-export function readNotifications() {
+export function readNotifications(){
+
   return (dispatch) => {
-    dispatch({ type: READ_NOTIFICATIONS, payload: false });
-  };
+    dispatch({ type: READ_NOTIFICATIONS, payload : false })
+  }
 }
-export function changePage(n) {
+export function changePage(n){
   return (dispatch) => {
-    dispatch({ type: CHANGE_PAGE, payload: n });
-  };
+    dispatch({ type: CHANGE_PAGE, payload : n })
+  }
 }

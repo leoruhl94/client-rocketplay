@@ -16,19 +16,21 @@ interface props {
   transition: any;
 }
 export const Workspaces: React.FC<props> = ({ transition }) => {
-  const [add, setAdd] = useState(false);
   const auth = useAuth();
+  const [add, setAdd] = useState(false);
 
   function handleAdd() {
     setAdd(!add);
   }
   //console.log("--", auth?.user?.workspaces);
-  function handleFind() {}
+  function refreshWorkspace() {
+    auth?.refreshInfo()
+  }
 
   return (
     <>
       {/* <NavProfileAndLocation></NavProfileAndLocation> */}
-      <AddWorkspace dep={add} handleAdd={handleAdd} />
+      <AddWorkspace dep={add} handleAdd={handleAdd} refreshWorkspace={refreshWorkspace}/>
       <motion.div
         initial="out"
         animate="in"
@@ -47,7 +49,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             </h2>
 
             {auth?.user?.workspacesTitles?.length
-              ? auth.user.workspacesTitles.map((item, i) => {
+              ? auth?.user?.workspacesTitles.map((item, i) => {
                   return (
                     <WorkspaceItem
                       key={item}
