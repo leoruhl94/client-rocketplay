@@ -85,8 +85,13 @@ const App: React.FC = () => {
     <h1>cargando...</h1>
   ) : (
     <>
+<<<<<<< HEAD
+      <AnimatePresence>
+        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
+=======
       <AnimatePresence >
         <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
+>>>>>>> aiuda
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />

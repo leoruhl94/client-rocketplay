@@ -13,6 +13,7 @@ interface AuthContextI {
   isLogged?: any;
   login?: any;
   logout?: any;
+  refreshInfo?: any;
 }
 interface sub {
   id?: string;
@@ -48,69 +49,72 @@ function AuthProvider({ children }) {
   const contextValue: any = {
     user,
     async login(tokens) {
-
       try {
         let res = await axios.get(
           `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
-          );
+        );
         /* let res = await axios.get(
           `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
           ); */
-          // const dbUserInfo = await axios.get(`${URL_BASE}/users`, {params:{email:res?.data.email}})
-          // const user = {
-            //   name: res?.data.name,
-            //   pic: res?.data.picture,
-            //   email: res?.data.email,
-            //   workspaces: dbUserInfo?.data.workspaces,
-            //   subscriptions: dbUserInfo?.data.subscriptions.map((s:sub) => {return {id: s.id, status: s.status}}),
-            //   isBusiness: dbUserInfo?.data.isBusiness
-            // };
-            const user = {
-              name: res?.data.name,
-              pic: res?.data.picture,
-              email: res?.data.email,
-            };
-            dispatch(refreshProfile(user));
-            axios
-            .get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
-            .then((response)=>{
-              const user = {
-                name: res?.data.name,
-                pic: res?.data.picture,
-                email: res?.data.email,
-                workspaces: response?.data.workspaces,
-                workspacesTitles: response?.data.workspacesTitles,
-                subscriptions: response?.data.subscriptions.map((s: sub) => {
-                  return { id: s.id, status: s.status };
-                }),
-                isBusiness: response?.data.isBusiness,
-              };
-              setUser(user);
-              dispatch(refreshProfile(user));
-            });
-            // setUser(user);
-            // dispatch(refreshProfile(user));
-            return user;
-          } catch (error) {
-            this.logout()
-            console.log("token invalido");
-            console.log(error);
-          }
-        },
-        logout() {
-          localStorage.clear();
-          sessionStorage.clear();
-          setUser({});
-          setTimeout(()=>{
-            setUser(null);
-          }, 10)
-          // history.push('/login')
-          // setUser(null);
-        },
-        isLogged() {
-          return !!this.user;
-        },
+        let userInfo: User = {
+          name: res?.data.name,
+          pic: res?.data.picture,
+          email: res?.data.email,
+        };
+        dispatch(refreshProfile(userInfo));
+        
+        const response = await axios.get(`${URL_BASE}/users`, { params: { email: res?.data.email } })
+        
+        console.log(response)
+        
+        if(response.data) userInfo = {
+          name: res?.data.name,
+          pic: res?.data.picture,
+          email: res?.data.email,
+          workspaces: response?.data.workspaces || null,
+          workspacesTitles: response?.data.workspacesTitles || null,
+          subscriptions: response?.data.subscriptions.map((s: sub) => {
+            return { id: s.id, status: s.status };
+          }) || null,
+          isBusiness: response?.data.isBusiness,
+        };
+
+        setUser(userInfo);
+        return userInfo;
+        
+      } catch (error) {
+        this.logout()
+        console.log("token invalido");
+        console.log(error);
+      }
+    },
+    logout() {
+      localStorage.clear();
+      sessionStorage.clear();
+      setUser(null);
+      dispatch(refreshProfile(false));
+      history.push('/login')
+    },
+    isLogged() {
+      return !!this.user;
+    },
+    async refreshInfo() {
+      const r = await axios.get(`${URL_BASE}/users`, { params: { email: user?.email } })
+      console.log(r)
+      const userInfo = {
+        name: user?.name,
+        pic: user?.pic,
+        email: user?.email,
+        workspaces: r?.data.workspaces,
+        workspacesTitles: r?.data.workspacesTitles,
+        subscriptions: r?.data.subscriptions.map((s: sub) => {
+          return { id: s.id, status: s.status };
+        }),
+        isBusiness: r?.data.isBusiness,
       };
+      setUser(userInfo)
+    },
+  };
       
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

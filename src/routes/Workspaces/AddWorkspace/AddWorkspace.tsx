@@ -8,6 +8,7 @@ import { useAuth } from "../../../auth/useAuth";
 interface props {
   dep: boolean;
   handleAdd: any;
+  refreshWorkspace?: any;
 }
 interface Result {
   found: object | null;
@@ -21,7 +22,7 @@ interface Found {
   title?: String;
 }
 
-export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
+export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace }) => {
   let found: Found = {};
   const [search, setSearch] = useState("");
   const [result, setResult] = useState({ found: found, message: "" });
@@ -30,8 +31,9 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
     e.preventDefault();
     console.log("search", search);
     let res = await axios.get(`${URL_BASE}/workspace/find`, {
-      params: { code: search },
+      params: { code: search.split(' ').join('')},
     });
+    console.log('se busco: '+search.split(' ').join(''))
     setResult(res.data);
     console.log("result", res.data);
   };
@@ -46,9 +48,12 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
       schemaTitle: result.found.title
     });
     console.log(res.data);
+
+    
     if (res.status) {
       setSearch("");
       setResult({ found: found, message: "" });
+      refreshWorkspace()
       handleAdd(dep);
     } 
   };

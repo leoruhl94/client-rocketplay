@@ -28,7 +28,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
       variants={transition}
       transition={{ type: "linear" }}
     >
-      <MenuToggleContainer>
+      <MenuToggleContainer transition={transition}>
         <nav className="SettingMenu__container">
           {/* <div className="container"> */}
 

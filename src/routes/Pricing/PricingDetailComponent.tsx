@@ -9,7 +9,7 @@ export interface Props {
     color: number;
     plan: string;
     price: number;
-    description: string;
+    description: string[];
 }
 
 export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
@@ -40,7 +40,10 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
                     <span>{props.price}<span> $</span></span> per month
                 </div>
                 <div className="description_container">
-                    <p className="description">{props.description}</p>
+                    <p className="description">{props.description[0]}</p>
+                    <ul>
+                        {props.description.slice(1).map((x, i) => <li key={i}>{x}</li>)}
+                    </ul>
                 </div>
                 
                 <button className="btn-buy" onClick={handleClick} >Buy Now</button>

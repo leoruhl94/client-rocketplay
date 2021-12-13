@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Route, Redirect } from 'react-router'
+import { Route, Redirect, useLocation } from 'react-router'
 import { changePage } from '../redux/actions'
 import { storeState } from 'src/redux/type'
 import { useAuth } from './useAuth'
@@ -8,22 +8,25 @@ import { pageTransition } from '../constants/functions'
 
 interface Props{
     component?:any, 
-    currPage?:number, 
+    routesToAvoid?:string[], 
     thisPage?:number, 
     changePage?(value: any): any;
     exact?:any;
     path?:any
 }
 
-export const PrivateRoute: React.FC<Props> = ({component : Component, currPage=0, thisPage=0, ...rest}) => {
+export const PrivateRoute: React.FC<Props> = ({component : Component, routesToAvoid, thisPage=0, ...rest}) => {
 
     const auth = useAuth()
     const dispatch = useDispatch()
+    const location = useLocation()
     //const {page} = useSelector((state: storeState) => state)
     const storagePage = sessionStorage.getItem('page')
     const page = storagePage ? Number(storagePage) : undefined
     let transition //= (thisPage && page && thisPage !== page) ? ((page - thisPage > 0) ? 'left' : 'right') : undefined
     transition = (thisPage && page && thisPage !== page) ? ((page - thisPage > 0) ? 'left' : 'right') : undefined
+    const avoid = routesToAvoid?.find(r => r === location.pathname)
+
     useEffect(() => {
         //console.log(transition)
         sessionStorage.setItem('page',thisPage.toString())
@@ -34,7 +37,10 @@ export const PrivateRoute: React.FC<Props> = ({component : Component, currPage=0
     // console.log("PRIVATE ROUTE USER ",auth?.user)
     // console.log("PRIVATE ROUTE IS LOGGED",auth?.isLogged())
     return(
-        <Route {...rest} render={props => auth?.isLogged() ? <Component {...props} transition={pageTransition(transition)}/>: <Redirect to="/login"/>}>
+        <Route {...rest} render={props => {
+            if(avoid)return null;
+            return auth?.isLogged() ? <Component {...props} transition={pageTransition(transition)}/>: <Redirect to="/login"/>
+        }}>
         </Route>
     )
 }

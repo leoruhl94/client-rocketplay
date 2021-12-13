@@ -112,7 +112,7 @@ const handleCategorySelect = (e) => {
         <option value="all">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((w, i) => (
             
-          <option key={w} value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""}>
+          <option key={i} value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""}>
             {w}
           </option>
         ))} 

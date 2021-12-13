@@ -176,7 +176,7 @@ export const VideoDetailAWS: React.FC = () => {
                 <div className="awsDetail-comments-container">
                     {
                         commentData.length > 0 ?
-                        commentData.map(el => {
+                        commentData.reverse().map(el => {
                             return (
                                 <div className="awsDetail-single-comment" key={el.commentId}>
                                     <h4 className="awsDetail-comment-author">{el.memberName}</h4>
