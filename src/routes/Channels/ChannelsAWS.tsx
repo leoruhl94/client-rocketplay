@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { SingleChannelAWS } from "../../components/ChannelComponents/Channels/SingleChannelAWS";
-import { ChannelNotFound } from "../../components/ChannelComponents/ChannelNotFound/ChannelNotFound";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 import "./channels.scss";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
-import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
+// import { AddChannel } from "../../components/ChannelComponents/AddChannel/AddChannel";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
 
@@ -45,11 +44,11 @@ export const ChannelsAWS: React.FC = () => {
     }, [])
 
     return (
-        <div>
-            <NavProfileAndLocation/>
+        <div className="singleChannelSuperContainer">
+            {/* <NavProfileAndLocation/> */}
             {/* <ChannelNotFound/> */}
-            <AddChannel dep={add} handleAdd={handleAdd}/>
-                <div className="singleChannelSuperContainer">
+            {/* <AddChannel dep={add} handleAdd={handleAdd}/> */}
+                {/* <div className="singleChannelSuperContainer"> */}
                     <div className="singleChannel-outer-div">
                         {
                             channelsState.length > 0 ?
@@ -59,16 +58,16 @@ export const ChannelsAWS: React.FC = () => {
                             :
                             <div>There are no channels here yet</div>
                         }
-                        <div className="channelsAddChannel2">
+                        {/* <div className="channelsAddChannel2">
                             <h4>Add channel</h4>
                             <button onClick={handleAdd}>+</button>
-                        </div>
+                        </div> */}
                     </div>
                     {/* <Link to="/createVids">
                     <button >Crear un video</button>
                     </Link> */}
-                </div>
-            <NavigationMobile back='home'/>
+                {/* </div> */}
+
         </div>
     )
 }

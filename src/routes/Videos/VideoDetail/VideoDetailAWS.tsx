@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./VideoDetailAWS.scss";
 import {Icon} from "../../../components/Icon/Icon";
-import { NavProfileAndLocation } from "../../../containers/NavProfileAndLocation/NavProfileAndLocation";
-import { NavigationMobile } from "../../../containers/NavigationMobile/NavigationMobile";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useParams } from "react-router";
@@ -112,7 +110,7 @@ export const VideoDetailAWS: React.FC = () => {
 
     return (
         <>
-        <NavProfileAndLocation header={videoData.title}/>
+        {/* <NavProfileAndLocation header={videoData.title}/> */}
         <div className="awsDetail-super-container">
             <div className="awsDetail-square-container">{/* Video Itself */}
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}
@@ -168,7 +166,7 @@ export const VideoDetailAWS: React.FC = () => {
                 </div>
             </div>
         </div>
-        <NavigationMobile/>
+     
         </>
     )
 }

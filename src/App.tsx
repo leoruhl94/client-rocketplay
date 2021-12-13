@@ -15,7 +15,7 @@ import { Class } from "./routes/Clases/Class";
 import { VideoDetail } from "./routes/Videos/VideoDetail/VideoDetail";
 import { VideoForm } from "./routes/Videos/VideoForm";
 import { PreApproval } from "./routes/PreApproval/PreApproval";
-import {VideoDetailAWS} from "./routes/Videos/VideoDetail/VideoDetailAWS";
+import { VideoDetailAWS } from "./routes/Videos/VideoDetail/VideoDetailAWS";
 import { VideoFrameAWS } from "./routes/Videos/VideoFrame/VideoFrameAWS";
 import { ClassAWS } from "./routes/Clases/ClassAWS";
 
@@ -41,8 +41,8 @@ import { Subscriptions } from "./routes/Menu/Items/Subscriptions/Subscriptions";
 import { SearchMenu } from "./routes/SearchMenu/SearchMenu";
 import { NotificationsMenu } from "./routes/NotificationsMenu/NotificationsMenu";
 import { SettingMenu } from "./routes/SettingMenu/SettingMenu";
-import { AnimatePresence, motion } from 'framer-motion'
-import { NavProfileAndLocation } from './containers/NavProfileAndLocation/NavProfileAndLocation'
+import { AnimatePresence, motion } from "framer-motion";
+import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavProfileAndLocation";
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
 
@@ -55,14 +55,14 @@ const App: React.FC = () => {
   const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
-  ? JSON.parse(itemLocal)
-  : itemSession
-  ? JSON.parse(itemSession)
-  : null;
-  
-  if(!auth?.isLogged()){
-    if(tokens){
-      auth?.login(tokens.data.data.id_token)
+    ? JSON.parse(itemLocal)
+    : itemSession
+    ? JSON.parse(itemSession)
+    : null;
+
+  if (!auth?.isLogged()) {
+    if (tokens) {
+      auth?.login(tokens.data.data.id_token);
     }
   }
 
@@ -81,51 +81,90 @@ const App: React.FC = () => {
     }
   }, [location]);
 
-  
-  return (
-    !auth?.user && tokens ? <h1>cargando...</h1> : <><AnimatePresence>
-      <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation}/>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/about" component={AboutComponent} />
-        <Route exact path="/about/:id" component={AboutDetailComponent} />
-        <Route exact path="/pricing" component={PricingComponent} />
-        <Route exact path="/payment" component={PaymentsPlans}/>
-        <PrivateRoute exact path="/preapproval" component={PreApproval} />
-        <Route exact path="/paidrejection" component={PaidRejection} />
-        <Route exact path="/login" component={Logins} />
-        <PrivateRoute exact path="/uploadvideo" component={VideoForm}/>
-        <PrivateRoute path="/videodetail/:id" component={VideoDetail}/>
-        <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
-        {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
-        <PrivateRoute exact path="/notifications" component={NotificationsMenu} thisPage={4}/>
-        <PrivateRoute exact path="/search" component={SearchMenu} thisPage={2}/>
-        <Route exact path="/settings" component={SettingMenu} />
-        <Route path="/videodetailaws/:schema/:title" component={VideoDetailAWS}/>
-            <Route path="/videoframeaws/:category" component={VideoFrameAWS}/>
-            <Route exact path="/homeaws" component={ChannelsAWS}/>
-            <Route exact path="/homeaws/:channel" component={CategoriesAWS}/>
-            <Route exact path="/homeaws/:channel/:category" component={ClassAWS} />
-
-        {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
-        
-        <PrivateRoute exact path="/home" component={Workspaces} thisPage={3}/>
-        {/* ...... Ruta Categories ..... */}
-        <PrivateRoute exact path="/home/:channel" component={Channels} thisPage={3}/>
-        <PrivateRoute exact path="/home/:channel/:category" component={Categories} thisPage={3}/>
-        {/* ...... Ruta Class ..... */}
-        <PrivateRoute exact path="/home/:channel/:class" component={Class} thisPage={3}/>
-
-        {/* ...... Ruta Menu Component ..... */}
-        <Route exact path="/menu" component={MenuComponent} />
-        <Route exact path="/menu/categories" component={MenuCategories} />
-        <Route exact path="/menu/subscriptions" component={Subscriptions} />
-        <Route
-          exact
-          path="/menu/categories/addcategory"
-          component={AddCategory}
+  return !auth?.user && tokens ? (
+    <h1>cargando...</h1>
+  ) : (
+    <>
+      <AnimatePresence>
+        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/about" component={AboutComponent} />
+          <Route exact path="/about/:id" component={AboutDetailComponent} />
+          <Route exact path="/pricing" component={PricingComponent} />
+          <Route exact path="/payment" component={PaymentsPlans} />
+          <PrivateRoute exact path="/preapproval" component={PreApproval} />
+          <Route exact path="/paidrejection" component={PaidRejection} />
+          <Route exact path="/login" component={Logins} />
+          <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
+          <PrivateRoute path="/videodetail/:id" component={VideoDetail} />
+          <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} />
+          {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
+          <PrivateRoute
+            exact
+            path="/notifications"
+            component={NotificationsMenu}
+            thisPage={4}
           />
-      </Switch>
+          <PrivateRoute
+            exact
+            path="/search"
+            component={SearchMenu}
+            thisPage={2}
+          />
+          <Route exact path="/settings" component={SettingMenu} />
+          <Route
+            path="/videodetailaws/:schema/:title"
+            component={VideoDetailAWS}
+          />
+          <Route path="/videoframeaws/:category" component={VideoFrameAWS} />
+          <Route exact path="/home/:schema" component={ChannelsAWS} />
+          <Route exact path="/home/:schema/:channel" component={CategoriesAWS} />
+          <Route
+            exact
+            path="/home/:schema/:channel/:category"
+            component={ClassAWS}
+          />
+
+          {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
+
+          <PrivateRoute
+            exact
+            path="/home"
+            component={Workspaces}
+            thisPage={3}
+          />
+          {/* ...... Ruta Categories ..... */}
+          <PrivateRoute
+            exact
+            path="/home/:channel"
+            component={Channels}
+            thisPage={3}
+          />
+          <PrivateRoute
+            exact
+            path="/home/:channel/:category"
+            component={Categories}
+            thisPage={3}
+          />
+          {/* ...... Ruta Class ..... */}
+          <PrivateRoute
+            exact
+            path="/home/:channel/:class"
+            component={Class}
+            thisPage={3}
+          />
+
+          {/* ...... Ruta Menu Component ..... */}
+          <Route exact path="/menu" component={MenuComponent} />
+          <Route exact path="/menu/categories" component={MenuCategories} />
+          <Route exact path="/menu/subscriptions" component={Subscriptions} />
+          <Route
+            exact
+            path="/menu/categories/addcategory"
+            component={AddCategory}
+          />
+        </Switch>
       </AnimatePresence>
       <NavigationMobileMagic />
     </>
