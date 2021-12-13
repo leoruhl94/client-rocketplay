@@ -112,7 +112,7 @@ const App: React.FC = () => {
             component={SearchMenu}
             thisPage={2}
           />
-          <Route exact path="/settings" component={SettingMenu} />
+          <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/>
           <Route
             path="/videodetail/:schema/:title"
             component={VideoDetailAWS}

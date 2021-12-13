@@ -14,7 +14,7 @@ const initialState: storeState = {
     plan: '',
     plans: [],
     categories : [],
-    notifications : [{message:"Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updatedYour subscription was updatedYour subscription was updated",status:"authorized", readed: false}],
+    notifications : [{message:"Welcome to RocketPlay!",status:"you are logged in", readed: false}],
     page: 3
   }
 

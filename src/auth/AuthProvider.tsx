@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { refreshProfile } from "../redux/actions";
 import axios from "axios";
 import { URL_BASE } from "../constants/constants";
+import { useHistory } from "react-router";
 
 export const AuthContext = createContext<AuthContextI | null>(null);
 
@@ -30,6 +31,7 @@ interface User {
 function AuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
   const dispatch = useDispatch();
+  const history = useHistory();
   /* const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -96,9 +98,9 @@ function AuthProvider({ children }) {
           }
         },
         logout() {
-
           localStorage.clear();
           sessionStorage.clear();
+          history.push('/login')
           setUser(null);
         },
         isLogged() {

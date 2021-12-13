@@ -14,8 +14,10 @@ interface video {
   category: string;
   channelName: string;
 }
-
-export const SearchMenu: React.FC = () => {
+interface props{ 
+    transition: any;
+  } 
+export const SearchMenu: React.FC<props> = ({transition}) => {
   const auth = useAuth();
   const [schemaName, setSchemaName] = useState("");
   const [videos, setVideos] = useState<video[]>([]);
@@ -38,7 +40,7 @@ export const SearchMenu: React.FC = () => {
   };
 
   return (
-    <MenuToggleContainer>
+    <MenuToggleContainer transition={transition}>
       <select onChange={handleSelect} name="schemaName" id="">
         <option value="all">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((w, i) => (
