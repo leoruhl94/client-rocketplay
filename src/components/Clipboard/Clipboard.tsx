@@ -39,7 +39,7 @@ export const Clipboard : React.FC<Props> = ({value }) =>{
     }
 
     const useTestFunction = () => {
-        dispatch(setToast('Copied to clipboard: ' + value))
+        dispatch(setToast(value ? 'Copied!' + value : 'Copied!'))
         testFunction()
     }
 
