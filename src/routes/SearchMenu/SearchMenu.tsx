@@ -15,31 +15,96 @@ interface video {
   channelName: string;
 }
 
+interface Categories {
+  name: string;
+  id: number;
+}
+
+interface Channels {
+  name: string;
+  id: number;
+}
+
+interface InfoSubmit {
+  schemaName: string;
+  channel?: string;
+  category?: string;
+  title?: string; 
+}
+
 export const SearchMenu: React.FC = () => {
   const auth = useAuth();
   const [schemaName, setSchemaName] = useState("");
+  const [categoryState, setCategoryState] = useState<Categories[]>()
+  const [channelsState, setChannelsState] = useState<Channels[]>()
   const [videos, setVideos] = useState<video[]>([]);
+  const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
+    schemaName: "",
+    channel: "",
+    category: "",
+    title: ""
+  })
+
   const handleSubmit = async (value) => {
     console.log(schemaName);
+    setInfoSubmit({...infoSubmit, title: value})
     if (!schemaName) {
-      console.log("gatito");
+      console.log("sale gatito porque no hay esquema");
     } else {
       let res = await axios.get(`${URL_BASE}/searchBar`, {
-        params: { schemaName, title: value },
+        params: infoSubmit,
       });
       console.log(res.data)
       setVideos(res.data);
+
     }
   };
 
-  const handleSelect = (e) => {
+  const handleWorkspaceSelect = (e) => {
     e.preventDefault();
     setSchemaName(e.target.value);
+
+    axios.get(`${URL_BASE}/channels`, {params: {schemaName: e.target.value}})
+    .then(r => {
+      let array:any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.name,
+          id: el.id
+        }
+        array.push(obj)
+      })
+      setChannelsState(array)
+      setInfoSubmit({...infoSubmit, schemaName: e.target.value})
+    })
   };
+  
+  const handleChannelSelect = (e) => {
+    e.preventDefault();
+    const array = e.target.value.split("%-%")
+
+    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: schemaName, channelId: array[1]}})
+    .then(r => {
+      let array:any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.name,
+          id: el.id
+        }
+        array.push(obj)
+      })
+      setCategoryState(array)
+    })
+    setInfoSubmit({...infoSubmit, channel: array[0]})
+  }
+const handleCategorySelect = (e) => {
+  e.preventDefault();
+  setInfoSubmit({...infoSubmit, category: e.target.value})
+}
 
   return (
     <MenuToggleContainer>
-      <select onChange={handleSelect} name="schemaName" id="">
+      <select onChange={handleWorkspaceSelect} name="schemaName" id="">
         <option value="all">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((w, i) => (
             
@@ -48,6 +113,30 @@ export const SearchMenu: React.FC = () => {
           </option>
         ))} 
       </select>
+      {channelsState ? 
+      <select onChange={handleChannelSelect} name="channels" id="">
+        <option value="all">Channels</option>
+        {channelsState?.map((ch) => (
+            
+          <option key={ch.id} value={ch.name + "%-%" + ch.id}>
+            {ch.name}
+          </option>
+        ))} 
+      </select> 
+      : null
+      }
+      {categoryState ? 
+      <select onChange={handleCategorySelect} name="category" id="">
+        <option value="all">Categories</option>
+        {categoryState?.map((ca) => (
+            
+          <option key={ca.id} value={ca.name}>
+            {ca.name}
+          </option>
+        ))} 
+      </select> 
+      : null
+      }
       <SearchBar handler={handleSubmit} />
       <div className="">
         {

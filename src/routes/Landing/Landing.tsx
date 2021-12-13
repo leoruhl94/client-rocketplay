@@ -22,7 +22,7 @@ export const Landing: React.FC = () => {
     <div className="allContainer">
       <NavigationTop />
       <LandingHeader />
-      <LandingCarousel />
+      {/* <LandingCarousel /> */}
       <LandingSections />
       {/* <div className="logInButtonContainer">
                 <button type="button" className="logInButton"

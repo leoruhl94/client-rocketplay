@@ -96,7 +96,10 @@ function AuthProvider({ children }) {
 
           localStorage.clear();
           sessionStorage.clear();
-          setUser(null);
+          setUser({});
+          setTimeout(()=>{
+            setUser(null);
+          }, 10)
         },
         isLogged() {
           return !!this.user;

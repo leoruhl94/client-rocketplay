@@ -85,7 +85,7 @@ const App: React.FC = () => {
     <h1>cargando...</h1>
   ) : (
     <>
-      <AnimatePresence>
+      <AnimatePresence >
         <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
         <Switch>
           <Route exact path="/" component={Landing} />

@@ -4,6 +4,7 @@ import {Icon} from "../../../components/Icon/Icon";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useParams } from "react-router";
+import {useAuth} from "../../../auth/useAuth"
 
 interface videoState {
     title: string;
@@ -27,6 +28,8 @@ interface commentsObj {
 }
 
 export const VideoDetailAWS: React.FC = () => {
+
+    let auth = useAuth()
 
     let params:any = useParams()
 

@@ -2,7 +2,7 @@ import React from "react";
 import './MenuToggleContainer.scss'
 
 
-export const MenuToggleContainer: React.FC = ({children}) => {
+export const MenuToggleContainer: React.FC = ({children}, props) => {
     
     return(
         <div className="MenuToggleContainer">

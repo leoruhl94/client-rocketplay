@@ -12,8 +12,8 @@ import { URL_BASE } from "../../../../constants/constants";
 //import { plans } from './SubsHardcode';
 import { getDates, testFunction } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
-import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
+import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
 
 interface User {
