@@ -4,6 +4,7 @@ import {Icon} from "../../../components/Icon/Icon";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useParams } from "react-router";
+import {useAuth} from "../../../auth/useAuth"
 
 interface videoState {
     title: string;
@@ -26,7 +27,16 @@ interface commentsObj {
     memberId: number;
 }
 
+interface Member {
+    memberId: number;
+    memberEmail: string;
+    memberName: string;
+    userType: string;
+}
+
 export const VideoDetailAWS: React.FC = () => {
+
+    let auth = useAuth()
 
     let params:any = useParams()
 
@@ -40,6 +50,13 @@ export const VideoDetailAWS: React.FC = () => {
         thumbnail: "",
         username: "Loading...",
         videoId: 0,
+    })
+
+    const [member, setMember] = useState<Member>({
+        memberId: 0,
+        memberEmail: "",
+        memberName: "",
+        userType: "",
     })
 
     // let schemaName = "Marcos"
@@ -89,7 +106,16 @@ export const VideoDetailAWS: React.FC = () => {
                 setCommentData(array)
             })
         })
-        
+        axios.get(`${URL_BASE}/members`, {params: {schemaName: params.schema, memberEmail: auth?.user?.email}})
+        .then(r => {
+            let data = r.data[0]
+            setMember({
+                memberId: data.id,
+                memberEmail: data.mail,
+                memberName: data.name,
+                userType: data.usertype
+            })
+        })
     }, [])
 
     const [input, setInput] = useState("")
@@ -104,7 +130,7 @@ export const VideoDetailAWS: React.FC = () => {
             schemaName: params.schema,
             description: input,
             videoId: videoData.videoId,
-            memberId: 1
+            memberId: member.memberId
         }).then(r => alert(r.data.message))
     }
 

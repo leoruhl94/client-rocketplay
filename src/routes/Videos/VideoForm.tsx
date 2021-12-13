@@ -9,7 +9,7 @@ import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
 import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
-
+import { useAuth } from "../../auth/useAuth";
 // Interfaces
 
 interface User {
@@ -39,13 +39,36 @@ interface Previews{
   video: any,
   img: any
 }
+
+interface Categories {
+  name: string;
+  id: number;
+}
+
+interface Channels {
+  name: string;
+  id: number;
+}
  
-// -----------------------------------------------------------------------------------------
+//  -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
   // Caja de variables
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User>({
+    accessToken: "",
+    name: "",
+    pic: "",
+    email: "",
+    isBusiness: false,
+  });
+
+  // name, email, isBusiness, pic, subscriptions, workspaces, workspacesTitles
+  const auth = useAuth()
+
   const [selectBool, setSelectBool] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [categoryState, setCategoryState] = useState<Categories[]>([])
+  const [channelsState, setChannelsState] = useState<Channels[]>([])
+
   const [input, setInput] = useState<Input>({
     file: null,
     title: "",
@@ -87,6 +110,36 @@ export const VideoForm: React.FC = () => {
       setPreviews({...previews, img: objectUrl});
     } 
   }, [input.thumb])
+
+  useEffect(() => {
+    axios.get(`${URL_BASE}/channels`, {params: {schemaName: "hideonmjs"}})
+    .then(r => {
+      let array:any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.name,
+          id: el.id,
+        }
+        array.push(obj)
+      })
+      setChannelsState(array)
+    })
+  }, [])
+
+  const handleCategorySelect = (e) => {
+    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: "hideonmjs", channelId: e.target.value}})
+    .then(r => {
+      let array: any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.name,
+          id: el.id,
+        }
+        array.push(obj)
+      })
+      setCategoryState(array)
+    })
+  }
 
   async function handleUpload() {
 
@@ -134,11 +187,26 @@ export const VideoForm: React.FC = () => {
       .then(() => {
         setSuccess(true)
         console.log("termine de subir los dos")
+        handleDatabaseLoad()
       })
 
     } catch (err){
       boton && boton.setAttribute("disabled", "false")
       console.log(err)
+    }
+
+    const handleDatabaseLoad = () => {
+      // let { title, avatar, author, description, thumbnail, memberId, categoryId } = req.body
+      axios.post(`${URL_BASE}/uploadvideo/database`, {
+        title: input.title,
+        avatar: auth?.user?.pic,
+        author: "hideonmjs",
+        description: input.description,
+        thumbnail: input.title + "-thumb",
+        memberId: 1,
+        categoryId: input.category
+      })
+      .then(r => console.log(r))
     }
 
     // e.preventDefault();
@@ -319,21 +387,30 @@ export const VideoForm: React.FC = () => {
               <h2 className='Section__title'>Workspace and Category (required)</h2>
               <p className='Section__description'>Choose which workspace and category the video will belong to</p>
               <div>
-                <select name="channel" id="channel" onChange={handleDoubleSelect}>
-                  <option value="" selected disabled>Select a workspace</option>
-                  <option value="primeroA">Primero A</option>
-                  <option value="primeroB">Primero B</option>
-                  <option value="segundoA">Segundo A</option>
-                  <option value="segundoB">Segundo B</option>
+                <select name="channel" id="channel" onChange={(e) => {
+                    handleDoubleSelect(e)
+                    handleCategorySelect(e)
+                }}>
+                  <option value="" selected disabled>Select a channel</option>
+                  {
+                    channelsState.length > 0 ?
+                    channelsState.map(el => {
+                      return <option value={el.id} key={el.id}>{el.name}</option>
+                    })
+                    : <></>
+                  }
                 </select>
                 {
                   selectBool ? (
                     <select name="category" id="category" onChange={handleDoubleSelect}>
                       <option value="" selected disabled>Select a category</option>
-                      <option value="math">Math</option>
-                      <option value="science">Science</option>
-                      <option value="history">History</option>
-                      <option value="geography">Geography</option>
+                      {
+                        categoryState.length > 0 ?
+                        categoryState.map(el => {
+                          return <option value={el.id} key={el.id}>{el.name}</option>
+                        })
+                        : <></>
+                      }
                     </select>
                   ) : <></>
                 }
