@@ -64,13 +64,25 @@ export const VideoDetailAWS: React.FC = () => {
     const [outline, setOutline] = useState("likeButton-displayed")
     const [solid, setSolid] = useState("likeButton-hidden")
 
+    const handlePostLike = () => {
+        axios.post(`${URL_BASE}/likes`, {schemaName: params.schema, memberId: member.memberId, videoId: videoData.videoId})
+        .then(r => console.log(r))
+    }
+
+    const handlePostDislike = () => {
+        axios.put(`${URL_BASE}/likes`, {schemaName: params.schema, memberId: member.memberId, videoId: videoData.videoId})
+        .then(r => console.log(r))
+    }
+
     const handleLike = () => {
         if(outline === "likeButton-displayed"){
             setOutline("likeButton-hidden")
             setSolid("likeButton-displayed")
+            handlePostLike()
         } else {
             setOutline("likeButton-displayed")
             setSolid("likeButton-hidden")
+            handlePostDislike()
         }
     }
 
