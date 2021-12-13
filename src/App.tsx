@@ -101,7 +101,8 @@ const App: React.FC = () => {
         
         <PrivateRoute exact path="/home" component={Workspaces} thisPage={3}/>
         {/* ...... Ruta Categories ..... */}
-        <PrivateRoute exact path="/home/:channel" component={Categories} thisPage={3}/>
+        <PrivateRoute exact path="/home/:channel" component={Channels} thisPage={3}/>
+        <PrivateRoute exact path="/home/:channel/:category" component={Categories} thisPage={3}/>
         {/* ...... Ruta Class ..... */}
         <PrivateRoute exact path="/home/:channel/:class" component={Class} thisPage={3}/>
 

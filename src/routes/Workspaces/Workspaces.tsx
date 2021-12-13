@@ -25,7 +25,7 @@ export const Workspaces: React.FC<props> = ({transition}) => {
   function handleFind() {}
 
   return (<>
-    <NavProfileAndLocation></NavProfileAndLocation>
+    {/* <NavProfileAndLocation></NavProfileAndLocation> */}
     <AddWorkspace dep={add} handleAdd={handleAdd} />
     <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}> 
       <section className="Workspaces__container">
