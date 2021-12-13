@@ -34,7 +34,6 @@ export const Subscriptions: React.FC = () => {
   // useStates
   const [input, setInput] = useState("");
   const [icon, setIcon] = useState(leftArrow);
-  const [ notification, setNotification] = useState('')
   const [pop, setPop] = useState("This will never shows");
   const [boolPopD, setBoolPopD] = useState(false);
 
@@ -62,8 +61,7 @@ export const Subscriptions: React.FC = () => {
       popUpDanger(e, "Cancel");
       // TODO: Conectar la función para el backEnd así lo saca
     } else {
-      setNotification('Incorrect')
-      dispatch(setToast('Potencia'))
+      dispatch(setToast('Incorrect'))
       testFunction()
       setInput('')
       // popUpDanger(e, "Cancel");
@@ -92,6 +90,7 @@ export const Subscriptions: React.FC = () => {
       });
     }
     setBoolPopD(!boolPopD);
+
   }
 
   function handleData(e){
@@ -107,10 +106,9 @@ export const Subscriptions: React.FC = () => {
     });
     // isBussiness : true
     console.log(res.data);
-    setNotification(res.data.message)
     // Sumamos la notificación a un array y  mandamos un toast
     dispatch(postNotifications(res.data))
-    dispatch(setToast('Potencia'))
+    dispatch(setToast(res.data.message))
     testFunction()
   };
 

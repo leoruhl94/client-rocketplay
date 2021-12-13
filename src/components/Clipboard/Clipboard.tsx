@@ -3,9 +3,10 @@ import './Clipboard.scss'
 import { testFunction } from "../../constants/functions";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../redux/actions";
+import { Icon } from "../Icon/Icon";
 
 interface Props {
-    value : string
+    value : string,
 }
 
 
@@ -24,9 +25,10 @@ ESTO YA TIRA UN TOAST POR SI SOLO
 
     */ 
 
-export const Clipboard : React.FC<Props> = ({value}) =>{
+export const Clipboard : React.FC<Props> = ({value }) =>{
     
     const dispatch = useDispatch()
+    const icon = <Icon svg="clipboard"></Icon>
 
     const copyToClipboard = async (val : string) => {
         if ('clipboard' in navigator) {
@@ -43,8 +45,10 @@ export const Clipboard : React.FC<Props> = ({value}) =>{
 
     // ... Clipboard ...
     return(<section>           
-        <button className="Clipboard__button" onClick={() => {copyToClipboard(value);useTestFunction()}}>
-        Copy to Clipboard
+        <button 
+                className={`Clipboard__button`}
+                onClick={() => {copyToClipboard(value);useTestFunction()}}>
+        {icon}
     </button>
     </section>)
 }
