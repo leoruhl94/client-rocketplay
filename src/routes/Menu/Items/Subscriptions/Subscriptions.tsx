@@ -15,7 +15,6 @@ import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
-import { discovery_v1 } from "googleapis";
 import { Link } from "react-router-dom";
 
 interface User {
@@ -50,7 +49,7 @@ export const Subscriptions: React.FC = () => {
   let logged = auth?.isLogged() ? auth?.isLogged() : false;
   
   console.log(logged);
-  // TODO: Si no es de negocios no se muestra el toggle, el payment y el cancel.
+  // Complete: Si no está logeado no se muestra el toggle, el payment y el cancel.
 
   function handleUploadNormal(e) {
     // Complete: Función que almacena las cosas que pasarán si la persona acepta el popUp
@@ -117,6 +116,7 @@ export const Subscriptions: React.FC = () => {
     <article className="Subs__main-article">
       <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast>
       {/* ..... Subscription plan ..... */}
+      {/* ..... Lo que de verdad se va a mostrar ..... */}
       <section className="">
         {/* ..... Subscriptions ..... */}
         <div className="Subs__div-switcher">

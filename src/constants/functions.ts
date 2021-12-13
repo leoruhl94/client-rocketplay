@@ -89,3 +89,8 @@ export function pageTransition (dir){
     }
     return pageTransition
 }
+
+
+export const ComponentDesc = () => {
+    
+}
