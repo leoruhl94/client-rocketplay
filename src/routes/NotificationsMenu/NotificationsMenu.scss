@@ -1,0 +1,23 @@
+.notification__empty{
+    color: white;
+    text-align: center;
+}
+.notification__container{
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: #30444e;
+    display: flex;
+    align-items: center;
+    .notification__text{
+        font-size: 1rem;
+        color: white;
+    }
+    .notification__point{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: aquamarine;
+        margin-right: 1rem;
+    }   
+}

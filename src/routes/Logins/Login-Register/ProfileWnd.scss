@@ -1,0 +1,58 @@
+.profileWnd{
+    position: absolute;
+    right: 0;
+    width: 300px;
+    height: 0;
+    padding: 0;
+    margin: 1rem;
+    border-radius: 1rem;
+    background: rgba(77, 86, 90, 0.8);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    // backdrop-filter: blur(4px);
+    transition: 0.2s;
+    overflow: hidden;
+    .profileWnd__user{
+        display: flex;
+        justify-content: space-evenly;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 0.1rem solid #818181;
+        .profileWnd__pic{
+            border-radius: 50%;
+            width: 30%;
+        }
+        .profileWnd__info{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            span:nth-child(2){
+                font-size: 0.8rem;
+            }
+        }
+    }
+    .profileWnd__cambiar{
+        width: calc(100% - 0.4rem);
+        height: 40px;
+        margin: 0.9rem 0.2rem;
+        background: transparent;
+        border-radius: 25px;
+        overflow: hidden;
+        //border: 2px solid white !important;
+    }
+    .profileWnd__googleBtn{
+        width: 100%;
+        border-radius: 20px !important;
+        background: transparent !important;
+        color: white !important;
+        div{
+            background-color: transparent !important;
+        }
+    }
+}
+.profileWndDep{
+    //height: 230px;
+    height: 600px;
+    padding: 1rem;
+    z-index: 1;
+}

@@ -7,7 +7,7 @@ import { Props2 } from './Parts'
 
 //Componentes del archivo
 import AboutUser from "./AboutUser";
-import { NavigationMobile } from "../../containers/NavigationMobile/NavigationMobile";
+
 
 // Estilización
 import "./styles/About.scss";
@@ -71,7 +71,7 @@ const AboutComponent: React.FC = () => {
       <br />
       <br />
       </section>
-      <NavigationMobile/>
+
     </div> 
   );
 };

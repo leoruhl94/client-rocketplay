@@ -1,0 +1,308 @@
+* {
+    --yellow-super: #FFC542;
+}
+
+.Subs__main-article {
+    background-color: var(--grey);
+    width: 90%;
+    height: 100%;
+    color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    /* Margin */
+    margin: auto;
+    margin-top: 0px;
+}
+
+.Subs__margin-reset {
+    margin: 0;
+}
+
+.Subs__dropdown {
+    background-color: transparent;
+    border: none;
+}
+
+.Subs__div-switcher {
+    top: 0%;
+    transition: 0.4s;
+    height: 90px;
+    padding: 8px;
+    background-color: #625B39;
+    border-radius: 25px;
+    overflow: hidden;
+    .Subs__switcher-container {
+        display: grid;
+        grid-template-columns: 70% 30%;
+    }
+    .Subs__switcher-title {
+        color: var(--yellow-super);
+        padding: 9px;
+    }
+    .Subs__switcher-name {
+        color: var(--yellow-super);
+        padding-left: 12px;
+        padding-bottom: 10px;
+    }
+    .Subs__switcher-icon {
+        margin: auto;
+    }
+    .Subs__icon {
+        font-size: 3rem;
+        color: var(--yellow-super);
+    }
+    margin-bottom: 35px;
+}
+
+.Subs__div-switcher-two {
+    height: 220px;
+    transition: 0.4s;
+}
+
+.Subs__div-details {
+    height: 400px;
+    background-color: #526168;
+    border-radius: 10px;
+    margin: 0;
+    .Subs__details-headers {
+        padding: 12px;
+        width: 90%;
+        margin: 0px;
+        margin: auto;
+        text-align: center;
+    }
+    .Subs__details-card {
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+    .Subs__details-icon-card {
+        font-size: 3.3rem;
+        margin: auto;
+    }
+    .Subs__payment-date {
+        padding-left: 20px;
+        padding-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    .Subs__functions-list {
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        text-decoration: underline;
+    }
+    .Subs__div-extra {
+        margin: auto;
+        margin-top: 30px;
+    }
+}
+
+.Subs__popup {
+    background-color: #1e2e35;
+    box-shadow: 10px 10px 10px #141d22;
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 25px;
+    position: absolute;
+    top: 100px;
+    text-align: center;
+    .popup__normal-title {
+        font-size: 1.1rem;
+    }
+    .popup-normal-text {
+        width: 90%;
+        margin: auto;
+        padding: 4px;
+        border-radius: 10px;
+        border: none;
+    }
+    .popup-normal-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #FFC542;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+    .popup-danger-btn {
+        width: 85%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ff4242;
+        color: white;
+        font-size: 1.4rem;
+        padding: 4px;
+    }
+}
+
+.Subs__popup-two {
+    display: none;
+    overflow: hidden;
+    transition: 0.4s;
+    height: 0px;
+    width: 0;
+}
+
+
+/* Toggle *************************************** */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/***/
+
+
+/*SNACK BAR **/
+
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+}
+
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
+/* Animations to fade the snackbar in and out */
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}

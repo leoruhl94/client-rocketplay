@@ -7,43 +7,46 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { storeState } from "../../redux/type";
 import { URL_BASE } from "../../constants/constants";
+import { useAuth } from "../../auth/useAuth";
+import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
 
 export const PreApproval: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
-
-  const json = localStorage.getItem("user");
-  const user = json && JSON.parse(json);
+  const auth = useAuth() 
+  const [success, setSuccess] = useState(false);
 
   let id = location.search.slice(16);
-
+  
   const postSubscriptions = async () => {
     let response:any = await axios.post(`${URL_BASE}/subscriptions`, {
       subscription_id: id,
-      mail: user.email,
+      mail: auth?.user?.email,
     });
-    history.push("/home");
+    console.log('response postSubscriptions >>>>',response);
+    setSuccess(true)
+    // history.push("/home")
   };
-  if (!!user && !!id) {
-    postSubscriptions();
-  }
+  console.log("Preapproval",auth?.user?.email, id)
   
-
-  // useEffect(() => {
-  //    history.push("/home");
-  // }, [res.message]);
-
-  // console.log("approval", location.search.slice(16));
-
-  return (
-    <div className="preapproval">
-      <div className="preapproval__loading">
+  useEffect(() => {
+      if (!!auth?.user?.email && !!id) {
+        postSubscriptions();
+      }
+      console.log('useEffect preApproval')
+    }, []);
+    
+    
+    return (
+      <div className="preapproval">
+      {success ? <SuccessWnd text='succesful transaction'/> : 
+        <div className="preapproval__loading">
         <LoadingComponent />
-      </div>
+      </div>}
     </div>
   );
 };
 
-function async(arg0: () => React.FC) {
-  throw new Error("Function not implemented.");
-}
+// function async(arg0: () => React.FC) {
+//   throw new Error("Function not implemented.");
+// }

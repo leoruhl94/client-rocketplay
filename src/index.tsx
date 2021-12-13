@@ -4,10 +4,9 @@ import App from './App'
 import { Provider } from "react-redux"
 import store from './redux/store'
 import { HashRouter } from 'react-router-dom'
-import { FirebaseAppProvider } from 'reactfire'
-import { firebaseConfig } from './firebaseConfig.js'
 import  axios  from 'axios'
-//import { LoadingComponent } from './components/LoadingComponent/LoadingComponent'
+import AuthProvider from './auth/AuthProvider'
+
 
 setInterval(() => {
     axios.get("https://api-rocketplay.herokuapp.com/active")
@@ -16,10 +15,13 @@ setInterval(() => {
 
 
 ReactDOM.render(
+
 <HashRouter> 
     <React.Suspense fallback={'cargando...'}>
         <Provider store={store}>
-            <App />
+            <AuthProvider>
+                <App />
+            </AuthProvider>
         </Provider>
     </React.Suspense>
 </HashRouter>

@@ -1,0 +1,41 @@
+/* Artículo principal */
+
+.Menu__article-container {
+    color: white;
+}
+
+.Menu__main-title {
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Container de los componentes */
+
+.Menu__list-container {
+    font-size: 1.5rem;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80%;
+}
+
+
+/* Iconito para mirar nomás*/
+
+.Menu__testing-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+
+/* Contenedores de cada sección*/
+
+.Menu__section-container {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}

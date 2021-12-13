@@ -3,6 +3,7 @@ import './PricingDetailComponent.scss'
 import { useDispatch } from "react-redux";
 import { pricingSelect } from "../../redux/actions";
 import { useHistory } from "react-router";
+import { useAuth } from "../../auth/useAuth";
 
 export interface Props {
     color: number;
@@ -15,6 +16,7 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     const [dep, setDep] = useState<Boolean>(props.plan === 'Standard' ? true : false)
     const dispatch = useDispatch()
     const history = useHistory()
+    const auth = useAuth()
     const colors = ['violet', 'blue', 'gold'] 
 
     function handleDeploy() {
@@ -22,7 +24,11 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     }
     function handleClick() {
         dispatch(pricingSelect(props.plan))
-        history.push('/login')
+        if(auth?.isLogged){
+            history.push('/login')
+        }else{
+            history.push('/payment')
+        }
     }
 
     return (

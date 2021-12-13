@@ -1,3 +1,4 @@
+import { Categories, Notifications } from '../routes/Menu/Items/Categories/hardcode';
 export interface profile {
     name: string,
     pic: string
@@ -5,9 +6,11 @@ export interface profile {
   // --------------------------------
  export type storeState = {
     profile: profile,
-    logsPage: number, 
     plan: string,
     plans: any[],
+    categories : Categories[],
+    notifications : Notifications[],
+    page: number
   }
   
  export type storeAction = {

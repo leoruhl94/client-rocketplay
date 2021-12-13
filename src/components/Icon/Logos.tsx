@@ -2,12 +2,130 @@ import { Icons } from "./Icons";
 import React, { Fragment } from "react";
 
 export const Logos = {
+  brokenRocket:(<>
+      <defs>
+        <linearGradient
+          id="Degradado_sin_nombre_29"
+          x1={1043.93}
+          y1={558.78}
+          x2={370.32}
+          y2={1226.92}
+          gradientTransform="rotate(97.24 505.724 1095.838)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset={0} stopColor="#9973e6" />
+          <stop offset={0.21} stopColor="#9373e8" />
+          <stop offset={0.49} stopColor="#8273ed" />
+          <stop offset={0.81} stopColor="#6674f7" />
+          <stop offset={1} stopColor="#5274fd" />
+        </linearGradient>
+        <linearGradient
+          id="Degradado_sin_nombre_66"
+          x1={1129.54}
+          y1={1541.88}
+          x2={901.59}
+          y2={1245.09}
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset={0} stopColor="#f9c93c" />
+          <stop offset={0.13} stopColor="#fac33e" />
+          <stop offset={0.31} stopColor="#fcb243" />
+          <stop offset={0.46} stopColor="#fe9f49" />
+          <stop offset={0.52} stopColor="#ef9748" stopOpacity={0.96} />
+          <stop offset={0.62} stopColor="#c68244" stopOpacity={0.86} />
+          <stop offset={0.78} stopColor="#86603e" stopOpacity={0.7} />
+          <stop offset={0.95} stopColor="#363636" stopOpacity={0.5} />
+        </linearGradient>
+        <linearGradient
+          id="Degradado_sin_nombre_66-2"
+          x1={547.28}
+          y1={1814.29}
+          x2={419.17}
+          y2={1647.49}
+          gradientTransform="matrix(-1 0 0 1 1286.99 0)"
+          xlinkHref="#Degradado_sin_nombre_66"
+        />
+        <style>
+          {
+            ".brokenRocket-cls-1{fill:black;opacity:.3}.brokenRocket-cls-4{fill:none;stroke:#a3a3a3;stroke-width:2px;stroke-linecap:round;stroke-miterlimit:10}.brokenRocket-cls-7{fill:#a3a3a3}"
+          }
+        </style>
+      </defs>
+      <g id="Capa_2" data-name="Capa 2">
+        <g id="Capa_7" data-name="Capa 7">
+          <ellipse className="brokenRocket-cls-1" cx={978.77} cy={1832} rx={523.5} ry={56} />
+          <path
+            d="M1089.37 1761.21c-54.54 26.93-47.9 46.49-89.66 66.76-42.2 20.48-76 13.62-195.44-6-176.21-28.91-225.23-34.1-228-56-3.66-28.89 71-78 71-78-64-47.65-98.81-54.82-119-51-3.28.62-12 2.65-17-2-12.52-11.55 8.1-54.46 16-67 6.07-9.65 13.91-20.27 13.91-20.27 2.08-2.82 3.85-5.14 5.09-6.73 0 0-24-28.92-35-35-84.79-47.08-86.23-115.36-190.64-164-5.17-2.41-10.36-8.8-18.74-8a394.1 394.1 0 0 1-285-83.52c-21.9-17.21-21.54-50.52.58-67.45l702.9-538c22.71-17.38 55.84-8.25 66.24 18.39a394.89 394.89 0 0 1 2.13 284.73 35.85 35.85 0 0 0 5.49 34.88c62.14 78.44 68.19 297.18 205.38 359.32 47.74 21.62 95.19 21.45 118.66 64.66 12.74 23.46 11.71 47.39 11 64-3.65 85-51 150-51 150s122.43-14 145 23c11 18-2.66 46.65-13 61-25.45 35.35-62.44 27.38-120.9 56.23Z"
+            style={{
+              fill: "url(#Degradado_sin_nombre_29)",
+            }}
+          />
+          <circle
+            cx={739.77}
+            cy={1396.02}
+            r={127}
+            transform="rotate(-45 739.77 1396.017)"
+            style={{
+              fill: "#354952",
+            }}
+          />
+          <path
+            className="brokenRocket-cls-4"
+            d="m687.27 1374 71.92-26.89v42.2l-54.35 50.52 54.35 18.09-27.92 34.08 14.34 30.9"
+          />
+          <path
+            className="brokenRocket-cls-1"
+            d="M834.27 1582a266.65 266.65 0 0 0 22-29c17-26 23.51-45.81 26-45s-4.94 24.43-8 50c0 42.5 0 68.5 8 91.34 6.23 17.78 24 38.66 24 38.66a265.32 265.32 0 0 0 55-7 268.19 268.19 0 0 0 90-40 199.56 199.56 0 0 0 175 30c-2.53 10.58-8.33 27.75-23 42-10.66 10.35-21 17-45 24-28 8.17-30 8-54 18-14.69 6.11-29.67 12.42-46 25-15.43 11.88-13.86 15.29-31 29-10 8-24.43 19.36-44 26-18.69 6.34-34.68 5.87-49 5-67.37-4.11-102-14-102-14-6.86-1.08-56.38-8.92-101-16-100.69-16-151.11-24.33-155-43-2.92-14 12.44-32 33-50 16-14 28.14-23.37 38-29 0 0-64-52-108-52-9 0-17 4-27 0-3.78-3.77-4.9-10.24-5-11-.84-6 2.21-12.72 3-15 7.93-23 9-27 20-47 0 0 .22-.35 16-22a163.27 163.27 0 0 0-11-13c-4.82-5.12-5.9-5.57-13-13-4-4.15-4.71-5.14-7-7a46.76 46.76 0 0 0-12-7c-6.17-2.61-12.12-7.41-24-17-11.6-9.35-19.38-17.92-35-35-27.48-30-24.1-30.94-41-48-37-37.3-66.54-53.11-83.16-60.76-2.6-1.2-9-8-17.11-7.11a386.83 386.83 0 0 1-131.92-7.34C103 1310 51.29 1278.17 16.24 1250.24a43.27 43.27 0 0 1 1-68.34q89.25-67.49 178.24-135.27 87.18-66.39 174.16-133.11c14.42 33.57 35.54 81.57 62.48 138.73 31.17 66.16 48.42 80.26 63.16 128.6 18.18 59.63 5.63 68.54 26 101.15 0 0 12.51 20 95.27 84.25a131.93 131.93 0 0 1 48.64-73.46c-2.54 6.85-25.55 72.28 13.63 130.76 32.27 48.16 93.45 71.81 153.81 58.86a117.35 117.35 0 0 1-35.78 27.71 124.18 124.18 0 0 1-33.64 10.88c0 16.34-6.13 43.41-10.94 59-4.92 16-36 87-36 87 3.83 4.34 85.19-47.62 94-61"
+          />
+          <path
+            d="M804.63 1337.73a67 67 0 0 1 18.31 86"
+            style={{
+              strokeWidth: 25,
+              stroke: "#fff",
+              strokeLinecap: "round",
+              strokeMiterlimit: 10,
+              fill: "#354952",
+            }}
+          />
+          <path
+            d="M744 728.22a231.74 231.74 0 0 1-1.46 170.17"
+            style={{
+              fill: "#fff",
+              strokeWidth: 29,
+              stroke: "#fff",
+              strokeLinecap: "round",
+              strokeMiterlimit: 10,
+            }}
+          />
+          <path
+            className="brokenRocket-cls-4"
+            d="M859 1439.83 801.27 1421v-46.94l-42.08-26.95-19.42-12.44 17.5-36.67"
+          />
+          <path
+            className="brokenRocket-cls-7 smoke"
+            d="M247.23 252.53C194.5 377.54 181 484.82 229 559.26c22.81 35.38 46.23 42.76 65.86 77.25 36 63.19 27.42 161.54-60.64 313.69 18.71-67 32.58-161.88-13.67-243.2-27.86-49-58-58.8-78.68-95.6-30.52-54.4-33.01-155.14 105.36-358.87ZM367 624.38c-12.52-110.45-1.72-195.71 10.38-253 18.16-86 42.06-122.32 34.94-184C402.44 102.16 341.39 39.26 292.52 0 318.4 44.39 349 113.23 342.69 194.75c-6.69 86-49.37 120.13-56.86 198.63-4.96 51.96 4.9 129.55 81.17 231Z"
+          />
+          <path
+            d="M951.35 1562.39c37.14 29.8 99.69 35.57 138.82 9.48 67-44.63 76.71-190-11.26-353.15a298.59 298.59 0 0 1 0 131.8c-4.19-14.21-10.75-36.16-19.15-63.09-11.16-35.74-15.51-48-20.84-68.71a609.09 609.09 0 0 1-13.52-68.72 440.8 440.8 0 0 0-26.47 254 403.91 403.91 0 0 1-19.15-167.84c-97.96 134.64-92.89 274.5-28.43 326.23Z"
+            style={{
+              fill: "url(#Degradado_sin_nombre_66)",
+            }}
+          />
+          <path
+            d="M839.85 1825.81c-20.87 16.75-56 20-78 5.33-37.63-25.08-43.11-106.75 6.33-198.47a167.95 167.95 0 0 0 0 74.07c2.36-8 6-20.32 10.77-35.45 6.26-20.09 8.71-27 11.71-38.62a342.86 342.86 0 0 0 7.59-38.62 247.69 247.69 0 0 1 14.88 142.76 227.06 227.06 0 0 0 10.76-94.33c55.03 75.66 52.18 154.26 15.96 183.33Z"
+            style={{
+              fill: "url(#Degradado_sin_nombre_66-2)",
+            }}
+          />
+        </g>
+      </g></>
+  ),
   rocketColor: (
     <>
       <defs>
         <style>
           {
-            ".logoDarkColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.logoDarkColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.logoDarkColor-cls-3,.logoDarkColor-cls-6{fill:#354952;}.logoDarkColor-cls-4{opacity:0.3;}.logoDarkColor-cls-5,.logoDarkColor-cls-7{fill:#fff;}.logoDarkColor-cls-6,.logoDarkColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.logoDarkColor-cls-6{stroke-width:25px;}.logoDarkColor-cls-7{stroke-width:29px;}"
+            ".logoDarkColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.logoDarkColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.logoDarkColor-cls-3,.logoDarkColor-cls-6{fill:#354952;}.logoDarkColor-cls-4{fill:black;opacity:0.3;}.logoDarkColor-cls-5,.logoDarkColor-cls-7{fill:#fff;}.logoDarkColor-cls-6,.logoDarkColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.logoDarkColor-cls-6{stroke-width:25px;}.logoDarkColor-cls-7{stroke-width:29px;}"
           }
         </style>
         <linearGradient
@@ -18,15 +136,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          {/* <stop offset="0.95" stop-color="#fff" stop-opacity="0" /> */}
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          {/* <stop offset="0.95" stopColor="#fff" stopOpacity="0" /> */}
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_29"
@@ -36,11 +154,11 @@ export const Logos = {
           y2="971.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">
@@ -89,15 +207,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_29"
@@ -107,11 +225,11 @@ export const Logos = {
           y2="971.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">
@@ -160,11 +278,11 @@ export const Logos = {
           y2="975.16"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#9973e6" />
-          <stop offset="0.21" stop-color="#9373e8" />
-          <stop offset="0.49" stop-color="#8273ed" />
-          <stop offset="0.81" stop-color="#6674f7" />
-          <stop offset="1" stop-color="#5274fd" />
+          <stop offset="0" stopColor="#9973e6" />
+          <stop offset="0.21" stopColor="#9373e8" />
+          <stop offset="0.49" stopColor="#8273ed" />
+          <stop offset="0.81" stopColor="#6674f7" />
+          <stop offset="1" stopColor="#5274fd" />
         </linearGradient>
         <linearGradient
           id="Degradado_sin_nombre_23"
@@ -174,15 +292,15 @@ export const Logos = {
           y2="1472.69"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f9c93c" />
-          <stop offset="0.13" stop-color="#fac33e" />
-          <stop offset="0.31" stop-color="#fcb243" />
-          <stop offset="0.46" stop-color="#fe9f49" />
-          <stop offset="0.51" stop-color="#fea656" stop-opacity="0.93" />
-          <stop offset="0.61" stop-color="#feb776" stop-opacity="0.75" />
-          <stop offset="0.75" stop-color="#ffd3ab" stop-opacity="0.46" />
-          <stop offset="0.92" stop-color="#fff8f3" stop-opacity="0.07" />
-          <stop offset="0.95" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0" stopColor="#f9c93c" />
+          <stop offset="0.13" stopColor="#fac33e" />
+          <stop offset="0.31" stopColor="#fcb243" />
+          <stop offset="0.46" stopColor="#fe9f49" />
+          <stop offset="0.51" stopColor="#fea656" stopOpacity="0.93" />
+          <stop offset="0.61" stopColor="#feb776" stopOpacity="0.75" />
+          <stop offset="0.75" stopColor="#ffd3ab" stopOpacity="0.46" />
+          <stop offset="0.92" stopColor="#fff8f3" stopOpacity="0.07" />
+          <stop offset="0.95" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
       <g id="Capa_2" data-name="Capa 2">

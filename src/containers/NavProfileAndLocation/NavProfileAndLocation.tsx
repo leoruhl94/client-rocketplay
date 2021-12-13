@@ -1,27 +1,23 @@
 import React, { useState } from "react"
+import { useSelector } from "react-redux"
 import { useLocation } from "react-router"
-import { ProfileWnd } from "../../components/Login-Register/ProfileWnd"
+import { storeState } from "src/redux/type"
+import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd"
 import './NavProfileAndLocation.scss'
 
-interface User {
-    accessToken: '', 
-    name: '',
-    pic: ''
-  }
 interface Props{
     header?: string
 }
 export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) => {
-    const json = localStorage.getItem('user')
     const location = useLocation()
     let headerRoute = location.pathname?.slice(1).split('/').join(' > ')
-    const profile: User = json ? JSON.parse(json) : null
+    const {profile} = useSelector((state: storeState) => state)
     const [wndProfile, setWndProfile] = useState(false) 
     if(headerRoute.startsWith('videodetail')){
         headerRoute = header
     }
     
-    return (
+    return (<>
         <nav className="channelsNav">
             <ul className="title">{`${headerRoute}`}</ul>
             <ul className="channelsNavUl ">
@@ -31,5 +27,7 @@ export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) =>
                 <ProfileWnd dep={wndProfile}/>
             </ul>
         </nav>
+        <div className="channelsNav__ocupaEspacio"></div>
+        </>
     )
 }
