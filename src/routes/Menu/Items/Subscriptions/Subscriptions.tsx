@@ -16,6 +16,7 @@ import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/Su
 import { postNotifications } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
 import { Link } from "react-router-dom";
+import { Clipboard } from "../../../../components/Clipboard/Clipboard";
 
 interface User {
   accessToken: string;
@@ -143,6 +144,7 @@ export const Subscriptions: React.FC = () => {
         {logged? <div className="Subs__div-details">
           <div className="Subs__details-headers">
             <h1 className="Subs__margin-reset">Credit Data</h1>
+              <Clipboard value={input}></Clipboard>
           </div>
           <div className="Subs__payment-date">
             <h3 className="Subs__margin-reset">
