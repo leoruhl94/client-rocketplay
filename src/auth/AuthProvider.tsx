@@ -104,7 +104,7 @@ function AuthProvider({ children }) {
           setTimeout(()=>{
             setUser(null);
           }, 10)
-          history.push('/login')
+          // history.push('/login')
           // setUser(null);
         },
         isLogged() {

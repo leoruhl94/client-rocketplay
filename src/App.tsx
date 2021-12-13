@@ -46,6 +46,7 @@ import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavPro
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
 
+
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
