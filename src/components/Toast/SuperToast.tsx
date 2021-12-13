@@ -7,11 +7,14 @@ interface Props {
 /*
 
 ¿Queŕes usarme?
--> Poneme en cualquier parte de tu componente con un value a elección
+-> NO NECESITAS PONERME, YA ESTOY COMO ETIQUETA EN APP.TSX USANDO UN VALOR DEL STORE
 -> En el archivo 'functions' hay una llamada testFunction que me hace aparecer.
+-> Hacé un dispatch con el string a mostrar con setToast('value')
 -> Coloca la función donde quieras usarme, por ejemplo
 
-<button onClick={testFunction} >Show Snackbar</button>
+dispatch(setToast('Okay'))
+
+<button onClick={testFunction()} >Show Snackbar</button>
 
 
 

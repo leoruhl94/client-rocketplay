@@ -25,6 +25,8 @@ export const POST_NOTIFICATIONS = 'POST_NOTIFICATIONS'
 export const READ_NOTIFICATIONS = 'READ_NOTIFICATIONS'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
 
+//TOAST
+export const SET_TOAST = 'SET_TOAST'
 
 export function styleVar(vars: any) {
     const cssVars: CSS.Properties = {};

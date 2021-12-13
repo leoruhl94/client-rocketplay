@@ -13,7 +13,7 @@ import { URL_BASE } from "../../../../constants/constants";
 import { getDates, testFunction } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
-import { postNotifications } from "../../../../redux/actions";
+import { postNotifications, setToast } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
 import { Link } from "react-router-dom";
 import { Clipboard } from "../../../../components/Clipboard/Clipboard";
@@ -63,6 +63,7 @@ export const Subscriptions: React.FC = () => {
       // TODO: Conectar la función para el backEnd así lo saca
     } else {
       setNotification('Incorrect')
+      dispatch(setToast('Potencia'))
       testFunction()
       setInput('')
       // popUpDanger(e, "Cancel");
@@ -108,14 +109,15 @@ export const Subscriptions: React.FC = () => {
     console.log(res.data);
     setNotification(res.data.message)
     // Sumamos la notificación a un array y  mandamos un toast
-    testFunction()
     dispatch(postNotifications(res.data))
+    dispatch(setToast('Potencia'))
+    testFunction()
   };
 
   // Returned
   return (
     <article className="Subs__main-article">
-      <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast>
+      {/* <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast> */}
       {/* ..... Subscription plan ..... */}
       {/* ..... Lo que de verdad se va a mostrar ..... */}
       <section className="">

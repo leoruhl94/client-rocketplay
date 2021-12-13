@@ -24,7 +24,7 @@ import { Route, Switch } from "react-router-dom";
 import { Redirect, useLocation, useHistory } from "react-router";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
@@ -45,6 +45,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavProfileAndLocation";
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
+import { SuperToast } from "./components/Toast/SuperToast";
+import { storeState } from "./redux/type";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -52,6 +54,9 @@ const App: React.FC = () => {
   let location = useLocation();
   const auth = useAuth();
 
+  const toast: string = useSelector((state: storeState) => {
+    return state.toast;
+  });
   const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -85,6 +90,7 @@ const App: React.FC = () => {
     <h1>cargando...</h1>
   ) : (
     <>
+            <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
         <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
         <Switch>

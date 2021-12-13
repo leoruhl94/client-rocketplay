@@ -1,7 +1,8 @@
 import React from "react";
 import './Clipboard.scss'
-import { SuperToast } from '../Toast/SuperToast';
 import { testFunction } from "../../constants/functions";
+import { useDispatch } from "react-redux";
+import { setToast } from "../../redux/actions";
 
 interface Props {
     value : string
@@ -17,10 +18,16 @@ pasame un "value" que será lo que mandaré al clipboard
 
 Ej:
     <Clipboard value={input}></Clipboard>
-*/ 
+
+
+ESTO YA TIRA UN TOAST POR SI SOLO
+
+    */ 
 
 export const Clipboard : React.FC<Props> = ({value}) =>{
     
+    const dispatch = useDispatch()
+
     const copyToClipboard = async (val : string) => {
         if ('clipboard' in navigator) {
             return await navigator.clipboard.writeText(val);
@@ -29,11 +36,14 @@ export const Clipboard : React.FC<Props> = ({value}) =>{
           }
     }
 
+    const useTestFunction = () => {
+        dispatch(setToast('Copied to clipboard: ' + value))
+        testFunction()
+    }
 
     // ... Clipboard ...
     return(<section>           
-        <SuperToast value={"Copied to clipboard : " + value}></SuperToast>
-        <button className="Clipboard__button" onClick={() => {copyToClipboard(value);testFunction()}}>
+        <button className="Clipboard__button" onClick={() => {copyToClipboard(value);useTestFunction()}}>
         Copy to Clipboard
     </button>
     </section>)

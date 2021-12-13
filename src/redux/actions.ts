@@ -12,7 +12,9 @@ import {
   POST_NOTIFICATIONS,
   READ_NOTIFICATIONS,
   CHANGE_PAGE,
+  SET_TOAST,
 } from "../constants/constants";
+
 
 interface User {
   email?: String;
@@ -167,4 +169,10 @@ export function changePage(n) {
   return (dispatch) => {
     dispatch({ type: CHANGE_PAGE, payload: n });
   };
+}
+
+export function setToast(data){
+  return (dispatch) => {
+    dispatch({ type: SET_TOAST, payload: data})
+  }
 }

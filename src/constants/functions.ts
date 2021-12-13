@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setToast } from "../redux/actions";
 
 export async function getGoogleData(token:String) {
     const data = await axios.get(
@@ -35,7 +37,7 @@ export const getDates = () => {
 }
 
 
-export function testFunction(value? : string){
+export function testFunction(){
     // Ya se muestra la palabra jajaja
     let x = document.querySelectorAll("#snackbar");
     x.forEach((i) => {
