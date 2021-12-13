@@ -52,7 +52,7 @@ export function refresh(info, tok = false) {
     let user = info;
     if (tok) {
       const data = await axios.get(
-        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${info.data.data.id_token}`
+        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${info.access_token}`
       );
       const userGoogle = {
         name: data.data.name,
@@ -75,7 +75,7 @@ export function loginRegister(tokens, keepSession, auth) {
     } else {
       sessionStorage.setItem("tok", JSON.stringify(tokens));
     }
-    let user = await auth?.login(tokens.data.data.id_token);
+    let user = await auth?.login(tokens.data.data);
 
     axios.post(`${URL_BASE}/users`, {
       isBusiness: false,

@@ -45,13 +45,16 @@ function AuthProvider({ children }) {
   // console.log("USER authProv ", user);
   const contextValue: any = {
     user,
-    async login(token) {
+    async login(tokens) {
       // console.log("ENTRE LOGIN AUTH ", token)
 
       try {
         let res = await axios.get(
-          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+          `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
           );
+        /* let res = await axios.get(
+          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
+          ); */
           // const dbUserInfo = await axios.get(`${URL_BASE}/users`, {params:{email:res?.data.email}})
           // const user = {
             //   name: res?.data.name,
