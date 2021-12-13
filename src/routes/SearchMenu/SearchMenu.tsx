@@ -17,7 +17,7 @@ interface video {
 
 export const SearchMenu: React.FC = () => {
   const auth = useAuth();
-  const [schemaName, setSchemaName] = useState(null);
+  const [schemaName, setSchemaName] = useState("");
   const [videos, setVideos] = useState<video[]>([]);
   const handleSubmit = async (value) => {
     console.log(schemaName);
@@ -55,6 +55,7 @@ export const SearchMenu: React.FC = () => {
         videos?.map((item) => (
           <VideoItem
             key = {item.videoid}
+            schemaName={schemaName}
             videoid={item.videoid}
             thumbnail={item.thumbnail}
             title={item.title}
@@ -94,6 +95,7 @@ interface Props {
   title: string;
   category: string;
   channelName: string;
+  schemaName: string;
 }
 const VideoItem: React.FC<Props> = ({
   videoid,
@@ -101,9 +103,10 @@ const VideoItem: React.FC<Props> = ({
   title,
   category,
   channelName,
+  schemaName,
 }) => {
   return (
-    <Link to={`/home/${videoid}`} className="VideoItem">
+    <Link to={`/videodetail/${schemaName}/${title}`} className="VideoItem">
       <div className="VideoItem__image_container">
         <img
           className="VideoItem__image"
