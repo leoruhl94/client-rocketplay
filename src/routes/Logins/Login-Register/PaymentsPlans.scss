@@ -1,15 +1,12 @@
 @import "../../../styles/variables.scss";
 
 .loginPlan__container{
-    position:absolute;
-    width: 100%;
+    width: calc(100% - 2rem);
+    height: auto;
     color: white;
     text-align: center;
-    top: calc(50vh - 267px);
-    left: 50%;
-    transform: translateX(-50%);
     background: $squareBackground;
-    margin: 0 auto;
+    margin: 30px 1rem 70px 1rem;
     border-radius: 10px;
     padding: 24px 0;
     .loginPlan__title{
@@ -37,7 +34,7 @@
         }
     }
     .loginPlan{
-        height: 100%;
+        height: auto;
         width: 100%;
         .loginPlan__form{
             display: flex;
@@ -76,7 +73,7 @@
             width: 63%;
             outline: none;
             border: none;
-            color: white;
+            //color: white;
             font-size: 1.2rem;
         }
         .loginPlan__btns-container{
@@ -85,7 +82,9 @@
             width: 80%;
             margin: 0 auto;
             .loginPlan__superbutton{
-                color: black;
+                .SuperButton__text{
+                    color: black ;
+                }
                 width: 40%;
                 font-size: 1rem ;
                 padding: 15px ;
@@ -97,11 +96,5 @@
                 background: rgb(231, 226, 226) ;
             }
         }
-    }
-}
-
-@media (min-width: 1024px){
-    .loginPlan__container{
-        width: 100%;
     }
 }

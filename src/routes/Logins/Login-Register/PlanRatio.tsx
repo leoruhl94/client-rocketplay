@@ -7,14 +7,13 @@ interface props{
     input:boolean,
 }
 export const PlanRatio: React.FC<props> = ({plan, handleInput, input}) => {
-    console.log(plan)
     return(
         <div className={`planRatio__container${input ? ' checked' : ''}`}>
             <input
                 type="radio"
                 value={plan.name}
                 className="planRatio__input"
-                name="acctype"
+                name="planRatio"
                 id="acctype"
                 checked={input}
                 onChange={handleInput}

@@ -13,23 +13,17 @@ import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton
 import { async } from "@firebase/util";
 
 interface Props {
-  dep: boolean;
+  dep: boolean,
+  setWndProfile?: any,
 }
-interface User {
-  accessToken: string;
-  name: string;
-  pic: string;
-}
-export const ProfileWnd: React.FC<Props> = ({ dep }) => {
+
+export const ProfileWnd: React.FC<Props> = ({ dep, setWndProfile }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 
   const { profile } = useSelector((state: storeState) => state);
 
-  function errorGoogle(response) {
-    console.log(response);
-  }
   function logout() {
     dispatch(Logout(history, auth));
   }
@@ -93,7 +87,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         route="/payment"
         text='Get business'
         classes='profileWnd__cancelSub'
-      />
+        />
       <SuperButton
         name='Upload'
         route="/uploadvideo"

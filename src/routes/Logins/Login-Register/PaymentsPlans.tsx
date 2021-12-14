@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
@@ -20,16 +20,11 @@ export const PaymentsPlans: React.FC = () => {
   useEffect(() => {
     dispatch(pricingSelect(""));
   }, []);
+
   function handleSubmit(e) {
 
     console.log("submit");
     window.location.replace(paymentUrl);
-    //e.preventDefault();
-    //const json = localStorage.getItem("user");
-    //const user = json && JSON.parse(json);
-    //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
-    // window.open(plans.find((x) => x.name === input).url);
-    // history.push('/preapproval')
   }
   function handleInput(e) {
     setInput(e.target.value);
@@ -43,7 +38,7 @@ export const PaymentsPlans: React.FC = () => {
         <h2 className="loginPlan__title">Choose your account plan</h2>
         <div className="loginPlan__form">
         {plans.map((x) => (
-          <PlanRatio plan={x} handleInput={handleInput} input={input === x.name}/>
+          <PlanRatio key={x.name} plan={x} handleInput={handleInput} input={input === x.name}/>
         ))}
           {/* {plans.map((x) => (
             <div key={x.name} className="loginPlan__option-container">
@@ -63,13 +58,13 @@ export const PaymentsPlans: React.FC = () => {
           ))} */}
           <div className="loginPlan__btns-container">
               <SuperButton
-                text="Buy"
+                text="Back"
                 name="back"
                 handler={handleBack}
                 classes="loginPlan__superbutton"
               />
               <SuperButton
-                text="Shop"
+                text="Buy"
                 name="send"
                 handler={handleSubmit}
                 classes="loginPlan__superbutton"
