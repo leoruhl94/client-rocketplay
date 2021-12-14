@@ -6,13 +6,14 @@
     background: $squareBackground;
     border-radius: 15px;
     width: 300px;
-    height: 250px;
+    height: 260px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding: 16px;
     margin-bottom: 1rem;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    position: relative;
     // max-width: 320px;
     // flex-wrap: nowrap;
     // flex-grow: 1;
@@ -43,10 +44,10 @@
         flex-direction: row;
         gap: 0rem;
         justify-content: center;
-        height: 75px;
+        height: 100px;
         width: 270px;
         margin: 0 auto;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         .video-frame-text-title{
             width: 80%;
             // background: yellow;
@@ -69,6 +70,8 @@
             justify-content: flex-end;
             gap: 0.5rem;
             padding: 10px;
+            padding-right: 0;
+            // padding-bottom: 0;
             h3{
                 margin: 0;
                 color: white;
@@ -79,6 +82,22 @@
             .video-frame-like{
                 width: 16px;
                 height: 16px;
+            }
+        }
+    }
+    .video-frame-timestamp-div{
+        // background: red;
+        width: 20%;
+        margin-left: auto;
+        position: absolute;
+        right: 1%;
+        bottom: 1%;
+        .video-frame-timestamp{
+            h4{
+                margin: 0;
+                font-size: 0.8rem;
+                color: gray;
+                text-shadow: 1px 1px 3px black;
             }
         }
     }

@@ -14,6 +14,7 @@ interface videoState {
     thumbnail: string;
     username: string;
     videoId: number;
+    timestamp: string;
 }
 
 interface commentsObj {
@@ -50,6 +51,7 @@ export const VideoDetailAWS: React.FC = () => {
         thumbnail: "",
         username: "Loading...",
         videoId: 0,
+        timestamp: "",
     })
 
     const [member, setMember] = useState<Member>({
@@ -88,47 +90,6 @@ export const VideoDetailAWS: React.FC = () => {
     }
 
     useEffect(() => {
-        /* axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
-        .then(r => {
-            let data = r.data[0]
-            console.log(data)
-            setVideoData({
-                title: data.title,
-                description: data.description,
-                channelAvatar: data.channelavatar,
-                workspace: data.workspace,
-                thumbnail: data.thumbnail,
-                username: data.username,
-                videoId: data.videoid,
-            })
-            axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${data.videoid}`)
-            .then((e) => {
-                let array: any[] = []
-                e.data.map(el => {
-                    let obj = {
-                        commentId: el.commentId,
-                        memberName: el.memberName,
-                        text: el.text,
-                        videoTitle: el.videoTitle,
-                        videoId: el.videoId,
-                        schemaName: el.channelname,
-                        timestamp: el.createdAt,
-                    }
-                    array.push(obj)
-                })
-                setCommentData(array)
-            })
-        })
-        axios.get(`${URL_BASE}/members`, {params: {schemaName: params.schema, memberEmail: auth?.user?.email}})
-        .then(r => {
-            let data = r.data[0]
-            setMember({
-                memberId: data.id,
-                memberEmail: data.mail,
-                memberName: data.name,
-                userType: data.usertype
-            })
-        }) */
         handleLoadOfData()
     }, [])
 
@@ -136,7 +97,10 @@ export const VideoDetailAWS: React.FC = () => {
         // Info about the video.. =========================================================
         let responseVideoData = await axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
             let dataVideo = responseVideoData.data[0]
-            // console.log(dataVideo)
+            console.log(dataVideo.createdAt)
+            let unformatedTimestamp = dataVideo.createdAt.split("T")[0]
+            let split = unformatedTimestamp.split("-")
+            let timestampVideo = `${split[2]}-${split[1]}-${split[0]}`
             setVideoData({
                 title: dataVideo.title,
                 description: dataVideo.description,
@@ -145,11 +109,17 @@ export const VideoDetailAWS: React.FC = () => {
                 thumbnail: dataVideo.thumbnail,
                 username: dataVideo.username,
                 videoId: dataVideo.videoid,
+                timestamp: timestampVideo
             })
         // Info about the comments.. ======================================================
         let responseComments = await axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${dataVideo.videoid}`)
             let arrayComments: any[] = []
             responseComments.data.map(el => {
+                let unformatedTimestampDay = el.createdAt.split("T")[0]
+                let unformatedTimestampHour = el.createdAt.split("T")[1]
+                let hours = unformatedTimestampHour.split(":")
+                let days = unformatedTimestampDay.split("-")
+                let commentTimestamp = `${days[2]}-${days[1]}-${days[0]} / ${hours[0]}:${hours[1]}`
                 let obj = {
                     commentId: el.commentId,
                     memberName: el.memberName,
@@ -157,7 +127,7 @@ export const VideoDetailAWS: React.FC = () => {
                     videoTitle: el.videoTitle,
                     videoId: el.videoId,
                     schemaName: el.channelname,
-                    timestamp: el.createdAt,
+                    timestamp: commentTimestamp,
                 }
                 arrayComments.push(obj)
             })
@@ -232,7 +202,10 @@ export const VideoDetailAWS: React.FC = () => {
                 </div>
             </div>
             <div className="awsDetail-description-container">{/* Description */}
-                <h3 className="awsDetail-description-header">Description</h3>
+                <div className="awsDetail-description-flex-helper">
+                    <h3 className="awsDetail-description-header">Description</h3>
+                    <h5 className="awsDetail-description-timestamp">{videoData.timestamp}</h5>
+                </div>
                 <p className="awsDetail-description">{videoData.description}</p>
             </div>
             {/* Comments */}
@@ -249,7 +222,10 @@ export const VideoDetailAWS: React.FC = () => {
                         commentData.map(el => {
                             return (
                                 <div className="awsDetail-single-comment" key={el.commentId}>
-                                    <h4 className="awsDetail-comment-author">{el.memberName}</h4>
+                                    <div className="awsDetail-single-flex-helper">
+                                        <h4 className="awsDetail-comment-author">{el.memberName}</h4>
+                                        <h5 className="awsDetail-comment-timestamp">{el.timestamp}</h5>
+                                    </div>
                                     <p className="awsDetail-comment-p">{el.text}</p>
                                 </div>
                             )

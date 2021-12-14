@@ -15,6 +15,7 @@ interface CategoryState {
 	memberId: number;
 	categoryId: number;
 	likes: number;
+	timestamp: string;
 }
 
 export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
@@ -34,7 +35,9 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 			let likes = await axios.get(`${URL_BASE}/likes`, {
 				params: { schemaName: params.schema, videoId: item.id },
 			});
-
+			let unformatedTimestamp = item.createdAt.split("T")[0]
+			let split = unformatedTimestamp.split("-")
+			let timestamp = `${split[2]}-${split[1]}-${split[0]}`
 			let obj: any = {
 				videoId: item.id,
 				videoTitle: item.title,
@@ -42,6 +45,7 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 				memberId: item.memberId,
 				categoryId: item.categoryId,
 				likes: likes.data.likes,
+				timestamp: timestamp
 			};
 			array.push(obj);
 		}
@@ -67,6 +71,8 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 								videoTitle={el.videoTitle}
 								thumbnail={el.thumbnail}
 								likes={el.likes}
+								timestamp={el.timestamp}
+								key={el.videoId}
 							/>
 						);
 					})

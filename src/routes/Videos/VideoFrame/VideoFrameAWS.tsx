@@ -8,9 +8,10 @@ interface Props {
     videoTitle: string;
     thumbnail: string;
     likes: number;
+    timestamp: string;
 }
 
-export const VideoFrameAWS: React.FC<Props> = ({schemaName, videoTitle, thumbnail, likes}) => {
+export const VideoFrameAWS: React.FC<Props> = ({schemaName, videoTitle, thumbnail, likes, timestamp}) => {
     return (
         <Link to={`/videodetail/${schemaName}/${videoTitle}`} className="video-frame-link" key={videoTitle}>
         <div className="video-frame-container">
@@ -26,6 +27,11 @@ export const VideoFrameAWS: React.FC<Props> = ({schemaName, videoTitle, thumbnai
                 <div className="video-frame-text-likes">
                     <img src={like} alt="Like" className="video-frame-like" />
                     <h3>{likes}</h3>
+                </div>
+            </div>
+            <div className="video-frame-timestamp-div">
+                <div className="video-frame-timestamp">
+                    <h4>{timestamp}</h4>
                 </div>
             </div>
         </div>
