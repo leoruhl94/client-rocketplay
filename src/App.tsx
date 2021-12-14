@@ -145,23 +145,23 @@ const App: React.FC = () => {
 
           {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
-          <Route exact path="/modal">
-            <Modal>
+          {/* <Route exact path="/modal"> */}
+            {/* <Modal>
               <h1>HOLAAAAA</h1>
-              <EditChannel></EditChannel>
+              <EditChannel></EditChannel> */}
             {/* <AddChannel></AddChannel> */}
               {/* <h3>SOy el MoDal</h3>
               <h3>SOy el </h3>
               <h3>SOy el MoDal</h3> */}
             {/* <AddCategory2></AddCategory2> */}
-            </Modal>
+            {/* </Modal> */}
             {/* <Modal>
               <h1>HOLAAAAA</h1>
               {/* <h3>SOy el MoDal</h3>
               <h3>SOy el </h3>
               <h3>SOy el MoDal</h3> 
             </Modal> */}
-          </Route>
+          {/* </Route> */}
           <PrivateRoute
             exact
             path="/home"
