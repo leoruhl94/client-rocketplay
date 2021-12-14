@@ -107,7 +107,7 @@ const handleCategorySelect = (e) => {
 }
 
   return (
-    <MenuToggleContainer transition={transition}>
+    <MenuToggleContainer transition={transition} k="001">
       <select onChange={handleWorkspaceSelect} name="schemaName" id="">
         <option value="all">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((w, i) => (

@@ -7,7 +7,7 @@ import { SuperToggle } from "../../components/Buttons/SuperToggleButton/SuperTog
 import { SuperToast } from "../../components/Toast/SuperToast";
 import { URL_BASE } from "../../constants/constants";
 import { useModal } from "../../components/Modal/useModal";
-
+import { AddChannel } from "./SettingComponents/AddChannel";
 import { useAuth } from "../../auth/useAuth";
 import { Modal } from "../../components/Modal/Modal";
 interface props {
@@ -32,7 +32,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
   console.log(isOpenModal1);
 
   return (
-    <MenuToggleContainer transition={transition}>
+    <MenuToggleContainer transition={transition} k="002">
       <nav className="SettingMenu__container">
         {/* <div className="container"> */}
 
@@ -73,6 +73,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
                   </button>
                 
           <Modal isOpen={isOpenModal1} closeModal={ closeModal1 } title="bla">
+            <AddChannel></AddChannel>
             <li className="SettingMenu__li  SettingMenu__toggle">
               <h4>Activar/Pausar</h4>
               <SuperToggle
