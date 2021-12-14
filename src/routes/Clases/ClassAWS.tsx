@@ -23,6 +23,7 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 	let params: any = useParams();
 
 	const [categoryState, setCategoryState] = useState<CategoryState[]>([]);
+	const [categoryName, setCategoryName] = useState("Loading...")
 
 	const getLikes = async () => {
 		const allVideos = await axios.get(
@@ -55,12 +56,14 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 
 	useEffect(() => {
 		getLikes();
+		axios.get(`${URL_BASE}/category`, {params: {schemaName: params.schema, categoryId: params.category}})
+		.then(r => setCategoryName(r.data[0].catName))
 	}, []);
 
 	return (
 		<div className="class-super-container">
 			<div className="class-title">
-				<h1>Test AWS Category X</h1>
+				<h1>{categoryName}</h1>
 			</div>
 			<div className="class-video-super-container">
 				{categoryState.length > 0 ? (
