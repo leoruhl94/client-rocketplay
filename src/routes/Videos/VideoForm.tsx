@@ -197,7 +197,7 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
       })
   
       let videoPromise = upload.done()
-
+      // let realThumb = input.thumb === null ? "" : input.title
       const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
       const uploadThumb = new Upload({
         client: client,
@@ -225,12 +225,13 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
 
     const handleDatabaseLoad = () => {
       // let { title, avatar, author, description, thumbnail, memberId, categoryId } = req.body
+      let realThumb = input.thumb === null ? "" : input.title
       axios.post(`${URL_BASE}/uploadvideo/database`, {
         title: input.title,
         avatar: auth?.user?.pic,
         author: schemaName,
         description: input.description,
-        thumbnail: input.title + "-thumb",
+        thumbnail: realThumb + "-thumb",
         memberId: member.memberId,
         categoryId: input.category
       })
