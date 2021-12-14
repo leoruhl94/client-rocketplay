@@ -26,7 +26,11 @@ interface Open {
 export const SettingMenu: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   ///==================MODALS===================
-  const [isOpen, openModal, closeModal] = useOpen(false); 
+  const [isOpenModalAccount, openModalAccount, closeModalAccount] = useOpen(false); 
+  // const [isOpenModalAccount, openModalAccount, closeModalAccount] = useOpen(false); 
+  // const [isOpenModalAccount, openModalAccount, closeModalAccount] = useOpen(false); 
+  // const [isOpenModalAccount, openModalAccount, closeModalAccount] = useOpen(false); 
+  // const [isOpenModalAccount, openModalAccount, closeModalAccount] = useOpen(false); 
   ///==================MENUS===================
   const [isOpenMenuAccount, openMenuAccount, closeMenuAccount] = useOpen(false); 
   const [isOpenMenuWorkspace, openMenuWorkspace, closeMenuWorkspace] = useOpen(false); 
@@ -68,7 +72,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
         <DropdownMenuItem isOpen={isOpenMenuTags} title="Remove Tags"></DropdownMenuItem>
       </DropdownMenu>
 
-  
+  {/*  */}
        {/* <ul className="SettingMenu__submenu SettingMenu__ul">
           <button onClick={openModal}>Subscriptions</button>
 
