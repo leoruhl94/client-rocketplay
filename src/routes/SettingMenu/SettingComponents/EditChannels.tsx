@@ -10,7 +10,12 @@ interface InfoSubmit {
   oldName?: string;
   newName?: string;
 }
+interface Channels {
+  name: string;
+  id: number;
+}
 export const EditChannel: React.FC = () => {
+  const [channelsState, setChannelsState] = useState<Channels[]>();
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
     oldName: "",
@@ -24,11 +29,32 @@ export const EditChannel: React.FC = () => {
     } else {
       await axios.put(`${URL_BASE}/channels`, infoSubmit);
     }
+    console.log(infoSubmit, "<<<<<<<<<<<<");
   };
   const handleWorkspaceSelect = (e) => {
     e.preventDefault();
-    setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
+    axios
+      .get(`${URL_BASE}/channels`, { params: { schemaName: e.target.value } })
+      .then((r) => {
+        let array: any[] = [];
+        r.data.map((el) => {
+          let obj = {
+            name: el.name,
+            id: el.id,
+          };
+          array.push(obj);
+        });
+        setChannelsState(array);
+        setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
+      });
   };
+
+  const handleChannelSelect = (e) => {
+    e.preventDefault();
+    setInfoSubmit({ ...infoSubmit, oldName: e.target.value });
+    console.log(e.target.value, "<= deberia ser oldname");
+  };
+
   const handleOnChange = (e) => {
     e.preventDefault();
     setInfoSubmit({
@@ -53,13 +79,16 @@ export const EditChannel: React.FC = () => {
               </option>
             ))}
           </select>
-          <label>Current name: </label>
-          <input
-            type="text"
-            name="oldName"
-            value={infoSubmit.oldName}
-            onChange={handleOnChange}
-          />
+          {channelsState ? (
+            <select onChange={handleChannelSelect} name="oldName" id="">
+              <option value="all">Channels</option>
+              {channelsState?.map((ch) => (
+                <option key={ch.id} value={ch.name}>
+                  {ch.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
           <label>New name: </label>
           <input
             type="text"

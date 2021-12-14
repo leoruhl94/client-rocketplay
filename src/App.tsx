@@ -51,7 +51,6 @@ import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory
 import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
 import { EditChannel } from "./routes/SettingMenu/SettingComponents/EditChannels";
 
-
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -88,11 +87,15 @@ const App: React.FC = () => {
   }, [location]);
 
   return !auth?.user && tokens ? (
-    <LoadingComponent/>
+    <LoadingComponent />
   ) : (
     <>
       <AnimatePresence>
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
+        <PrivateRoute
+          path="/:algunaRuta"
+          component={NavProfileAndLocation}
+          routesToAvoid={["/pricing"]}
+        />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />
@@ -142,23 +145,11 @@ const App: React.FC = () => {
 
           {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
-          {/* <Route exact path="/modal"> */}
-            {/* <Modal>
-              <h1>HOLAAAAA</h1>
-              <EditChannel></EditChannel> */}
-            {/* <AddChannel></AddChannel> */}
-              {/* <h3>SOy el MoDal</h3>
-              <h3>SOy el </h3>
-              <h3>SOy el MoDal</h3> */}
-            {/* <AddCategory2></AddCategory2> */}
-            {/* </Modal> */}
-            {/* <Modal>
-              <h1>HOLAAAAA</h1>
-              {/* <h3>SOy el MoDal</h3>
-              <h3>SOy el </h3>
-              <h3>SOy el MoDal</h3> 
-            </Modal> */}
-          {/* </Route> */}
+          <Route exact path="/modal">
+            <EditChannel></EditChannel>
+            <AddChannel></AddChannel>
+            <AddCategory2></AddCategory2>
+          </Route>
           <PrivateRoute
             exact
             path="/home"
