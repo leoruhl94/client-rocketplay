@@ -2,7 +2,7 @@
 
 .loginPlan__container{
     position:absolute;
-    width: 80%;
+    width: 100%;
     color: white;
     text-align: center;
     top: calc(50vh - 267px);
@@ -41,9 +41,9 @@
         width: 100%;
         .loginPlan__form{
             display: flex;
-            flex-direction: column;
             justify-content: space-evenly;
             text-align: left;
+            flex-wrap: wrap;
         }
         .loginPlan__option-container{
             display: flex;
@@ -84,20 +84,17 @@
             justify-content: space-between;
             width: 80%;
             margin: 0 auto;
-            .loginPlan__btn-cont{
-                height: 32px;
+            .loginPlan__superbutton{
+                color: black;
                 width: 40%;
                 font-size: 1rem ;
-                .loginPlan__btn{
-                    width: 100%;
-                    padding: 15px ;
-                    margin: 0 auto;
-                    margin-top: 2rem;
-                    outline: none;
-                    border: none;
-                    border-radius: 10px ;
-                    background: rgb(231, 226, 226) ;
-                }
+                padding: 15px ;
+                margin: 0 auto;
+                margin-top: 2rem;
+                outline: none;
+                border: none;
+                border-radius: 10px ;
+                background: rgb(231, 226, 226) ;
             }
         }
     }
@@ -105,6 +102,6 @@
 
 @media (min-width: 1024px){
     .loginPlan__container{
-        width: 60%;
+        width: 100%;
     }
 }

@@ -14,7 +14,7 @@ const initialState: storeState = {
     plan: '',
     plans: [],
     categories : [],
-    notifications : [{message:"Welcome to RocketPlay!",status:"you are logged in", readed: false}],
+    notifications : [{message:"Welcome to RocketPlay!", readed: false}],
     page: 3
   }
 

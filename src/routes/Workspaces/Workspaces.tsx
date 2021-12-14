@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "../../auth/useAuth";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { WorkspaceItem } from "./WorkspaceItem";
+import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
 
 interface props {
   transition: any;
@@ -31,13 +32,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
     <>
       {/* <NavProfileAndLocation></NavProfileAndLocation> */}
       <AddWorkspace dep={add} handleAdd={handleAdd} refreshWorkspace={refreshWorkspace}/>
-      <motion.div
-        initial="out"
-        animate="in"
-        exit="out"
-        variants={transition}
-        transition={{ type: "linear" }}
-      >
+      <MenuToggleContainer transition={transition} k='key3'>
         <section className="Workspaces__container">
           <div className="Workspaces__list">
             <h2
@@ -74,7 +69,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             </div>
           </div>
         </section>
-      </motion.div>
+      </MenuToggleContainer>
     </>
   );
 };

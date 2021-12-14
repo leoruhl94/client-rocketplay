@@ -17,12 +17,12 @@ export const NotificationsMenu: React.FC<props> = ({transition}) => {
         dispatch(readNotifications())
     },[])
     return(
-        <motion.div initial='out' animate='in' exit='out' variants={transition} transition={{type:'linear'}}>
+        <MenuToggleContainer transition={transition} k='key4'>
             {!notifications.length ? <h2 className="notification__empty">There is not notifications</h2> : null}
             {notifications.map((n, i) => <div key={i} className='notification__container'>
                 <div className="notification__point"></div>
-                <span className='notification__text'>{`${n.message} (${n.status})`}</span>
+                <span className='notification__text'>{n.message}</span> {n.status ? <span className='notification__text'>{' ('+n.status+')'}</span> : null}
             </div>)}
-        </motion.div>
+        </MenuToggleContainer>
      )
 }

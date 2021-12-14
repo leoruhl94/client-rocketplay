@@ -45,6 +45,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavProfileAndLocation";
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
+import { LoadingComponent } from "./components/LoadingComponent/LoadingComponent";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -82,22 +83,17 @@ const App: React.FC = () => {
   }, [location]);
 
   return !auth?.user && tokens ? (
-    <h1>cargando...</h1>
+    <LoadingComponent/>
   ) : (
     <>
-<<<<<<< HEAD
       <AnimatePresence>
         <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
-=======
-      <AnimatePresence >
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
->>>>>>> aiuda
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />
           <Route exact path="/about/:id" component={AboutDetailComponent} />
           <Route exact path="/pricing" component={PricingComponent} />
-          <Route exact path="/payment" component={PaymentsPlans} />
+          <PrivateRoute exact path="/payment" component={PaymentsPlans} />
           <PrivateRoute exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />

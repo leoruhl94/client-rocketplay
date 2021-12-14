@@ -5,11 +5,12 @@ import './MenuToggleContainer.scss'
 interface props{
     children?: React.ReactNode,
     transition?: any
+    k?:string
 }
-export const MenuToggleContainer: React.FC<props> = ({children, transition}) => {
-    
+export const MenuToggleContainer: React.FC<props> = ({children, transition, k}) => {
     return(
         <motion.div
+        key={k}
         className="MenuToggleContainer"
         initial="out"
         animate="in"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import "./PaymentsPlans.scss";
 import { storeState } from "../../../redux/type";
 import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton";
@@ -21,7 +21,9 @@ export const PaymentsPlans: React.FC = () => {
     dispatch(pricingSelect(""));
   }, []);
   function handleSubmit(e) {
+
     console.log("submit");
+    window.location.replace(paymentUrl);
     //e.preventDefault();
     //const json = localStorage.getItem("user");
     //const user = json && JSON.parse(json);
@@ -39,11 +41,11 @@ export const PaymentsPlans: React.FC = () => {
     <div className="loginPlan__container">
       <div className="loginPlan">
         <h2 className="loginPlan__title">Choose your account plan</h2>
-        <form onSubmit={handleSubmit} className="loginPlan__form">
+        <div className="loginPlan__form">
         {plans.map((x) => (
-          <PlanRatio plan={x}/>
+          <PlanRatio plan={x} handleInput={handleInput} input={input === x.name}/>
         ))}
-          {plans.map((x) => (
+          {/* {plans.map((x) => (
             <div key={x.name} className="loginPlan__option-container">
               <input
                 type="radio"
@@ -58,27 +60,22 @@ export const PaymentsPlans: React.FC = () => {
                 {x.name}
               </label>
             </div>
-          ))}
+          ))} */}
           <div className="loginPlan__btns-container">
-            <div className="loginPlan__btn-cont">
-              <button
-                type="button"
-                onClick={handleBack}
-                className="loginPlan__btn"
-              >
-                Back
-              </button>
-            </div>
-            <SuperButton
-              text="Accept"
-              name="send"
-              externalLink={paymentUrl}
-              value={1}
-              handler={handleSubmit}
-              classes="acctype-superbutton-accept"
-            ></SuperButton>
+              <SuperButton
+                text="Buy"
+                name="back"
+                handler={handleBack}
+                classes="loginPlan__superbutton"
+              />
+              <SuperButton
+                text="Shop"
+                name="send"
+                handler={handleSubmit}
+                classes="loginPlan__superbutton"
+              />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
