@@ -19,6 +19,13 @@ interface sub {
   id?: string;
   status?: string;
 }
+interface myWork {
+  id?: string,
+  name?: string, 
+  title?: string,
+  status?: string,
+  code?: string,
+}
 interface User {
   email?: String;
   name?: String;
@@ -27,6 +34,7 @@ interface User {
   workspacesTitles?: string[] | null;
   subscriptions?: sub[];
   isBusiness?: Boolean;
+  myWorkspaces?: any[]
 }
 
 function AuthProvider({ children }) {
@@ -77,6 +85,15 @@ function AuthProvider({ children }) {
             return { id: s.id, status: s.status };
           }) || null,
           isBusiness: response?.data.isBusiness,
+          myWorkspaces: response?.data.schemas?.map((x: myWork) => {
+            return { 
+              id: x.id,
+              name: x.name, 
+              title: x.title,
+              status: x.status,
+              code: x.code, 
+            }
+          })
         };
 
         setUser(userInfo);
@@ -111,6 +128,15 @@ function AuthProvider({ children }) {
           return { id: s.id, status: s.status };
         }),
         isBusiness: r?.data.isBusiness,
+        myWorkspaces: r?.data.schemas?.map((x: myWork) => {
+          return { 
+            id: x.id,
+            name: x.name, 
+            title: x.title,
+            status: x.status,
+            code: x.code, 
+          }
+        })
       };
       setUser(userInfo)
     },

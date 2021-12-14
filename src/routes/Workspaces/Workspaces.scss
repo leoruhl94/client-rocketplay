@@ -23,8 +23,12 @@
         color: rgba(255, 255, 255, 0.89);
         font-size: 2rem;
         text-align: center;
-      
     }  
+    .Workspaces__worksGroup{
+        width: 100%;
+        color: white;
+        margin-bottom: 1rem;
+    }
     .Workspaces__button_container{
         margin-top: 1rem;
         .Workspaces__button{

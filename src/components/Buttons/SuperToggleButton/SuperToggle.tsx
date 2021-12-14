@@ -3,17 +3,17 @@ import React, { useState } from "react";
 interface Props{
     handleChecked : Function,
     handleUnchecked : Function,    
+    checked? : boolean
 }
 
-export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked}) => {
+export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked, checked=false}) => {
 
     //States
-    const [ value, setValue] = useState(true);
+    const [ value, setValue] = useState(!checked);
 
     // Value of checkbox
     const  handleOnChange = () => {
         setValue(!value);
-        console.log(value);
 
         if(value){
             handleChecked()
@@ -25,7 +25,7 @@ export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked})
     // Returned
     return(<section>
         <label className="switch">
-          <input onChange={handleOnChange} type="checkbox" />
+          <input onChange={handleOnChange} type="checkbox" checked={checked}/>
           <span className="slider round"></span>
         </label>
     </section>)
