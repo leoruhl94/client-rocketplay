@@ -63,6 +63,7 @@ export const VideoDetailAWS: React.FC = () => {
     // let title = "demo+cubo"
     const [outline, setOutline] = useState("likeButton-displayed")
     const [solid, setSolid] = useState("likeButton-hidden")
+    const [isLiked, setIsLiked] = useState<boolean>(false)
 
     const handlePostLike = () => {
         axios.post(`${URL_BASE}/likes`, {schemaName: params.schema, memberId: member.memberId, videoId: videoData.videoId})
@@ -87,7 +88,7 @@ export const VideoDetailAWS: React.FC = () => {
     }
 
     useEffect(() => {
-        axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
+        /* axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
         .then(r => {
             let data = r.data[0]
             console.log(data)
@@ -127,8 +128,65 @@ export const VideoDetailAWS: React.FC = () => {
                 memberName: data.name,
                 userType: data.usertype
             })
-        })
+        }) */
+        handleLoadOfData()
     }, [])
+
+    const handleLoadOfData = async () => {
+        // Info about the video.. =========================================================
+        let responseVideoData = await axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
+            let dataVideo = responseVideoData.data[0]
+            // console.log(dataVideo)
+            setVideoData({
+                title: dataVideo.title,
+                description: dataVideo.description,
+                channelAvatar: dataVideo.channelavatar,
+                workspace: dataVideo.workspace,
+                thumbnail: dataVideo.thumbnail,
+                username: dataVideo.username,
+                videoId: dataVideo.videoid,
+            })
+        // Info about the comments.. ======================================================
+        let responseComments = await axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${dataVideo.videoid}`)
+            let arrayComments: any[] = []
+            responseComments.data.map(el => {
+                let obj = {
+                    commentId: el.commentId,
+                    memberName: el.memberName,
+                    text: el.text,
+                    videoTitle: el.videoTitle,
+                    videoId: el.videoId,
+                    schemaName: el.channelname,
+                    timestamp: el.createdAt,
+                }
+                arrayComments.push(obj)
+            })
+            setCommentData(arrayComments)
+        // Info about the members.. ========================================================
+        let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: params.schema, memberEmail: auth?.user?.email}})
+        let data = responseMembers.data[0]
+        setMember({
+            memberId: data.id,
+            memberEmail: data.mail,
+            memberName: data.name,
+            userType: data.usertype
+        })
+        // Info about the likes.. ==========================================================
+        let responseLikes = await axios.get(`${URL_BASE}/likes`, {params: {schemaName: params.schema, videoId: dataVideo.videoid, memberId: data.id}})
+        console.log("RESPONSE LIKES =======",responseLikes.data)
+        if(responseLikes.data.length === 0){
+            setIsLiked(false)
+            setOutline("likeButton-displayed")
+            setSolid("likeButton-hidden")
+        } else {
+            setIsLiked(true)
+            setOutline("likeButton-hidden")
+            setSolid("likeButton-displayed")
+        }
+        
+        
+        // schemaName, videoId, memberId
+    }
 
     const [input, setInput] = useState("")
 
