@@ -4,7 +4,7 @@ interface Props{
     handleChecked : Function,
     handleUnchecked : Function,    
     checked? : boolean
-}
+} 
 
 export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked, checked=false}) => {
 

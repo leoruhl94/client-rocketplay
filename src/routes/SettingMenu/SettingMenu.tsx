@@ -9,6 +9,10 @@ import { useOpen } from "../../Hooks/useOpen";
 import { AddCategory2 } from "./SettingComponents/AddCategory2";
 import { EditChannel } from "./SettingComponents/EditChannels";
 import { SubscriptionsSettings } from "./SettingComponents/SubscriptionsSettings";
+import { InfoAccount } from "./SettingComponents/InfoAccount";
+import { MemberType } from "./SettingComponents/MemberType";
+import { EditWorkspace } from "./SettingComponents/EditWorkspace";
+import { EditCategory } from "./SettingComponents/EditCategory";
 
 interface props {
   transition: any;
@@ -42,10 +46,9 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           close={closeMenuAccount}
           open={openMenuAccount}
         >
-          <DropdownMenuItem
-            isOpen={isOpenMenuAccount}
-            title="MyAccount"
-          ></DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
+            <InfoAccount />
+          </DropdownMenuItem>
 
           <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
             <SubscriptionsSettings />
@@ -58,15 +61,13 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           close={closeMenuWorkspace}
           open={openMenuWorkspace}
         >
-          <DropdownMenuItem
-            isOpen={isOpenMenuWorkspace}
-            title="Edit Workspace"
-          ></DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Edit Workspace">
+            <EditWorkspace />
+          </DropdownMenuItem>
 
-          <DropdownMenuItem
-            isOpen={isOpenMenuWorkspace}
-            title="Members"
-          ></DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+            <MemberType />
+          </DropdownMenuItem>
         </DropdownMenu>
         {/* ============================================================== */}
         <DropdownMenu
@@ -94,33 +95,18 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
             <AddCategory2 />
           </DropdownMenuItem>
 
-          <DropdownMenuItem
-            isOpen={isOpenMenuCategories}
-            title="Edit Category"
-          ></DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Edit Category">
+            <EditCategory />
+          </DropdownMenuItem>
 
           <DropdownMenuItem
             isOpen={isOpenMenuCategories}
             title="Change privacy"
-          ></DropdownMenuItem>
+          >
+            
+          </DropdownMenuItem>
         </DropdownMenu>
-        {/* ==============================================================
-        <DropdownMenu
-          title="Tags"
-          isOpen={isOpenMenuTags}
-          close={closeMenuTags}
-          open={openMenuTags}
-        >
-          <DropdownMenuItem
-            isOpen={isOpenMenuTags}
-            title="Add Tags"
-          ></DropdownMenuItem>
-
-          <DropdownMenuItem
-            isOpen={isOpenMenuTags}
-            title="Remove Tags"
-          ></DropdownMenuItem>
-        </DropdownMenu> */}
+       
       </nav>
     </MenuToggleContainer>
   );

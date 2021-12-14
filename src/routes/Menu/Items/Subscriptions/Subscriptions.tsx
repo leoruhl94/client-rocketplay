@@ -12,13 +12,8 @@ import { URL_BASE } from "../../../../constants/constants";
 //import { plans } from './SubsHardcode';
 import { getDates, testFunction } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
-<<<<<<< HEAD
-import { postNotifications } from "../../../../redux/actions";
-import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
-=======
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
 import { postNotifications, setToast } from "../../../../redux/actions";
->>>>>>> develop-Elias-Two
 import { SuperToast } from '../../../../components/Toast/SuperToast';
 import { Link } from "react-router-dom";
 import { Clipboard } from "../../../../components/Clipboard/Clipboard";

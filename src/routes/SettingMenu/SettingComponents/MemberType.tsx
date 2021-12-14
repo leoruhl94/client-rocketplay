@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { LoadingComponent } from '../../../components/LoadingComponent/LoadingComponent';
 import { useAuth } from '../../../auth/useAuth';
 import { URL_BASE } from '../../../constants/constants';
-import './SettingsSubscriptions.scss';
+import './MemberType.scss';
 import { SuperToggle } from '../../../components/Buttons/SuperToggleButton/SuperToggle';
 
 
-export const SettingsSubscriptions: React.FC = () => {
+export const MemberType: React.FC = () => {
     const auth = useAuth();
     const [users, setUsers] = useState<any[]>([])
 
