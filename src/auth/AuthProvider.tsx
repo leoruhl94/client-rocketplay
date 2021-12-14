@@ -15,10 +15,7 @@ interface AuthContextI {
   logout?: any;
   refreshInfo?: any;
 }
-interface sub {
-  id?: string;
-  status?: string;
-}
+
 interface myWork {
   id?: string,
   name?: string, 
@@ -32,7 +29,7 @@ interface User {
   pic?: String;
   workspaces?: string[] | null;
   workspacesTitles?: string[] | null;
-  subscriptions?: sub[];
+  subscriptions?: any[];
   isBusiness?: Boolean;
   myWorkspaces?: any[]
 }
@@ -81,8 +78,8 @@ function AuthProvider({ children }) {
           email: res?.data.email,
           workspaces: response?.data.workspaces || null,
           workspacesTitles: response?.data.workspacesTitles || null,
-          subscriptions: response?.data.subscriptions.map((s: sub) => {
-            return { id: s.id, status: s.status };
+          subscriptions: response?.data.subscriptions.map((s: any) => {
+            return { id: s.plan_id, status: s.status };
           }) || null,
           isBusiness: response?.data.isBusiness,
           myWorkspaces: response?.data.schemas?.map((x: myWork) => {
@@ -124,8 +121,8 @@ function AuthProvider({ children }) {
         email: user?.email,
         workspaces: r?.data.workspaces,
         workspacesTitles: r?.data.workspacesTitles,
-        subscriptions: r?.data.subscriptions.map((s: sub) => {
-          return { id: s.id, status: s.status };
+        subscriptions: r?.data.subscriptions.map((s: any) => {
+          return { id: s.plan_id, status: s.status };
         }),
         isBusiness: r?.data.isBusiness,
         myWorkspaces: r?.data.schemas?.map((x: myWork) => {

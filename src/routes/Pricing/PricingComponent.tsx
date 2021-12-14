@@ -22,7 +22,7 @@ const PricingComponent: React.FC = () => {
         {plans.map((x, i) => (
           <PricingDetailComponent
             key={i}
-            color={i}
+            color={x.color}
             plan={x.name}
             price={x.price}
             description={x.description}

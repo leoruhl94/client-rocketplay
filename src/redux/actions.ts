@@ -15,16 +15,19 @@ interface AuthContextI {
   logout?: any;
 }
 export function getPlans() {
+  const colors = ['violet', 'blue', 'gold'] 
   return async (dispatch) => {
     const data = await axios.get(`${URL_BASE}/plans`);
     //const data = await axios.get(`https://api-rocketplay.herokuapp.com/plans`);
-    let payload = data.data.map((data) => {
+    let payload = data.data.map((data, i) => {
       return {
+        id: data?.id,
         name: data?.name,
         price: data?.price,
         description: data?.description,
         url: data?.link_checkout,
         userLimit: data?.userLimit,
+        color: colors[i]
       };
     });
     dispatch({ type: GET_PLANS, payload });

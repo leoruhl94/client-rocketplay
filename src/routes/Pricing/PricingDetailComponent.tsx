@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import { useAuth } from "../../auth/useAuth";
 
 export interface Props {
-    color: number;
+    color: string;
     plan: string;
     price: number;
     description: string[];
@@ -17,7 +17,6 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const auth = useAuth()
-    const colors = ['violet', 'blue', 'gold'] 
 
     function handleDeploy() {
         setDep(!dep)
@@ -32,7 +31,7 @@ export const PricingDetailComponent: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <div className={`planContainer ${colors[props.color]}${dep ? ' dep':''}`}>
+        <div className={`planContainer ${props.color}${dep ? ' dep':''}`}>
             <button className={`btn-deploy`} onClick={handleDeploy}></button>
             <p className="plan">{props.plan}</p>
             <div className='planData'>

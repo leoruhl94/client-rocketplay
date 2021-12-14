@@ -39,7 +39,7 @@ export const SettingsSubscriptions: React.FC = () => {
         })
     }
     return(
-        <div className="settingsSubscriptions">
+        users.length ? (<div className="settingsSubscriptions">
             <h1 className="settingsSubscriptions__title">Workspace Settings</h1>
             <p className="settingsSubscriptions__text">Allows subscribers to manage the channel</p>
             <p className="settingsSubscriptions__text">
@@ -50,12 +50,13 @@ export const SettingsSubscriptions: React.FC = () => {
             <div className="settingsSubscriptions__headers">
                 <span>Subscriber</span><span>Admin</span>
             </div>
-            {users ? users.map(x => <div key={x.id} className="settingsSubscriptions__user">
+            {users.map(x => <div key={x.id} className="settingsSubscriptions__user">
                 <span className="settingsSubscriptions__userName">{x.name}
                     <span>{x.usertype}</span>
                 </span>
                 <SuperToggle checked={x.usertype === 'admin'} handleChecked={() => {handleChecked(x.id, x.usertype)}} handleUnchecked={() => {handleUnchecked(x.id, x.usertype)}}/>
-            </div>) : <LoadingComponent/>}
-        </div>
+            </div>)}
+        </div>) 
+        : <h1 className="settingsSubscriptions">You don't have members yet</h1>
     )
 }
