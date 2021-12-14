@@ -31,7 +31,7 @@ export const NavigationTop: React.FC = () => {
           >
             <img className="Profile_image" src={profile.pic} />
           </button>
-          <ProfileWnd dep={wndProfile}/>
+          <ProfileWnd dep={wndProfile} />
         </ul>
       ) : (
         <NavLink className="navigationTop__navLink " to="/login">
