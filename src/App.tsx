@@ -45,6 +45,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavProfileAndLocation";
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
+import { Modal } from "./components/Modal/Modal";
+import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory2";
+import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
+
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -85,20 +89,19 @@ const App: React.FC = () => {
     <h1>cargando...</h1>
   ) : (
     <>
-<<<<<<< HEAD
       <AnimatePresence>
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
-=======
-      <AnimatePresence >
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
->>>>>>> aiuda
+        <PrivateRoute
+          path="/:algunaRuta"
+          component={NavProfileAndLocation}
+          routesToAvoid={["/pricing"]}
+        />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />
           <Route exact path="/about/:id" component={AboutDetailComponent} />
           <Route exact path="/pricing" component={PricingComponent} />
           <Route exact path="/payment" component={PaymentsPlans} />
-          <PrivateRoute exact path="/preapproval" component={PreApproval} />
+          <Route exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
           <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
@@ -117,13 +120,22 @@ const App: React.FC = () => {
             component={SearchMenu}
             thisPage={2}
           />
-          <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/>
+          <PrivateRoute
+            exact
+            path="/settings"
+            component={SettingMenu}
+            thisPage={5}
+          />
           <Route
             path="/videodetail/:schema/:title"
             component={VideoDetailAWS}
           />
           <Route exact path="/home/:schema" component={ChannelsAWS} />
-          <Route exact path="/home/:schema/:channel" component={CategoriesAWS} />
+          <Route
+            exact
+            path="/home/:schema/:channel"
+            component={CategoriesAWS}
+          />
           <Route
             exact
             path="/home/:schema/:channel/:category"
@@ -132,6 +144,22 @@ const App: React.FC = () => {
 
           {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
+          <Route exact path="/modal">
+            <Modal>
+              <h1>HOLAAAAA</h1>
+            <AddChannel></AddChannel>
+              {/* <h3>SOy el MoDal</h3>
+              <h3>SOy el </h3>
+              <h3>SOy el MoDal</h3> */}
+            </Modal>
+            {/* <Modal>
+              <h1>HOLAAAAA</h1>
+            <AddCategory2></AddCategory2>
+              {/* <h3>SOy el MoDal</h3>
+              <h3>SOy el </h3>
+              <h3>SOy el MoDal</h3> 
+            </Modal> */}
+          </Route>
           <PrivateRoute
             exact
             path="/home"
