@@ -20,9 +20,12 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const [add, setAdd] = useState(false);
 
+  const joinedWorks = auth?.user?.workspacesTitles?.filter((x:any) => !auth?.user?.myWorkspaces?.find((y:any) => y.title === x))
+
   function handleAdd() {
     setAdd(!add);
   }
+
   //console.log("--", auth?.user?.workspaces);
   function refreshWorkspace() {
     auth?.refreshInfo()
@@ -42,21 +45,34 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
+            {auth?.user?.myWorkspaces?.length ? <div className="Workspaces__worksGroup"> 
+              <h2>My Workspaces</h2>
+              {auth.user.myWorkspaces.map((item, i) => {
+                return (
+                  <WorkspaceItem
+                  key={i}
+                  workspace={item.title}
+                  path={item.name}
+                  />)})}
+              </div> : null}
 
-            {auth?.user?.workspacesTitles?.length
-              ? auth?.user?.workspacesTitles.map((item, i) => {
-                  return (
-                    <WorkspaceItem
-                      key={i}
-                      workspace={item}
-                      path={
-                        auth?.user?.workspaces?.length
-                          ? auth.user.workspaces[i]
-                          : ""
-                      }
-                    />
-                  );
-                })
+            {joinedWorks?.length
+              ? <div className="Workspaces__worksGroup">
+                <h2>Joined In</h2>
+                {joinedWorks.map((item, i) => {
+                    return (
+                      <WorkspaceItem
+                        key={i}
+                        workspace={item}
+                        path={
+                          auth?.user?.workspaces?.length
+                            ? auth.user.workspaces[i]
+                            : ""
+                        }
+                      />
+                    );
+                  })}
+                </div>
               : ""}
 
             <div className="Workspaces__button_container">

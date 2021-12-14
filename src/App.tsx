@@ -50,6 +50,9 @@ import { Modal } from "./components/Modal/Modal";
 import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory2";
 import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
 import { EditChannel } from "./routes/SettingMenu/SettingComponents/EditChannels";
+import { EditWorkspace } from "./routes/SettingMenu/SettingComponents/EditWorkspace";
+import { SettingsSubscriptions } from "./routes/SettingMenu/SettingComponents/SettingsSubscriptions";
+import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -101,6 +104,7 @@ const App: React.FC = () => {
           <Route exact path="/about" component={AboutComponent} />
           <Route exact path="/about/:id" component={AboutDetailComponent} />
           <Route exact path="/pricing" component={PricingComponent} />
+          <Route exact path="/testcomp" component={InfoAccount} />
           <PrivateRoute exact path="/payment" component={PaymentsPlans} />
           <PrivateRoute exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />
