@@ -5,7 +5,7 @@ import './MenuToggleContainer.scss'
 interface props{
     children?: React.ReactNode,
     transition?: any
-    k:string
+    k?:string
 }
 export const MenuToggleContainer: React.FC<props> = ({children, transition, k}) => {
     return(

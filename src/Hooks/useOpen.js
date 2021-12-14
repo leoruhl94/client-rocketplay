@@ -7,16 +7,16 @@ import React, { useState } from "react";
 //   closeModal?(): void;
 // }
 
-export const useModal = (initialValue = false) => {
+export const useOpen = (initialValue = false) => {
   const [isOpen, setIsOpen] = useState(initialValue);
-  const openModal = () => {
+  const open = () => {
     console.log("Abre");
     setIsOpen(true);
   };
-  const closeModal = () =>{
+  const close = () =>{
     console.log("Cierra");
     setIsOpen(false);
   } 
 
-  return [isOpen, openModal, closeModal];
+  return [isOpen, open, close];
 };
