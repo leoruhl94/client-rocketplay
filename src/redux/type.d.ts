@@ -10,12 +10,13 @@ export interface profile {
     plans: any[],
     categories : Categories[],
     notifications : Notifications[],
-    page: number
+    page: number,
+    toast : string
   }
   
  export type storeAction = {
     type: string
     payload: any
-  }
+  } 
   
  export type DispatchType = (args: storeState) => storeAction

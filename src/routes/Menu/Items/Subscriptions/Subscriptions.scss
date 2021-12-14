@@ -97,6 +97,11 @@
     }
 }
 
+.Subs__toggle-list {
+    width: 100%;
+    background-color: #2196F3;
+}
+
 .Subs__popup {
     background-color: #1e2e35;
     box-shadow: 10px 10px 10px #141d22;
@@ -244,7 +249,7 @@ input:checked+.slider:before {
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */
-    bottom: 30px;
+    bottom: 90px;
     /* 30px from the bottom */
 }
 

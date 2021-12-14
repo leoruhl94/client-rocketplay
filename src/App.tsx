@@ -24,7 +24,7 @@ import { Route, Switch } from "react-router-dom";
 import { Redirect, useLocation, useHistory } from "react-router";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
@@ -51,8 +51,10 @@ import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory
 import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
 import { EditChannel } from "./routes/SettingMenu/SettingComponents/EditChannels";
 import { EditWorkspace } from "./routes/SettingMenu/SettingComponents/EditWorkspace";
-import { SettingsSubscriptions } from "./routes/SettingMenu/SettingComponents/SettingsSubscriptions";
+// import { SettingsSubscriptions } from "./routes/SettingMenu/SettingComponents/SettingsSubscriptions";
 import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
+import { SuperToast } from "./components/Toast/SuperToast";
+import { storeState } from "./redux/type";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -60,6 +62,9 @@ const App: React.FC = () => {
   let location = useLocation();
   const auth = useAuth();
 
+  const toast: string = useSelector((state: storeState) => {
+    return state.toast;
+  });
   const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -93,6 +98,7 @@ const App: React.FC = () => {
     <LoadingComponent />
   ) : (
     <>
+            <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
         <PrivateRoute
           path="/:algunaRuta"
