@@ -14,10 +14,9 @@ import { async } from "@firebase/util";
 
 interface Props {
   dep: boolean,
-  setWndProfile?: any,
 }
 
-export const ProfileWnd: React.FC<Props> = ({ dep, setWndProfile }) => {
+export const ProfileWnd: React.FC<Props> = ({ dep }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
