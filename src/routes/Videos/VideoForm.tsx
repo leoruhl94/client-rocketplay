@@ -49,6 +49,13 @@ interface Channels {
   name: string;
   id: number;
 }
+
+interface Member {
+  memberId: number;
+  memberEmail: string;
+  memberName: string;
+  userType: string;
+}
  
 //  -----------------------------------------------------------------------------------------
 export const VideoForm: React.FC = () => {
@@ -68,6 +75,12 @@ export const VideoForm: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [categoryState, setCategoryState] = useState<Categories[]>([])
   const [channelsState, setChannelsState] = useState<Channels[]>([])
+  const [member, setMember] = useState<Member>({
+    memberId: 0,
+    memberEmail: "",
+    memberName: "",
+    userType: "",
+})
 
   const [input, setInput] = useState<Input>({
     file: null,
@@ -124,7 +137,19 @@ export const VideoForm: React.FC = () => {
       })
       setChannelsState(array)
     })
+    getMemberInfo()
   }, [])
+
+  const getMemberInfo = async () => {
+    let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: "hideonmjs", memberEmail: auth?.user?.email}})
+    let data = responseMembers.data[0]
+    setMember({
+        memberId: data.id,
+        memberEmail: data.mail,
+        memberName: data.name,
+        userType: data.usertype
+    })
+  }
 
   const handleCategorySelect = (e) => {
     axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: "hideonmjs", channelId: e.target.value}})
@@ -203,7 +228,7 @@ export const VideoForm: React.FC = () => {
         author: "hideonmjs",
         description: input.description,
         thumbnail: input.title + "-thumb",
-        memberId: 1,
+        memberId: member.memberId,
         categoryId: input.category
       })
       .then(r => console.log(r))

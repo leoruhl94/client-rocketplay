@@ -56,6 +56,7 @@ import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount"
 import { SuperToast } from "./components/Toast/SuperToast";
 import { storeState } from "./redux/type";
 
+
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
