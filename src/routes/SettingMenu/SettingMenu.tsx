@@ -6,6 +6,7 @@ import "./SettingMenu.scss";
 import { SuperToggle } from "../../components/Buttons/SuperToggleButton/SuperToggle";
 import { SuperToast } from "../../components/Toast/SuperToast";
 import { URL_BASE } from "../../constants/constants";
+import { useModal } from "../../components/Modal/useModal"
 
 import { useAuth } from "../../auth/useAuth";
 interface props {
@@ -13,6 +14,7 @@ interface props {
 }
 export const SettingMenu: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
+  const [isOpen1, openModal1, closeModal1] = useModal();
   const handleOnUpdateSubscriptions = async (value: String) => {
     console.log(value);
     let res = await axios.put(`${URL_BASE}/subscriptions`, {
@@ -21,14 +23,8 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
     });
   };
   return (
-    <motion.div
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={transition}
-      transition={{ type: "linear" }}
-    >
-      <MenuToggleContainer  key="pm"  transition={transition}>
+
+      <MenuToggleContainer  transition={transition}>
         <nav className="SettingMenu__container">
           {/* <div className="container"> */}
 
@@ -81,6 +77,6 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           {/* </div> */}
         </nav>
       </MenuToggleContainer>
-    </motion.div>
+
   );
 };
