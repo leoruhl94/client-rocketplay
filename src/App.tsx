@@ -101,7 +101,7 @@ const App: React.FC = () => {
           <Route exact path="/about" component={AboutComponent} />
           <Route exact path="/about/:id" component={AboutDetailComponent} />
           <Route exact path="/pricing" component={PricingComponent} />
-          <Route exact path="/testcomp" component={EditWorkspace} />
+          <Route exact path="/testcomp" component={InfoAccount} />
           <PrivateRoute exact path="/payment" component={PaymentsPlans} />
           <PrivateRoute exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />

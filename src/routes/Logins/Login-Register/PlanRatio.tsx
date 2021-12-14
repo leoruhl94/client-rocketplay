@@ -8,7 +8,7 @@ interface props{
 }
 export const PlanRatio: React.FC<props> = ({plan, handleInput, input}) => {
     return(
-        <div className={`planRatio__container${input ? ' checked' : ''}`}>
+        <div className={`planRatio__container${input ? ' checked' : ''}${plan.color ? ' '+plan.color.toString() : ''}`}>
             <input
                 type="radio"
                 value={plan.name}

@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .planRatio__container{
     background: rgb(54, 54, 54);
     border-radius: 1rem;
@@ -16,7 +18,7 @@
         width: calc(100% - 2rem);
         height: calc(100% - 2rem);
     }
-
+    
     .planRatio__price-cont{
         text-align: center;
         .planRatio__price{
@@ -26,4 +28,14 @@
 }
 .checked{
     transform: scale(1.05);
+    border: 5px solid black;
+}
+.violet{
+    background: $priceVioletGradient;
+}
+.blue{
+    background: $priceBlueGradient;
+}
+.gold{
+    background: $priceGoldGradient;
 }
