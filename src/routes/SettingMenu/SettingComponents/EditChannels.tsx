@@ -10,6 +10,11 @@ interface InfoSubmit {
   oldName?: string;
   newName?: string;
 }
+interface InfoSubmit2 {
+  schemaName: string;
+  channelId?: string;
+  status?: string;
+}
 interface Channels {
   name: string;
   id: number;
@@ -21,7 +26,14 @@ export const EditChannel: React.FC = () => {
     oldName: "",
     newName: "",
   });
+  const [infoSubmit2, setInfoSubmit2] = useState<InfoSubmit2>({
+    schemaName: "",
+    channelId: "",
+    status: "deleted",
+  });
   const auth = useAuth();
+
+  // ============================== EDIT CHANNEL ======================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!infoSubmit.schemaName) {
@@ -29,8 +41,13 @@ export const EditChannel: React.FC = () => {
     } else {
       await axios.put(`${URL_BASE}/channels`, infoSubmit);
     }
-    console.log(infoSubmit, "<<<<<<<<<<<<");
+    setInfoSubmit({
+      schemaName: "",
+      oldName: "",
+      newName: "",
+    });
   };
+
   const handleWorkspaceSelect = (e) => {
     e.preventDefault();
     axios
@@ -46,6 +63,7 @@ export const EditChannel: React.FC = () => {
         });
         setChannelsState(array);
         setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
+        setInfoSubmit2({ ...infoSubmit2, schemaName: e.target.value });
       });
   };
 
@@ -62,6 +80,65 @@ export const EditChannel: React.FC = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  // ============================== REMOVE CHANNEL ======================================================
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    if (!infoSubmit.schemaName) {
+      console.log("sale gatito porque no hay esquema");
+    } else {
+      console.log("LLGUE ACA");
+      await axios.put(`${URL_BASE}/channels/status`, infoSubmit2);
+    }
+    console.log("Y aca no");
+    setInfoSubmit2({
+      schemaName: "",
+      channelId: "",
+      status: "deleted",
+    });
+  };
+
+  const handleShow = (e) => {
+    e.preventDefault();
+    let div = document.querySelector(".remove-channel-div");
+    // div && div.setAttribute("className", "remove-channel-div")
+    setOpenRemove({...openRemove, divClass: "remove-channel-div"});
+    // Aca hacer q el div de elminar aparezca
+  };
+
+  interface openRemove {
+    divClass: string;
+    buttonDisabled: boolean;
+  }
+
+  const [openRemove, setOpenRemove] = useState(
+    {
+      divClass: "remove-channel-div display__none",
+      buttonDisabled: true
+    }
+  );
+
+  const handleChannelSelect2 = (e) => {
+    e.preventDefault();
+    const array = e.target.value.split("%-%");
+    setInfoSubmit2({ ...infoSubmit2, channelId: array[1] });
+  };
+
+  const handleDeleting = (e) => {
+    e.preventDefault();
+    let btn = document.getElementById("last-remove-btn");
+    if (e.target.value === "deleted") {
+      // habilitar el boton para eliminarlo
+      // btn && btn.setAttribute("disabled", "false");
+      setOpenRemove({...openRemove, buttonDisabled: false})
+    } else {
+      // deshabilitar el boton para eliminarlo
+      // btn && btn.setAttribute("disabled", "true");
+      setOpenRemove({...openRemove, buttonDisabled: true})
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -101,6 +178,49 @@ export const EditChannel: React.FC = () => {
       </form>
 
       {/*====================================================================================================  */}
+      <form onSubmit={handleSubmit2}>
+        <div>
+          <select onChange={handleWorkspaceSelect} name="schemaName" id="">
+            <option value="all">Workspaces</option>
+            {auth?.user?.workspacesTitles?.map((w, i) => (
+              <option
+                key={i}
+                value={
+                  auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""
+                }
+              >
+                {w}
+              </option>
+            ))}
+          </select>
+          {channelsState ? (
+            <select onChange={handleChannelSelect2} name="oldName" id="">
+              <option value="all">Channels</option>
+              {channelsState?.map((ch) => (
+                <option key={ch.id} value={ch.name + "%-%" + ch.id}>
+                  {ch.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
+          <button type="button" onClick={(e) => handleShow(e)}>
+            Remove Channel
+          </button>
+          <div className={`${openRemove.divClass}`}>
+            <label>
+              If you are sure about deleting this channel type 'deleted'
+            </label>
+            <input
+              type="text"
+              onChange={handleDeleting}
+              placeholder="deleted"
+            ></input>
+            <button type="submit" id="last-remove-btn" disabled={openRemove.buttonDisabled}>
+              Remove Channel
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

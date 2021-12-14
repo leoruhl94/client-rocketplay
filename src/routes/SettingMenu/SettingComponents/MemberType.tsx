@@ -42,8 +42,8 @@ export const MemberType: React.FC = () => {
         <div className="settingsSubscriptions">
             <h1 className="settingsSubscriptions__title">Workspace Settings</h1>
             <p className="settingsSubscriptions__text">Allows subscribers to manage the channel</p>
-            <p className="settingsSubscriptions__text">
                 <h3>¿What is admin user?</h3>
+            <p className="settingsSubscriptions__text">
                 "Admin" users can create, edit and delete 
                 channels, categories or videos, but cannot make 
                 plan purchases or assign other admins </p>

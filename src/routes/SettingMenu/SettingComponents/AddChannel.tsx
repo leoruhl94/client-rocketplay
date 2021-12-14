@@ -26,6 +26,10 @@ export const AddChannel: React.FC = () => {
             await axios.post(`${URL_BASE}/channels` , infoSubmit)
             setInfoSubmit({...infoSubmit, schemaName: e.target.value})
         }
+        setInfoSubmit({
+          schemaName: "",
+          name: "",
+        });
       };
 
     const handleWorkspaceSelect = (e) => {

@@ -85,6 +85,7 @@ export class Icons {
     'logIn': new Icons("0 0 24 24", <path  fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" /> ), 
     'logOut': new Icons("0 0 24 24",  <path  fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /> ), 
     'burguerMenu': new Icons("0 0 24 24", <path  fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />), 
+    'upload': new Icons("0 0 24 24", <path d="M17.812 23c-7.812 0-7.812-8-7.812-8h-3l4.979-4 5.021 4h-3s-.812 6.094 3.812 8zm1.667-14.908c-.212-3.951-3.473-7.092-7.479-7.092s-7.267 3.141-7.479 7.092c-2.57.463-4.521 2.706-4.521 5.408 0 3.037 2.463 5.5 5.5 5.5h3.302c-.275-.717-.46-1.404-.578-2h-2.724c-1.93 0-3.5-1.57-3.5-3.5 0-2.797 2.479-3.833 4.433-3.72-.167-4.218 2.208-6.78 5.567-6.78 3.453 0 5.891 2.797 5.567 6.78 1.745-.046 4.433.751 4.433 3.72 0 1.93-1.57 3.5-3.5 3.5h-2.518c.062.62.21 1.329.499 2h2.019c3.037 0 5.5-2.463 5.5-5.5 0-2.702-1.951-4.945-4.521-5.408z"/> ), 
     //__________________Template _____________________________________
 
     '__template': new Icons("0 0 24 24", <path/> ), 

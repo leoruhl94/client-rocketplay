@@ -57,8 +57,11 @@ interface Member {
   userType: string;
 }
  
+interface Props {
+  schemaName: string;
+}
 //  -----------------------------------------------------------------------------------------
-export const VideoForm: React.FC = () => {
+export const VideoForm: React.FC<Props> = ({schemaName}) => {
   // Caja de variables
   const [user, setUser] = useState<User>({
     accessToken: "",
@@ -125,7 +128,7 @@ export const VideoForm: React.FC = () => {
   }, [input.thumb])
 
   useEffect(() => {
-    axios.get(`${URL_BASE}/channels`, {params: {schemaName: "hideonmjs"}})
+    axios.get(`${URL_BASE}/channels`, {params: {schemaName: schemaName}})
     .then(r => {
       let array:any[] = []
       r.data.map(el => {
@@ -141,7 +144,7 @@ export const VideoForm: React.FC = () => {
   }, [])
 
   const getMemberInfo = async () => {
-    let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: "hideonmjs", memberEmail: auth?.user?.email}})
+    let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: schemaName, memberEmail: auth?.user?.email}})
     let data = responseMembers.data[0]
     setMember({
         memberId: data.id,
@@ -152,7 +155,7 @@ export const VideoForm: React.FC = () => {
   }
 
   const handleCategorySelect = (e) => {
-    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: "hideonmjs", channelId: e.target.value}})
+    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: schemaName, channelId: e.target.value}})
     .then(r => {
       let array: any[] = []
       r.data.map(el => {
@@ -225,7 +228,7 @@ export const VideoForm: React.FC = () => {
       axios.post(`${URL_BASE}/uploadvideo/database`, {
         title: input.title,
         avatar: auth?.user?.pic,
-        author: "hideonmjs",
+        author: schemaName,
         description: input.description,
         thumbnail: input.title + "-thumb",
         memberId: member.memberId,
@@ -315,7 +318,7 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Title ..... */}
             <div >
-              <h2 className='Section__title'>Title (required)</h2>
+              <h2 className='Section__title'>Title *</h2>
               <div className="inputDiv">
                 <input
                   className={`Video__file-uploader-text${errors.title?' invalid':''}`}
@@ -340,7 +343,7 @@ export const VideoForm: React.FC = () => {
 
           {/* ..... File ..... */}
           <div className='Section__Container'>
-            <h2 className='Section__title'>Video (required)</h2>
+            <h2 className='Section__title'>Video *</h2>
             <p className='Section__description'>Upload a video from your computer</p>
             {previews.video ? 
             <video className="Video__preview" title="Testing" width="300px" controls>
@@ -409,7 +412,7 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Selects (Channels y Categories) ..... */}
             <div>
-              <h2 className='Section__title'>Workspace and Category (required)</h2>
+              <h2 className='Section__title'>Workspace and Category *</h2>
               <p className='Section__description'>Choose which workspace and category the video will belong to</p>
               <div>
                 <select name="channel" id="channel" onChange={(e) => {
@@ -443,7 +446,7 @@ export const VideoForm: React.FC = () => {
             </div>
 
             {/* ..... Tags ..... */}
-            <div>
+            {/* <div>
               <h2 className='Section__title'>Tags</h2>
               <p className='Section__description'>Tag your video so users can find it faster</p>
               <select name="tags" id="tags">
@@ -453,7 +456,7 @@ export const VideoForm: React.FC = () => {
                 <option value="predicado">Predicado</option>
                 <option value="Eli se me ocurrio como hacerlo">Eli se me ocurrio como hacerlo</option>
               </select>
-            </div>
+            </div> */}
           </div>
 
           {/* ..... Upload ..... */}
