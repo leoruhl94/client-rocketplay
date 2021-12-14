@@ -21,14 +21,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
     });
   };
   return (
-    <motion.div
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={transition}
-      transition={{ type: "linear" }}
-    >
-      <MenuToggleContainer transition={transition}>
+      <MenuToggleContainer transition={transition} k='key5'>
         <nav className="SettingMenu__container">
           {/* <div className="container"> */}
 
@@ -81,6 +74,5 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           {/* </div> */}
         </nav>
       </MenuToggleContainer>
-    </motion.div>
   );
 };

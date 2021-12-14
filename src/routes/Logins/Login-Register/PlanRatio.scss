@@ -1,0 +1,29 @@
+.planRatio__container{
+    background: rgb(54, 54, 54);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    width: 300px;
+    transition: 0.2s;
+    position: relative;
+    .planRatio__name{
+        font-size: 2rem;
+        text-align: center;
+    }
+    .planRatio__input{
+        position: absolute;
+        opacity: 0;
+        width: calc(100% - 2rem);
+        height: calc(100% - 2rem);
+    }
+
+    .planRatio__price-cont{
+        text-align: center;
+        .planRatio__price{
+            font-size: 2rem;
+        }
+    }
+}
+.checked{
+    transform: scale(1.05);
+}

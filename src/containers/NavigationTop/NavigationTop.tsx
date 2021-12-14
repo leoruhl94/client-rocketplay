@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NavigationTop.scss";
 import { NavLink } from "react-router-dom";
 import { ProfileWnd } from "../../routes/Logins/Login-Register/ProfileWnd";
@@ -14,6 +14,11 @@ export const NavigationTop: React.FC = () => {
   console.log('useAuth load profile')
   const [wndProfile, setWndProfile] = useState(false);
 
+  useEffect(() => {
+    console.log('cambio')
+    setWndProfile(false)
+  }, [location]);
+
   return (
     <section className={`navigationTop ${user? "navigationTop_user" : ""}`}>
       <NavLink className="navigationTop__navLink navigationTop__navLink_onlyDesktop" to="/home">Home</NavLink>
@@ -22,13 +27,11 @@ export const NavigationTop: React.FC = () => {
         <ul className="channelsNavUl ">
           <button
             className="channelsNavProfileBtn"
-            onClick={() => {
-              setWndProfile(!wndProfile);
-            }}
+            onClick={() => setWndProfile(!wndProfile)}
           >
             <img className="Profile_image" src={profile.pic} />
           </button>
-          <ProfileWnd dep={wndProfile} />
+          <ProfileWnd dep={wndProfile}/>
         </ul>
       ) : (
         <NavLink className="navigationTop__navLink " to="/login">
