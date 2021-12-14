@@ -1,7 +1,19 @@
 .MenuItem__container{
- background-color: rgb(122, 146, 74);
+//  background-color: rgb(122, 146, 74);
+ padding: 0.5rem;
+ margin-left: 1rem;
+  width: calc(100% - 1rem);
     .MenuItem__button{
-
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        background: transparent;
+        border: none;
+        outline: none;
         .MenuItem__button_text{
 
         }

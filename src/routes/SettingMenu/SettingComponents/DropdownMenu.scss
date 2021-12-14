@@ -1,12 +1,20 @@
-.DropdownMenu__container{
-background-color: rgb(4, 99, 89);
-    .DropdownMenu__button{
-
-        .DropdownMenu__button_text{
-
-        }
-        .DropdownMenu__button_icon{
-            
-        }
-    }
+.DropdownMenu__container {
+  padding: 0.2rem;
+  width: 100%;
+  .DropdownMenu__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    border: none;
+    outline: none;
+    // .DropdownMenu__button_text {
+    // }
+    // .DropdownMenu__button_icon {
+    // }
+  }
 }

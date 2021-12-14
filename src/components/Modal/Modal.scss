@@ -16,16 +16,24 @@
 }
 .ModalContainer {
   position: relative;
-  background-color: rgba(49, 49, 119, 0.829);
+  background: linear-gradient(138.13deg, #22343C 25.87%, #1F2E35 100%);
   min-width: 320px;
   max-width: 400px;
-  width: 90%;
+  width: 95%;
   min-height: 200px;
-  max-height: 600px;
+  max-height: 80%;
   overflow-y: auto;
   padding: 2rem;
   border-radius: 15px;
-  
+  .Modal__title{
+    color:#E4E9F3;
+    margin: 0;
+    text-align: center;
+    margin-top: -1rem;
+    font-size: 1.5rem;
+    font-weight: 550;
+    margin-bottom: 0.5rem;
+  }
   .Modal__button_close {
     background-color: transparent;
     outline: none;
@@ -36,11 +44,11 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    // padding: 2rem;
+    color: #96A7AF;
     z-index: 1;
     &:hover{
       font-size: 1.8rem;
-      color: red;
+      color: #FF575F;
 
     }
   }
