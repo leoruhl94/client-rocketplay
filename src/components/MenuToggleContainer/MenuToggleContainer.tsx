@@ -17,6 +17,7 @@ export const MenuToggleContainer: React.FC<props> = ({children, transition, k}) 
         exit="out"
         variants={transition}
         transition={{ type: "linear" }}
+        key="lp" 
         >
             {children}
         </motion.div>

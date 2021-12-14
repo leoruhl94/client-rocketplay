@@ -3,7 +3,7 @@ import "./Modal.scss";
 import { Icon } from "../Icon/Icon";
 
 interface Props{
-  title: string;
+  title?: string;
   isOpen: Boolean;
   closeModal():any;
 }
