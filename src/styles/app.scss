@@ -5,11 +5,73 @@ body {
   font-family: "Ubuntu Condensed", "Yatra One", sans-serif;
   background: $mainBackground;
 }
-.display__none{
-    display: none !important;
+.display__none {
+  display: none !important;
 }
 
+.SelectComponent {
+  font-size: 1.2rem;
+  // background-color: #755fe2;
+  background: linear-gradient(180deg, #C985FF 0%, #5E2D9C 100%);
+  box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  border-radius: 15px;
+  padding: 0.2rem;
+  padding-left: 0.8rem;
+  color: white;
+  margin: 0.1rem;
+  text-transform: capitalize;
+  .SelectComponent_option {
+    background: #5E2D9C;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    
+  }
+}
 
+.Settings__input {
+  background: linear-gradient(138.13deg, #FAFBFC 25.51%, #F2F3FB 100%);
+  box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 1rem;
+  // line-height: 2rem;
+  height: 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  // color: white;
+}
+.Settings__button {
 
+  background: linear-gradient(180deg, #92C4FE 0%, #0A7AFF 100%);
+  box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  // background: linear-gradient(138.13deg, #FAFBFC 25.51%, #F2F3FB 100%);  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  height: 40px;
+  border-radius: 10px;
+}
+.Settings__form {
+  padding: 1rem 0;
+  height: 100%;
+}
+.Settings__selects {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.Settings__inputs_container {
 
-  
+  display: flex;
+  flex-direction: column;
+
+}
+.Select__50w {
+  width: 50%;
+}
+.Select__WP {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}

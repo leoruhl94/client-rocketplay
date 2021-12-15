@@ -58,7 +58,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
 
             {joinedWorks?.length
               ? <div className="Workspaces__worksGroup">
-                <h2>Joined In</h2>
+                <h2 id="title2" className="Workspaces__worksGroup_title">Joined In</h2>
                 {joinedWorks.map((item, i) => {
                     return (
                       <WorkspaceItem

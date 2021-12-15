@@ -13,6 +13,7 @@ import { InfoAccount } from "./SettingComponents/InfoAccount";
 import { MemberType } from "./SettingComponents/MemberType";
 import { EditWorkspace } from "./SettingComponents/EditWorkspace";
 import { EditCategory } from "./SettingComponents/EditCategory";
+import { RemoveCategory } from "./SettingComponents/RemoveCategory";
 
 interface props {
   transition: any;
@@ -33,7 +34,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
   const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
     useOpen(false);
   const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
-    useOpen(false);
+    useOpen(true);
 
   ///==================MENUS===================
 
@@ -97,6 +98,8 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
 
           <DropdownMenuItem isOpen={isOpenMenuCategories} title="Edit Category">
             <EditCategory />
+            <RemoveCategory />
+
           </DropdownMenuItem>
 
           <DropdownMenuItem

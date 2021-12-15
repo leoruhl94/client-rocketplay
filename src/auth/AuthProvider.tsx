@@ -14,6 +14,7 @@ interface AuthContextI {
   login?: any;
   logout?: any;
   refreshInfo?: any;
+  
 }
 
 interface myWork {

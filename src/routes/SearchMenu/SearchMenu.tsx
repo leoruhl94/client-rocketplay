@@ -7,7 +7,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../auth/useAuth";
 import { VideoItem } from "./VideoItem";
-import { discovery_v1 } from "googleapis";
 
 interface video {
   videoid: string;
@@ -67,6 +66,12 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
   const handleWorkspaceSelect = (e) => {
     e.preventDefault();
     setSchemaName(e.target.value);
+    categoryState ? setCategoryState([]) : null;
+    setInfoSubmit({
+      schemaName: e.target.value,
+      channel: "",
+      category: "",
+    });
 
     axios
       .get(`${URL_BASE}/channels`, { params: { schemaName: e.target.value } })
@@ -80,7 +85,6 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
           array.push(obj);
         });
         setChannelsState(array);
-        setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
       });
   };
 
@@ -94,16 +98,18 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
       })
       .then((r) => {
         let array: any[] = [];
+        console.log(r.data);
         r.data.map((el) => {
           let obj = {
-            name: el.name,
-            id: el.id,
+            name: el.catName,
+            id: el.catId,
           };
           array.push(obj);
         });
         setCategoryState(array);
+        console.log(array);
       });
-    setInfoSubmit({ ...infoSubmit, channel: array[0] });
+    setInfoSubmit({ ...infoSubmit, channel: array[0], category: "" });
   };
   const handleCategorySelect = (e) => {
     e.preventDefault();
@@ -112,39 +118,72 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
 
   return (
     <MenuToggleContainer transition={transition} k="001">
-      <select onChange={handleWorkspaceSelect} name="schemaName" id="">
-        <option value="all">Workspaces</option>
-        {auth?.user?.workspacesTitles?.map((w, i) => (
-          <option
-            key={i}
-            value={
-              auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""
-            }
-          >
-            {w}
+      <div className="SearchMenu__selects">
+        <select
+          onChange={handleWorkspaceSelect}
+          name="schemaName"
+          className="SelectComponent  Select__WP "
+          id=""
+        >
+          <option disabled selected>
+            Workspaces
           </option>
-        ))}
-      </select>
-      {channelsState ? (
-        <select onChange={handleChannelSelect} name="channels" id="">
-          <option value="all">Channels</option>
-          {channelsState?.map((ch) => (
-            <option key={ch.id} value={ch.name + "%-%" + ch.id}>
-              {ch.name}
+          {auth?.user?.workspacesTitles?.map((w, i) => (
+            <option
+              className="SelectComponent_option"
+              key={i}
+              value={
+                auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""
+              }
+            >
+              {w}
             </option>
           ))}
         </select>
-      ) : null}
-      {categoryState ? (
-        <select onChange={handleCategorySelect} name="category">
-          <option value="all">Categories</option>
-          {categoryState?.map((ca) => (
-            <option key={ca.id} value={ca.name}>
-              {ca.name}
-            </option>
-          ))}
-        </select>
-      ) : null}
+        <div className="SearchMenu__selects_2 ">
+          {channelsState?.length ? (
+            <select
+              onChange={handleChannelSelect}
+              name="channels"
+              className="SelectComponent Select__50w"
+              id=""
+            >
+              <option disabled selected className="SelectComponent_option">
+                Channels
+              </option>
+              {channelsState?.map((ch) => (
+                <option
+                  key={ch.id}
+                  className="SelectComponent_option"
+                  value={ch.name + "%-%" + ch.id}
+                >
+                  {ch.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
+          {categoryState?.length ? (
+            <select
+              onChange={handleCategorySelect}
+              className="SelectComponent Select__50w"
+              name="category"
+            >
+              <option selected value="" className="SelectComponent_option">
+                Categories
+              </option>
+              {categoryState?.map((ca) => (
+                <option
+                  key={ca.id}
+                  className="SelectComponent_option"
+                  value={ca.name}
+                >
+                  {ca.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
+        </div>
+      </div>
       <SearchBar handler={handleSubmit} />
       <div className="">
         {videos.length > 0 ? (
@@ -164,50 +203,5 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
         )}
       </div>
     </MenuToggleContainer>
-  );
-};
-
-// import { URL_BASE } from "../../constants/constants";
-// import axios from "axios";
-// import { useState } from "react";
-// import { useAuth } from "../../auth/useAuth";
-
-interface PropsWP {
-  handler(name:any, value:any, arrayChannels:any):any;
-}
-
-export const SelectWorkspace: React.FC<PropsWP> = ({ handler }) => {
-  const auth = useAuth();
-  const [schemaName, setSchemaName] = useState("");
-  // const [channels, setChannels] = useState<any>([]);
-
-  const handleSelect = async (e) => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    setSchemaName(e.target.value);
-    let arrayChannels: any[] = [];
-
-    let channels = await axios.get(`${URL_BASE}/channels`, {
-      params: { schemaName: value },
-    });
-    channels.data.map((item) => {
-      arrayChannels.push({ name: item.name, id: item.id });
-    });
-
-    handler(name, value, arrayChannels);
-  };
-
-  return (
-    <select onChange={handleSelect} name="schemaName" id="">
-      <option value="all">Workspaces</option>
-      {auth?.user?.workspacesTitles?.map((item, i) => (
-        <option
-          key={i}
-          value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""}
-        >
-          {item}
-        </option>
-      ))}
-    </select>
   );
 };

@@ -15,6 +15,7 @@ interface videoState {
     username: string;
     videoId: number;
     timestamp: string;
+    videoLink: string;
 }
 
 interface commentsObj {
@@ -52,6 +53,7 @@ export const VideoDetailAWS: React.FC = () => {
         username: "Loading...",
         videoId: 0,
         timestamp: "",
+        videoLink: "",
     })
 
     const [member, setMember] = useState<Member>({
@@ -101,6 +103,9 @@ export const VideoDetailAWS: React.FC = () => {
             let unformatedTimestamp = dataVideo.createdAt.split("T")[0]
             let split = unformatedTimestamp.split("-")
             let timestampVideo = `${split[2]}-${split[1]}-${split[0]}`
+            // NO TOCAR ESTE CONSOLE LOG --------- NO TOCAR ESTE CONSOLE LOG -----------
+            console.log("EL LINK ======================", "https://rocketplay2021.s3.us-east-1.amazonaws.com/" + dataVideo.link.replace(/\s/g, "+"))
+            // NO TOCAR ESTE CONSOLE LOG --------- NO TOCAR ESTE CONSOLE LOG -----------
             setVideoData({
                 title: dataVideo.title,
                 description: dataVideo.description,
@@ -109,7 +114,8 @@ export const VideoDetailAWS: React.FC = () => {
                 thumbnail: dataVideo.thumbnail,
                 username: dataVideo.username,
                 videoId: dataVideo.videoid,
-                timestamp: timestampVideo
+                timestamp: timestampVideo,
+                videoLink: dataVideo.link
             })
         // Info about the comments.. ======================================================
         let responseComments = await axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${dataVideo.videoid}`)
@@ -181,15 +187,24 @@ export const VideoDetailAWS: React.FC = () => {
         }).then(r => alert(r.data.message))
     }
 
+
+    // "https://rocketplay2021.s3.us-east-1.amazonaws.com/"+params.title
+
+
     return (
         <>
         {/* <NavProfileAndLocation header={videoData.title}/> */}
         <div className="awsDetail-super-container">
             <div className="awsDetail-square-container">{/* Video Itself */}
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}
-                    <video controls className="awsDetail-video" width="250px" height="150px">
-                        <source src={"https://rocketplay2021.s3.us-east-1.amazonaws.com/"+params.title}/>
-                    </video>
+                {
+                    videoData.videoLink !== "" ? (
+                        <video controls className="awsDetail-video" width="250px" height="150px">
+                            <source src={"https://rocketplay2021.s3.us-east-1.amazonaws.com/"+videoData.videoLink}/>
+                        </video>
+                    ) : (<></>)
+                }
+                    
                 </div>
                 <div className="awsDetail-author-container"> {/* Author Frame */}
                     <div className="awsDetail-avatar-div">{/* Avatar */}

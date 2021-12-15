@@ -30,7 +30,7 @@ interface Input {
 interface Errors {
   title: string;
   video: string;
-  image: string;
+  // image: string;
 }
 interface UploadId {
   uploadId: string;
@@ -96,7 +96,7 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
   const [errors, setErrors] = useState<Errors>({
     title: "",
     video: 'Should upload a video',
-    image: 'Should upload an image',
+    // image: 'Should upload an image',
   });
   const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
   const [previews, setPreviews] = useState<Previews>({video: undefined, img: undefined});
@@ -160,8 +160,8 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
       let array: any[] = []
       r.data.map(el => {
         let obj = {
-          name: el.name,
-          id: el.id,
+          name: el.catName,
+          id: el.catId,
         }
         array.push(obj)
       })
@@ -173,7 +173,7 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
 
     if(errors.title) return alert('Fix: '+errors.title)
     if(errors.video) return alert('Fix: '+errors.video)
-    if(errors.image) return alert('Fix: '+errors.image)
+    // if(errors.image) return alert('Fix: '+errors.image)
 
     let boton = document.querySelector('.Video__file-uploader-btn')
     boton && boton.setAttribute("disabled", "true")
@@ -197,26 +197,34 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
       })
   
       let videoPromise = upload.done()
-      // let realThumb = input.thumb === null ? "" : input.title
-      const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
-      const uploadThumb = new Upload({
-        client: client,
-        leavePartsOnError: false,
-        params: targetThumb,
-      })
-  
-      uploadThumb.on("httpUploadProgress", (progress) => {
-        console.log(progress)
-      })
-  
-      let thumbPromise = uploadThumb.done()
+      // let realThumb = input.thumb === null ? "" : input.title + "-thumb"
+      if(input.thumb !== null){
+        const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
+        const uploadThumb = new Upload({
+          client: client,
+          leavePartsOnError: false,
+          params: targetThumb,
+        })
+    
+        uploadThumb.on("httpUploadProgress", (progress) => {
+          console.log(progress)
+        })
+    
+        let thumbPromise = uploadThumb.done()
+        Promise.all([videoPromise, thumbPromise])
+        .then(() => {
+          setSuccess(true)
+          console.log("termine de subir los dos")
+          handleDatabaseLoad()
+        })
+      } else {
+        Promise.all([videoPromise])
+        .then(() => {
+          setSuccess(true)
+          handleDatabaseLoad()
+        })
+      }
 
-      Promise.all([videoPromise, thumbPromise])
-      .then(() => {
-        setSuccess(true)
-        console.log("termine de subir los dos")
-        handleDatabaseLoad()
-      })
 
     } catch (err){
       boton && boton.setAttribute("disabled", "false")
@@ -225,13 +233,13 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
 
     const handleDatabaseLoad = () => {
       // let { title, avatar, author, description, thumbnail, memberId, categoryId } = req.body
-      let realThumb = input.thumb === null ? "" : input.title
+      let realThumb = input.thumb === null ? "" : input.title + "-thumb"
       axios.post(`${URL_BASE}/uploadvideo/database`, {
         title: input.title,
         avatar: auth?.user?.pic,
         author: schemaName,
         description: input.description,
-        thumbnail: realThumb + "-thumb",
+        thumbnail: realThumb,
         memberId: member.memberId,
         categoryId: input.category
       })
@@ -279,7 +287,7 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
       return;
     }
     if(e.target.name === "thumb"){
-      if(e.target.value) setErrors({ ...errors, image: '' })
+      /* if(e.target.value) setErrors({ ...errors, image: '' }) */
       setInput({
         ...input,
         thumb: e.target.files[0]

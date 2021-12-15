@@ -61,7 +61,7 @@ export const ChannelsAWS: React.FC = () => {
           channelsState.map((el) => {
               if(el.status === 'active'){
                   
-                  return <SingleChannelAWS channel={el.channelName} key={el.channelId} />
+                  return <SingleChannelAWS channel={el.channelName} id={el.channelId} key={el.channelId} />
                   
               } else { return <></>}
             

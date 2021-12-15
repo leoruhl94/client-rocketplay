@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
@@ -8,7 +8,7 @@ import { auth } from "googleapis/build/src/apis/apikeys";
 interface InfoSubmit {
   schemaName: string;
   categoryId?: string;
-  newName?: string;
+  status?: string;
 }
 
 interface Categories {
@@ -27,7 +27,7 @@ interface openRemove {
   divClass: string;
   buttonDisabled: boolean;
 }
-export const EditCategory: React.FC = () => {
+export const RemoveCategory: React.FC = () => {
   const auth = useAuth()
   const [schemaName, setSchemaName] = useState<SchemaName>()
   const [channelsState, setChannelsState] = useState<Channels[]>();
@@ -35,7 +35,7 @@ export const EditCategory: React.FC = () => {
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
     categoryId: "",
-    newName: "",
+    status: "",
   });
 
 const [openRemove, setOpenRemove] = useState(
@@ -45,20 +45,6 @@ const [openRemove, setOpenRemove] = useState(
   }
 );
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!infoSubmit.schemaName) {
-    console.log("sale conejito porque no hay esquema")
-  } else {
-    await axios.put(`${URL_BASE}/category`, infoSubmit)
-  }
-  setInfoSubmit({
-    schemaName: "",
-    categoryId: "",
-    newName: "",
-  })
-}
-
 const handleWorkspaceSelect = (e) => {
   e.preventDefault();
   setSchemaName(e.target.value)
@@ -66,7 +52,7 @@ const handleWorkspaceSelect = (e) => {
   setInfoSubmit({
     schemaName: e.target.value,
     categoryId: "",
-    newName: "",
+    status: "deleted",
   });
   axios.get(`${URL_BASE}/channels`, { params: { schemaName: e.target.value } })
       .then((r) => {
@@ -83,12 +69,40 @@ const handleWorkspaceSelect = (e) => {
     });
 };
 
+//---------------------REMOVE CATEGORY-----------------------------------------------------
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!infoSubmit.schemaName) {
+    console.log("sale conejito porque no hay esquema");
+  } else {
+    await axios.put(`${URL_BASE}/channels/status`, infoSubmit);
+  }
+  setInfoSubmit({
+    schemaName: "",
+    categoryId: "",
+    status: "deleted",
+  });
+};
+
+const handleShow = (e) => {
+  e.preventDefault();
+  let div = document.querySelector(".remove-channel-div");
+  // div && div.setAttribute("className", "remove-channel-div")
+  setOpenRemove({...openRemove, divClass: "remove-channel-div"});
+  // Aca hacer q el div de elminar aparezca
+};
+
+
+
 const handleChannelSelect = (e) => {
   e.preventDefault();
-  const array = e.target.value.split("%-%")
+  const array = e.target.value.split("%-%");
+  
 
   axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: schemaName, channelId: array[1]}})
   .then(r => {
+    console.log(r.data)
     let array1:any[] = []
     r.data.map(el => {
       let obj = {
@@ -96,31 +110,31 @@ const handleChannelSelect = (e) => {
         id: el.catId,
       }
       array1.push(obj)
-      setCategoryState(array1)
     })
+    setCategoryState(array1)
+    
   })
-
-}
+};
 
 const handleCategorySelect = (e) => {
   e.preventDefault();
-  setInfoSubmit({ ...infoSubmit, categoryId: e.target.value });
-};
-
-const handleOnChange = (e) => {
-  e.preventDefault()
-  setInfoSubmit({...infoSubmit, newName: e.target.value})
+  setInfoSubmit({ ...infoSubmit, categoryId:e.target.value });
 }
 
-const handleShow = (e) => {
+const handleDeleting = (e) => {
   e.preventDefault();
-  let div = document.querySelector(".remove-channel-div");
-  setOpenRemove({...openRemove, divClass: "remove-channel-div"});
+  let btn = document.getElementById("last-remove-btn");
+  if (e.target.value === "deleted") {
+    setOpenRemove({...openRemove, buttonDisabled: false})
+  } else {
+    setOpenRemove({...openRemove, buttonDisabled: true})
+  }
 };
 
+
 return(
-    <div>
-       <form onSubmit={handleSubmit}>
+    <div>     {/*====================================================================================================  */}
+      <form onSubmit={handleSubmit}>
         <div>
           <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
             <option value="all" className="SelectComponent_option">Workspaces</option>
@@ -137,7 +151,7 @@ return(
             ))}
           </select>
           {channelsState?.length ? (
-            <select onChange={handleChannelSelect} name="oldName" id="" className="SelectComponent">
+            <select onChange={handleChannelSelect} className="SelectComponent" name="oldName" id="">
               <option value="all" className="SelectComponent_option">Channels</option>
               {channelsState?.map((ch) => (
                 <option key={ch.id} value={ch.name + "%-%" + ch.id} className="SelectComponent_option">
@@ -149,7 +163,7 @@ return(
           {categoryState?.length ? (
             <select
               onChange={handleCategorySelect}
-              className="SelectComponent Select__50w"
+              className="SelectComponent"
               name="category"
             >
               <option selected value="" className="SelectComponent_option">
@@ -166,19 +180,27 @@ return(
               ))}
             </select>
           ) : null}
-          <label>New name: </label>
-          <input
-            autoComplete="off"
-            type="text"
-            name="newName"
-            value={infoSubmit.newName}
-            onChange={handleOnChange}
-            className="Settings__input"
-          />
-          <button type="submit" className='Settings__button'>Edit Category</button>
+          <button type="button" onClick={(e) => handleShow(e)} className='Settings__button'>
+            Remove Category
+          </button>
+          <div className={`${openRemove.divClass}`}>
+            <label>
+              If you are sure about deleting this category type 'deleted'
+            </label>
+            <input 
+              type="text"
+              onChange={handleDeleting}
+              placeholder="deleted"
+              autoComplete='off'
+              className="Settings__input"
+            ></input>
+            <button type="submit" id="last-remove-btn" disabled={openRemove.buttonDisabled} className='Settings__button'>
+              Remove Category
+            </button>
+          </div>
         </div>
-        
       </form>
-</div>
-)
+    
+    </div>
+  )
 }
