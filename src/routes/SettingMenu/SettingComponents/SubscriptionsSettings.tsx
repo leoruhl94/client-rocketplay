@@ -41,7 +41,7 @@ export const SubscriptionsSettings: React.FC = () => {
         email: auth?.user?.email,
         status: "cancelled",
       });
-
+      auth?.refreshInfo()
       dispatch(setToast("Your subscription was" + res.data.status))
       testFunction()
       // TODO: Conectar el petición al backEnd

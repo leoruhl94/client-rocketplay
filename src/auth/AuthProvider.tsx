@@ -79,10 +79,10 @@ function AuthProvider({ children }) {
             name: res?.data.name,
             pic: res?.data.picture,
             email: res?.data.email,
-            workspaces: res?.data.workspaces,
+          workspaces: response?.data.workspaces || [],
         // workspaces: !response?.data.myWorkspaces?.length ? response?.data.workspaces 
         //: response?.data.workspaces.filter((x: any) =>!response.data.myWorkspaces.find((y: any) => y?.name === x)), */
-        workspacesTitles: res?.data.workspacesTitles,
+        workspacesTitles: response?.data.workspacesTitles || [],
         //workspacesTitles: !response?.data.myWorkspaces?.length ? response.data.workspacesTitles 
         //: response?.data.workspacesTitles.filter((x: any) =>!response.data.myWorkspaces.find((y: any) => y?.title === x)),
             /* subscriptions:
@@ -143,10 +143,10 @@ function AuthProvider({ children }) {
         name: user?.name,
         pic: user?.pic,
         email: user?.email,
-        workspaces: r?.data.workspaces,
+        workspaces: r.data.workspaces || [],
         //workspaces: !r?.data.myWorkspaces?.length ? r?.data.workspaces 
         //: r?.data.workspaces.filter((x: any) =>!r.data.myWorkspaces.find((y: any) => y?.name === x)),
-        workspacesTitles: r?.data.workspacesTitles,
+        workspacesTitles: r.data.workspacesTitles || [],
         //workspacesTitles: !r?.data.myWorkspaces?.length ? r.data.workspacesTitles 
         //: r?.data.workspacesTitles.filter((x: any) =>!r.data.myWorkspaces.find((y: any) => y?.title === x)),
         /* subscriptions: r?.data.subscriptions.map((s: any) => {

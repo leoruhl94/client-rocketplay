@@ -27,6 +27,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
   );
 
+  useEffect(() => {auth?.refreshInfo()}, [])
 
     console.log("hola", joinedWorks, joinedWorksTT, auth?.user )
   function handleAdd() {
@@ -51,7 +52,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
           <div className="Workspaces__list">
             <h2
               className={`Workspaces__title ${
-                auth?.user?.workspacesTitles?.length ? "display__none" : ""
+                auth?.user?.workspacesTitles?.length || auth?.user?.myWorkspaces?.length ? "display__none" : ""
               }`}
             >
               You do not belong to a workspace yet
