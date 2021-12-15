@@ -28,7 +28,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   );
 
 
-    console.log("hola", joinedWorks )
+    console.log("hola", joinedWorks, joinedWorksTT, auth?.user )
   function handleAdd() {
     setAdd(!add);
   }

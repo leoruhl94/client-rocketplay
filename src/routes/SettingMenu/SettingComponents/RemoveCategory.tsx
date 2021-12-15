@@ -137,8 +137,8 @@ const [disabled, setDisabled] = useState(true)
 
 return(
     <div>     {/*====================================================================================================  */}
-      <form onSubmit={handleSubmit} className="Settings__form" >
-      <div className="Settings__selects">
+      <form onSubmit={handleSubmit} className="Settings__form Select__100w" >
+      <div className="Settings__selects ">
           <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent Select__100w">
             <option value="all" className="SelectComponent_option">Workspaces</option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
@@ -163,10 +163,12 @@ return(
               ))}
             </select>
           ) : null}
+          </div>
+          <div>
           {categoryState?.length ? (
             <select
               onChange={handleCategorySelect}
-              className="SelectComponent"
+              className="SelectComponent Select__50w"
               name="category"
             >
               <option selected value="" className="SelectComponent_option">
