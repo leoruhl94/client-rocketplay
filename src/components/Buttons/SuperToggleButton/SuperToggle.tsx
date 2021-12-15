@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import './SuperToggle.scss'
 
 interface Props{
     handleChecked : Function,
     handleUnchecked : Function,    
     checked? : boolean
+    enabled? : boolean
 } 
 
-export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked, checked=false}) => {
+export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked, checked=false, enabled=true}) => {
 
     //States
     const [ value, setValue] = useState(!checked);
@@ -23,9 +25,9 @@ export const SuperToggle : React.FC<Props> = ({ handleChecked, handleUnchecked, 
     }
 
     // Returned
-    return(<section>
-        <label className="switch">
-          <input onChange={handleOnChange} type="checkbox" checked={checked}/>
+    return(<section className={!enabled?' disabled':''}>
+        <label className='switch'>
+          <input onChange={handleOnChange} type="checkbox" checked={checked} disabled={!enabled}/>
           <span className="slider round"></span>
         </label>
     </section>)

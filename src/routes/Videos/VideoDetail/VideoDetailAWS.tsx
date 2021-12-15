@@ -138,7 +138,7 @@ export const VideoDetailAWS: React.FC = () => {
                 }
                 arrayComments.push(obj)
             })
-            setCommentData(arrayComments)
+            setCommentData(arrayComments.reverse())
         // Info about the members.. ========================================================
         let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: params.schema, memberEmail: auth?.user?.email}})
         let data = responseMembers.data[0]
@@ -243,7 +243,7 @@ export const VideoDetailAWS: React.FC = () => {
                 <div className="awsDetail-comments-container">
                     {
                         commentData.length > 0 ?
-                        commentData.reverse().map(el => {
+                        commentData.map(el => {
                             return (
                                 <div className="awsDetail-single-comment" key={el.commentId}>
                                     <div className="awsDetail-single-flex-helper">

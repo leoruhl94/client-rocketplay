@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -21,11 +21,16 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 
-  const { profile } = useSelector((state: storeState) => state);
+  const { profile, plans } = useSelector((state: storeState) => state);
+  let [userPlan, setUserPlan] = useState<any>()
 
   function logout() {
     dispatch(Logout(history, auth));
   }
+
+  useEffect(() => {
+    setUserPlan(auth?.user?.subscriptions?.map(x => plans.find(p => p.id === x.plan_id))[0])
+  },[])
   
   // const handleOnUpdateSubscriptions = async( value:String ) =>{
   //   console.log(value);
@@ -48,7 +53,8 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         <img src={profile.pic} className="profileWnd__pic" />
         <div className="profileWnd__info">
           <span>{profile.name}</span>
-          <span>super admin</span>
+          {userPlan ? <span className={`profileWnd__info-plan ${userPlan?.color}`}>{userPlan?.name}</span> 
+          : <span className="profileWnd__info-plan grey">No plan</span>}
         </div>
       </div>
       
