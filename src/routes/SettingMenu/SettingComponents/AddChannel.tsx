@@ -26,35 +26,50 @@ export const AddChannel: React.FC = () => {
             await axios.post(`${URL_BASE}/channels` , infoSubmit)
             setInfoSubmit({...infoSubmit, schemaName: e.target.value})
         }
+        setInfoSubmit({
+          schemaName: "",
+          name: "",
+        });
       };
 
     const handleWorkspaceSelect = (e) => {
         e.preventDefault();
         setInfoSubmit({...infoSubmit, schemaName: e.target.value})
       };
-      const handleOnChange = (e) =>{
-        e.preventDefault();
-        setInfoSubmit({
-          ...infoSubmit,
-          [e.target.name]:e.target.value
-        })
-      }
+
+    const handleOnChange = (e) =>{
+      e.preventDefault();
+      setInfoSubmit({
+        ...infoSubmit,
+        [e.target.name]:e.target.value
+      })
+    }
     return (
         <div>
             <form onSubmit={handleSubmit} >
                 <div>
-                <select onChange={handleWorkspaceSelect} name="schemaName" id="">
-        <option value="all">Workspaces</option>
-        {auth?.user?.workspacesTitles?.map((w, i) => (
+                <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
+        <option value="all" className="SelectComponent_option">Workspaces</option>
+        {/* {auth?.user?.workspacesTitles?.map((w, i) => (
             
-          <option key={i} value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""}>
+          <option key={i} value={auth?.user?.workspaces?.length ? auth.user.workspaces[i] : ""} className="SelectComponent_option">
             {w}
           </option>
-        ))} 
+        ))}  */}
+        {auth?.user?.myWorkspaces?.map((w, i) => (
+              <option
+                key={i}
+                value={
+                  auth?.user?.myWorkspaces?.length ? auth.user.myWorkspaces[i] : ""
+                }
+              >
+                {w.name}
+              </option>
+            ))}
       </select>
       <label>Name: </label>
-      <input type="text" name="name" value={infoSubmit.name} placeholder="Name..." onChange={handleOnChange}/>
-      <button type='submit'>Add Channel</button>
+      <input type="text"  autoComplete='off' className="Settings__input" name="name" value={infoSubmit.name} placeholder="Name..." onChange={handleOnChange}/>
+      <button type='submit' className='Settings__button'>Add Channel</button>
                 </div>                
             </form>
         </div>

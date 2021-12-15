@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { LoadingComponent } from '../../../components/LoadingComponent/LoadingComponent';
 import { useAuth } from '../../../auth/useAuth';
 import { URL_BASE } from '../../../constants/constants';
-import './SettingsSubscriptions.scss';
+import './MemberType.scss';
 import { SuperToggle } from '../../../components/Buttons/SuperToggleButton/SuperToggle';
 
 
-export const SettingsSubscriptions: React.FC = () => {
+export const MemberType: React.FC = () => {
     const auth = useAuth();
     const [users, setUsers] = useState<any[]>([])
 
@@ -42,8 +42,8 @@ export const SettingsSubscriptions: React.FC = () => {
         users.length ? (<div className="settingsSubscriptions">
             <h1 className="settingsSubscriptions__title">Workspace Settings</h1>
             <p className="settingsSubscriptions__text">Allows subscribers to manage the channel</p>
-            <p className="settingsSubscriptions__text">
                 <h3>¿What is admin user?</h3>
+            <p className="settingsSubscriptions__text">
                 "Admin" users can create, edit and delete 
                 channels, categories or videos, but cannot make 
                 plan purchases or assign other admins </p>

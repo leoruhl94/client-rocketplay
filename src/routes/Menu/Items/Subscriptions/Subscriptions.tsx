@@ -12,9 +12,11 @@ import { URL_BASE } from "../../../../constants/constants";
 //import { plans } from './SubsHardcode';
 import { getDates, testFunction } from "../../../../constants/functions";
 import { useAuth } from "../../../../auth/useAuth";
-import { postNotifications } from "../../../../redux/actions";
 import { SuperToggle } from "../../../../components/Buttons/SuperToggleButton/SuperToggle";
+import { postNotifications, setToast } from "../../../../redux/actions";
 import { SuperToast } from '../../../../components/Toast/SuperToast';
+import { Link } from "react-router-dom";
+import { Clipboard } from "../../../../components/Clipboard/Clipboard";
 
 interface User {
   accessToken: string;
@@ -32,7 +34,6 @@ export const Subscriptions: React.FC = () => {
   // useStates
   const [input, setInput] = useState("");
   const [icon, setIcon] = useState(leftArrow);
-  const [ notification, setNotification] = useState('')
   const [pop, setPop] = useState("This will never shows");
   const [boolPopD, setBoolPopD] = useState(false);
 
@@ -40,8 +41,15 @@ export const Subscriptions: React.FC = () => {
   const plan: string = useSelector((state: storeState) => {
     return state.plan;
   });
+  
+  let usuario = auth?.user?.subscriptions
+  console.log(auth?.user?.subscriptions)
 
-  // TODO: Si no es de negocios no se muestra el toggle, el payment y el cancel.
+
+  let logged = auth?.isLogged() ? auth?.isLogged() : false;
+  
+  console.log(logged);
+  // Complete: Si no está logeado no se muestra el toggle, el payment y el cancel.
 
   function handleUploadNormal(e) {
     // Complete: Función que almacena las cosas que pasarán si la persona acepta el popUp
@@ -53,7 +61,7 @@ export const Subscriptions: React.FC = () => {
       popUpDanger(e, "Cancel");
       // TODO: Conectar la función para el backEnd así lo saca
     } else {
-      setNotification('Incorrect')
+      dispatch(setToast('Incorrect'))
       testFunction()
       setInput('')
       // popUpDanger(e, "Cancel");
@@ -82,6 +90,7 @@ export const Subscriptions: React.FC = () => {
       });
     }
     setBoolPopD(!boolPopD);
+
   }
 
   function handleData(e){
@@ -97,17 +106,18 @@ export const Subscriptions: React.FC = () => {
     });
     // isBussiness : true
     console.log(res.data);
-    setNotification(res.data.message)
     // Sumamos la notificación a un array y  mandamos un toast
-    testFunction()
     dispatch(postNotifications(res.data))
+    dispatch(setToast(res.data.message))
+    testFunction()
   };
 
   // Returned
   return (
     <article className="Subs__main-article">
-      <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast>
+      {/* <SuperToast value={notification ? notification : 'This is a sample message'}></SuperToast> */}
       {/* ..... Subscription plan ..... */}
+      {/* ..... Lo que de verdad se va a mostrar ..... */}
       <section className="">
         {/* ..... Subscriptions ..... */}
         <div className="Subs__div-switcher">
@@ -115,10 +125,10 @@ export const Subscriptions: React.FC = () => {
           <section className="Subs__switcher-container">
             <div>
               <h2 className="Subs__margin-reset Subs__switcher-title">
-                Your current plan is :
+                Your plan id is :
               </h2>
               <p className="Subs__margin-reset Subs__switcher-name">
-                {plan.length > 0 ? plan : "Not logged"}
+                {usuario ? usuario[0].id : "Not logged"}
               </p>
             </div>
             {/* ..... Button ..... */}
@@ -131,9 +141,10 @@ export const Subscriptions: React.FC = () => {
             {/* HERE: Se puede mapear planes para hacer dropdown */}
           </section>
         </div>
-        <div className="Subs__div-details">
+        {logged? <div className="Subs__div-details">
           <div className="Subs__details-headers">
             <h1 className="Subs__margin-reset">Credit Data</h1>
+              <Clipboard value={input}></Clipboard>
           </div>
           <div className="Subs__payment-date">
             <h3 className="Subs__margin-reset">
@@ -141,11 +152,12 @@ export const Subscriptions: React.FC = () => {
             </h3>
           </div>
           <div className="Subs__functions-list">
-
+            <div className="Subs__toggle-list">
             <SuperToggle
               handleChecked={() => {handleOnUpdateSubscriptions('authorized')}}
               handleUnchecked={() => handleOnUpdateSubscriptions('paused')}
             ></SuperToggle>
+            </div>
             <h3
               onClick={(e) => popUpDanger(e, "Cancel")}
               className="Subs__margin-reset"
@@ -153,7 +165,17 @@ export const Subscriptions: React.FC = () => {
               Cancel subscription
             </h3>
           </div>
-        </div>
+        </div> 
+        : 
+        <div className="Subs__div-details">
+          <h3>You must be logged in to see options</h3>
+          {/* ..... TODO: Decoración CSS */}
+          <Link to="/login">
+            <div>
+            <h3>Log In / Sign Up</h3>
+            </div>
+          </Link>
+          </div>}
 
         <section className="Subs__popup Subs__popup-two">
           <div className="popup__normal-title">

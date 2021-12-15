@@ -82,14 +82,24 @@
         margin-top: 16px;
         border-radius: 10px;
         box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-        .awsDetail-description-header{
-            margin: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid white;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px black;
-            width: 50%;
+        .awsDetail-description-flex-helper{
+            display: flex;
+            justify-content: space-between;
+            // align-items: center;
+            .awsDetail-description-header{
+                margin: 0;
+                padding-bottom: 10px;
+                border-bottom: 1px solid white;
+                color: white;
+                margin-bottom: 10px;
+                text-shadow: 1px 1px 3px black;
+                width: 50%;
+            }
+            .awsDetail-description-timestamp{
+                margin: 0;
+                color: gray;
+                text-shadow: 1px 1px 3px black;
+            }
         }
         .awsDetail-description{
             color: rgb(184, 180, 180);
@@ -147,6 +157,15 @@
                 text-shadow: 1px 1px 3px black;
                 // text-overflow: hidden;
                 overflow-x: hidden;
+                .awsDetail-single-flex-helper{
+                    display: flex;
+                    justify-content: space-between;
+                    h5{
+                        margin: 0;
+                        color: gray;
+                        text-shadow: 1px 1px 3px black;
+                    }
+                }
             }
             h3{
                 margin: 0;

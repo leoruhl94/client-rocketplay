@@ -30,7 +30,7 @@ interface Input {
 interface Errors {
   title: string;
   video: string;
-  image: string;
+  // image: string;
 }
 interface UploadId {
   uploadId: string;
@@ -49,9 +49,19 @@ interface Channels {
   name: string;
   id: number;
 }
+
+interface Member {
+  memberId: number;
+  memberEmail: string;
+  memberName: string;
+  userType: string;
+}
  
+interface Props {
+  schemaName: string;
+}
 //  -----------------------------------------------------------------------------------------
-export const VideoForm: React.FC = () => {
+export const VideoForm: React.FC<Props> = ({schemaName}) => {
   // Caja de variables
   const [user, setUser] = useState<User>({
     accessToken: "",
@@ -68,6 +78,12 @@ export const VideoForm: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [categoryState, setCategoryState] = useState<Categories[]>([])
   const [channelsState, setChannelsState] = useState<Channels[]>([])
+  const [member, setMember] = useState<Member>({
+    memberId: 0,
+    memberEmail: "",
+    memberName: "",
+    userType: "",
+})
 
   const [input, setInput] = useState<Input>({
     file: null,
@@ -80,7 +96,7 @@ export const VideoForm: React.FC = () => {
   const [errors, setErrors] = useState<Errors>({
     title: "",
     video: 'Should upload a video',
-    image: 'Should upload an image',
+    // image: 'Should upload an image',
   });
   const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
   const [previews, setPreviews] = useState<Previews>({video: undefined, img: undefined});
@@ -112,7 +128,7 @@ export const VideoForm: React.FC = () => {
   }, [input.thumb])
 
   useEffect(() => {
-    axios.get(`${URL_BASE}/channels`, {params: {schemaName: "hideonmjs"}})
+    axios.get(`${URL_BASE}/channels`, {params: {schemaName: schemaName}})
     .then(r => {
       let array:any[] = []
       r.data.map(el => {
@@ -124,16 +140,28 @@ export const VideoForm: React.FC = () => {
       })
       setChannelsState(array)
     })
+    getMemberInfo()
   }, [])
 
+  const getMemberInfo = async () => {
+    let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: schemaName, memberEmail: auth?.user?.email}})
+    let data = responseMembers.data[0]
+    setMember({
+        memberId: data.id,
+        memberEmail: data.mail,
+        memberName: data.name,
+        userType: data.usertype
+    })
+  }
+
   const handleCategorySelect = (e) => {
-    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: "hideonmjs", channelId: e.target.value}})
+    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: schemaName, channelId: e.target.value}})
     .then(r => {
       let array: any[] = []
       r.data.map(el => {
         let obj = {
-          name: el.name,
-          id: el.id,
+          name: el.catName,
+          id: el.catId,
         }
         array.push(obj)
       })
@@ -145,7 +173,7 @@ export const VideoForm: React.FC = () => {
 
     if(errors.title) return alert('Fix: '+errors.title)
     if(errors.video) return alert('Fix: '+errors.video)
-    if(errors.image) return alert('Fix: '+errors.image)
+    // if(errors.image) return alert('Fix: '+errors.image)
 
     let boton = document.querySelector('.Video__file-uploader-btn')
     boton && boton.setAttribute("disabled", "true")
@@ -169,26 +197,34 @@ export const VideoForm: React.FC = () => {
       })
   
       let videoPromise = upload.done()
+      // let realThumb = input.thumb === null ? "" : input.title + "-thumb"
+      if(input.thumb !== null){
+        const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
+        const uploadThumb = new Upload({
+          client: client,
+          leavePartsOnError: false,
+          params: targetThumb,
+        })
+    
+        uploadThumb.on("httpUploadProgress", (progress) => {
+          console.log(progress)
+        })
+    
+        let thumbPromise = uploadThumb.done()
+        Promise.all([videoPromise, thumbPromise])
+        .then(() => {
+          setSuccess(true)
+          console.log("termine de subir los dos")
+          handleDatabaseLoad()
+        })
+      } else {
+        Promise.all([videoPromise])
+        .then(() => {
+          setSuccess(true)
+          handleDatabaseLoad()
+        })
+      }
 
-      const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
-      const uploadThumb = new Upload({
-        client: client,
-        leavePartsOnError: false,
-        params: targetThumb,
-      })
-  
-      uploadThumb.on("httpUploadProgress", (progress) => {
-        console.log(progress)
-      })
-  
-      let thumbPromise = uploadThumb.done()
-
-      Promise.all([videoPromise, thumbPromise])
-      .then(() => {
-        setSuccess(true)
-        console.log("termine de subir los dos")
-        handleDatabaseLoad()
-      })
 
     } catch (err){
       boton && boton.setAttribute("disabled", "false")
@@ -197,13 +233,14 @@ export const VideoForm: React.FC = () => {
 
     const handleDatabaseLoad = () => {
       // let { title, avatar, author, description, thumbnail, memberId, categoryId } = req.body
+      let realThumb = input.thumb === null ? "" : input.title + "-thumb"
       axios.post(`${URL_BASE}/uploadvideo/database`, {
         title: input.title,
         avatar: auth?.user?.pic,
-        author: "hideonmjs",
+        author: schemaName,
         description: input.description,
-        thumbnail: input.title + "-thumb",
-        memberId: 1,
+        thumbnail: realThumb,
+        memberId: member.memberId,
         categoryId: input.category
       })
       .then(r => console.log(r))
@@ -250,7 +287,7 @@ export const VideoForm: React.FC = () => {
       return;
     }
     if(e.target.name === "thumb"){
-      if(e.target.value) setErrors({ ...errors, image: '' })
+      /* if(e.target.value) setErrors({ ...errors, image: '' }) */
       setInput({
         ...input,
         thumb: e.target.files[0]
@@ -290,7 +327,7 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Title ..... */}
             <div >
-              <h2 className='Section__title'>Title (required)</h2>
+              <h2 className='Section__title'>Title *</h2>
               <div className="inputDiv">
                 <input
                   className={`Video__file-uploader-text${errors.title?' invalid':''}`}
@@ -315,7 +352,7 @@ export const VideoForm: React.FC = () => {
 
           {/* ..... File ..... */}
           <div className='Section__Container'>
-            <h2 className='Section__title'>Video (required)</h2>
+            <h2 className='Section__title'>Video *</h2>
             <p className='Section__description'>Upload a video from your computer</p>
             {previews.video ? 
             <video className="Video__preview" title="Testing" width="300px" controls>
@@ -384,7 +421,7 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Selects (Channels y Categories) ..... */}
             <div>
-              <h2 className='Section__title'>Workspace and Category (required)</h2>
+              <h2 className='Section__title'>Workspace and Category *</h2>
               <p className='Section__description'>Choose which workspace and category the video will belong to</p>
               <div>
                 <select name="channel" id="channel" onChange={(e) => {
@@ -418,7 +455,7 @@ export const VideoForm: React.FC = () => {
             </div>
 
             {/* ..... Tags ..... */}
-            <div>
+            {/* <div>
               <h2 className='Section__title'>Tags</h2>
               <p className='Section__description'>Tag your video so users can find it faster</p>
               <select name="tags" id="tags">
@@ -428,7 +465,7 @@ export const VideoForm: React.FC = () => {
                 <option value="predicado">Predicado</option>
                 <option value="Eli se me ocurrio como hacerlo">Eli se me ocurrio como hacerlo</option>
               </select>
-            </div>
+            </div> */}
           </div>
 
           {/* ..... Upload ..... */}

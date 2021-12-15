@@ -6,12 +6,17 @@ import {useParams} from "react-router";
 
 interface Props {
     channel: string
+    id: number
 }
-export const SingleChannelAWS: React.FC<Props> = ({channel}) => {
+export const SingleChannelAWS: React.FC<Props> = ({channel, id}) => {
     const history = useHistory()
     let params: any = useParams()
     function handleClick(){
-        history.push(`/home/${params.schema}/${channel}`)
+        // history.push(`/home/${params.schema}/${channel}-${id}`)
+        history.push({
+            pathname:`/home/${params.schema}/${channel}---${id}`,
+            state: { id:id }
+        })
     }
     return (
         <div className="singleChannelDiv" onClick={handleClick}>

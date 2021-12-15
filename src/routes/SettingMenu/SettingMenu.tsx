@@ -1,95 +1,115 @@
-import axios from "axios";
-import { motion } from "framer-motion";
 import React from "react";
 import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
 import "./SettingMenu.scss";
-import { SuperToggle } from "../../components/Buttons/SuperToggleButton/SuperToggle";
-import { SuperToast } from "../../components/Toast/SuperToast";
-import { URL_BASE } from "../../constants/constants";
-import { useModal } from "../../components/Modal/useModal";
-import { AddChannel } from "./SettingComponents/AddChannel";
 import { useAuth } from "../../auth/useAuth";
-import { Modal } from "../../components/Modal/Modal";
+import { AddChannel } from "./SettingComponents/AddChannel";
+import { DropdownMenu } from "./SettingComponents/DropdownMenu";
+import { DropdownMenuItem } from "./SettingComponents/DropdownMenuItem";
+import { useOpen } from "../../Hooks/useOpen";
+import { AddCategory2 } from "./SettingComponents/AddCategory2";
+import { EditChannel } from "./SettingComponents/EditChannels";
+import { SubscriptionsSettings } from "./SettingComponents/SubscriptionsSettings";
+import { InfoAccount } from "./SettingComponents/InfoAccount";
+import { MemberType } from "./SettingComponents/MemberType";
+import { EditWorkspace } from "./SettingComponents/EditWorkspace";
+import { EditCategory } from "./SettingComponents/EditCategory";
+import { RemoveCategory } from "./SettingComponents/RemoveCategory";
+
 interface props {
   transition: any;
 }
 
 interface Open {
-  isOpen:Boolean;
+  isOpen: Boolean;
   openModal(): void;
   closeModal(): void;
 }
 
 export const SettingMenu: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
-  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
-  const handleOnUpdateSubscriptions = async (value: String) => {
-    let res = await axios.put(`${URL_BASE}/subscriptions`, {
-      email: auth?.user?.email,
-      status: value,
-    });
-  };
-  console.log(isOpenModal1);
+  ///==================MENUS===================
+  const [isOpenMenuAccount, openMenuAccount, closeMenuAccount] = useOpen(false);
+  const [isOpenMenuWorkspace, openMenuWorkspace, closeMenuWorkspace] =
+    useOpen(false);
+  const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
+    useOpen(false);
+  const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
+    useOpen(true);
+
+  ///==================MENUS===================
 
   return (
     <MenuToggleContainer transition={transition} k="002">
       <nav className="SettingMenu__container">
-        {/* <div className="container"> */}
+        <DropdownMenu
+          title="Account"
+          isOpen={isOpenMenuAccount}
+          close={closeMenuAccount}
+          open={openMenuAccount}
+        >
+          <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
+            <InfoAccount />
+          </DropdownMenuItem>
 
-        <ul className="SettingMenu__ul">
-          Workspace
-          <li className="SettingMenu__li">Edit your code</li>
-          <li className="SettingMenu__li">Edit your workspace name</li>
-          <li className="SettingMenu__li">Admin your subcribers</li>
-          <li className="SettingMenu__li">...</li>
-        </ul>
+          <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
+            <SubscriptionsSettings />
+          </DropdownMenuItem>
+        </DropdownMenu>
+        {/* ============================================================== */}
+        <DropdownMenu
+          title="Workspace"
+          isOpen={isOpenMenuWorkspace}
+          close={closeMenuWorkspace}
+          open={openMenuWorkspace}
+        >
+          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Edit Workspace">
+            <EditWorkspace />
+          </DropdownMenuItem>
 
-        <ul className="SettingMenu__submenu SettingMenu__ul">
-          Channels
-          <li className="SettingMenu__li">Add/Remove</li>
-          <li className="SettingMenu__li">Edit name</li>
-          <li className="SettingMenu__li">...</li>
-        </ul>
+          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+            <MemberType />
+          </DropdownMenuItem>
+        </DropdownMenu>
+        {/* ============================================================== */}
+        <DropdownMenu
+          title="Channels"
+          isOpen={isOpenMenuChannels}
+          close={closeMenuChannels}
+          open={openMenuChannels}
+        >
+          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
+            <AddChannel />
+          </DropdownMenuItem>
 
-        <ul className="SettingMenu__submenu SettingMenu__ul">
-          Categories
-          <li className="SettingMenu__li">Add/Remove</li>
-          <li className="SettingMenu__li">Edit name</li>
-          <li className="SettingMenu__li">Change privacy</li>
-        </ul>
+          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Edit Channel">
+            <EditChannel />
+          </DropdownMenuItem>
+        </DropdownMenu>
+        {/* ============================================================== */}
+        <DropdownMenu
+          title="Categories"
+          isOpen={isOpenMenuCategories}
+          close={closeMenuCategories}
+          open={openMenuCategories}
+        >
+          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Add Category">
+            <AddCategory2 />
+          </DropdownMenuItem>
 
-        <ul className="SettingMenu__submenu SettingMenu__ul">
-          Videos
-          <li className="SettingMenu__li">Upload</li>
-          <li className="SettingMenu__li">Delete</li>
-          <li className="SettingMenu__li">Edit description</li>
-          <li className="SettingMenu__li">Tags</li>
-        </ul>
+          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Edit Category">
+            <EditCategory />
+            <RemoveCategory />
 
-        <ul className="SettingMenu__submenu SettingMenu__ul" >
-                <button onClick={openModal1}>
-                  
-                   Subscriptions
-                  </button>
-                
-          <Modal isOpen={isOpenModal1} closeModal={ closeModal1 } title="bla">
-            <AddChannel></AddChannel>
-            <li className="SettingMenu__li  SettingMenu__toggle">
-              <h4>Activar/Pausar</h4>
-              <SuperToggle
-                handleChecked={() => {
-                  handleOnUpdateSubscriptions("authorized");
-                }}
-                handleUnchecked={() => handleOnUpdateSubscriptions("paused")}
-              ></SuperToggle>
-            </li>
-            <li className="SettingMenu__li SettingMenu__li_cancel ">
-              Cancel Subscription
-            </li>
-          </Modal>
-        </ul>
+          </DropdownMenuItem>
 
-        {/* </div> */}
+          <DropdownMenuItem
+            isOpen={isOpenMenuCategories}
+            title="Change privacy"
+          >
+            
+          </DropdownMenuItem>
+        </DropdownMenu>
+       
       </nav>
     </MenuToggleContainer>
   );

@@ -1,6 +1,19 @@
 import axios from "axios";
-import { URL_BASE, CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants";
-
+import {
+  URL_BASE,
+  CHANGE_PROFILE,
+  LOGOUT,
+  REFRESH_PROFILE,
+  PRICING_SELECT,
+  GET_PLANS,
+  POST_CATEGORY,
+  TRUNCATE_CATEGORY,
+  PUT_CATEGORY,
+  POST_NOTIFICATIONS,
+  READ_NOTIFICATIONS,
+  CHANGE_PAGE,
+  SET_TOAST,
+} from "../constants/constants";
 
 
 interface User {
@@ -161,6 +174,12 @@ export function readNotifications(){
 }
 export function changePage(n){
   return (dispatch) => {
-    dispatch({ type: CHANGE_PAGE, payload : n })
+    dispatch({ type: CHANGE_PAGE, payload: n });
+  };
+}
+
+export function setToast(data){
+  return (dispatch) => {
+    dispatch({ type: SET_TOAST, payload: data})
   }
 }

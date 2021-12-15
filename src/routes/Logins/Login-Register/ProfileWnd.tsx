@@ -29,7 +29,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   }
 
   useEffect(() => {
-    setUserPlan(auth?.user?.subscriptions?.map(x => plans.find(p => p.id === x.id))[0])
+    setUserPlan(auth?.user?.subscriptions?.map(x => plans.find(p => p.id === x.plan_id))[0])
   },[])
   
   // const handleOnUpdateSubscriptions = async( value:String ) =>{
@@ -53,7 +53,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         <img src={profile.pic} className="profileWnd__pic" />
         <div className="profileWnd__info">
           <span>{profile.name}</span>
-          {userPlan ? <span className={`profileWnd__info-plan ${userPlan.color}`}>{userPlan.name}</span> 
+          {userPlan ? <span className={`profileWnd__info-plan ${userPlan?.color}`}>{userPlan?.name}</span> 
           : <span className="profileWnd__info-plan grey">No plan</span>}
         </div>
       </div>

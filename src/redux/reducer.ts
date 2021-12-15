@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE, SET_TOAST } from "../constants/constants"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -15,7 +15,8 @@ const initialState: storeState = {
     plans: [],
     categories : [],
     notifications : [{message:"Welcome to RocketPlay!", readed: false}],
-    page: 3
+    page: 3,
+    toast : 'Testing'
   }
 
   /*                  // {
@@ -97,6 +98,11 @@ const reducer = (
             ...state,
             page : action.payload
           }
+        case SET_TOAST :
+          return {
+              ...state,
+              toast : action.payload
+            }
     }
     return state
   }

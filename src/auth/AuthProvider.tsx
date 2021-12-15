@@ -14,6 +14,7 @@ interface AuthContextI {
   login?: any;
   logout?: any;
   refreshInfo?: any;
+  
 }
 
 interface myWork {
@@ -79,7 +80,7 @@ function AuthProvider({ children }) {
           workspaces: response?.data.workspaces || null,
           workspacesTitles: response?.data.workspacesTitles || null,
           subscriptions: response?.data.subscriptions.map((s: any) => {
-            return { id: s.plan_id, status: s.status };
+            return { id: s.id, plan_id: s.plan_id, status: s.status };
           }) || null,
           isBusiness: response?.data.isBusiness,
           myWorkspaces: response?.data.schemas?.map((x: myWork) => {
@@ -122,7 +123,7 @@ function AuthProvider({ children }) {
         workspaces: r?.data.workspaces,
         workspacesTitles: r?.data.workspacesTitles,
         subscriptions: r?.data.subscriptions.map((s: any) => {
-          return { id: s.plan_id, status: s.status };
+          return { id: s.id, plan_id: s.plan_id, status: s.status };
         }),
         isBusiness: r?.data.isBusiness,
         myWorkspaces: r?.data.schemas?.map((x: myWork) => {

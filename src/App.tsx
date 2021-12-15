@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/normalize.css";
 import "./styles/app.scss";
-import axios from "axios";
+
 
 // Componentes
 import { Landing } from "./routes/Landing/Landing";
@@ -24,7 +24,7 @@ import { Route, Switch } from "react-router-dom";
 import { Redirect, useLocation, useHistory } from "react-router";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
@@ -32,8 +32,6 @@ import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
 import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 import { NavigationMobileMagic } from "./components/Navs/NavigationMobileMagic/NavigationMobileMagic";
 import { Workspaces } from "./routes/Workspaces/Workspaces";
-import { MenuToggleContainer } from "./components/MenuToggleContainer/MenuToggleContainer";
-import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDetail";
 import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
@@ -46,21 +44,18 @@ import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavPro
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
 import { LoadingComponent } from "./components/LoadingComponent/LoadingComponent";
-import { Modal } from "./components/Modal/Modal";
-import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory2";
-import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
-import { EditChannel } from "./routes/SettingMenu/SettingComponents/EditChannels";
-import { EditWorkspace } from "./routes/SettingMenu/SettingComponents/EditWorkspace";
-import { SettingsSubscriptions } from "./routes/SettingMenu/SettingComponents/SettingsSubscriptions";
 import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
-
+import { SuperToast } from "./components/Toast/SuperToast";
+import { storeState } from "./redux/type";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   let location = useLocation();
   const auth = useAuth();
 
+  const toast: string = useSelector((state: storeState) => {
+    return state.toast;
+  });
   const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -76,10 +71,6 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
-    //cargar los planes de pago en redux
-    // const json = localStorage.getItem("lastRoute")
-    // const lastRoute = json ? json : '/'
-    // history.push(lastRoute)
     dispatch(getPlans());
   }, []);
 
@@ -91,11 +82,16 @@ const App: React.FC = () => {
   }, [location]);
 
   return !auth?.user && tokens ? (
-    <LoadingComponent/>
+    <LoadingComponent />
   ) : (
     <>
+      <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} routesToAvoid={['/pricing']}/>
+        <PrivateRoute
+          path="/:algunaRuta"
+          component={NavProfileAndLocation}
+          routesToAvoid={["/pricing"]}
+        />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />
@@ -107,9 +103,6 @@ const App: React.FC = () => {
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
           <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
-          {/* <PrivateRoute path="/videodetail/:id" component={VideoDetail} /> */}
-          {/* <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} /> */}
-          {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
           <PrivateRoute
             exact
             path="/notifications"
@@ -146,23 +139,6 @@ const App: React.FC = () => {
 
           {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
-          {/* <Route exact path="/modal"> */}
-            {/* <Modal>
-              <h1>HOLAAAAA</h1>
-              <EditChannel></EditChannel> */}
-            {/* <AddChannel></AddChannel> */}
-              {/* <h3>SOy el MoDal</h3>
-              <h3>SOy el </h3>
-              <h3>SOy el MoDal</h3> */}
-            {/* <AddCategory2></AddCategory2> */}
-            {/* </Modal> */}
-            {/* <Modal>
-              <h1>HOLAAAAA</h1>
-              {/* <h3>SOy el MoDal</h3>
-              <h3>SOy el </h3>
-              <h3>SOy el MoDal</h3> 
-            </Modal> */}
-          {/* </Route> */}
           <PrivateRoute
             exact
             path="/home"
