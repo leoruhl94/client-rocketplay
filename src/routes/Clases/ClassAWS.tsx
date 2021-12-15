@@ -80,7 +80,7 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 						);
 					})
 				) : (
-					<div>Loading</div>
+					<div className="class-no-videos-found-div"><h4 className="class-no-videos-found">No videos were found...</h4></div>
 				)}
 			</div>
 		</div>
