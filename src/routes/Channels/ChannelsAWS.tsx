@@ -54,6 +54,7 @@ export const ChannelsAWS: React.FC = () => {
       </Modal>
       <div className="singleChannel-outer-div">
       <button className="Channels__upload_button" onClick={openUpload}>
+        <span>Upload </span>
         <Icon svg="upload" />
       </button>
         {channelsState.length > 0 ? (

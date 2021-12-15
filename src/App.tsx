@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/normalize.css";
 import "./styles/app.scss";
-import axios from "axios";
+
 
 // Componentes
 import { Landing } from "./routes/Landing/Landing";
@@ -32,8 +32,6 @@ import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
 import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 import { NavigationMobileMagic } from "./components/Navs/NavigationMobileMagic/NavigationMobileMagic";
 import { Workspaces } from "./routes/Workspaces/Workspaces";
-import { MenuToggleContainer } from "./components/MenuToggleContainer/MenuToggleContainer";
-import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDetail";
 import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
@@ -46,20 +44,12 @@ import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavPro
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
 import { LoadingComponent } from "./components/LoadingComponent/LoadingComponent";
-import { Modal } from "./components/Modal/Modal";
-import { AddCategory2 } from "./routes/SettingMenu/SettingComponents/AddCategory2";
-import { AddChannel } from "./routes/SettingMenu/SettingComponents/AddChannel";
-import { EditChannel } from "./routes/SettingMenu/SettingComponents/EditChannels";
-import { EditWorkspace } from "./routes/SettingMenu/SettingComponents/EditWorkspace";
-// import { SettingsSubscriptions } from "./routes/SettingMenu/SettingComponents/SettingsSubscriptions";
 import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
 import { SuperToast } from "./components/Toast/SuperToast";
 import { storeState } from "./redux/type";
 
-
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   let location = useLocation();
   const auth = useAuth();
 
@@ -81,10 +71,6 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
-    //cargar los planes de pago en redux
-    // const json = localStorage.getItem("lastRoute")
-    // const lastRoute = json ? json : '/'
-    // history.push(lastRoute)
     dispatch(getPlans());
   }, []);
 
@@ -99,7 +85,7 @@ const App: React.FC = () => {
     <LoadingComponent />
   ) : (
     <>
-            <SuperToast value={toast}></SuperToast>
+      <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
         <PrivateRoute
           path="/:algunaRuta"
@@ -117,9 +103,6 @@ const App: React.FC = () => {
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
           <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
-          {/* <PrivateRoute path="/videodetail/:id" component={VideoDetail} /> */}
-          {/* <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} /> */}
-          {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
           <PrivateRoute
             exact
             path="/notifications"
@@ -156,11 +139,6 @@ const App: React.FC = () => {
 
           {/* __________________LOS DE ABAJO HAY QUE DEFINIR BIEN LOS NOMBRES DE LAS RUTAS_____________________________ */}
 
-          <Route exact path="/modal">
-            <EditChannel></EditChannel>
-            <AddChannel></AddChannel>
-            <AddCategory2></AddCategory2>
-          </Route>
           <PrivateRoute
             exact
             path="/home"

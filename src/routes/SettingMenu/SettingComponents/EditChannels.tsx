@@ -19,6 +19,11 @@ interface Channels {
   name: string;
   id: number;
 }
+interface openRemove {
+  divClass: string;
+  buttonDisabled: boolean;
+}
+
 export const EditChannel: React.FC = () => {
   const [channelsState, setChannelsState] = useState<Channels[]>();
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
@@ -32,7 +37,13 @@ export const EditChannel: React.FC = () => {
     status: "deleted",
   });
   const auth = useAuth();
-
+  const [openRemove, setOpenRemove] = useState(
+    {
+      divClass: "remove-channel-div display__none",
+      buttonDisabled: true
+    }
+  );
+  
   // ============================== EDIT CHANNEL ======================================================
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,17 +118,7 @@ export const EditChannel: React.FC = () => {
     // Aca hacer q el div de elminar aparezca
   };
 
-  interface openRemove {
-    divClass: string;
-    buttonDisabled: boolean;
-  }
 
-  const [openRemove, setOpenRemove] = useState(
-    {
-      divClass: "remove-channel-div display__none",
-      buttonDisabled: true
-    }
-  );
 
   const handleChannelSelect2 = (e) => {
     e.preventDefault();

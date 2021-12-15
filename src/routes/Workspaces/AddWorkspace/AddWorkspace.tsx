@@ -22,7 +22,11 @@ interface Found {
   title?: String;
 }
 
-export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace }) => {
+export const AddWorkspace: React.FC<props> = ({
+  dep,
+  handleAdd,
+  refreshWorkspace,
+}) => {
   let found: Found = {};
   const [search, setSearch] = useState("");
   const [result, setResult] = useState({ found: found, message: "" });
@@ -31,9 +35,9 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace
     e.preventDefault();
     console.log("search", search);
     let res = await axios.get(`${URL_BASE}/workspace/find`, {
-      params: { code: search.split(' ').join('')},
+      params: { code: search.split(" ").join("") },
     });
-    console.log('se busco: '+search.split(' ').join(''))
+    console.log("se busco: " + search.split(" ").join(""));
     setResult(res.data);
     console.log("result", res.data);
   };
@@ -45,17 +49,16 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace
     let res = await axios.post(`${URL_BASE}/workspace/join`, {
       schemaName: result.found.name,
       userEmail: auth?.user?.email,
-      schemaTitle: result.found.title
+      schemaTitle: result.found.title,
     });
     console.log(res.data);
 
-    
     if (res.status) {
       setSearch("");
       setResult({ found: found, message: "" });
-      refreshWorkspace()
+      refreshWorkspace();
       handleAdd(dep);
-    } 
+    }
   };
   function handleSearch(e) {
     e.preventDefault();
@@ -102,7 +105,7 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd, refreshWorkspace
               </button>
               {result?.found?.name ? (
                 <button
-                  className="AddWorkspace__result-btn"
+                  className="AddWorkspace__form-btn"
                   type="button"
                   onClick={handleJoin}
                 >

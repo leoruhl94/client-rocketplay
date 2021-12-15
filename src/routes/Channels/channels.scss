@@ -6,11 +6,21 @@
   border-radius: 10px;
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
   .Channels__upload_button {
-      background: transparent;
+    background: transparent;
     font-size: 2rem;
-    border:none;
+    border: none;
     padding-bottom: 1rem;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    color: #3DD598;
+    span {
+      color: rgba(255, 255, 255, 0.884);
+      padding-right: 10px;
+      text-shadow: 1px 1px 3px black ;
+    }
+  }
 }
 
 .channelsAddChannel2 {

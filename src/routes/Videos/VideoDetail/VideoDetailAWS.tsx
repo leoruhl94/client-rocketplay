@@ -159,9 +159,16 @@ export const VideoDetailAWS: React.FC = () => {
     }
 
     const [input, setInput] = useState("")
+    const [errors, setErrors] = useState({
+        comments: "The comment should have at least 3 characters",
+        disabled: true
+    })
 
     const handleInput = (e) => {
         setInput(e.target.value)
+        if(input.length > 2){
+            setErrors({comments: "", disabled: false})
+        }
     }
 
     const handleCommentSubmit = (e) => {
@@ -213,7 +220,8 @@ export const VideoDetailAWS: React.FC = () => {
                 <div className="awsDetail-postcomment-container">
                     <form onSubmit={handleCommentSubmit}>
                         <input type="text" id="post-comment" className="awsDetail-postcomment-input" placeholder="Post a comment..." onChange={handleInput} value={input}/>
-                        <button type="submit" className="awsDetail-postcomment-button">Submit Comment</button>
+ 
+                        <button type="submit" className="awsDetail-postcomment-button" disabled={errors.disabled}>Submit Comment</button>
                     </form>
                 </div>
                 <div className="awsDetail-comments-container">
