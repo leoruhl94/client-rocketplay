@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .WorkspaceItem{
     text-decoration: none;
     display: flex;
@@ -27,5 +29,20 @@
         font-size: 1.8rem;
         font-weight: 550;
         text-transform: capitalize
+    }
+}
+
+@media only screen and (min-width: $smallDevices) {
+    .WorkspaceItem{
+        width: 150px;
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        margin: 0.5rem;
+        .WorkspaceItem__Name{
+            margin: 0;
+        }
     }
 }

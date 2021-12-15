@@ -1,20 +1,28 @@
-.editSubscription__cont{
-    display: flex;
-}
-.editSubscription__loading{
-    height: 2rem;
-    width: 2rem;
-    border: 3px solid white;
-    margin: 0 1rem;
-    border-color: white transparent transparent transparent;
-    border-radius: 1rem;
-    animation: loading 0.7s linear infinite;
-}   
-@keyframes loading {
-    from{
-        transform: rotate(1deg);
+.editSubscription{
+    color: white;
+    .editSubscription__cont{
+        display: flex;
+        .editSubscription__loading{
+            height: 2rem;
+            width: 2rem;
+            border: 3px solid white;
+            margin: 0 1rem;
+            border-color: white transparent transparent transparent;
+            border-radius: 1rem;
+            animation: loading 0.7s linear infinite;
+        }   
+        color: red;
     }
-    to{
-        transform: rotate(360deg);
+    @keyframes loading {
+        from{
+            transform: rotate(1deg);
+        }
+        to{
+            transform: rotate(360deg);
+        }
+    }
+    .editSubscription__cancel{
+        margin-top: 2rem;
+        color: red;
     }
 }
