@@ -45,6 +45,7 @@ export const RemoveChannel: React.FC = () => {
       channelId: "",
       status: "deleted",
     });
+    setOpenRemove({...openRemove, divClass: "remove-channel-div display__none"})
   };
 
   const handleWorkspaceSelect = (e) => {
@@ -77,30 +78,32 @@ export const RemoveChannel: React.FC = () => {
     e.preventDefault();
     const array = e.target.value.split("%-%");
     setInfoSubmit({ ...infoSubmit, channelId: array[1] });
+    setDisabled(false)
   };
 
   const handleDeleting = (e) => {
     e.preventDefault();
     let btn = document.getElementById("last-remove-btn");
-    if (e.target.value === "deleted") {
+    if (e.target.value === "delete") {
       setOpenRemove({...openRemove, buttonDisabled: false})
     } else {
       setOpenRemove({...openRemove, buttonDisabled: true})
     }
   }; 
 
- 
+  const [disabled, setDisabled] = useState(true)
 
   return (
     <div>
       
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="Settings__selects">
           <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
             <option value="all" className="SelectComponent_option">Workspaces</option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
               <option
                 key={i}
+                className="SelectComponent_option"
                 value={
                   auth?.user?.myWorkspaces?.length ? auth.user.myWorkspaces[i].name : ""
                 }
@@ -119,12 +122,12 @@ export const RemoveChannel: React.FC = () => {
               ))}
             </select>
           ) : null}
-          <button type="button" onClick={(e) => handleShow(e)} className='Settings__button'>
+          <button type="button" onClick={(e) => handleShow(e)} className='Settings__button' disabled={disabled}>
             Remove Channel
           </button>
           <div className={`${openRemove.divClass}`}>
             <label>
-              If you are sure about deleting this channel type 'deleted'
+              If you are sure about deleting this channel type 'delete'
             </label>
             <input
               type="text"
@@ -134,7 +137,7 @@ export const RemoveChannel: React.FC = () => {
               className='Settings__input'
             ></input>
             <button type="submit" id="last-remove-btn" disabled={openRemove.buttonDisabled} className='Settings__button'>
-              Remove Channel
+              Confirm
             </button>
           </div>
         </div>

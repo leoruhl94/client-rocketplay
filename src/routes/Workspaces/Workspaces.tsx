@@ -20,22 +20,33 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const [add, setAdd] = useState(false);
 
-  const joinedWorks = auth?.user?.workspacesTitles?.filter((x:any) => !auth?.user?.myWorkspaces?.find((y:any) => y.title === x))
+  const joinedWorks = auth?.user?.workspaces?.filter(
+    (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.name === x)
+  );
+  const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
+    (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
+  );
 
+
+    console.log("hola", joinedWorks )
   function handleAdd() {
     setAdd(!add);
   }
 
   //console.log("--", auth?.user?.workspaces);
   function refreshWorkspace() {
-    auth?.refreshInfo()
+    auth?.refreshInfo();
   }
 
   return (
     <>
       {/* <NavProfileAndLocation></NavProfileAndLocation> */}
-      <AddWorkspace dep={add} handleAdd={handleAdd} refreshWorkspace={refreshWorkspace}/>
-      <MenuToggleContainer transition={transition} k='key3'>
+      <AddWorkspace
+        dep={add}
+        handleAdd={handleAdd}
+        refreshWorkspace={refreshWorkspace}
+      />
+      <MenuToggleContainer transition={transition} k="key3">
         <section className="Workspaces__container">
           <div className="Workspaces__list">
             <h2
@@ -68,12 +79,16 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                           auth?.user?.workspaces?.length
                             ? auth.user.workspaces[i]
                             : ""
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              : ""}
+                      }
+                      // path={
+                      //   auth?.user?.workspaces?.length
+                      //     ? auth.user.workspaces[i]
+                      //     : ""
+                      // }
+                    />
+                  );
+                })}
+              </div> : null}
 
             <div className="Workspaces__button_container">
               <button className="Workspaces__button" onClick={handleAdd}>

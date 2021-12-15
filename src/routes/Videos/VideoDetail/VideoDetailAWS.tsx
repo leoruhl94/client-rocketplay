@@ -120,12 +120,13 @@ export const VideoDetailAWS: React.FC = () => {
         // Info about the comments.. ======================================================
         let responseComments = await axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${dataVideo.videoid}`)
             let arrayComments: any[] = []
+            // let timezone = URL_BASE === "http://localhost:3002" ? 3 : 0
             responseComments.data.map(el => {
                 let unformatedTimestampDay = el.createdAt.split("T")[0]
                 let unformatedTimestampHour = el.createdAt.split("T")[1]
                 let hours = unformatedTimestampHour.split(":")
                 let days = unformatedTimestampDay.split("-")
-                let commentTimestamp = `${days[2]}-${days[1]}-${days[0]} / ${hours[0]}:${hours[1]}`
+                let commentTimestamp = `${days[2]}-${days[1]}-${days[0]} / ${hours[0]-3}:${hours[1]}`
                 let obj = {
                     commentId: el.commentId,
                     memberName: el.memberName,

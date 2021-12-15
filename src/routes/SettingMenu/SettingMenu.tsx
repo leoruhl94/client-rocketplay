@@ -14,6 +14,7 @@ import { MemberType } from "./SettingComponents/MemberType";
 import { EditWorkspace } from "./SettingComponents/EditWorkspace";
 import { EditCategory } from "./SettingComponents/EditCategory";
 import { RemoveCategory } from "./SettingComponents/RemoveCategory";
+import { RemoveChannel } from "./SettingComponents/RemoveChannel";
 
 interface props {
   transition: any;
@@ -84,6 +85,10 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           <DropdownMenuItem isOpen={isOpenMenuChannels} title="Edit Channel">
             <EditChannel />
           </DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Remove Channel">
+            
+            <RemoveChannel/>
+          </DropdownMenuItem>
         </DropdownMenu>
         {/* ============================================================== */}
         <DropdownMenu
@@ -98,16 +103,17 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
 
           <DropdownMenuItem isOpen={isOpenMenuCategories} title="Edit Category">
             <EditCategory />
-            <RemoveCategory />
-
+          </DropdownMenuItem>
+          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Remove Category">
+              <RemoveCategory />
           </DropdownMenuItem>
 
-          <DropdownMenuItem
+          {/* <DropdownMenuItem
             isOpen={isOpenMenuCategories}
             title="Change privacy"
           >
             
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenu>
        
       </nav>
