@@ -13,6 +13,10 @@
         text-shadow: 1px 1px 3px black;
         margin-bottom: 2rem;
         border-bottom: 3px solid white;
+        h1{
+            margin: 0.5rem;
+            margin-bottom: 0.7rem;
+        }
     }
     .class-video-super-container{
         display: grid;
@@ -22,7 +26,14 @@
     }
 }
 .class-no-videos-found-div{
-    background: red;
+    background: $squareBackground;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    .class-no-videos-found{
+        color: white;
+        // margin: 0 auto;
+    }
 }
 
 @media (min-width: 768px){

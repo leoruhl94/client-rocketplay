@@ -23,6 +23,28 @@
   }
 }
 
+.singleChannelSuperContainer{
+  position: relative;
+  .awsChannels-flex-title-helper{
+    display: flex;
+    align-items: center;
+    .awsChannels-title-mapped{
+      // background: red;
+      width: 50%;
+      // display: none;
+      // position: absolute;
+      h4{
+        margin: 0;
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.884);
+        text-shadow: 1px 1px 3px black;
+        font-weight: 400;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
 .channelsAddChannel2 {
   margin: 0;
   // margin-top: 2rem;

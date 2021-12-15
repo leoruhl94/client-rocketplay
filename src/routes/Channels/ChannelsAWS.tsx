@@ -53,10 +53,15 @@ export const ChannelsAWS: React.FC = () => {
         <VideoForm schemaName={params.schema}/>
       </Modal>
       <div className="singleChannel-outer-div">
-      <button className="Channels__upload_button" onClick={openUpload}>
-        <span>Upload </span>
-        <Icon svg="upload" />
-      </button>
+      <div className="awsChannels-flex-title-helper">
+        <div className="awsChannels-title-mapped">
+          <h4>Channels</h4>
+        </div>
+        <button className="Channels__upload_button" onClick={openUpload}>
+          <span>Upload </span>
+          <Icon svg="upload" />
+        </button>
+      </div>
         {channelsState.length > 0 ? (
           channelsState.map((el) => {
               if(el.status === 'active'){

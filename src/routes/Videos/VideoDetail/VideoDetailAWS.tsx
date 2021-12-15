@@ -200,7 +200,7 @@ export const VideoDetailAWS: React.FC = () => {
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}
                 {
                     videoData.videoLink !== "" ? (
-                        <video controls className="awsDetail-video" width="250px" height="150px">
+                        <video controls className="awsDetail-video" /* width="250px" height="150px" */>
                             <source src={"https://rocketplay2021.s3.us-east-1.amazonaws.com/"+videoData.videoLink}/>
                         </video>
                     ) : (<></>)
@@ -236,8 +236,7 @@ export const VideoDetailAWS: React.FC = () => {
                 <div className="awsDetail-postcomment-container">
                     <form onSubmit={handleCommentSubmit}>
                         <input type="text" id="post-comment" className="awsDetail-postcomment-input" placeholder="Post a comment..." onChange={handleInput} value={input}/>
- 
-                        <button type="submit" className="awsDetail-postcomment-button" disabled={errors.disabled}>Submit Comment</button>
+                        <button type="submit" className="awsDetail-postcomment-button" disabled={errors.disabled}>Submit</button>
                     </form>
                 </div>
                 <div className="awsDetail-comments-container">
@@ -253,11 +252,9 @@ export const VideoDetailAWS: React.FC = () => {
                                     <p className="awsDetail-comment-p">{el.text}</p>
                                 </div>
                             )
-                        }) : <div className="awsDetail-comments-container">
-                                <div className="awsDetail-single-comment">
-                                    <h3>There's no comments here yet..</h3>
+                        }) :    <div className="awsDetail-single-comment">
+                                    <h3>There are no comments here yet..</h3>
                                 </div>
-                            </div>
                     }
                 </div>
             </div>

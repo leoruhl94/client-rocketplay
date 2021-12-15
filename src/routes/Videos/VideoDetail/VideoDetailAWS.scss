@@ -8,12 +8,17 @@
         box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
         padding: 16px;
         display: grid;
+        // flex-wrap: wrap;
         border-radius: 10px;
         gap: 16px;
         background: $squareBackground;
         .awsDetail-video-frame-div{
-            width: 250px;
+            width: 300px;
             margin: 0 auto;
+            .awsDetail-video{
+                height: 100% !important;
+                width: 300px !important;
+            }
             // background: gray;
         }
         .awsDetail-author-container{
@@ -119,18 +124,25 @@
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
+                align-items: center;
+                gap: 1rem;
                 .awsDetail-postcomment-input{
                     outline: none;
                     border: none;
-                    width: 100%;
+                    width: 70%;
                     padding: 10px;
-                    margin-bottom: 16px;
+                    // margin-bottom: 16px;
                     border-radius: 10px;
+                    background:rgb(184, 180, 180);
+                    &::placeholder{
+                        color: gray;
+                    }
                 }
                 .awsDetail-postcomment-button{
                     outline: none;
                     border: none;
-                    width: 50%;
+                    width: 25%;
+                    height: 100%;
                     border-radius: 5px;
                     padding: 5px;
                     background: $squareBackground;
