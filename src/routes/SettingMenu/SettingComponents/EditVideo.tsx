@@ -28,8 +28,8 @@ export const EditVideoTitle: React.FC<Props> = ({schemaName, videoId}) => {
     return (
         <div className="edit-video-title-div">
             <form onSubmit={handleSubmit}>
-                <input type="text" autoComplete="off" placeholder="New title.." id="edit-video-title" className="edit-video-title-input" onChange={handleChange}/>
-                <button type="submit" className="edit-video-button-submit">Change title</button>
+                <input type="text" autoComplete="off" placeholder="New title.." id="edit-video-title" className="edit-video-title-input Settings__input" onChange={handleChange}/>
+                <button type="submit" className="edit-video-button-submit Settings__button">Change title</button>
             </form>
         </div>
     )
@@ -56,8 +56,8 @@ export const EditVideoDescription: React.FC<Props> = ({schemaName, videoId}) => 
     return (
         <div className="edit-video-description-div">
             <form onSubmit={handleSubmit}>
-                <textarea placeholder="New description.." id="edit-video-description" className="edit-video-description-input" onChange={handleChange}/>
-                <button type="submit" className="edit-video-button-submit">Change description</button>
+                <textarea placeholder="New description.." id="edit-video-description" className="edit-video-description-input Settings__input" onChange={handleChange}/>
+                <button type="submit" className="edit-video-button-submit Settings__button">Change description</button>
             </form>
         </div>
     )

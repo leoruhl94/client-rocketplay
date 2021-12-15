@@ -35,7 +35,7 @@ export const RemoveCategory: React.FC = () => {
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
     categoryId: "",
-    status: "",
+    status: "deleted",
   });
 
 const [openRemove, setOpenRemove] = useState(
@@ -76,13 +76,14 @@ const handleSubmit = async (e) => {
   if (!infoSubmit.schemaName) {
     console.log("sale conejito porque no hay esquema");
   } else {
-    await axios.put(`${URL_BASE}/channels/status`, infoSubmit);
+    await axios.put(`${URL_BASE}/category/status`, infoSubmit);
   }
   setInfoSubmit({
     schemaName: "",
     categoryId: "",
     status: "deleted",
   });
+  setOpenRemove({...openRemove, divClass: "remove-channel-div display__none"})
 };
 
 const handleShow = (e) => {
@@ -119,24 +120,26 @@ const handleChannelSelect = (e) => {
 const handleCategorySelect = (e) => {
   e.preventDefault();
   setInfoSubmit({ ...infoSubmit, categoryId:e.target.value });
+  setDisabled(false)
 }
 
 const handleDeleting = (e) => {
   e.preventDefault();
   let btn = document.getElementById("last-remove-btn");
-  if (e.target.value === "deleted") {
+  if (e.target.value === "delete") {
     setOpenRemove({...openRemove, buttonDisabled: false})
   } else {
     setOpenRemove({...openRemove, buttonDisabled: true})
   }
 };
 
+const [disabled, setDisabled] = useState(true)
 
 return(
     <div>     {/*====================================================================================================  */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
+      <form onSubmit={handleSubmit} className="Settings__form" >
+      <div className="Settings__selects">
+          <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent Select__100w">
             <option value="all" className="SelectComponent_option">Workspaces</option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
               <option
@@ -180,12 +183,15 @@ return(
               ))}
             </select>
           ) : null}
-          <button type="button" onClick={(e) => handleShow(e)} className='Settings__button'>
+
+          </div>
+          <div className="Settings__inputs_container">
+          <button type="button" onClick={(e) => handleShow(e)} className='Settings__button' disabled={disabled}>
             Remove Category
           </button>
           <div className={`${openRemove.divClass}`}>
             <label>
-              If you are sure about deleting this category type 'deleted'
+              If you are sure about deleting this category type 'delete'
             </label>
             <input 
               type="text"
@@ -195,7 +201,7 @@ return(
               className="Settings__input"
             ></input>
             <button type="submit" id="last-remove-btn" disabled={openRemove.buttonDisabled} className='Settings__button'>
-              Remove Category
+              Confirm
             </button>
           </div>
         </div>

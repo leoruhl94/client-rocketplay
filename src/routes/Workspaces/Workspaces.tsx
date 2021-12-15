@@ -20,22 +20,33 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const [add, setAdd] = useState(false);
 
-  const joinedWorks = auth?.user?.workspacesTitles?.filter((x:any) => !auth?.user?.myWorkspaces?.find((y:any) => y.title === x))
+  const joinedWorks = auth?.user?.workspaces?.filter(
+    (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.name === x)
+  );
+  const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
+    (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
+  );
 
+
+    console.log("hola", joinedWorks )
   function handleAdd() {
     setAdd(!add);
   }
 
   //console.log("--", auth?.user?.workspaces);
   function refreshWorkspace() {
-    auth?.refreshInfo()
+    auth?.refreshInfo();
   }
 
   return (
     <>
       {/* <NavProfileAndLocation></NavProfileAndLocation> */}
-      <AddWorkspace dep={add} handleAdd={handleAdd} refreshWorkspace={refreshWorkspace}/>
-      <MenuToggleContainer transition={transition} k='key3'>
+      <AddWorkspace
+        dep={add}
+        handleAdd={handleAdd}
+        refreshWorkspace={refreshWorkspace}
+      />
+      <MenuToggleContainer transition={transition} k="key3">
         <section className="Workspaces__container">
           <div className="Workspaces__list">
             <h2
@@ -45,35 +56,48 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            {auth?.user?.myWorkspaces?.length ? <div className="Workspaces__worksGroup"> 
-              <h2 className="Workspaces__worksGroup_title" >My Workspaces</h2>
-              {auth.user.myWorkspaces.map((item, i) => {
-                return (
-                  <WorkspaceItem
-                  key={i}
-                  workspace={item.title}
-                  path={item.name}
-                  />)})}
-              </div> : null}
+            {auth?.user?.myWorkspaces?.length ? (
+              <div className="Workspaces__worksGroup">
+                <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+                {auth.user.myWorkspaces.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item.title}
+                      path={item.name}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
 
-            {joinedWorks?.length
-              ? <div className="Workspaces__worksGroup">
-                <h2 id="title2" className="Workspaces__worksGroup_title">Joined In</h2>
-                {joinedWorks.map((item, i) => {
-                    return (
-                      <WorkspaceItem
-                        key={i}
-                        workspace={item}
-                        path={
-                          auth?.user?.workspaces?.length
-                            ? auth.user.workspaces[i]
+            {joinedWorksTT?.length ? (
+              <div className="Workspaces__worksGroup">
+                <h2 id="title2" className="Workspaces__worksGroup_title">
+                  Joined In
+                </h2>
+                {joinedWorksTT.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item}
+                      path={
+                          joinedWorks?.length
+                            ? joinedWorks[i]
                             : ""
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              : ""}
+                      }
+                      // path={
+                      //   auth?.user?.workspaces?.length
+                      //     ? auth.user.workspaces[i]
+                      //     : ""
+                      // }
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              ""
+            )}
 
             <div className="Workspaces__button_container">
               <button className="Workspaces__button" onClick={handleAdd}>

@@ -85,13 +85,14 @@ export const EditChannel: React.FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="Settings__form">
+        <div className="Settings__selects">
           <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
             <option value="all" className="SelectComponent_option">Workspaces</option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
               <option
                 key={i}
+                className="SelectComponent_option"
                 value={
                   auth?.user?.myWorkspaces?.length ? auth.user.myWorkspaces[i].name : ""
                 }
@@ -110,7 +111,10 @@ export const EditChannel: React.FC = () => {
               ))}
             </select>
           ) : null}
-          <label>New name: </label>
+            
+          </div>
+          <div className="Settings__inputs_container">
+          <label className="Settings__label">New name: </label>
           <input
             type="text"
             name="newName"

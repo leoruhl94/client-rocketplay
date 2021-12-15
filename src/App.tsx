@@ -102,7 +102,7 @@ const App: React.FC = () => {
           <PrivateRoute exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
-          <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
+          {/* <PrivateRoute exact path="/uploadvideo" component={VideoForm} /> */}
           <PrivateRoute
             exact
             path="/notifications"

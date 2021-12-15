@@ -19,6 +19,7 @@ export const SubscriptionsSettings: React.FC = () => {
           status: value,
         });
         console.log(res.data);
+        
         dispatch(setToast('Updated'))
         testFunction()       
       };

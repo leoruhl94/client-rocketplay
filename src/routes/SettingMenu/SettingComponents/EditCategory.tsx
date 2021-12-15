@@ -121,7 +121,7 @@ const handleShow = (e) => {
 return(
     <div>
        <form onSubmit={handleSubmit}>
-        <div>
+        <div className="Settings__selects">
           <select onChange={handleWorkspaceSelect} name="schemaName" id="" className="SelectComponent">
             <option value="all" className="SelectComponent_option">Workspaces</option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
@@ -166,17 +166,19 @@ return(
               ))}
             </select>
           ) : null}
-          <label>New name: </label>
-          <input
-            autoComplete="off"
-            type="text"
-            name="newName"
-            value={infoSubmit.newName}
-            onChange={handleOnChange}
-            className="Settings__input"
-          />
-          <button type="submit" className='Settings__button'>Edit Category</button>
-        </div>
+          </div>
+          <div className="Settings__inputs_container">
+            <label className="Settings__label">New name: </label>
+            <input
+              autoComplete="off"
+              type="text"
+              name="newName"
+              value={infoSubmit.newName}
+              onChange={handleOnChange}
+              className="Settings__input"
+            />
+            <button type="submit" className='Settings__button'>Edit Category</button>
+          </div>
         
       </form>
 </div>

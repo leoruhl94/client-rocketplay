@@ -59,9 +59,9 @@ export const EditWorkspace: React.FC = () => {
               </option>
             ))}
           </select>
-            <label className='Settings__label'>New name: </label>
+            {/* <label className='Settings__label'>New name: </label>
             <input type='text' autoComplete='off' name='name' value={name} className="Settings__input" onChange={(e) => onChangeName(e)}></input>
-            <button className='Settings__button' onClick={changeName}>Save Name</button>
+            <button className='Settings__button' onClick={changeName}>Save Name</button> */}
             <label className="Settings__label">New code: </label>
             <input type='text' autoComplete='off' name='code' value={code} className="Settings__input" onChange={(e) => onChangeCode(e)}></input>
             <button className='Settings__button 'onClick={changeCode}>Save Code</button>
