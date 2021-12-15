@@ -57,7 +57,7 @@ export const ChannelsAWS: React.FC = () => {
                                 return <SingleChannelAWS channel={el.channelName} key={el.channelId}/>
                             })
                             :
-                            <div>There are no channels here yet</div>
+                            <div className='singleChannel-notfound'>There are no channels here yet</div>
                         }
                         {/* <div className="channelsAddChannel2">
                             <h4>Add channel</h4>

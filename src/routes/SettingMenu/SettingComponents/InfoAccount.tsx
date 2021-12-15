@@ -34,13 +34,13 @@ export const InfoAccount: React.FC = () => {
             {user?.subscriptions?.length ? user?.subscriptions?.map(x => plans.find(p => p.id === x.id))
             .map(x => <span key={x.color} className={`infoaccount__plan ${x.color}`}>
                     {x.name}
-                </span>) : <h3 className='infoaccount__red'>You don't have a plan</h3>}
+                </span>) : <h3 className='infoaccount__grey'>You don't have a plan</h3>}
 
             <h2 className='infoaccount__subtitle'>Workspaces</h2>
 
             {auth?.user?.myWorkspaces?.length ? 
             auth.user.myWorkspaces.map((item, i) => <span key={i} className="infoaccount__works">{`${item.title} (${users.length} subscriber${users.length !== 1 ? 's':''})`}</span>)
-            : <h3 className='infoaccount__red'>You don't have a plan</h3>}
+            : <h3 className='infoaccount__grey'>You don't have a workspace</h3>}
         </div>
     )
 }
