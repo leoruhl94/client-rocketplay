@@ -21,7 +21,8 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 
-  const { profile, plans } = useSelector((state: storeState) => state);
+  const { plans } = useSelector((state: storeState) => state);
+  const user = auth?.user
   let [userPlan, setUserPlan] = useState<any>()
 
   function logout() {
@@ -50,11 +51,12 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
   return (
     <div className={`profileWnd ${dep ? "profileWndDep" : ""}`}>
       <div className="profileWnd__user">
-        <img src={profile.pic} className="profileWnd__pic" />
+        <img src={user?.pic+''} className="profileWnd__pic" />
         <div className="profileWnd__info">
-          <span>{profile.name}</span>
+          <span>{user?.name}</span>
           {userPlan ? <span className={`profileWnd__info-plan ${userPlan?.color}`}>{userPlan?.name}</span> 
           : <span className="profileWnd__info-plan grey">No plan</span>}
+          <span className="profileWnd__info-plan grey">{user?.email}</span>
         </div>
       </div>
       
@@ -87,12 +89,12 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
         classes='profileWnd__cancelSub'
         handler={handleOnUpdateSubscriptions}
       /> */}
-      <SuperButton
+      {/* <SuperButton
         name='getBusinessAccount'
         route="/payment"
         text='Get business'
         classes='profileWnd__cancelSub'
-        />
+        /> */}
       {/* <SuperButton
         name='Upload'
         route="/uploadvideo"

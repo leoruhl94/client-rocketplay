@@ -79,14 +79,22 @@ function AuthProvider({ children }) {
             name: res?.data.name,
             pic: res?.data.picture,
             email: res?.data.email,
-            workspaces: response?.data.workspaces || null,
-            workspacesTitles: response?.data.workspacesTitles || null,
-            subscriptions:
+            workspaces: res?.data.workspaces,
+        // workspaces: !response?.data.myWorkspaces?.length ? response?.data.workspaces 
+        //: response?.data.workspaces.filter((x: any) =>!response.data.myWorkspaces.find((y: any) => y?.name === x)), */
+        workspacesTitles: res?.data.workspacesTitles,
+        //workspacesTitles: !response?.data.myWorkspaces?.length ? response.data.workspacesTitles 
+        //: response?.data.workspacesTitles.filter((x: any) =>!response.data.myWorkspaces.find((y: any) => y?.title === x)),
+            /* subscriptions:
               response?.data.subscriptions.map((s: any) => {
                 return { id: s.id, plan_id: s.plan_id, status: s.status };
-              }) || null,
+              }) || null, */
+            subscriptions: response?.data.subscriptions.length && response?.data.subscriptions[0].status !== 'cancelled' ?
+              response?.data.subscriptions.map((s: any) => {
+                return { id: s.id, plan_id: s.plan_id, status: s.status };
+              }) : [],
             isBusiness: response?.data.isBusiness,
-            myWorkspaces: response?.data.schemas?.map((x: myWork) => {
+            /* myWorkspaces: response?.data.schemas?.map((x: myWork) => {
               if (x.status !== "cancelled")
                 return {
                   id: x.id,
@@ -95,7 +103,17 @@ function AuthProvider({ children }) {
                   status: x.status,
                   code: x.code,
                 };
-            }),
+            }), */
+            myWorkspaces: response?.data.subscriptions.length && response?.data.subscriptions[0].status !== 'cancelled' ? response?.data.schemas?.map((x: myWork) => {
+              if (x.status !== "cancelled")
+                return {
+                  id: x.id,
+                  name: x.name,
+                  title: x.title,
+                  status: x.status,
+                  code: x.code,
+                };
+            }) : [],
           };
 
         setUser(userInfo);
@@ -126,12 +144,19 @@ function AuthProvider({ children }) {
         pic: user?.pic,
         email: user?.email,
         workspaces: r?.data.workspaces,
+        //workspaces: !r?.data.myWorkspaces?.length ? r?.data.workspaces 
+        //: r?.data.workspaces.filter((x: any) =>!r.data.myWorkspaces.find((y: any) => y?.name === x)),
         workspacesTitles: r?.data.workspacesTitles,
-        subscriptions: r?.data.subscriptions.map((s: any) => {
+        //workspacesTitles: !r?.data.myWorkspaces?.length ? r.data.workspacesTitles 
+        //: r?.data.workspacesTitles.filter((x: any) =>!r.data.myWorkspaces.find((y: any) => y?.title === x)),
+        /* subscriptions: r?.data.subscriptions.map((s: any) => {
           return { id: s.id, plan_id: s.plan_id, status: s.status };
-        }),
+        }), */
+        subscriptions: r?.data.subscriptions.length && r?.data.subscriptions[0].status !== 'cancelled' ? r?.data.subscriptions.map((s: any) => {
+          return { id: s.id, plan_id: s.plan_id, status: s.status };
+        }) : [],
         isBusiness: r?.data.isBusiness,
-        myWorkspaces: r?.data.schemas?.map((x: myWork) => {
+        /* myWorkspaces: r?.data.schemas?.map((x: myWork) => {
           return {
             id: x.id,
             name: x.name,
@@ -139,7 +164,16 @@ function AuthProvider({ children }) {
             status: x.status,
             code: x.code,
           };
-        }),
+        }), */
+        myWorkspaces: r?.data.subscriptions.length && r?.data.subscriptions[0].status !== 'cancelled' ? r?.data.schemas?.map((x: myWork) => {
+          return {
+            id: x.id,
+            name: x.name,
+            title: x.title,
+            status: x.status,
+            code: x.code,
+          };
+        }) : [],
       };
       setUser(userInfo);
     },

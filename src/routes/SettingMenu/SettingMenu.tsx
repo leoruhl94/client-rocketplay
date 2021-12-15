@@ -52,9 +52,9 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
             <InfoAccount />
           </DropdownMenuItem>
 
-          <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
+          {<DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
             <SubscriptionsSettings />
-          </DropdownMenuItem>
+          </DropdownMenuItem>}
         </DropdownMenu>
         {/* ============================================================== */}
         <DropdownMenu

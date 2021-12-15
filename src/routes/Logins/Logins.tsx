@@ -51,7 +51,7 @@ export const Logins: React.FC = () => {
 
   return (
     <div>
-      <section className={`navigationTop login_navTop`}>
+      {/* <section className={`navigationTop login_navTop`}>
         <NavLink
           className="navigationTop__navLink navigationTop__navLink_onlyDesktop"
           to="/"
@@ -64,7 +64,7 @@ export const Logins: React.FC = () => {
         <NavLink className="navigationTop__navLink " to="/about">
           About
         </NavLink>
-      </section>
+      </section> */}
 
       {/* <LoginGoogle res={responseGoogle} fail={errorGoogle} /> */}
       <div className="Logs">

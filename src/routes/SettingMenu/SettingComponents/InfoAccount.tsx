@@ -5,9 +5,11 @@ import { URL_BASE } from '../../../constants/constants';
 import { storeState } from 'src/redux/type';
 import { useAuth } from '../../../auth/useAuth';
 import './infoAccount.scss'
+import { useHistory } from 'react-router';
 
 export const InfoAccount: React.FC = () => {
     const auth = useAuth();
+    const history = useHistory()
     const user = auth?.user
     const { plans } = useSelector((state: storeState) => state);
     const [users, setUsers] = useState<any[]>([])
@@ -29,7 +31,23 @@ export const InfoAccount: React.FC = () => {
                 </div>
             </div>
 
-            <h2 className='infoaccount__subtitle'>Plan</h2>
+            {user?.subscriptions?.length ? 
+            <>
+                <h2 className='infoaccount__subtitle'>Plan</h2>
+
+                {user?.subscriptions?.map(x => plans?.find(p => p.id && x.plan_id && p.id === x.plan_id))
+                .map(x => <span key={x?.name} className={`infoaccount__plan ${x?.color}`}>
+                        {x?.name}
+                    </span>) || null}
+
+                <h2 className='infoaccount__subtitle'>Workspaces</h2>
+
+                {auth?.user?.myWorkspaces?.length ? 
+                    auth.user.myWorkspaces.map((item, i) => <span key={i} className="infoaccount__works">{`${item.title} (${users.length} subscriber${users.length !== 1 ? 's':''})`}</span>)
+                : <h3 className='infoaccount__grey'>You don't have a workspace</h3>}
+            </> 
+            : <button className='infoaccount__getBussiness' onClick={() => {history.push('/payment')}}>Get Bussiness Account</button>}
+            {/* <h2 className='infoaccount__subtitle'>Plan</h2>
 
             {user?.subscriptions?.length ? user.subscriptions.map(x => plans?.find(p => p.id && x.plan_id && p.id === x.plan_id))
             .map(x => <span key={x?.name} className={`infoaccount__plan ${x?.color}`}>
@@ -40,7 +58,7 @@ export const InfoAccount: React.FC = () => {
 
             {auth?.user?.myWorkspaces?.length ? 
             auth.user.myWorkspaces.map((item, i) => <span key={i} className="infoaccount__works">{`${item.title} (${users.length} subscriber${users.length !== 1 ? 's':''})`}</span>)
-            : <h3 className='infoaccount__grey'>You don't have a workspace</h3>}
+            : <h3 className='infoaccount__grey'>You don't have a workspace</h3>} */}
         </div>
     )
 }
