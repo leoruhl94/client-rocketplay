@@ -153,8 +153,10 @@ return(
               </option>
             ))}
           </select>
+          </div>
+          <div className="Settings__selects">
           {channelsState?.length ? (
-            <select onChange={handleChannelSelect} className="SelectComponent" name="oldName" id="">
+            <select onChange={handleChannelSelect} className="SelectComponent Select__50w" name="oldName" id="">
               <option value="all" className="SelectComponent_option">Channels</option>
               {channelsState?.map((ch) => (
                 <option key={ch.id} value={ch.name + "%-%" + ch.id} className="SelectComponent_option">
@@ -166,7 +168,7 @@ return(
           {categoryState?.length ? (
             <select
               onChange={handleCategorySelect}
-              className="SelectComponent"
+              className="SelectComponent Select__50w"
               name="category"
             >
               <option selected value="" className="SelectComponent_option">
@@ -190,7 +192,7 @@ return(
             Remove Category
           </button>
           <div className={`${openRemove.divClass}`}>
-            <label>
+            <label className="Settings__label_delete">
               If you are sure about deleting this category type 'delete'
             </label>
             <input 
