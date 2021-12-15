@@ -35,7 +35,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
   const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
     useOpen(false);
   const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
-    useOpen(true);
+    useOpen(false);
 
   ///==================MENUS===================
 

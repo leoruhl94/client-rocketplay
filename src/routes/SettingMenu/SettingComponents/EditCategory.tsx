@@ -119,7 +119,7 @@ export const EditCategory: React.FC = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="Settings__selects">
+        <div className="Settings__selects Select__50w">
           <select
             onChange={handleWorkspaceSelect}
             name="schemaName"
@@ -144,7 +144,7 @@ export const EditCategory: React.FC = () => {
             ))}
           </select>
         </div>
-        <div className="Settings__selects">
+        <div className="Settings__selects ">
           {channelsState?.length ? (
             <select
               onChange={handleChannelSelect}
@@ -152,7 +152,7 @@ export const EditCategory: React.FC = () => {
               id=""
               className="SelectComponent Select__50w"
             >
-              <option value="all" className="SelectComponent_option">
+              <option selected value="all" className="SelectComponent_option">
                 Channels
               </option>
               {channelsState?.map((ch) => (

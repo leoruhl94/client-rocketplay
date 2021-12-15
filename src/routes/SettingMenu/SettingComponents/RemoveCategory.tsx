@@ -171,7 +171,7 @@ export const RemoveCategory: React.FC = () => {
               name="oldName"
               id=""
             >
-              <option value="all" className="SelectComponent_option">
+              <option selected value="all" className="SelectComponent_option">
                 Channels
               </option>
               {channelsState?.map((ch) => (
@@ -215,9 +215,9 @@ export const RemoveCategory: React.FC = () => {
           >
             Remove Category
           </button>
-          <div className={`${openRemove.divClass}`}>
+          <div className={`Settings__inputs_container ${openRemove.divClass}`}>
             <label className="Settings__label_delete">
-              If you are sure about deleting this category type 'delete'
+              If you are sure about deleting this category type: <span> delete </span> 
             </label>
             <input
               type="text"
