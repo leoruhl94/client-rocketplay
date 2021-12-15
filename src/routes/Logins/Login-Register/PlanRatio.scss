@@ -8,6 +8,18 @@
     width: 300px;
     transition: 0.2s;
     position: relative;
+    &::before{
+        content: "";
+        width: 50px;
+        height: 50px;
+        border: 3px solid white;
+        opacity: 20%;
+        border-radius: 50%;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        transition: 0.2s;
+    }
     .planRatio__name{
         font-size: 2rem;
         text-align: center;
@@ -27,8 +39,23 @@
     }
 }
 .checked{
-    transform: scale(1.05);
-    border: 5px solid black;
+    transform: translateY(-1rem);
+    position: relative;
+    &::after{
+        content: "";
+        width: 25px;
+        height: 12px;
+        border: 5px solid white;
+        border-color: transparent transparent white white;
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        transform: rotate(-45deg)
+    }
+    &::before{
+        opacity: 100%;
+        background: green;
+    }
 }
 .violet{
     background: $priceVioletGradient;

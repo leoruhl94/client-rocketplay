@@ -67,7 +67,6 @@ export const SubscriptionsSettings: React.FC = () => {
 
     // WORKING
     const handleOnUpdateSubscriptions = async (value: String) => {
-<<<<<<< HEAD
         try{
           setEnabled(false)
           let res = await axios.put(`${URL_BASE}/subscriptions`, {
@@ -85,16 +84,6 @@ export const SubscriptionsSettings: React.FC = () => {
           testFunction()  
           setEnabled(true)
         }
-=======
-        let res = await axios.put(`${URL_BASE}/subscriptions`, {
-          email: auth?.user?.email,
-          status: value,
-        });
-        console.log(res.data);
-        
-        dispatch(setToast('Updated'))
-        testFunction()       
->>>>>>> aiuda
       };
 
     return(
