@@ -56,28 +56,34 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            <h2 className="Workspaces__worksGroup_title" >My Workspaces</h2>
-            {auth?.user?.myWorkspaces?.length ? <div className="Workspaces__worksGroup"> 
-              {auth.user.myWorkspaces.map((item, i) => {
-                return (
-                  <WorkspaceItem
-                  key={i}
-                  workspace={item.title}
-                  path={item.name}
-                  />)})}
-              </div> : null}
+            {auth?.user?.myWorkspaces?.length ? (
+              <div className="Workspaces__worksGroup">
+                <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+                {auth.user.myWorkspaces.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item.title}
+                      path={item.name}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
 
-            <h2 id="title2" className="Workspaces__worksGroup_title">Joined In</h2>
-            {joinedWorks?.length
-              ? <div className="Workspaces__worksGroup">
-                {joinedWorks.map((item, i) => {
-                    return (
-                      <WorkspaceItem
-                        key={i}
-                        workspace={item}
-                        path={
-                          auth?.user?.workspaces?.length
-                            ? auth.user.workspaces[i]
+            {joinedWorksTT?.length ? (
+              <div className="Workspaces__worksGroup">
+                <h2 id="title2" className="Workspaces__worksGroup_title">
+                  Joined In
+                </h2>
+                {joinedWorksTT.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item}
+                      path={
+                          joinedWorks?.length
+                            ? joinedWorks[i]
                             : ""
                       }
                       // path={
@@ -88,7 +94,10 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                     />
                   );
                 })}
-              </div> : null}
+              </div>
+            ) : (
+              ""
+            )}
 
             <div className="Workspaces__button_container">
               <button className="Workspaces__button" onClick={handleAdd}>
