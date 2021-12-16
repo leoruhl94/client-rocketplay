@@ -1,11 +1,12 @@
 @import "../../styles/variables.scss";
 .NavigationTop {
+ 
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: fit-content;
-  padding: 0 7%;
+  padding: 1rem 7%;
   z-index: 2rem;
 
   .NavigationTop__navLink_logo {
