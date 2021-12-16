@@ -9,7 +9,7 @@ export const LeaveWorkspace: React.FC = () => {
 
   return (
     <div className="LeaveWorkspace">
-      <h2 className="LeaveWorkspace__title"> Leave Workspace:  </h2>
+      {/* <h2 className="LeaveWorkspace__title"> Leave Workspace:  </h2> */}
       {auth?.user?.workspaces?.map((w, i) => {
         
         if(!(myWorkSpace === w)){

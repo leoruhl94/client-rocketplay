@@ -41,10 +41,12 @@ export const WorkspaceItemDelete: React.FC<Props> = ({ schemaName, title }) => {
       <span className="WorkspaceItem__Icon">
         <Icon svg="rocketColor" />
       </span>
+      <div className="WorkspaceItem__section-delete">
       <h2 className="WorkspaceItem__Name">{title}</h2>
       <button className="WorkspaceItem__delete" onClick={onClick}>
-        <Icon svg="pencil" />
+        <Icon svg="leave" />
       </button>
+      </div>
     </div>
   );
 };

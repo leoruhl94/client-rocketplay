@@ -58,7 +58,7 @@ export const AddChannel: React.FC = () => {
             id=""
             className="SelectComponent Select__100w"
           >
-            <option selected value="" className="SelectComponent_option">
+            <option selected value="" className="SelectComponent_option Select__50w">
               Workspaces
             </option>
             {/* {auth?.user?.workspacesTitles?.map((w, i) => (
@@ -69,7 +69,7 @@ export const AddChannel: React.FC = () => {
         ))}  */}
             {auth?.user?.myWorkspaces?.map((w, i) => (
               <option
-                className="SelectComponent_option"
+                className="SelectComponent_option Select__50w"
                 key={i}
                 value={
                   auth?.user?.myWorkspaces?.length

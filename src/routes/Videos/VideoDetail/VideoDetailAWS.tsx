@@ -181,6 +181,8 @@ export const VideoDetailAWS: React.FC = () => {
         setInput(e.target.value)
         if(input.length > 2){
             setErrors({comments: "", disabled: false})
+        } else {
+            setErrors({comments: "The comment should have at least 3 characters", disabled: true})
         }
     }
 
@@ -245,57 +247,62 @@ export const VideoDetailAWS: React.FC = () => {
             <Modal isOpen={isOpenDescriptionModal} closeModal={closeDescriptionModal}>
                 <EditVideoDescription schemaName={params.schema} videoId={videoData.videoId} closeModal={closeDescriptionModal}/>
             </Modal>
-            <div className="awsDetail-square-container">{/* Video Itself */}
-                <div className="awsDetail-video-frame-div"> {/* Video Frame */}
-                    <div>
-                        <h4 className="awsDetail-title">{videoData.title}</h4>  
-                        {
-                            member.userType === "superadmin" || member.userType === "admin" ? (
-                                <button onClick={() => handleTitleModal()}>
-                                    <Icon svg="pencil" classes="awsDetail-edit-icon"/>
-                                </button>
-                            ) : <></>
-                        }
+            <div className="awsDetail-grid-helper">
+                <div className="awsDetail-square-container">{/* Video Itself */}
+                    <div className="awsDetail-video-frame-div"> {/* Video Frame */}
+                        <div className="awsDetail-title-div">
+                            <h4 className="awsDetail-title">{videoData.title}</h4>
+                            {
+                                member.userType === "superadmin" || member.userType === "admin" ? (
+                                    <button onClick={() => handleTitleModal()} className="awsDetail-edit-button">
+                                        <Icon svg="pencil" classes="awsDetail-edit-icon"/>
+                                    </button>
+                                ) : <></>
+                            }
+                        </div>
+                        <div className="awsDetail-video-div">
+                            {
+                                videoData.videoLink !== "" ? (
+                                    <video controls className="awsDetail-video" /* width="250px" height="150px" */>
+                                        <source src={"https://rocketplay2021.s3.us-east-1.amazonaws.com/"+videoData.videoLink}/>
+                                    </video>
+                                ) : (<></>)
+                            }
+                        </div>
                     </div>
-                {
-                    videoData.videoLink !== "" ? (
-                        <video controls className="awsDetail-video" /* width="250px" height="150px" */>
-                            <source src={"https://rocketplay2021.s3.us-east-1.amazonaws.com/"+videoData.videoLink}/>
-                        </video>
-                    ) : (<></>)
-                }
-                    
+                    <div className="awsDetail-author-container"> {/* Author Frame */}
+                        <div className="awsDetail-avatar-div">{/* Avatar */}
+                            <img src={videoData.channelAvatar} alt="" className="awsDetail-avatar" />
+                        </div>
+                        <div className="awsDetail-name-div">{/* Name */}
+                            <h4 className="awsDetail-name">{videoData.username}</h4>
+                        </div>
+                        <div className="awsDetail-likes-div">{/* Likes */}
+                            <button className={`likeButton likeButton-solid ${solid}`} onClick={() => handleLike()}>
+                                <Icon svg="heartSolid" classes="likeIcons likeIcon"/>
+                            </button>
+                            <button className={`likeButton likeButton-outline ${outline}`} id="true" onClick={() => handleLike()}>
+                                <Icon svg="heartOutline" classes="likeIcons dislikeIcon"/>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="awsDetail-author-container"> {/* Author Frame */}
-                    <div className="awsDetail-avatar-div">{/* Avatar */}
-                        <img src={videoData.channelAvatar} alt="" className="awsDetail-avatar" />
+                <div className="awsDetail-description-container">{/* Description */}
+                    <div className="awsDetail-description-flex-helper">
+                        <div className="awsDetail-description-header-div">
+                            <h3 className="awsDetail-description-header">Description</h3>
+                            {
+                                    member.userType === "superadmin" || member.userType === "admin" ? (
+                                        <button onClick={() => handleDescriptionModal()} className="awsDetail-edit-button">
+                                            <Icon svg="pencil" classes="awsDetail-edit-icon"/>
+                                        </button>
+                                    ) : <></>
+                            }
+                        </div>
+                        <h5 className="awsDetail-description-timestamp">{videoData.timestamp}</h5>
                     </div>
-                    <div className="awsDetail-name-div">{/* Name */}
-                        <h4 className="awsDetail-name">{videoData.username}</h4>
-                    </div>
-                    <div className="awsDetail-likes-div">{/* Likes */}
-                        <button className={`likeButton likeButton-solid ${solid}`} onClick={() => handleLike()}>
-                            <Icon svg="heartSolid" classes="likeIcons likeIcon"/>
-                        </button>
-                        <button className={`likeButton likeButton-outline ${outline}`} id="true" onClick={() => handleLike()}>
-                            <Icon svg="heartOutline" classes="likeIcons dislikeIcon"/>
-                        </button>
-                    </div>
+                    <p className="awsDetail-description">{videoData.description}</p>
                 </div>
-            </div>
-            <div className="awsDetail-description-container">{/* Description */}
-                <div className="awsDetail-description-flex-helper">
-                    <h3 className="awsDetail-description-header">Description</h3>
-                    {
-                            member.userType === "superadmin" || member.userType === "admin" ? (
-                                <button onClick={() => handleDescriptionModal()}>
-                                    <Icon svg="pencil" classes="awsDetail-edit-icon"/>
-                                </button>
-                            ) : <></>
-                        }
-                    <h5 className="awsDetail-description-timestamp">{videoData.timestamp}</h5>
-                </div>
-                <p className="awsDetail-description">{videoData.description}</p>
             </div>
             {/* Comments */}
             <div className="awsDetail-comments-super-container">

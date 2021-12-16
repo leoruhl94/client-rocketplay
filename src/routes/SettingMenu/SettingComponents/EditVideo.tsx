@@ -6,6 +6,7 @@ import { setToast } from "../../../redux/actions";
 import { testFunction } from "../../../constants/functions";
 import { useHistory, useLocation } from "react-router";
 import {useAuth} from "../../../auth/useAuth"
+import "./EditVideo.scss"
 interface Props {
   schemaName: string;
   videoId: number;
@@ -90,21 +91,21 @@ export const EditVideoDescription: React.FC<Props> = ({
   };
 
   return (
-    <div className="edit-video-description-div">
       <form onSubmit={handleSubmit}>
-        <textarea
-          placeholder="New description.."
-          id="edit-video-description"
-          className="edit-video-description-input Settings__input"
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          className="edit-video-button-submit Settings__button"
-        >
-          Change description
-        </button>
+        <div className="edit-video-title-div">
+            <textarea
+              placeholder="New description.."
+              id="edit-video-description"
+              className="edit-video-title-input-textarea Settings__input"
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="edit-video-button-submit Settings__button"
+            >
+              Change description
+            </button>
+        </div>
       </form>
-    </div>
   );
 };

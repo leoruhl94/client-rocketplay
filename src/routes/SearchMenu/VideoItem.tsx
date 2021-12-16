@@ -22,7 +22,7 @@ export const VideoItem: React.FC<Props> = ({
   schemaName,
 }) => {
   return (
-    <Link to={`/videodetail/${schemaName}/${title}`} className="VideoItem">
+    <Link to={`/videodetail/${schemaName}/${videoid}`} className="VideoItem">
       <div className="VideoItem__image_container">
         <img
           className="VideoItem__image"
