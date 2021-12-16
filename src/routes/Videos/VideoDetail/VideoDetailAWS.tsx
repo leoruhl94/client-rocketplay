@@ -8,6 +8,9 @@ import {useAuth} from "../../../auth/useAuth"
 import { testFunction } from '../../../../src/constants/functions';
 import { useDispatch } from "react-redux";
 import { setToast } from "../../../redux/actions";
+import {useOpen} from "../../../Hooks/useOpen"
+import {Modal} from "../../../components/Modal/Modal"
+import {EditVideoTitle, EditVideoDescription} from "../../../routes/SettingMenu/SettingComponents/EditVideo"
 interface videoState {
     title: string;
     description: string;
@@ -216,6 +219,17 @@ export const VideoDetailAWS: React.FC = () => {
         auth?.refreshInfo()
     }
 
+    const [isOpenTitleModal, openTitleModal, closeTitleModal] = useOpen(false);
+
+    const handleTitleModal = () => {
+        openTitleModal()
+    }
+
+    const [isOpenDescriptionModal, openDescriptionModal, closeDescriptionModal] = useOpen(false);
+
+    const handleDescriptionModal = () => {
+        openDescriptionModal()
+    }
 
     // "https://rocketplay2021.s3.us-east-1.amazonaws.com/"+params.title
 
@@ -224,13 +238,19 @@ export const VideoDetailAWS: React.FC = () => {
         <>
         {/* <NavProfileAndLocation header={videoData.title}/> */}
         <div className="awsDetail-super-container">
+            <Modal isOpen={isOpenTitleModal} closeModal={closeTitleModal}>
+                <EditVideoTitle schemaName={params.schema} videoId={videoData.videoId}/>
+            </Modal>
+            <Modal isOpen={isOpenDescriptionModal} closeModal={closeDescriptionModal}>
+                <EditVideoDescription schemaName={params.schema} videoId={videoData.videoId}/>
+            </Modal>
             <div className="awsDetail-square-container">{/* Video Itself */}
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}
                     <div>
                         <h4 className="awsDetail-title">{videoData.title}</h4>  
                         {
                             member.userType === "superadmin" || member.userType === "admin" ? (
-                                <button>
+                                <button onClick={() => handleTitleModal()}>
                                     <Icon svg="pencil" classes="awsDetail-edit-icon"/>
                                 </button>
                             ) : <></>
@@ -265,6 +285,13 @@ export const VideoDetailAWS: React.FC = () => {
             <div className="awsDetail-description-container">{/* Description */}
                 <div className="awsDetail-description-flex-helper">
                     <h3 className="awsDetail-description-header">Description</h3>
+                    {
+                            member.userType === "superadmin" || member.userType === "admin" ? (
+                                <button onClick={() => handleDescriptionModal()}>
+                                    <Icon svg="pencil" classes="awsDetail-edit-icon"/>
+                                </button>
+                            ) : <></>
+                        }
                     <h5 className="awsDetail-description-timestamp">{videoData.timestamp}</h5>
                 </div>
                 <p className="awsDetail-description">{videoData.description}</p>

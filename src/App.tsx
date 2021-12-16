@@ -91,12 +91,12 @@ const App: React.FC = () => {
         <PrivateRoute
           path="/:algunaRuta"
           component={NavigationTop}
-          routesToAvoid={["/pricing"]}
+          routesToAvoid={["/pricing", "/about"]}
         />
         <PrivateRoute
           path="/:algunaRuta"
           component={NavProfileAndLocation}
-          routesToAvoid={["/pricing"]}
+          routesToAvoid={["/pricing", "/about"]}
         />
 
         <Switch>

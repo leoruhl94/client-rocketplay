@@ -431,27 +431,27 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
               <h2 className='Section__title'>Workspace and Category *</h2>
               <p className='Section__description'>Choose which workspace and category the video will belong to</p>
               <div>
-                <select name="channel" id="channel" onChange={(e) => {
+                <select name="channel" id="channel"className="SelectComponent" onChange={(e) => {
                     handleDoubleSelect(e)
                     handleCategorySelect(e)
                 }}>
-                  <option value="" selected disabled>Select a channel</option>
+                  <option value="" selected disabled className="SelectComponent_option">Select a channel</option>
                   {
                     channelsState.length > 0 ?
                     channelsState.map(el => {
-                      return <option value={el.id} key={el.id}>{el.name}</option>
+                      return <option value={el.id} key={el.id} className="SelectComponent_option">{el.name}</option>
                     })
                     : <></>
                   }
                 </select>
                 {
                   selectBool ? (
-                    <select name="category" id="category" onChange={handleDoubleSelect}>
-                      <option value="" selected disabled>Select a category</option>
+                    <select name="category" id="category"className="SelectComponent" onChange={handleDoubleSelect}>
+                      <option value="" selected disabled className="SelectComponent_option">Select a category</option>
                       {
                         categoryState.length > 0 ?
                         categoryState.map(el => {
-                          return <option value={el.id} key={el.id}>{el.name}</option>
+                          return <option value={el.id} key={el.id} className="SelectComponent_option">{el.name}</option>
                         })
                         : <></>
                       }

@@ -16,6 +16,7 @@ import { EditCategory } from "./SettingComponents/EditCategory";
 import { RemoveCategory } from "./SettingComponents/RemoveCategory";
 import { RemoveChannel } from "./SettingComponents/RemoveChannel";
 import { LeaveWorkspace } from "./SettingComponents/LeaveWorkspace";
+import { Modal } from "src/components/Modal/Modal";
 
 interface props {
   transition: any;
@@ -41,7 +42,9 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
   ///==================MENUS===================
  
   return (
+    
     <MenuToggleContainer transition={transition} k="002">
+    
       <nav className="SettingMenu__container">
         <DropdownMenu
           title="Account"
@@ -70,7 +73,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           close={closeMenuWorkspace}
           open={openMenuWorkspace}
         >
-          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Leave Workspace">
             <LeaveWorkspace />
           </DropdownMenuItem>
           

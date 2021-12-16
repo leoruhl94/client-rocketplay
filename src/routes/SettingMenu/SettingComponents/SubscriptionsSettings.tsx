@@ -88,7 +88,7 @@ export const SubscriptionsSettings: React.FC = () => {
 
     return(
         <div className="editSubscription">
-           <h4 className='editSubscription__status'>{boolean ? 'Activar' : 'Pausar'}</h4>
+           {/* <h4 className='editSubscription__status'>{boolean ? 'Activar' : 'Pausar'}</h4>
            <div className='editSubscription__cont'>
             <SuperToggle
               handleChecked={() => {
@@ -103,7 +103,7 @@ export const SubscriptionsSettings: React.FC = () => {
               enabled={enabled}
             />
             {!enabled ? <div className="editSubscription__loading"></div> : null}
-           </div>
+           </div> */}
 
           <button type="button" onClick={(e) => handleShow(e)} className='Settings__button'>
             Cancel subscription

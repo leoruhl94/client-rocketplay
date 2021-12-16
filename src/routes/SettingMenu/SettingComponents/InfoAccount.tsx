@@ -6,9 +6,13 @@ import { storeState } from 'src/redux/type';
 import { useAuth } from '../../../auth/useAuth';
 import './infoAccount.scss'
 import { useHistory } from 'react-router';
+import { Clipboard } from "../../../components/Clipboard/Clipboard";
 
 export const InfoAccount: React.FC = () => {
+    
     const auth = useAuth();
+    const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
+    const [workspaceId, setWorkspaceId] = useState(MyworkspaceCode);
     const history = useHistory()
     const user = auth?.user
     const { plans } = useSelector((state: storeState) => state);
@@ -43,7 +47,7 @@ export const InfoAccount: React.FC = () => {
                 <h2 className='infoaccount__subtitle'>Workspaces</h2>
 
                 {auth?.user?.myWorkspaces?.length ? 
-                    auth.user.myWorkspaces.map((item, i) => <span key={i} className="infoaccount__works">{`${item.title} (${users.length} subscriber${users.length !== 1 ? 's':''})`}</span>)
+                    auth.user.myWorkspaces.map((item, i) => <><span key={i} className="infoaccount__works">{`${item.title} (${users.length} subscriber${users.length !== 1 ? 's':''})`}</span><span> <br /> Copy code <Clipboard value={MyworkspaceCode}></Clipboard></span></>)
                 : <h3 className='infoaccount__grey'>You don't have a workspace</h3>}
             </> 
             : <button className='infoaccount__getBussiness' onClick={() => {history.push('/payment')}}>Get Bussiness Account</button>}

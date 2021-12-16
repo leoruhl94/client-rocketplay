@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import "./Workspaces.scss";
 import { ProfileWnd } from "../Logins/Login-Register/ProfileWnd";
 import { AddWorkspace } from "./AddWorkspace/AddWorkspace";
 import { Icon } from "../../components/Icon/Icon";
+import { Clipboard } from "../../components/Clipboard/Clipboard";
 import axios from "axios";
 import { URL_BASE } from "../../constants/constants";
 import { pageTransition } from "../../constants/functions";
@@ -12,13 +15,20 @@ import { useAuth } from "../../auth/useAuth";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { WorkspaceItem } from "./WorkspaceItem";
 import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
+import { setToast } from "../../redux/actions"
+import { testFunction } from "../../constants/functions";
+
 
 interface props {
   transition: any;
 }
 export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
+  const dispatch = useDispatch()
+  const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
   const [add, setAdd] = useState(false);
+  const [workspaceId, setWorkspaceId] = useState(MyworkspaceCode);
+
 
   const joinedWorks = auth?.user?.workspaces?.filter(
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.name === x)
@@ -27,11 +37,17 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
   );
 
+
   useEffect(() => {auth?.refreshInfo()}, [])
 
     console.log("hola", joinedWorks, joinedWorksTT, auth?.user )
   function handleAdd() {
     setAdd(!add);
+  }
+
+  function getId(){
+      dispatch(setToast('Copied!'));
+      testFunction();
   }
 
   //console.log("--", auth?.user?.workspaces);
@@ -109,6 +125,15 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                 </span>
               </button>
             </div>
+            <div className="Workspaces__button_container">
+              {<button className="Workspaces__button" onClick={getId}>
+                Copy my workspace id
+                <span className="Workspaces__button_icon">
+                  <Clipboard value={MyworkspaceCode}></Clipboard>
+                </span>
+              </button>}
+            </div>
+
         
         </section>
       </MenuToggleContainer>
