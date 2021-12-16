@@ -41,15 +41,16 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
 
   return (
     <>
-      {/* <NavProfileAndLocation></NavProfileAndLocation> */}
+   
       <AddWorkspace
         dep={add}
         handleAdd={handleAdd}
         refreshWorkspace={refreshWorkspace}
       />
+
       <MenuToggleContainer transition={transition} k="key3">
         <section className="Workspaces__container">
-          <div className="Workspaces__list">
+
             <h2
               className={`Workspaces__title ${
                 auth?.user?.workspacesTitles?.length || auth?.user?.myWorkspaces?.length ? "display__none" : ""
@@ -57,9 +58,9 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            {auth?.user?.myWorkspaces?.length ? (
-              <div className="Workspaces__worksGroup">
-                <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+            {auth?.user?.myWorkspaces?.length ? (<>
+              <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+              <div className="Workspaces__list">
                 {auth.user.myWorkspaces.map((item, i) => {
                   return (
                     <WorkspaceItem
@@ -69,11 +70,11 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                     />
                   );
                 })}
-              </div>
+              </div></>
             ) : null}
 
             {joinedWorksTT?.length ? (
-              <div className="Workspaces__worksGroup">
+              <div className="Workspaces__list">
                 <h2 id="title2" className="Workspaces__worksGroup_title">
                   Joined In
                 </h2>
@@ -108,7 +109,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                 </span>
               </button>
             </div>
-          </div>
+        
         </section>
       </MenuToggleContainer>
     </>

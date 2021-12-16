@@ -48,7 +48,7 @@ export const AddCategory2: React.FC = () => {
       
       let res = await axios.post(`${URL_BASE}/category`, infoSubmit);
 
-      dispatch(setToast(`Congrats! ${res.data.message}`));
+      dispatch(setToast(`Congrats! category added`));
       boton && boton.setAttribute("disabled", "false")
 
       testFunction()

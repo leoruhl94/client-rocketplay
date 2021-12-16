@@ -42,7 +42,7 @@ export const SubscriptionsSettings: React.FC = () => {
         status: "cancelled",
       });
       auth?.refreshInfo()
-      dispatch(setToast("Your subscription was" + res.data.status))
+      dispatch(setToast("Your subscription was cancelled"))
       testFunction()
       // TODO: Conectar el petición al backEnd
     }

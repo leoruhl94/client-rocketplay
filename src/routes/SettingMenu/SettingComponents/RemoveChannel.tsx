@@ -43,7 +43,7 @@ export const RemoveChannel: React.FC = () => {
       console.log("sale gatito porque no hay esquema");
     } else {
       await axios.put(`${URL_BASE}/channels/status`, infoSubmit);
-      dispatch(setToast(`${infoSubmit.schemaName} deleted successfully`))
+      dispatch(setToast(`Channel deleted successfully`))
     }
     setInfoSubmit({
       schemaName: "",

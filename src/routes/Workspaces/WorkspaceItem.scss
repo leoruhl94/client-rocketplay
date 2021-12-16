@@ -34,15 +34,15 @@
 
 @media only screen and (min-width: $smallDevices) {
     .WorkspaceItem{
-        width: 150px;
-        height: auto;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        padding: 1rem;
-        margin: 0.5rem;
-        .WorkspaceItem__Name{
-            margin: 0;
-        }
+        width: 50%;
+        // height: auto;
+        // flex-direction: column;
+        // justify-content: center;
+        // text-align: center;
+        // padding: 1rem;
+        // margin: 0.5rem;
+    //     .WorkspaceItem__Name{
+    //         margin: 0;
+    //     }
     }
 }
