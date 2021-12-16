@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
 
 
 interface InfoSubmit {
@@ -20,6 +23,7 @@ interface openRemove {
 }
 
 export const EditChannel: React.FC = () => {
+  const dispatch = useDispatch()
   const [channelsState, setChannelsState] = useState<Channels[]>();
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
@@ -39,9 +43,13 @@ export const EditChannel: React.FC = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!infoSubmit.schemaName) {
+      dispatch(setToast('Error: Please try again'))
+      testFunction()
       console.log("sale gatito porque no hay esquema");
     } else {
       await axios.put(`${URL_BASE}/channels`, infoSubmit);
+      dispatch(setToast(`${infoSubmit.oldName} was updated to ${infoSubmit.newName}`))
+      testFunction()
     }
     setInfoSubmit({
       schemaName: "",

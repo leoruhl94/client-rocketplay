@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
+import { testFunction } from "../../../constants/functions";
+
+import { setToast } from "../../../redux/actions";
+
 import { useAuth } from "../../../auth/useAuth";
 import "./AddCategory.scss";
 
@@ -18,6 +24,7 @@ interface InfoSubmit {
 }
 export const AddCategory2: React.FC = () => {
   const auth = useAuth();
+  const dispatch = useDispatch()
   const [schemaName, setSchemaName] = useState<SchemaName>();
   const [channelsState, setChannelsState] = useState<Channels[]>();
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
@@ -28,10 +35,23 @@ export const AddCategory2: React.FC = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!schemaName) {
-      console.log("sale gatito porque no hay esquema");
+
+    if (!infoSubmit.schemaName || !infoSubmit.name || !infoSubmit.channelId) {
+      !infoSubmit.schemaName && dispatch(setToast('Error: No schema name')); 
+      !infoSubmit.name && dispatch(setToast('Error: No name')); 
+      !infoSubmit.channelId && dispatch(setToast('Error: No channel id selected')); 
+      testFunction()
+      console.log("sale gatito porque no hay esquema",infoSubmit);
     } else {
-      await axios.post(`${URL_BASE}/category`, infoSubmit);
+      let boton = document.querySelector('.Settings__button')
+      boton && boton.setAttribute("disabled", "true")
+      
+      let res = await axios.post(`${URL_BASE}/category`, infoSubmit);
+
+      dispatch(setToast(`Congrats! ${res.data.message}`));
+      boton && boton.setAttribute("disabled", "false")
+
+      testFunction()
     }
     setInfoSubmit({
       ...infoSubmit,
@@ -97,7 +117,7 @@ export const AddCategory2: React.FC = () => {
             name="schemaName"
             id=""
           >
-            <option value="all" className="SelectComponent_option">
+            <option selected disabled value="" className="SelectComponent_option">
               Workspaces
             </option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
@@ -121,7 +141,7 @@ export const AddCategory2: React.FC = () => {
               name="channels"
               id=""
             >
-              <option value="all" className="SelectComponent_option">
+              <option selected value="" className="SelectComponent_option">
                 Channels
               </option>
               {channelsState?.map((ch) => (
@@ -147,7 +167,7 @@ export const AddCategory2: React.FC = () => {
             onChange={handleOnChange}
             value={infoSubmit.name}
           />
-          <button className="Settings__button" type="submit">
+          <button className="Settings__button" type="submit" >
             Add Category
           </button>
         </div>

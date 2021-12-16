@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
-
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
+ 
 interface Props {
     schemaName: string;
     videoId: number;
 }
-
+ 
 export const EditVideoTitle: React.FC<Props> = ({schemaName, videoId}) => {
 
     const [input, setInput] = useState("")
+    const dispatch = useDispatch()
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,6 +23,8 @@ export const EditVideoTitle: React.FC<Props> = ({schemaName, videoId}) => {
             id: videoId
         }
         axios.put(`${URL_BASE}/videos/editTitle`, obj)
+        dispatch(setToast('Video title updated successfully'))
+        testFunction()
     }
 
     const handleChange = (e) => {
@@ -38,6 +44,7 @@ export const EditVideoTitle: React.FC<Props> = ({schemaName, videoId}) => {
 export const EditVideoDescription: React.FC<Props> = ({schemaName, videoId}) => {
 
     const [input, setInput] = useState("")
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         setInput(e.target.value)
@@ -51,6 +58,8 @@ export const EditVideoDescription: React.FC<Props> = ({schemaName, videoId}) => 
             newDescription: input
         }
         axios.put(`${URL_BASE}/videos/editDescription`, obj)
+        dispatch(setToast('Video Description updated successfully'))
+        testFunction()
     }
 
     return (

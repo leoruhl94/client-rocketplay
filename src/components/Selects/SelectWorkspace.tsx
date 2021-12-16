@@ -32,7 +32,7 @@ interface PropsWP {
   
     return (
       <select onChange={handleSelect} name={name} id="" className="SelectComponent">
-        <option value="all" className="SelectComponent_option">Workspaces</option>
+        <option selected value="" className="SelectComponent_option">Workspaces</option>
         {auth?.user?.workspacesTitles?.map((item, i) => (
           <option className="SelectComponent_option"
             key={i}

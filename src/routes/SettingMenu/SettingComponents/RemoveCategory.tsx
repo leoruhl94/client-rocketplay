@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
+
 
 interface InfoSubmit {
   schemaName: string;
@@ -26,6 +30,7 @@ interface openRemove {
 }
 export const RemoveCategory: React.FC = () => {
   const auth = useAuth();
+  const dispatch = useDispatch()
   const [schemaName, setSchemaName] = useState<SchemaName>();
   const [channelsState, setChannelsState] = useState<Channels[]>();
   const [categoryState, setCategoryState] = useState<Categories[]>();
@@ -71,8 +76,12 @@ export const RemoveCategory: React.FC = () => {
     e.preventDefault();
     if (!infoSubmit.schemaName) {
       console.log("sale conejito porque no hay esquema");
+      dispatch(setToast('Error: Please try again'));
+      testFunction();
     } else {
       await axios.put(`${URL_BASE}/category/status`, infoSubmit);
+      dispatch(setToast('Category removed successfully'));
+      testFunction();
     }
     setInfoSubmit({
       schemaName: "",
@@ -137,7 +146,7 @@ export const RemoveCategory: React.FC = () => {
     <div>
       {" "}
       {/*====================================================================================================  */}
-      <form onSubmit={handleSubmit} className="Settings__form Select__100w">
+      <form onSubmit={handleSubmit} className="Settings__form ">
         <div className="Settings__selects ">
           <select
             onChange={handleWorkspaceSelect}

@@ -14,7 +14,7 @@ body {
   // background-color: #755fe2;
   // background: #1e9767;
   background: transparent;
-  border: 2px solid #3DD598;
+  border: 2px solid #3dd598;
   // box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
   border-radius: 15px;
   padding: 0.2rem;
@@ -28,19 +28,17 @@ body {
     color: rgb(56, 56, 56);
     font-size: 1.2rem;
     text-transform: capitalize;
-
-    
   }
 }
 // .SelectComponent_option {
 //   background: #C985FF;
 //   font-size: 1.2rem;
 //   text-transform: capitalize;
-  
+
 // }
 
 .Settings__input {
-  background: linear-gradient(138.13deg, #FAFBFC 25.51%, #F2F3FB 100%);
+  background: linear-gradient(138.13deg, #fafbfc 25.51%, #f2f3fb 100%);
   box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
   border-radius: 10px;
   outline: none;
@@ -52,12 +50,11 @@ body {
   // color: white;
 }
 .Settings__button {
-
   // background: #3DD598;
   background: transparent;
-  border: 2px solid #3DD598;
+  border: 2px solid #3dd598;
   color: white;
-      text-shadow: 1px 1px 3px black; 
+  text-shadow: 1px 1px 3px black;
   box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
   // background: linear-gradient(138.13deg, #FAFBFC 25.51%, #F2F3FB 100%);  border-radius: 10px;
   // border: none;
@@ -76,17 +73,16 @@ body {
   padding-bottom: 10px;
   font-size: 1.3rem;
   padding-left: 0.2rem;
- color:rgb(245, 245, 245);
- text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822) ;
- 
+  color: rgb(245, 245, 245);
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);
 }
-.Settings__label_delete{
+.Settings__label_delete {
   padding-bottom: 10px;
   font-size: 1.2rem;
   padding-left: 0.2rem;
-  color:rgb(245, 245, 245);
+  color: rgb(245, 245, 245);
   // text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822) ;
-  span{
+  span {
     padding-left: 0.5rem;
     font-size: 1.4rem;
     letter-spacing: 2px;
@@ -94,7 +90,6 @@ body {
     // text-shadow: 1px 1px 3px rgba(253, 93, 93, 0.822) ;
     color: red;
   }
-  
 }
 .Settings__selects {
   display: flex;

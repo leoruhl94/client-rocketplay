@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
-
+import { setToast } from "../../../redux/actions";
+import { testFunction } from "../../../constants/functions";
+import { useDispatch } from 'react-redux'
 interface InfoSubmit {
   schemaName: string;
   name?: string;
@@ -10,6 +12,7 @@ interface InfoSubmit {
 
 export const AddChannel: React.FC = () => {
   const auth = useAuth();
+  const dispatch = useDispatch()
   const [infoSubmit, setInfoSubmit] = useState<InfoSubmit>({
     schemaName: "",
     name: "",
@@ -19,9 +22,13 @@ export const AddChannel: React.FC = () => {
     e.preventDefault();
     if (!infoSubmit.schemaName) {
       console.log("sale gatito porque no hay esquema");
+      dispatch(setToast('Error: Please try again'))
+      testFunction()
     } else {
       await axios.post(`${URL_BASE}/channels`, infoSubmit);
       setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
+      dispatch(setToast('Workspace added succesfully'))
+      testFunction()
     }
     setInfoSubmit({
       schemaName: "",
@@ -51,7 +58,7 @@ export const AddChannel: React.FC = () => {
             id=""
             className="SelectComponent Select__100w"
           >
-            <option value="all" className="SelectComponent_option">
+            <option selected value="" className="SelectComponent_option">
               Workspaces
             </option>
             {/* {auth?.user?.workspacesTitles?.map((w, i) => (

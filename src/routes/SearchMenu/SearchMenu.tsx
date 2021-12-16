@@ -125,7 +125,7 @@ export const SearchMenu: React.FC<props> = ({ transition }) => {
           className="SelectComponent  Select__WP "
           id=""
         >
-          <option disabled selected>
+          <option disabled selected value="">
             Workspaces
           </option>
           {auth?.user?.workspacesTitles?.map((w, i) => (

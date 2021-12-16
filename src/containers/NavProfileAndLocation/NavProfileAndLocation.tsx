@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useLocation } from "react-router"
 import { storeState } from "src/redux/type"
@@ -18,6 +18,9 @@ export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) =>
     if(headerRoute.startsWith('videodetail')){
         headerRoute = header
     }
+    useEffect(() => {
+        setWndProfile(false)
+    },[location])
     
     return (<>
         <nav className="channelsNav">
@@ -26,7 +29,7 @@ export const NavProfileAndLocation: React.FC<Props> = ({header='RocketPlay'}) =>
                 <button className="channelsNavProfileBtn" onClick={()=>{setWndProfile(!wndProfile)}}>
                     <img className="Profile_image" src={auth?.user?.pic+''}/>
                 </button>
-                <ProfileWnd dep={wndProfile}/>
+                <ProfileWnd dep={wndProfile} setDep={setWndProfile}/>
             </ul>
         </nav>
         <div className="channelsNav__ocupaEspacio"></div>

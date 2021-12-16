@@ -15,6 +15,7 @@ import { EditWorkspace } from "./SettingComponents/EditWorkspace";
 import { EditCategory } from "./SettingComponents/EditCategory";
 import { RemoveCategory } from "./SettingComponents/RemoveCategory";
 import { RemoveChannel } from "./SettingComponents/RemoveChannel";
+import { LeaveWorkspace } from "./SettingComponents/LeaveWorkspace";
 
 interface props {
   transition: any;
@@ -38,7 +39,7 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
     useOpen(false);
 
   ///==================MENUS===================
-
+ 
   return (
     <MenuToggleContainer transition={transition} k="002">
       <nav className="SettingMenu__container">
@@ -51,71 +52,115 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
             <InfoAccount />
           </DropdownMenuItem>
-
-          {<DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
-            <SubscriptionsSettings />
-          </DropdownMenuItem>}
+          
+           {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
+              <SubscriptionsSettings />
+            </DropdownMenuItem>
+            </>
+          ) : (
+            <></>
+          )}
         </DropdownMenu>
-        {/* ============================================================== */}
+
         <DropdownMenu
           title="Workspace"
           isOpen={isOpenMenuWorkspace}
           close={closeMenuWorkspace}
           open={openMenuWorkspace}
         >
-          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Edit Workspace">
-            <EditWorkspace />
-          </DropdownMenuItem>
-
           <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
-            <MemberType />
+            <LeaveWorkspace />
           </DropdownMenuItem>
+          
+          
+          {auth?.user?.isBusiness ? (
+            <>
+              <DropdownMenuItem
+                isOpen={isOpenMenuWorkspace}
+                title="Edit Workspace"
+              >
+                <EditWorkspace />
+              </DropdownMenuItem>
+
+              <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+                <MemberType />
+              </DropdownMenuItem>
+            </>
+          ) : (
+            <></>
+          )}
         </DropdownMenu>
-        {/* ============================================================== */}
-        <DropdownMenu
-          title="Channels"
-          isOpen={isOpenMenuChannels}
-          close={closeMenuChannels}
-          open={openMenuChannels}
-        >
-          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
-            <AddChannel />
-          </DropdownMenuItem>
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenu
+              title="Channels"
+              isOpen={isOpenMenuChannels}
+              close={closeMenuChannels}
+              open={openMenuChannels}
+            >
+              <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
+                <AddChannel />
+              </DropdownMenuItem>
 
-          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Edit Channel">
-            <EditChannel />
-          </DropdownMenuItem>
-          <DropdownMenuItem isOpen={isOpenMenuChannels} title="Remove Channel">
-            
-            <RemoveChannel/>
-          </DropdownMenuItem>
-        </DropdownMenu>
-        {/* ============================================================== */}
-        <DropdownMenu
-          title="Categories"
-          isOpen={isOpenMenuCategories}
-          close={closeMenuCategories}
-          open={openMenuCategories}
-        >
-          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Add Category">
-            <AddCategory2 />
-          </DropdownMenuItem>
+              <DropdownMenuItem
+                isOpen={isOpenMenuChannels}
+                title="Edit Channel"
+              >
+                <EditChannel />
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                isOpen={isOpenMenuChannels}
+                title="Remove Channel"
+              >
+                <RemoveChannel />
+              </DropdownMenuItem>
+            </DropdownMenu>
+          </>
+        ) : (
+          <></>
+        )}
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenu
+              title="Categories"
+              isOpen={isOpenMenuCategories}
+              close={closeMenuCategories}
+              open={openMenuCategories}
+            >
+              <DropdownMenuItem
+                isOpen={isOpenMenuCategories}
+                title="Add Category"
+              >
+                <AddCategory2 />
+              </DropdownMenuItem>
 
-          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Edit Category">
-            <EditCategory />
-          </DropdownMenuItem>
-          <DropdownMenuItem isOpen={isOpenMenuCategories} title="Remove Category">
-              <RemoveCategory />
-          </DropdownMenuItem>
+              <DropdownMenuItem
+                isOpen={isOpenMenuCategories}
+                title="Edit Category"
+              >
+                <EditCategory />
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                
+                isOpen={isOpenMenuCategories}
+                title="Remove Category"
+              >
+                <RemoveCategory />
+              </DropdownMenuItem>
 
-          {/* <DropdownMenuItem
+              {/* <DropdownMenuItem
             isOpen={isOpenMenuCategories}
             title="Change privacy"
           >
             
           </DropdownMenuItem> */}
-        </DropdownMenu>
-       
+            </DropdownMenu>
+          </>
+        ) : (
+          <></>
+        )}
       </nav>
     </MenuToggleContainer>
   );

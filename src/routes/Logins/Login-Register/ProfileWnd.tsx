@@ -14,9 +14,10 @@ import { async } from "@firebase/util";
 
 interface Props {
   dep: boolean,
+  setDep?: any
 }
 
-export const ProfileWnd: React.FC<Props> = ({ dep }) => {
+export const ProfileWnd: React.FC<Props> = ({ dep, setDep }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
 
   // }
 
-  return (
+  return (<>
     <div className={`profileWnd ${dep ? "profileWndDep" : ""}`}>
       <div className="profileWnd__user">
         <img src={user?.pic+''} className="profileWnd__pic" />
@@ -68,49 +69,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           onLogoutSuccess={logout}
         />
       </div>
-      {/* <SuperButton
-        name='activeSub'
-        value="authorized"
-        text='Active'
-        classes='profileWnd__activeSub'
-        handler={handleOnUpdateSubscriptions}
-      /> */}
-      {/* <SuperButton
-        name='pauseSub'
-        value="paused"
-        text='Pause'
-        classes='profileWnd__pauseSub'
-        handler={handleOnUpdateSubscriptions}
-      /> */}
-      {/* <SuperButton
-        name='cancelSub'
-        value="cancelled"
-        text='Cancel'
-        classes='profileWnd__cancelSub'
-        handler={handleOnUpdateSubscriptions}
-      /> */}
-      {/* <SuperButton
-        name='getBusinessAccount'
-        route="/payment"
-        text='Get business'
-        classes='profileWnd__cancelSub'
-        /> */}
-      {/* <SuperButton
-        name='Upload'
-        route="/uploadvideo"
-        text='Upload Video'
-        classes='profileWnd__cancelSub'
-      /> */}
-       {/* <SuperButton
-        name='destroySchemas'
-        value="destroyed"
-        text='Destroy'
-        classes='profileWnd__cancelSub'
-        handler={handleDestroy}
-      /> */}
-      {/* <div className="profileWnd__cambiar">
-        <Link to="/payment"> Get a Business Account</Link>
-      </div> */}
     </div>
+    </>
   );
 };

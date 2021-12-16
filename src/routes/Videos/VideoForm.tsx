@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./VideoForm.scss";
 
 import { URL_BASE } from "../../constants/constants";
@@ -10,6 +10,9 @@ import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
 import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
 import { useAuth } from "../../auth/useAuth";
+import { setToast } from "../../redux/actions"
+import { testFunction } from "../../constants/functions";
+
 // Interfaces
 
 interface User {
@@ -70,7 +73,7 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
     email: "",
     isBusiness: false,
   });
-
+  const dispatch = useDispatch()
   // name, email, isBusiness, pic, subscriptions, workspaces, workspacesTitles
   const auth = useAuth()
 
@@ -243,7 +246,11 @@ export const VideoForm: React.FC<Props> = ({schemaName}) => {
         memberId: member.memberId,
         categoryId: input.category
       })
-      .then(r => console.log(r))
+      .then(r => {
+        dispatch(setToast('Video uploaded successfully'))
+        testFunction()
+        console.log(r)
+      })
     }
 
     // e.preventDefault();

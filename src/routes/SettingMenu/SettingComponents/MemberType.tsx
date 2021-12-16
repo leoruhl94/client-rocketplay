@@ -1,14 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { LoadingComponent } from '../../../components/LoadingComponent/LoadingComponent';
 import { useAuth } from '../../../auth/useAuth';
 import { URL_BASE } from '../../../constants/constants';
 import './MemberType.scss';
 import { SuperToggle } from '../../../components/Buttons/SuperToggleButton/SuperToggle';
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
 
 
 export const MemberType: React.FC = () => {
     const auth = useAuth();
+    const dispatch = useDispatch()
     const [users, setUsers] = useState<any[]>([])
 
     useEffect(() => {
@@ -26,6 +30,8 @@ export const MemberType: React.FC = () => {
             newUserType: 'admin', 
             memberId: id
         }).then(({data}) => {
+            dispatch(setToast('Member upgraded to admin'))
+            testFunction()
             refresh()
         })
     }
@@ -35,6 +41,8 @@ export const MemberType: React.FC = () => {
             newUserType: 'subscriber', 
             memberId: id
         }).then(({data}) => {
+            dispatch(setToast('Member updated to subscriber'))
+            testFunction()
             refresh()
         })
     }

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useAuth } from "../../../auth/useAuth";
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
 
 interface InfoSubmit {
   schemaName: string;
@@ -26,6 +30,7 @@ interface openRemove {
 }
 export const EditCategory: React.FC = () => {
   const auth = useAuth();
+  const dispatch = useDispatch()
   const [schemaName, setSchemaName] = useState<SchemaName>();
   const [channelsState, setChannelsState] = useState<Channels[]>();
   const [categoryState, setCategoryState] = useState<Categories[]>();
@@ -42,10 +47,17 @@ export const EditCategory: React.FC = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!infoSubmit.schemaName) {
-      console.log("sale conejito porque no hay esquema");
+    if (!infoSubmit.schemaName || !infoSubmit.newName || !infoSubmit.categoryId) {
+      !infoSubmit.schemaName && dispatch(setToast("Error: No schema name"));
+      !infoSubmit.newName && dispatch(setToast("Error: No name"));
+      !infoSubmit.categoryId &&
+        dispatch(setToast("Error: No category selected"));
+      testFunction();
+      console.log("sale conejito porque no hay esquema", infoSubmit);
     } else {
       await axios.put(`${URL_BASE}/category`, infoSubmit);
+      dispatch(setToast("Category updated"));
+      testFunction();
     }
     setInfoSubmit({
       schemaName: "",
@@ -119,14 +131,19 @@ export const EditCategory: React.FC = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="Settings__selects Select__50w">
+        <div className="Settings__selects ">
           <select
             onChange={handleWorkspaceSelect}
             name="schemaName"
             id=""
             className="SelectComponent Select__100w"
           >
-            <option value="all" className="SelectComponent_option">
+            <option
+              selected
+              disabled
+              value=""
+              className="SelectComponent_option"
+            >
               Workspaces
             </option>
             {auth?.user?.myWorkspaces?.map((w, i) => (
@@ -152,7 +169,7 @@ export const EditCategory: React.FC = () => {
               id=""
               className="SelectComponent Select__50w"
             >
-              <option selected value="all" className="SelectComponent_option">
+              <option selected value="" className="SelectComponent_option">
                 Channels
               </option>
               {channelsState?.map((ch) => (
@@ -172,7 +189,7 @@ export const EditCategory: React.FC = () => {
               className="SelectComponent Select__50w"
               name="category"
             >
-              <option selected value="" className="SelectComponent_option">
+              <option selected value="" disabled className="SelectComponent_option">
                 Categories
               </option>
               {categoryState?.map((ca) => (

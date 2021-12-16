@@ -5,7 +5,9 @@ import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { useParams } from "react-router";
 import {useAuth} from "../../../auth/useAuth"
-
+import { testFunction } from '../../../../src/constants/functions';
+import { useDispatch } from "react-redux";
+import { setToast } from "../../../redux/actions";
 interface videoState {
     title: string;
     description: string;
@@ -39,7 +41,7 @@ interface Member {
 export const VideoDetailAWS: React.FC = () => {
 
     let auth = useAuth()
-
+    const dispatch = useDispatch()
     let params:any = useParams()
 
     const [commentData, setCommentData] = useState<commentsObj[]>([])
@@ -138,7 +140,7 @@ export const VideoDetailAWS: React.FC = () => {
                 }
                 arrayComments.push(obj)
             })
-            setCommentData(arrayComments.reverse())
+            setCommentData(arrayComments)
         // Info about the members.. ========================================================
         let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: params.schema, memberEmail: auth?.user?.email}})
         let data = responseMembers.data[0]
@@ -178,14 +180,40 @@ export const VideoDetailAWS: React.FC = () => {
         }
     }
 
-    const handleCommentSubmit = (e) => {
+    const handleCommentSubmit = async (e) => {
         e.preventDefault()
-        axios.post(`${URL_BASE}/comments`, {
+        let a = await axios.post(`${URL_BASE}/comments`, {
             schemaName: params.schema,
             description: input,
             videoId: videoData.videoId,
             memberId: member.memberId
-        }).then(r => alert(r.data.message))
+        })
+        let responseComments = await axios.get(`${URL_BASE}/comments?schemaName=${params.schema}&videoId=${videoData.videoId}`)
+            let arrayComments: any[] = []
+            responseComments.data.map(el => {
+                let unformatedTimestampDay = el.createdAt.split("T")[0]
+                let unformatedTimestampHour = el.createdAt.split("T")[1]
+                let hours = unformatedTimestampHour.split(":")
+                let days = unformatedTimestampDay.split("-")
+                let commentTimestamp = `${days[2]}-${days[1]}-${days[0]} / ${hours[0]-3}:${hours[1]}`
+                let obj = {
+                    commentId: el.commentId,
+                    memberName: el.memberName,
+                    text: el.text,
+                    videoTitle: el.videoTitle,
+                    videoId: el.videoId,
+                    schemaName: el.channelname,
+                    timestamp: commentTimestamp,
+                }
+                arrayComments.push(obj)
+            })
+        
+        setCommentData(arrayComments)
+        setInput("")
+        dispatch(setToast('Comment posted succesfully'))
+        testFunction()
+        setErrors({comments: "Already posted a comment", disabled: true})
+        auth?.refreshInfo()
     }
 
 
@@ -198,6 +226,16 @@ export const VideoDetailAWS: React.FC = () => {
         <div className="awsDetail-super-container">
             <div className="awsDetail-square-container">{/* Video Itself */}
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}
+                    <div>
+                        <h4 className="awsDetail-title">{videoData.title}</h4>  
+                        {
+                            member.userType === "superadmin" || member.userType === "admin" ? (
+                                <button>
+                                    <Icon svg="pencil" classes="awsDetail-edit-icon"/>
+                                </button>
+                            ) : <></>
+                        }
+                    </div>
                 {
                     videoData.videoLink !== "" ? (
                         <video controls className="awsDetail-video" /* width="250px" height="150px" */>
@@ -233,13 +271,13 @@ export const VideoDetailAWS: React.FC = () => {
             </div>
             {/* Comments */}
             <div className="awsDetail-comments-super-container">
-                <div className="awsDetail-postcomment-container">
-                    <form onSubmit={handleCommentSubmit}>
-                        <input type="text" id="post-comment" className="awsDetail-postcomment-input" placeholder="Post a comment..." onChange={handleInput} value={input}/>
-                        <button type="submit" className="awsDetail-postcomment-button" disabled={errors.disabled}>Submit</button>
-                    </form>
-                </div>
                 <div className="awsDetail-comments-container">
+                    <div className="awsDetail-postcomment-container">
+                        <form onSubmit={handleCommentSubmit}>
+                            <input type="text" id="post-comment" autoComplete="off" className="awsDetail-postcomment-input" placeholder="Post a comment..." onChange={handleInput} value={input}/>
+                            <button type="submit" className="Settings__button" disabled={errors.disabled}>Submit</button>
+                        </form>
+                    </div>
                     {
                         commentData.length > 0 ?
                         commentData.map(el => {

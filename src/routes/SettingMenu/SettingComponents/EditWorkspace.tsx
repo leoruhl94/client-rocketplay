@@ -1,12 +1,16 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Icon } from "../../../components/Icon/Icon";
 import { useAuth } from "../../../auth/useAuth";
 import { URL_BASE } from "../../../constants/constants";
 import "./EditWorkspace.scss";
+import { setToast } from "../../../redux/actions"
+import { testFunction } from "../../../constants/functions";
 
 export const EditWorkspace: React.FC = () => {
   const auth = useAuth();
+  const dispatch = useDispatch()
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [schemaName, setSchemaName] = useState("");
@@ -20,6 +24,8 @@ export const EditWorkspace: React.FC = () => {
     e.preventDefault();
     setName(e.target.value);
     axios.put(`${URL_BASE}/workspace`, { schemaName, name });
+    dispatch(setToast('Workspace updated successfully'))
+    testFunction()
   };
 
   const onChangeName = (e) => {
@@ -36,6 +42,8 @@ export const EditWorkspace: React.FC = () => {
     e.preventDefault();
     setCode(e.target.value);
     axios.put(`${URL_BASE}/workspace`, { schemaName, code });
+    dispatch(setToast('Workspace code updated successfully'))
+    testFunction()
   };
 
   const handleWorkspaceSelect = (e) => {

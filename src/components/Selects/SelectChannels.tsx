@@ -39,7 +39,7 @@ export const Selectchannel: React.FC<PropsWP> = ({
       id=""
       className="SelectComponent"
     >
-      <option value="all" id="pollito" className="SelectComponent_option">
+      <option selected value="" id="pollito" className="SelectComponent_option">
         Channels
       </option>
       {arrayChannels?.map((item) => (
