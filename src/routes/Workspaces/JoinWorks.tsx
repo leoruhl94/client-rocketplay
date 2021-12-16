@@ -83,14 +83,14 @@ export const JoinWorks: React.FC = () => {
                   <div className="Workspaces__joinworks__form-btns-cont">
                     {result?.found?.name ? (
                       <button
-                        className="Workspaces__joinworks__form-btn"
+                        className="Settings__button Workspaces__joinworks__form-btn"
                         type="button"
                         onClick={handleJoin}
                       >
                         JOIN
                       </button>
                     ) : (
-                      <button type="submit" className="Settings__button">
+                      <button type="submit" className="Settings__button Workspaces__joinworks__form-btn">
                         Search
                       </button>
                     )}

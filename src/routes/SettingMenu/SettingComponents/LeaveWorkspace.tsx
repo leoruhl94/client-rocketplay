@@ -13,7 +13,7 @@ export const LeaveWorkspace: React.FC = () => {
       {auth?.user?.workspaces?.map((w, i) => {
         
         if(!(myWorkSpace === w)){
-          return (
+          return (<div key={i}>
           <WorkspaceItemDelete
             
             schemaName={w}
@@ -21,7 +21,7 @@ export const LeaveWorkspace: React.FC = () => {
               auth?.user?.workspacesTitles?.length ? auth?.user?.workspacesTitles[i] : ""
             }
             
-          />
+          /></div>
           )
         }
       })
