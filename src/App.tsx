@@ -88,10 +88,9 @@ const App: React.FC = () => {
     <>
       <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
-        <PrivateRoute
+        <Route
           path="/:algunaRuta"
           component={NavigationTop}
-          routesToAvoid={["/pricing", "/about"]}
         />
         <PrivateRoute
           path="/:algunaRuta"

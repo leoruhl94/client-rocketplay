@@ -40,11 +40,9 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
     useOpen(false);
 
   ///==================MENUS===================
- 
+
   return (
-    
     <MenuToggleContainer transition={transition} k="002">
-    
       <nav className="SettingMenu__container">
         <DropdownMenu
           title="Account"
@@ -55,12 +53,15 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
             <InfoAccount />
           </DropdownMenuItem>
-          
-           {auth?.user?.isBusiness ? (
-          <>
-            <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
-              <SubscriptionsSettings />
-            </DropdownMenuItem>
+
+          {auth?.user?.isBusiness ? (
+            <>
+              <DropdownMenuItem
+                isOpen={isOpenMenuAccount}
+                title="Subscriptions"
+              >
+                <SubscriptionsSettings />
+              </DropdownMenuItem>
             </>
           ) : (
             <></>
@@ -73,11 +74,13 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
           close={closeMenuWorkspace}
           open={openMenuWorkspace}
         >
-          <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Leave Workspace">
+          <DropdownMenuItem
+            isOpen={isOpenMenuWorkspace}
+            title="Leave Workspace"
+          >
             <LeaveWorkspace />
           </DropdownMenuItem>
-          
-          
+
           {auth?.user?.isBusiness ? (
             <>
               <DropdownMenuItem
@@ -146,7 +149,6 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
                 <EditCategory />
               </DropdownMenuItem>
               <DropdownMenuItem
-                
                 isOpen={isOpenMenuCategories}
                 title="Remove Category"
               >
@@ -166,5 +168,137 @@ export const SettingMenu: React.FC<props> = ({ transition }) => {
         )}
       </nav>
     </MenuToggleContainer>
+  );
+};
+
+export const MenuTodo = () => {
+  const auth = useAuth();
+  ///==================MENUS===================
+  const [isOpenMenuAccount, openMenuAccount, closeMenuAccount] = useOpen(false);
+  const [isOpenMenuWorkspace, openMenuWorkspace, closeMenuWorkspace] =
+    useOpen(false);
+  const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
+    useOpen(false);
+  const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
+    useOpen(false);
+
+  ///==================MENUS===================
+
+  return (
+    <nav className="SettingMenu__container">
+      <DropdownMenu
+        title="Account"
+        isOpen={isOpenMenuAccount}
+        close={closeMenuAccount}
+        open={openMenuAccount}
+      >
+        <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
+          <InfoAccount />
+        </DropdownMenuItem>
+
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
+              <SubscriptionsSettings />
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <></>
+        )}
+      </DropdownMenu>
+
+      <DropdownMenu
+        title="Workspace"
+        isOpen={isOpenMenuWorkspace}
+        close={closeMenuWorkspace}
+        open={openMenuWorkspace}
+      >
+        <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Leave Workspace">
+          <LeaveWorkspace />
+        </DropdownMenuItem>
+
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenuItem
+              isOpen={isOpenMenuWorkspace}
+              title="Edit Workspace"
+            >
+              <EditWorkspace />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+              <MemberType />
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <></>
+        )}
+      </DropdownMenu>
+      {auth?.user?.isBusiness ? (
+        <>
+          <DropdownMenu
+            title="Channels"
+            isOpen={isOpenMenuChannels}
+            close={closeMenuChannels}
+            open={openMenuChannels}
+          >
+            <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
+              <AddChannel />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem isOpen={isOpenMenuChannels} title="Edit Channel">
+              <EditChannel />
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              isOpen={isOpenMenuChannels}
+              title="Remove Channel"
+            >
+              <RemoveChannel />
+            </DropdownMenuItem>
+          </DropdownMenu>
+        </>
+      ) : (
+        <></>
+      )}
+      {auth?.user?.isBusiness ? (
+        <>
+          <DropdownMenu
+            title="Categories"
+            isOpen={isOpenMenuCategories}
+            close={closeMenuCategories}
+            open={openMenuCategories}
+          >
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Add Category"
+            >
+              <AddCategory2 />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Edit Category"
+            >
+              <EditCategory />
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Remove Category"
+            >
+              <RemoveCategory />
+            </DropdownMenuItem>
+
+            {/* <DropdownMenuItem
+        isOpen={isOpenMenuCategories}
+        title="Change privacy"
+      >
+        
+      </DropdownMenuItem> */}
+          </DropdownMenu>
+        </>
+      ) : (
+        <></>
+      )}
+    </nav>
   );
 };

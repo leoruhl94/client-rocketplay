@@ -214,7 +214,7 @@ export const VideoDetailAWS: React.FC = () => {
                 arrayComments.push(obj)
             })
         
-        setCommentData(arrayComments)
+        setCommentData(arrayComments.reverse())
         setInput("")
         dispatch(setToast('Comment posted succesfully'))
         testFunction()

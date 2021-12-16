@@ -125,7 +125,7 @@ export const Logos = {
       <defs>
         <style>
           {
-            ".logoDarkColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.logoDarkColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.logoDarkColor-cls-3,.logoDarkColor-cls-6{fill:#354952;}.logoDarkColor-cls-4{fill:black;opacity:0.3;}.logoDarkColor-cls-5,.logoDarkColor-cls-7{fill:#fff;}.logoDarkColor-cls-6,.logoDarkColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.logoDarkColor-cls-6{stroke-width:25px;}.logoDarkColor-cls-7{stroke-width:29px;}"
+            ".rocketColor-cls-1{fill:url(#Degradado_sin_nombre_23);}.rocketColor-cls-2{fill:url(#Degradado_sin_nombre_29);}.rocketColor-cls-3,.rocketColor-cls-6{fill:#354952;}.rocketColor-cls-4{fill:black;opacity:0.3;}.rocketColor-cls-5,.rocketColor-cls-7{fill:#fff;}.rocketColor-cls-6,.rocketColor-cls-7{stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.rocketColor-cls-6{stroke-width:25px;}.rocketColor-cls-7{stroke-width:29px;}"
           }
         </style>
         <linearGradient
@@ -164,29 +164,29 @@ export const Logos = {
       <g id="Capa_2" data-name="Capa 2">
         <g id="Dark-color">
           <path
-            className="logoDarkColor-cls-1"
+            className="rocketColor-cls-1"
             d="M201.65,1447c11-19,25.11-43.73,41-73,0,0,45.6-77.37,75-148,77-185,35-193,100-257,61.27-60.33,218.12-43.16,298,53,70.9,85.35,75,213,18,275-47.78,52-100.79,23.28-264,100-15.95,7.5-59.86,28.67-114,58-37.41,20.26-68.9,38.56-93,53Z"
           />
           <path
-            className="logoDarkColor-cls-2"
+            className="rocketColor-cls-2"
             d="M1454.87,177.16c47.25-8.68,88,33.66,77.53,80.53C1500.7,399.21,1440,580.1,1319.65,764a1510.83,1510.83,0,0,1-183.73,228.6,21.23,21.23,0,0,0-5.53,19.59,394.11,394.11,0,0,1-46.93,293.3c-14.32,23.89-47.4,27.73-67,7.92L394.11,683.89c-20.11-20.34-15.23-54.36,9.89-68a395,395,0,0,1,282.19-38,35.86,35.86,0,0,0,33.9-9.84,1372,1372,0,0,1,734.78-390.86Z"
           />
-          <circle className="logoDarkColor-cls-3" cx="1136.65" cy="570" r="127" />
+          <circle className="rocketColor-cls-3" cx="1136.65" cy="570" r="127" />
           <path
-            className="logoDarkColor-cls-4"
+            className="rocketColor-cls-4"
             d="M1533.65,251c-27.22,125-81.71,301.6-198,487A1515.06,1515.06,0,0,1,1134.2,993.34a19,19,0,0,0-4.89,17.87,387.16,387.16,0,0,1,9.34,131.79c-7.13,69.56-32.14,124.84-55.43,163.14-14.66,24.12-48.19,27.82-67.92,7.63q-78.19-80-156.65-159.77-76.86-78.12-154-156c31.48-18.54,76.44-45.54,129.74-79.46,52-33.1,99.36-64.06,119.63-78.87C1061.88,760.89,1122.65,696,1122.65,696a132,132,0,0,1-79-39c7.11,1.66,74.92,16.24,128-30,43.71-38.08,59.45-101.76,39-160a116.72,116.72,0,0,1,47,64c24.7-33.11,49.68-69.53,74.14-109.4A1464.58,1464.58,0,0,0,1451.65,178c13.41-1.44,40.56-2.25,60,15C1537.3,215.77,1534,248.14,1533.65,251Z"
           />
           <path d="M1165.65,326.79a663.08,663.08,0,0,1,207.5-84.29" />
           <path
-            className="logoDarkColor-cls-5"
+            className="rocketColor-cls-5"
             d="M1158.53,315.32a492,492,0,0,1,49.19-29.77c8.45-4.53,17.09-8.74,25.76-12.84s17.51-7.87,26.4-11.5a566.39,566.39,0,0,1,54.37-18.89,498.87,498.87,0,0,1,56-13,13.52,13.52,0,0,1,5.9,26.35l-.1,0c-17.74,4.86-35.35,10-52.75,15.78-8.68,2.91-17.35,5.87-25.94,9.06s-17.15,6.41-25.6,9.91-16.91,7-25.26,10.78-16.65,7.63-24.91,11.6c-16.48,8-32.7,16.58-48.82,25.44l0,0a13.52,13.52,0,0,1-14.2-23Z"
           />
           {/* <path
-            className="logoDarkColor-cls-5"
+            className="rocketColor-cls-5"
             d="M175.67,2023.38A176.16,176.16,0,0,1,0,1847.44V175.93A175.79,175.79,0,0,1,254.39,18.7L890.28,334a10.27,10.27,0,0,1,1.12,17.73l-57,38a10.25,10.25,0,0,1-10.09.74L212.57,102.35c-26.07-13-55.25-11.73-80,3.6s-39,40.82-39,70V1847.44c0,29.15,14.23,54.65,39,70s54,16.65,80,3.6l1671.51-835.75c28.47-14.24,45.47-41.75,45.47-73.58,0-30.22-29.74-59.46-49.85-75.77L1427,714.4a10.24,10.24,0,0,1-4.3-14.47c6.62-11.07,13.25-23,19.74-35.88q7-13.9,12.81-27.1a10.25,10.25,0,0,1,13.88-5.08L1930.1,856.56l3.7,2.89c58.4,45.68,89.27,98.32,89.27,152.23a174.83,174.83,0,0,1-97.17,157.23L254.39,2004.67A175.88,175.88,0,0,1,175.67,2023.38Z"
           /> */}
-          <path className="logoDarkColor-cls-6" d="M1070.65,514a67,67,0,0,1,83-29" />
-          <path className="logoDarkColor-cls-7" d="M473.65,651a231.78,231.78,0,0,1,169-20" />
+          <path className="rocketColor-cls-6" d="M1070.65,514a67,67,0,0,1,83-29" />
+          <path className="rocketColor-cls-7" d="M473.65,651a231.78,231.78,0,0,1,169-20" />
         </g>
       </g>
     </>

@@ -51,7 +51,7 @@ export const CategoriesAWS: React.FC = () => {
             return (
               <Link
                 key={el.categoryId}
-                to={`/home/${params.schema}/${el.channelName}/${el.categoryId}`}
+                to={`/home/${params.schema}/${el.channelName}---${el.channelId}/${el.categoryId}`}
                 className="Categories-link"
               >
                 <div className="Categories__item">

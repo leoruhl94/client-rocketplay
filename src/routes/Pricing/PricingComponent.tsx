@@ -15,7 +15,6 @@ const PricingComponent: React.FC = () => {
   }, []);
   return (
     <div className="PricingComponent-container">
-      <NavigationTop />
       <h1 className="pricingTitle">Explore current top deals</h1>
 
       <div className="PricingContainer">
