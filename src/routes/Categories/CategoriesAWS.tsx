@@ -52,13 +52,13 @@ export const CategoriesAWS: React.FC = () => {
               return (
                 <Link
                   key={el.categoryId}
-                  to={`/home/${params.schema}/${el.channelName}/${el.categoryId}`}
+                  to={`/home/${params.schema}/${el.channelName}---${el.channelId}/${el.categoryId}`}
                   className="Categories-link"
                 >
                   <div className="Categories__item">
                     <div>{el.categoryName}</div>
                     <span className="singleChannelArrow">
-                      <Icon svg="goNext"/>
+                      <Icon svg="goNext" />
                     </span>
                   </div>
                 </Link>
