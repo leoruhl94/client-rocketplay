@@ -72,7 +72,7 @@ export const AddWorkspace: React.FC<props> = ({
       ) : null}
       <div className={"AddWorkspace" + (!dep ? " AddWorkspace__dep" : "")}>
         <div className="AddWorkspace__container">
-          <h2 className="AddWorkspace__title">Add Workspace</h2>
+          <h2 className="AddWorkspace__title">Join a Workspace</h2>
           <form className="AddWorkspace__form" onSubmit={handleSubmit}>
             <input
               type="text"

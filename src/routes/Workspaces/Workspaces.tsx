@@ -12,20 +12,26 @@ import { useAuth } from "../../auth/useAuth";
 import { NavProfileAndLocation } from "../../containers/NavProfileAndLocation/NavProfileAndLocation";
 import { WorkspaceItem } from "./WorkspaceItem";
 import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
+import { JoinWorks } from "./JoinWorks";
 
 interface props {
   transition: any;
 }
+
 export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const [add, setAdd] = useState(false);
+  
 
-  const joinedWorks = auth?.user?.workspaces?.filter(
+  /* const joinedWorks = auth?.user?.workspaces?.filter(
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.name === x)
-  );
-  const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
+    ); */
+  const joinedWorks = ['Titulo Workspace']
+  /* const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
-  );
+  ); */
+  const joinedWorksTT = ['Titulo Workspacefessfsfsfeagfrag','Titulo Workspace','Titulo Workspace','Titulo Workspace','Titulo Workspace']
+
 
   useEffect(() => {auth?.refreshInfo()}, [])
 
@@ -33,7 +39,6 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   function handleAdd() {
     setAdd(!add);
   }
-
   //console.log("--", auth?.user?.workspaces);
   function refreshWorkspace() {
     auth?.refreshInfo();
@@ -41,7 +46,6 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
 
   return (
     <>
-   
       <AddWorkspace
         dep={add}
         handleAdd={handleAdd}
@@ -50,7 +54,6 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
 
       <MenuToggleContainer transition={transition} k="key3">
         <section className="Workspaces__container">
-
             <h2
               className={`Workspaces__title ${
                 auth?.user?.workspacesTitles?.length || auth?.user?.myWorkspaces?.length ? "display__none" : ""
@@ -58,7 +61,23 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            {auth?.user?.myWorkspaces?.length ? (<>
+            {joinedWorks.length ? (<div className="Workspaces__worksGroup" >
+              <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+              <div className="Workspaces__list">
+                {joinedWorks.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item}
+                      path={item}
+                    />
+                  );
+                })}
+              </div>
+              <JoinWorks/>
+            </div>
+            ) : null}
+            {/* {auth?.user?.myWorkspaces?.length ? (<>
               <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
               <div className="Workspaces__list">
                 {auth.user.myWorkspaces.map((item, i) => {
@@ -71,13 +90,13 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                   );
                 })}
               </div></>
-            ) : null}
+            ) : null} */}
 
-            {joinedWorksTT?.length ? (
+            {joinedWorksTT?.length ? (<div className="Workspaces__worksGroup" >
+              <h2 id="title2" className="Workspaces__worksGroup_title">
+                Joined In
+              </h2>
               <div className="Workspaces__list">
-                <h2 id="title2" className="Workspaces__worksGroup_title">
-                  Joined In
-                </h2>
                 {joinedWorksTT.map((item, i) => {
                   return (
                     <WorkspaceItem
@@ -97,11 +116,12 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                   );
                 })}
               </div>
+            </div>
             ) : (
               ""
             )}
 
-            <div className="Workspaces__button_container">
+            <div className="Workspaces__button_container" id='joinBtn'>
               <button className="Workspaces__button" onClick={handleAdd}>
                 Join a Workspace
                 <span className="Workspaces__button_icon">
