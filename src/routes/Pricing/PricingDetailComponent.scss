@@ -103,7 +103,7 @@
     background: $priceGoldGradient;
 }
 
-@media only screen and (min-width: $smallDevices) {
+@media only screen and (min-width: $mediumDevices) {
     .planContainer{
         min-width: 250px;
         margin: 20px;

@@ -111,10 +111,10 @@ export const EditChannel: React.FC = () => {
           </select>
           {channelsState?.length ? (
             <select onChange={handleChannelSelect} name="oldName" id="" className="SelectComponent">
-              <option value="all" className="SelectComponent_option">Channels</option>
+              <option value="all" className="SelectComponent_option Select__50w">Channels</option>
               {channelsState?.map((ch) => (
-                <option key={ch.id} value={ch.name}>
-                  {ch.name}
+                <option key={ch.id} value={ch.name} className="SelectComponent_option Select__50w">
+                  {ch.name}                
                 </option>
               ))}
             </select>
@@ -122,7 +122,7 @@ export const EditChannel: React.FC = () => {
             
           </div>
           <div className="Settings__inputs_container">
-          <label className="Settings__label">New name: </label>
+          <label className="Settings__label">New Name: </label>
           <input
             type="text"
             name="newName"

@@ -7,7 +7,7 @@
     // height: 50vh;
     // background-color: aquamarine;
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 }
 .pricingTitle{
@@ -24,7 +24,7 @@
     padding: 1rem;
     padding-bottom: 60px;
 }
-@media only screen and (min-width: $smallDevices) {
+@media only screen and (min-width: $mediumDevices) {
     .pricingContainer{
         flex-direction: row;
         // flex-wrap: wrap;
