@@ -45,28 +45,8 @@ export const ChannelsAWS: React.FC = () => {
     setAdd(!add);
   }
 
-  const hardChannels = [{
-    channelId: 123,
-    channelName: 'channelName',
-    isprivate: false,
-    description: 'canalazo',
-    status: 'active'
-  },
-  {
-    channelId: 123,
-    channelName: 'channelName',
-    isprivate: false,
-    description: 'canalazo',
-    status: 'active'
-  },
-  {
-    channelId: 123,
-    channelName: 'channelName',
-    isprivate: false,
-    description: 'canalazo',
-    status: 'active'
-  }]
-  const [channelsState, setChannelsState] = useState<Channels[]>(hardChannels);
+  //const hardChannels = [{channelId: 123,channelName: 'channelName',isprivate: false,description: 'canalazo',status: 'active'},{channelId: 123,channelName: 'channelName',isprivate: false,description: 'canalazo',status: 'active'},{channelId: 123,channelName: 'channelName',isprivate: false,description: 'canalazo',status: 'active'}]
+  const [channelsState, setChannelsState] = useState<Channels[]>([]);
 
   useEffect(() => {
     axios.get(`${URL_BASE}/channels?schemaName=${params.schema}`).then((r) => {
@@ -82,7 +62,7 @@ export const ChannelsAWS: React.FC = () => {
         };
         array.push(obj);
       });
-      //setChannelsState(array);
+      setChannelsState(array);
     });
     getMemberInfo();
   }, []);
