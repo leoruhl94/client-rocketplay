@@ -24,7 +24,7 @@ interface props {
 export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const dispatch = useDispatch()
-  const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
+  //const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
   const [add, setAdd] = useState(false);
   
 
@@ -60,6 +60,38 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
 
       <MenuToggleContainer transition={transition} k="key3">
         <section className="Workspaces__container">
+            {/* {joinedWorks.length ? (<div className="Workspaces__worksGroup" >
+              <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+              <div className="Workspaces__list">
+              {joinedWorks.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                      key={i}
+                      workspace={item}
+                      path={item}
+                      />
+                      );
+                })}
+                </div>
+                </div>
+              ) : null} */}
+            <div className="Workspaces__worksGroup">
+              {auth?.user?.myWorkspaces?.length ? (<>
+                <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+                <div className="Workspaces__list">
+                {auth.user.myWorkspaces.map((item, i) => {
+                  return (
+                    <WorkspaceItem
+                    key={i}
+                    workspace={item.title}
+                    path={item.name}
+                    />
+                  );
+                })}
+                </div></>
+                ) : null}
+                <JoinWorks/>
+            </div>
             <h2
               className={`Workspaces__title ${
                 auth?.user?.workspacesTitles?.length || auth?.user?.myWorkspaces?.length ? "display__none" : ""
@@ -67,38 +99,6 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            {/* {joinedWorks.length ? (<div className="Workspaces__worksGroup" >
-              <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
-              <div className="Workspaces__list">
-                {joinedWorks.map((item, i) => {
-                  return (
-                    <WorkspaceItem
-                      key={i}
-                      workspace={item}
-                      path={item}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-            ) : null} */}
-            {auth?.user?.myWorkspaces?.length ? (
-                <div className="Workspaces__worksGroup">
-                  <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
-                  <div className="Workspaces__list">
-                  {auth.user.myWorkspaces.map((item, i) => {
-                    return (
-                      <WorkspaceItem
-                      key={i}
-                      workspace={item.title}
-                      path={item.name}
-                      />
-                    );
-                  })}
-                  </div>
-                  <JoinWorks/>
-                </div>
-              ) : null}
 
             {joinedWorksTT?.length ? (<div className="Workspaces__worksGroup" >
               <h2 id="title2" className="Workspaces__worksGroup_title">
