@@ -1,10 +1,11 @@
+@import "../../styles/variables.scss";
+
 .MenuToggleContainer{
     display: block;
     // position: fixed;
     bottom: calc( 0px + 40px);
     // left: 0px;
-    // min-height: calc(100vh - 100px);
-    // max-height: calc(100vh - 100px);
+    //min-height: calc(100vh - 100px);
     height: calc(100vh - 100px);
     width: 100%;
     padding: 5px;
@@ -12,6 +13,12 @@
     //background-color: rgba(0, 0, 0, 0.342);
     // border-radius: 15px 15px 0 0;
     //animation: slideToTop 0.3s linear 
+}
+@media only screen and (min-width: $mediumDevices) {
+    .MenuToggleContainer{
+        bottom: 0;
+        height: calc(100vh - 0px);
+    }
 }
 // @keyframes slideToTop {
 //     from {

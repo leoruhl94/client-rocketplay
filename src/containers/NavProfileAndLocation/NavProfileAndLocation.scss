@@ -49,7 +49,7 @@
 		background: transparent;
 	}
 }
-@media (min-width: $mediumDevices) {
+@media only screen and (min-width: $mediumDevices) {
 	.channelsNav__ocupaEspacio{
 		display: none;
 	}
