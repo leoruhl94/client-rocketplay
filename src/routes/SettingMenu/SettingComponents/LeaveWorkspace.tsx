@@ -5,7 +5,7 @@ import "./EditWorkspace.scss";
 
 export const LeaveWorkspace: React.FC = () => {
   const auth = useAuth();
-  let myWorkSpace = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].name
+  let myWorkSpace = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0]?.name
 
   return (
     <div className="LeaveWorkspace">

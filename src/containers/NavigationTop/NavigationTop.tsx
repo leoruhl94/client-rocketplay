@@ -19,9 +19,9 @@ export const NavigationTop: React.FC = () => {
   }, [location]);
 
   return (
-    <section className={`NavigationTop }`}>
+    <section className={`NavigationTop `}>
       <NavLink className="NavigationTop__navLink_logo " to="/">
-        <span className="NavigationTop__navLink_logo_icon "><Icon svg="rocketColor"  /></span>
+       <img className="NavigationTop__navLink_logo" src="../../" />
         <span className="NavigationTop__navLink_logo_text ">Rocket Play</span>
       </NavLink>
       <div className="NavigationTop__Links_containers ">
