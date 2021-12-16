@@ -28,14 +28,14 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
   const [add, setAdd] = useState(false);
   
 
-  /* const joinedWorks = auth?.user?.workspaces?.filter(
+  const joinedWorks = auth?.user?.workspaces?.filter(
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.name === x)
-    ); */
-  const joinedWorks = ['Titulo Workspace']
-  /* const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
+    );
+  //const joinedWorks = ['Titulo Workspace']
+  const joinedWorksTT = auth?.user?.workspacesTitles?.filter(
     (x: any) => !auth?.user?.myWorkspaces?.find((y: any) => y.title === x)
-  ); */
-  const joinedWorksTT = ['Titulo Workspacefessfsfsfeagfrag','Titulo Workspace','Titulo Workspace','Titulo Workspace','Titulo Workspace']
+  );
+  //const joinedWorksTT = ['Titulo Workspacefessfsfsfeagfrag','Titulo Workspace','Titulo Workspace','Titulo Workspace','Titulo Workspace']
 
 
 
@@ -67,7 +67,7 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
             >
               You do not belong to a workspace yet
             </h2>
-            {joinedWorks.length ? (<div className="Workspaces__worksGroup" >
+            {/* {joinedWorks.length ? (<div className="Workspaces__worksGroup" >
               <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
               <div className="Workspaces__list">
                 {joinedWorks.map((item, i) => {
@@ -80,23 +80,25 @@ export const Workspaces: React.FC<props> = ({ transition }) => {
                   );
                 })}
               </div>
-              <JoinWorks/>
             </div>
-            ) : null}
-            {/* {auth?.user?.myWorkspaces?.length ? (<>
-              <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
-              <div className="Workspaces__list">
-                {auth.user.myWorkspaces.map((item, i) => {
-                  return (
-                    <WorkspaceItem
+            ) : null} */}
+            {auth?.user?.myWorkspaces?.length ? (
+                <div className="Workspaces__worksGroup">
+                  <h2 className="Workspaces__worksGroup_title">My Workspaces</h2>
+                  <div className="Workspaces__list">
+                  {auth.user.myWorkspaces.map((item, i) => {
+                    return (
+                      <WorkspaceItem
                       key={i}
                       workspace={item.title}
                       path={item.name}
-                    />
-                  );
-                })}
-              </div></>
-            ) : null} */}
+                      />
+                    );
+                  })}
+                  </div>
+                  <JoinWorks/>
+                </div>
+              ) : null}
 
             {joinedWorksTT?.length ? (<div className="Workspaces__worksGroup" >
               <h2 id="title2" className="Workspaces__worksGroup_title">

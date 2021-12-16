@@ -102,7 +102,8 @@ export const VideoDetailAWS: React.FC = () => {
 
     const handleLoadOfData = async () => {
         // Info about the video.. =========================================================
-        let responseVideoData = await axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
+        // let responseVideoData = await axios.get(`${URL_BASE}/video?schemaName=${params.schema}&title=${params.title}`)
+        let responseVideoData = await axios.get(`${URL_BASE}/video/id?schemaName=${params.schema}&videoId=${params.title}`)
             let dataVideo = responseVideoData.data[0]
             console.log(dataVideo.createdAt)
             let unformatedTimestamp = dataVideo.createdAt.split("T")[0]
@@ -239,10 +240,10 @@ export const VideoDetailAWS: React.FC = () => {
         {/* <NavProfileAndLocation header={videoData.title}/> */}
         <div className="awsDetail-super-container">
             <Modal isOpen={isOpenTitleModal} closeModal={closeTitleModal}>
-                <EditVideoTitle schemaName={params.schema} videoId={videoData.videoId}/>
+                <EditVideoTitle schemaName={params.schema} videoId={videoData.videoId} closeModal={closeTitleModal}/>
             </Modal>
             <Modal isOpen={isOpenDescriptionModal} closeModal={closeDescriptionModal}>
-                <EditVideoDescription schemaName={params.schema} videoId={videoData.videoId}/>
+                <EditVideoDescription schemaName={params.schema} videoId={videoData.videoId} closeModal={closeDescriptionModal}/>
             </Modal>
             <div className="awsDetail-square-container">{/* Video Itself */}
                 <div className="awsDetail-video-frame-div"> {/* Video Frame */}

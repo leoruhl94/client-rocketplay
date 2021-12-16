@@ -4,16 +4,20 @@ import axios from "axios";
 import { URL_BASE } from "../../../constants/constants";
 import { setToast } from "../../../redux/actions";
 import { testFunction } from "../../../constants/functions";
-import {useHistory} from "react-router"
+import { useHistory, useLocation } from "react-router";
+import {useAuth} from "../../../auth/useAuth"
 interface Props {
   schemaName: string;
   videoId: number;
+  closeModal():void;
 }
 
-export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId }) => {
-    let history = useHistory()
+export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId, closeModal }) => {
+  let history = useHistory();
+  let location: any = useLocation()
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+  let auth = useAuth()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,11 +26,13 @@ export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId }) => {
       newTitle: input,
       id: videoId,
     };
-    console.log(obj)
+    console.log(obj);
     axios.put(`${URL_BASE}/video/editTitle`, obj);
     dispatch(setToast("Video title updated successfully"));
     testFunction();
-    history.push(`/videodetail/${schemaName}/${obj.newTitle}`)
+    history.push(`/videodetail/${schemaName}/${obj.id}`);
+    auth?.refreshInfo()
+    closeModal()
   };
 
   const handleChange = (e) => {
@@ -58,9 +64,9 @@ export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId }) => {
 export const EditVideoDescription: React.FC<Props> = ({
   schemaName,
   videoId,
+  closeModal
 }) => {
-
-    let history = useHistory()
+  let history = useHistory();
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
@@ -78,6 +84,7 @@ export const EditVideoDescription: React.FC<Props> = ({
     axios.put(`${URL_BASE}/video/editDescription`, obj);
     dispatch(setToast("Video Description updated successfully"));
     testFunction();
+    closeModal()
   };
 
   return (

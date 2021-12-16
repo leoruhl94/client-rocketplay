@@ -76,6 +76,7 @@ export const ClassAWS: React.FC<Props> = ({ schemaName }) => {
 								likes={el.likes}
 								timestamp={el.timestamp}
 								key={el.videoId}
+								videoId={el.videoId}
 							/>
 						);
 					})
