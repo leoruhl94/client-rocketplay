@@ -47,6 +47,7 @@ import { LoadingComponent } from "./components/LoadingComponent/LoadingComponent
 import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
 import { SuperToast } from "./components/Toast/SuperToast";
 import { storeState } from "./redux/type";
+import { NavigationTop } from "./containers/NavigationTop/NavigationTop";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -87,6 +88,11 @@ const App: React.FC = () => {
     <>
       <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
+        <PrivateRoute
+          path="/:algunaRuta"
+          component={NavigationTop}
+          routesToAvoid={["/pricing"]}
+        />
         <PrivateRoute
           path="/:algunaRuta"
           component={NavProfileAndLocation}
