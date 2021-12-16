@@ -1,55 +1,74 @@
 @import "../../styles/variables.scss";
 
-.WorkspaceItem{
-    text-decoration: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 300px;
-    margin: 3px 0;
-    background-color: #286053;
-    height: 60px;
+.WorkspaceItem {
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 300px;
+  margin: 3px 0;
+  background-color: #286053;
+  height: 60px;
+  border-radius: 10px;
+  transition: 0.2s;
+  &:hover {
+    background-color: #3b8b79;
+  }
+  .WorkspaceItem__Icon {
+    width: 50px;
+    height: 50px;
+    padding-top: 3px;
+    margin-left: 5px;
     border-radius: 10px;
-    transition: 0.2s;
-    &:hover{
-        background-color: #3b8b79;
+    background-color: #3dd598;
+    font-size: 3.3rem;
+    .WorkspaceItem__img {
+        padding: 0.4rem;
+      width: 50px;
+      height: 50px;
     }
-    .WorkspaceItem__Icon{
-        width: 50px;
-        height: 50px;
-        padding-top: 3px;
-        margin-left: 5px;
-        border-radius: 10px;
-        background-color: #3DD598;
-        font-size: 3.3rem;
-    }
-    
-    .WorkspaceItem__Name{
-        padding: 0;
-        margin: 0;
-        margin-left: 1rem;
-        color: rgba(255, 255, 255);
-        text-shadow: 1px 1px 3px black ;
-        font-size: 1.8rem;
-        font-weight: 550;
-        text-transform: capitalize;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
+  }
+
+  .WorkspaceItem__Name {
+    padding: 0;
+    margin: 0;
+    margin-left: 1rem;
+    color: rgba(255, 255, 255);
+    text-shadow: 1px 1px 3px black;
+    font-size: 1.8rem;
+    font-weight: 550;
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .WorkspaceItem__section-delete{
+      margin-left: auto;
+      .WorkspaceItem__delete{
+          padding: 0.5rem;
+          background-color: transparent;
+          color: rgba(255, 255, 255, 0.801);
+          font-size: 1.5rem;
+          outline: none;
+          border: none;
+          &:hover{
+              color: white;
+          }
+      }
+  }
 }
 
 @media only screen and (min-width: $smallDevices) {
-    .WorkspaceItem{
-        width: 90%;
-        // height: auto;
-        // flex-direction: column;
-        // justify-content: center;
-        // text-align: center;
-        // padding: 1rem;
-        // margin: 0.5rem;
+  .WorkspaceItem {
+    width: 90%;
+    // height: auto;
+    // flex-direction: column;
+    // justify-content: center;
+    // text-align: center;
+    // padding: 1rem;
+    // margin: 0.5rem;
     //     .WorkspaceItem__Name{
     //         margin: 0;
     //     }
-    }
+  }
 }

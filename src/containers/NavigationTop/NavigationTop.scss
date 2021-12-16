@@ -89,11 +89,8 @@
   }
 }
 
-// .NavigationTop_user {
-//   padding-top: 1rem;
-// }
 
-@media only screen and (max-width: $mediumDevices) {
+@media (max-width: $mediumDevices) {
   .NavigationTop {
     display: none;
   }

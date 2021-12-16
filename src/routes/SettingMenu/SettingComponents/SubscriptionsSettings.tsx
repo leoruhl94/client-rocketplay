@@ -87,7 +87,8 @@ export const SubscriptionsSettings: React.FC = () => {
       };
 
     return(
-        <div className="editSubscription">
+        // <div className="editSubscription">
+        <div className="Settings__inputs_container">
            {/* <h4 className='editSubscription__status'>{boolean ? 'Activar' : 'Pausar'}</h4>
            <div className='editSubscription__cont'>
             <SuperToggle
@@ -108,21 +109,25 @@ export const SubscriptionsSettings: React.FC = () => {
           <button type="button" onClick={(e) => handleShow(e)} className='Settings__button'>
             Cancel subscription
           </button>
-          <div className={`${openRemove.divClass}`}>
-            <label>
-              If you are sure about deleting this category type 'Cancel'
+          
+          <div className={` Settings__inputs_container ${openRemove.divClass}`}>
+            <label className="Settings__label_delete">
+              If you are sure about deleting this category type: <span>Cancel</span>
             </label>
+            <div className="Settings__inputs_container">
+              
             <input 
               type="text"
               onChange={handleDeleting}
               placeholder="deleted"
               autoComplete='off'
               className="Settings__input"
-            ></input>
+              ></input>
             <button onClick={confirmCancel} type="submit" id="last-remove-btn" disabled={openRemove.buttonDisabled} className='Settings__button'>
               Confirm
             </button>
             </div>
+              </div>
 
         </div>
     )

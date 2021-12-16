@@ -53,10 +53,12 @@ export function pageTransition (dir){
         pageTransition = {
             in: {
                 x: 0,
+                top:50,
                 position: 'fixed',
                 width: '100%'
             },
             out: {
+                top:50,
                 x: '-100%',
                 position: 'fixed',
                 width: '100%'
@@ -66,11 +68,13 @@ export function pageTransition (dir){
         pageTransition = {
             in: {
                 x: 0,
+                top:50,
                 position: 'fixed',
                 width: '100%'
             },
             out: {
                 x: '100%',
+                top:50,
                 position: 'fixed',
                 width: '100%'
             }
@@ -79,11 +83,13 @@ export function pageTransition (dir){
         pageTransition = {
             in: {
                 x: 0,
+                top:50,
                 position: 'fixed',
                 width: '100%'
             },
             out: {
                 x: 0,
+                top:50,
                 position: 'fixed',
                 width: '100%'
             }

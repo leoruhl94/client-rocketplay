@@ -8,7 +8,7 @@ export const LeaveWorkspace: React.FC = () => {
   let myWorkSpace = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0]?.name
 
   return (
-    <div className="LeaveWorkspace">
+    <div className="Settings__inputs_container list_item">
       {/* <h2 className="LeaveWorkspace__title"> Leave Workspace:  </h2> */}
       {auth?.user?.workspaces?.map((w, i) => {
         

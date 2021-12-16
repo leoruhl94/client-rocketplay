@@ -10,13 +10,13 @@
     width: 100%;
     padding: 5px;
     overflow-y: auto;
+    bottom: calc( 0px + 40px);
     //background-color: rgba(0, 0, 0, 0.342);
     // border-radius: 15px 15px 0 0;
     //animation: slideToTop 0.3s linear 
 }
-@media only screen and (min-width: $mediumDevices) {
-    
-}
+// @media (min-width: $mediumDevices) {
+// }
 // @keyframes slideToTop {
 //     from {
 //         bottom: -100vh;
