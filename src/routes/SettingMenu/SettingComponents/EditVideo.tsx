@@ -14,7 +14,7 @@ interface Props {
 
 export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId, closeModal }) => {
   let history = useHistory();
-  let location: any = useLocation()
+//   let location: any = useLocation()
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   let auth = useAuth()
@@ -33,6 +33,7 @@ export const EditVideoTitle: React.FC<Props> = ({ schemaName, videoId, closeModa
     history.push(`/videodetail/${schemaName}/${obj.id}`);
     auth?.refreshInfo()
     closeModal()
+    location.reload()
   };
 
   const handleChange = (e) => {
@@ -85,6 +86,7 @@ export const EditVideoDescription: React.FC<Props> = ({
     dispatch(setToast("Video Description updated successfully"));
     testFunction();
     closeModal()
+    location.reload()
   };
 
   return (
