@@ -5,6 +5,7 @@
   padding: 16px;
   border-radius: 10px;
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
   .Channels__upload_button {
     background: transparent;
     font-size: 2rem;
@@ -21,10 +22,23 @@
       text-shadow: 1px 1px 3px black ;
     }
   }
+  .singleChannel__channelsGroup{
+    width: 100%;
+    .singleChannelDiv{
+      width: 100%;
+      .singleChannelText h2{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }
 
 .singleChannelSuperContainer{
   position: relative;
+  display: flex;
+  justify-content: center;
   .awsChannels-flex-title-helper{
     display: flex;
     align-items: center;
@@ -76,6 +90,26 @@
     text-shadow: 1px 1px 3px black;
   }
 }
+@media only screen and (min-width: $mediumDevices) {
+  .singleChannel-outer-div{
+    width: 100%;
+    .singleChannel__channelsGroup{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .singleChannelDiv{
+        width: 29%;
+        margin: 1rem auto;
+      }
+    }
+  }
+}
+@media only screen and (min-width: $largeDevices) {
+  .singleChannel-outer-div{
+    width: 80%;
+  }
+}
+
 
 // @media (min-width: 700px){
 //     .singleChannel-outer-div{
