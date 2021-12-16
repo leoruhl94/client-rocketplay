@@ -1,33 +1,33 @@
 @import "../../styles/variables.scss";
 .NavigationTop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: fit-content;
-  padding: 0 7%;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // height: fit-content;
+  // padding: 0 7%;
 
-  background-color: chartreuse;
-  .NavigationTop__navLink_logo {
-    display: flex;
-    align-items: center;
-    background-color: cornflowerblue;
+  // background-color: chartreuse;
+  // .NavigationTop__navLink_logo {
+  //   display: flex;
+  //   align-items: center;
+  //   background-color: cornflowerblue;
 
-    .NavigationTop__navLink_logo_icon {
-      padding-top: 0.5rem;
-        font-size: 3rem;
-    }
-    .NavigationTop__navLink_logo_text {
-      background-color: rgb(204, 27, 189);
-    }
-  }
+  //   .NavigationTop__navLink_logo_icon {
+  //     padding-top: 0.5rem;
+  //       font-size: 3rem;
+  //   }
+  //   .NavigationTop__navLink_logo_text {
+  //     background-color: rgb(204, 27, 189);
+  //   }
+  // }
   .NavigationTop__Links_containers {
-    background-color: crimson;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    // background-color: crimson;
+    // width: 80%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: flex-end;
     .NavigationTop__navLink {
-      background-color: chocolate;
+      // background-color: chocolate;
       // padding: 1rem;
       // font-size: 1.3rem;
       // text-decoration: none;
@@ -36,9 +36,9 @@
   }
 
   .NavigationTop__profile {
-    display: flex;
-    align-items: center;
-    background-color: cyan;
+    // display: flex;
+    // align-items: center;
+    // background-color: cyan;
     // margin: 0;
     // padding: 0;
     // margin: auto 1.1rem;
@@ -51,22 +51,22 @@
     }
   }
 
-  .Profile_image {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .NavigationTop__profile_button {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    position: relative;
-    border: none;
-    background: transparent;
-  }
+  // .Profile_image {
+  //   width: 35px;
+  //   height: 35px;
+  //   border-radius: 50%;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  // }
+  // .NavigationTop__profile_button {
+  //   width: 35px;
+  //   height: 35px;
+  //   border-radius: 50%;
+  //   position: relative;
+  //   border: none;
+  //   background: transparent;
+  // }
 }
 
 // .NavigationTop_user {
@@ -74,30 +74,8 @@
 // }
 
 @media only screen and (max-width: $mediumDevices) {
-  .navigationTop {
+  .NavigationTop {
     display: none;
-    //     padding: 0 2rem;
-    //     .navigationTop__navLink{
-    //         padding: 0.6rem 0.8rem;
-    //         font-size: 1.5rem;
-    //         text-decoration: none;
-    //         // color: rgba(255, 255, 255, 0.8);
-    //         color: white;
-    //     }
-    //     .navigationTop__navLink_onlyDesktop{
-    //         display: block;
-    //     }
-    //     .Profile_image{
-    //         width: 45px;
-    //         height: 45px;
-    //     }
-    //     .channelsNavProfileBtn{
-    //         width: 45px;
-    //         height: 45px;
-    //     }
-    // }
-    // .navigationTop_user{
-    //     padding-top: 1rem;
-    //     padding-right: 1.5rem;
+  
   }
 }

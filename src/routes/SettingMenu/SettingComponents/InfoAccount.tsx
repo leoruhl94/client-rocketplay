@@ -11,7 +11,7 @@ import { Clipboard } from "../../../components/Clipboard/Clipboard";
 export const InfoAccount: React.FC = () => {
     
     const auth = useAuth();
-    const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
+    const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0]?.code
     const [workspaceId, setWorkspaceId] = useState(MyworkspaceCode);
     const history = useHistory()
     const user = auth?.user

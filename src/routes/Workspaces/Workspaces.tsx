@@ -24,7 +24,6 @@ interface props {
 export const Workspaces: React.FC<props> = ({ transition }) => {
   const auth = useAuth();
   const dispatch = useDispatch()
-  //const MyworkspaceCode : any = auth?.user?.myWorkspaces && auth?.user?.myWorkspaces[0].code
   const [add, setAdd] = useState(false);
   
 
