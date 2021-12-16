@@ -107,7 +107,7 @@ export const RemoveChannel: React.FC = () => {
             onChange={handleWorkspaceSelect}
             name="schemaName Select__50w"
             id=""
-            className="SelectComponent"
+            className="SelectComponent Select__50w"
           >
             <option selected value="all" className="SelectComponent_option ">
               Workspaces

@@ -6,6 +6,7 @@ import { useAuth } from "../../auth/useAuth";
 import { useSelector } from "react-redux";
 import { storeState } from "src/redux/type";
 import { Icon } from "../../components/Icon/Icon";
+import logo from "../../images/OnlyRocket.png"
 
 export const NavigationTop: React.FC = () => {
   const auth = useAuth();
@@ -21,7 +22,7 @@ export const NavigationTop: React.FC = () => {
   return (
     <section className={`NavigationTop `}>
       <NavLink className="NavigationTop__navLink_logo " to="/">
-       <img className="NavigationTop__navLink_logo" src="../../" />
+       <img className="NavigationTop__navLink_logo_icon" src={logo} />
         <span className="NavigationTop__navLink_logo_text ">Rocket Play</span>
       </NavLink>
       <div className="NavigationTop__Links_containers ">
