@@ -46,26 +46,28 @@ export const CategoriesAWS: React.FC = () => {
     <MenuToggleContainer>
       <div className="Categories">
         <h2 className="Categories_title"> Categories </h2>
-        {categoryState.length > 0 ? (
-          categoryState.map((el) => {
-            return (
-              <Link
-                key={el.categoryId}
-                to={`/home/${params.schema}/${el.channelName}/${el.categoryId}`}
-                className="Categories-link"
-              >
-                <div className="Categories__item">
-                  <div>{el.categoryName}</div>
-                  <span className="singleChannelArrow">
-                    <Icon svg="goNext"/>
-                  </span>
-                </div>
-              </Link>
-            );
-          })
-        ) : (
-          <></>
-        )}
+        <div className="Categories_group">
+          {categoryState.length > 0 ? (
+            categoryState.map((el) => {
+              return (
+                <Link
+                  key={el.categoryId}
+                  to={`/home/${params.schema}/${el.channelName}/${el.categoryId}`}
+                  className="Categories-link"
+                >
+                  <div className="Categories__item">
+                    <div>{el.categoryName}</div>
+                    <span className="singleChannelArrow">
+                      <Icon svg="goNext"/>
+                    </span>
+                  </div>
+                </Link>
+              );
+            })
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </MenuToggleContainer>
   );

@@ -35,6 +35,11 @@
       font-size: 1.5rem;
       text-decoration: none;
       color: rgba(255, 255, 255, 0.8);
+      transition: 0.2s;
+      border-radius: 20px;
+      &:hover{
+          background: #ffffff2a;
+      }
     }
   }
 
@@ -54,6 +59,14 @@
       font-size: 1.5rem;
       margin: 0 0.2rem;
       background: transparent;
+      transition: 0.2s;
+      border-radius: 20px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      &:hover{
+          background: #ffffff2a;
+      }
     }
   }
 
@@ -72,6 +85,7 @@
     position: relative;
     border: none;
     background: transparent;
+    cursor: pointer;
   }
 }
 

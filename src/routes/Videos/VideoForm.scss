@@ -221,6 +221,11 @@
     border-radius: 1.5rem;
     background-color: white;
     margin: 1rem 0;
+    transition: 0.2s;
+    &:hover{
+        background: rgba(255, 255, 255, 0.637);
+    }
+    
     .file-upload-input-selectButton{
         position: absolute;
         width: 100%;
@@ -267,9 +272,9 @@
         background: #22343C;
         border-radius: 1rem;
         margin: 1rem;
+        transition: 0.2s;
         &:hover{
             background: #334d58;
-            
         }
         .Image__upload-input-selectButton{
             position: absolute;

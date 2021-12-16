@@ -10,12 +10,17 @@
     background: transparent;
     font-size: 2rem;
     border: none;
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: auto;
     color: #3DD598;
+    transition: 0.2s;
+    border-radius: 1rem;
+    &:hover{
+      background-color: #ffffff20;
+    }
     span {
       color: rgba(255, 255, 255, 0.884);
       padding-right: 10px;
@@ -26,6 +31,10 @@
     width: 100%;
     .singleChannelDiv{
       width: 100%;
+      transition: 0.2s;
+      &:hover{
+        background-color: #3b8b79;
+      }
       .singleChannelText h2{
         overflow: hidden;
         white-space: nowrap;
