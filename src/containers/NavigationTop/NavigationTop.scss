@@ -56,29 +56,30 @@
 
 @media only screen and (max-width: $mediumDevices) {
     .navigationTop{
-        padding: 0 2rem;
-        .navigationTop__navLink{
-            padding: 0.6rem 0.8rem;
-            font-size: 1.5rem;
-            text-decoration: none;
-            // color: rgba(255, 255, 255, 0.8);
-            color: white;
-        }
-        .navigationTop__navLink_onlyDesktop{
-            display: block;
-        }
-        .Profile_image{
-            width: 45px;
-            height: 45px;
-        }
-        .channelsNavProfileBtn{
-            width: 45px;
-            height: 45px;
-        }
-    }
-    .navigationTop_user{
-        padding-top: 1rem;
-        padding-right: 1.5rem;
+        display: none;
+    //     padding: 0 2rem;
+    //     .navigationTop__navLink{
+    //         padding: 0.6rem 0.8rem;
+    //         font-size: 1.5rem;
+    //         text-decoration: none;
+    //         // color: rgba(255, 255, 255, 0.8);
+    //         color: white;
+    //     }
+    //     .navigationTop__navLink_onlyDesktop{
+    //         display: block;
+    //     }
+    //     .Profile_image{
+    //         width: 45px;
+    //         height: 45px;
+    //     }
+    //     .channelsNavProfileBtn{
+    //         width: 45px;
+    //         height: 45px;
+    //     }
+    // }
+    // .navigationTop_user{
+    //     padding-top: 1rem;
+    //     padding-right: 1.5rem;
     }
     
   }

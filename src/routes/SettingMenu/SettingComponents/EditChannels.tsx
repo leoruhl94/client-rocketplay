@@ -48,7 +48,7 @@ export const EditChannel: React.FC = () => {
       console.log("sale gatito porque no hay esquema");
     } else {
       await axios.put(`${URL_BASE}/channels`, infoSubmit);
-      dispatch(setToast(`${infoSubmit.oldName} was updated to ${infoSubmit.newName}`))
+      dispatch(setToast(`Channel updated`))
       testFunction()
     }
     setInfoSubmit({

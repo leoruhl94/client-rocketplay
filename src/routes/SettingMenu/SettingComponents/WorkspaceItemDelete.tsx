@@ -22,7 +22,9 @@ export const WorkspaceItemDelete: React.FC<Props> = ({ schemaName, title }) => {
   const onClick = async (e) => {
     e.preventDefault()
     try{
+      console.log('schemaName: ',schemaName, 'title: ', title)
       const result = await axios.put(`${URL_BASE}/workspace/leave`, {schemaName: schemaName, schemaTitle: title, userEmail: user})
+      console.log('result.data: ', result.data)
       dispatch(setToast('Left workspace succesfully'))
       testFunction()
       auth?.refreshInfo()

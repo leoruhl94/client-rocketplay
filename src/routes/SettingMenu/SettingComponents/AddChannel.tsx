@@ -27,7 +27,7 @@ export const AddChannel: React.FC = () => {
     } else {
       await axios.post(`${URL_BASE}/channels`, infoSubmit);
       setInfoSubmit({ ...infoSubmit, schemaName: e.target.value });
-      dispatch(setToast('Workspace added succesfully'))
+      dispatch(setToast('Channel added succesfully'))
       testFunction()
     }
     setInfoSubmit({
