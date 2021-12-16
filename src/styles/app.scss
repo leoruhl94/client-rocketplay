@@ -64,7 +64,12 @@ body {
   font-weight: 600;
   height: 40px;
   border-radius: 10px;
+  &:disabled{
+    color: gray;
+    border: 2px solid #2e9b6f;
+  }
 }
+
 .Settings__form {
   padding: 1rem 0;
   height: 100%;
