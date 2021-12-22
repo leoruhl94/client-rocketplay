@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles/normalize.css";
 import "./styles/app.scss";
-import axios from "axios";
+
 
 // Componentes
 import { Landing } from "./routes/Landing/Landing";
@@ -24,7 +24,7 @@ import { Route, Switch } from "react-router-dom";
 import { Redirect, useLocation, useHistory } from "react-router";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPlans, refresh } from "./redux/actions";
 import { useAuth } from "./auth/useAuth";
 import { PrivateRoute } from "./auth/PrivateRoute";
@@ -32,8 +32,6 @@ import { PaymentsPlans } from "./routes/Logins/Login-Register/PaymentsPlans";
 import { PaidRejection } from "./routes/PaidRejection/PaidRejection";
 import { NavigationMobileMagic } from "./components/Navs/NavigationMobileMagic/NavigationMobileMagic";
 import { Workspaces } from "./routes/Workspaces/Workspaces";
-import { MenuToggleContainer } from "./components/MenuToggleContainer/MenuToggleContainer";
-import { VideoVimeoDetail } from "./routes/Videos/VideoDetail/Vimeo/VideoVimeoDetail";
 import { MenuComponent } from "./routes/Menu/MenuComponent";
 import { MenuCategories } from "./routes/Menu/Items/Categories/Categories";
 import { AddCategory } from "./routes/Menu/Items/Categories/AddCategory";
@@ -45,13 +43,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavProfileAndLocation } from "./containers/NavProfileAndLocation/NavProfileAndLocation";
 import { CategoriesAWS } from "./routes/Categories/CategoriesAWS";
 import { ChannelsAWS } from "./routes/Channels/ChannelsAWS";
+import { LoadingComponent } from "./components/LoadingComponent/LoadingComponent";
+import { InfoAccount } from "./routes/SettingMenu/SettingComponents/InfoAccount";
+import { SuperToast } from "./components/Toast/SuperToast";
+import { storeState } from "./redux/type";
+import { NavigationTop } from "./containers/NavigationTop/NavigationTop";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   let location = useLocation();
   const auth = useAuth();
 
+  const toast: string = useSelector((state: storeState) => {
+    return state.toast;
+  });
   const itemLocal = localStorage.getItem("tok");
   const itemSession = sessionStorage.getItem("tok");
   let tokens = itemLocal
@@ -62,15 +67,11 @@ const App: React.FC = () => {
 
   if (!auth?.isLogged()) {
     if (tokens) {
-      auth?.login(tokens.data.data.id_token);
+      auth?.login(tokens.data.data);
     }
   }
 
   useEffect(() => {
-    //cargar los planes de pago en redux
-    // const json = localStorage.getItem("lastRoute")
-    // const lastRoute = json ? json : '/'
-    // history.push(lastRoute)
     dispatch(getPlans());
   }, []);
 
@@ -82,24 +83,32 @@ const App: React.FC = () => {
   }, [location]);
 
   return !auth?.user && tokens ? (
-    <h1>cargando...</h1>
+    <LoadingComponent />
   ) : (
     <>
+      <SuperToast value={toast}></SuperToast>
       <AnimatePresence>
-        <PrivateRoute path="/:algunaRuta" component={NavProfileAndLocation} />
+        <Route
+          path="/:algunaRuta"
+          component={NavigationTop}
+        />
+        <PrivateRoute
+          path="/:algunaRuta"
+          component={NavProfileAndLocation}
+          routesToAvoid={["/pricing", "/about","/preapproval"]}
+        />
+
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={AboutComponent} />
           <Route exact path="/about/:id" component={AboutDetailComponent} />
           <Route exact path="/pricing" component={PricingComponent} />
-          <Route exact path="/payment" component={PaymentsPlans} />
+          <Route exact path="/testcomp" component={InfoAccount} />
+          <PrivateRoute exact path="/payment" component={PaymentsPlans} />
           <PrivateRoute exact path="/preapproval" component={PreApproval} />
           <Route exact path="/paidrejection" component={PaidRejection} />
           <Route exact path="/login" component={Logins} />
-          <PrivateRoute exact path="/uploadvideo" component={VideoForm} />
-          {/* <PrivateRoute path="/videodetail/:id" component={VideoDetail} /> */}
-          {/* <Route path="/vimeoDetail/:id" component={VideoVimeoDetail} /> */}
-          {/* <PrivateRoute exact path="/settings" component={SettingMenu} thisPage={5}/> */}
+          {/* <PrivateRoute exact path="/uploadvideo" component={VideoForm} /> */}
           <PrivateRoute
             exact
             path="/notifications"
@@ -112,13 +121,22 @@ const App: React.FC = () => {
             component={SearchMenu}
             thisPage={2}
           />
-          <Route exact path="/settings" component={SettingMenu} />
+          <PrivateRoute
+            exact
+            path="/settings"
+            component={SettingMenu}
+            thisPage={5}
+          />
           <Route
             path="/videodetail/:schema/:title"
             component={VideoDetailAWS}
           />
           <Route exact path="/home/:schema" component={ChannelsAWS} />
-          <Route exact path="/home/:schema/:channel" component={CategoriesAWS} />
+          <Route
+            exact
+            path="/home/:schema/:channel"
+            component={CategoriesAWS}
+          />
           <Route
             exact
             path="/home/:schema/:channel/:category"

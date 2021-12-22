@@ -1,0 +1,33 @@
+.DropdownMenu__container {
+  padding: 0.2rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  
+  // border-width: 1px 0 1px 0;
+  .DropdownMenu__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    border: none;
+    outline: none;
+    // .DropdownMenu__button_text {
+      // }
+      .DropdownMenu__button_icon {
+        transition: 0.2s;
+        color: rgba(255, 255, 255, 0.9);
+        transform: rotate(0);
+      }
+      
+      .MenuItem__open{
+      color: #3DD598;
+      transform: rotate(180deg);
+    }
+  }
+}

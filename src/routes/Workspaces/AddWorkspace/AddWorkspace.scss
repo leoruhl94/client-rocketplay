@@ -121,16 +121,8 @@
         }
     }
 }
-@media only screen and (max-width: $smallDevices) {
-    .AddWorkspace__container{
-        .AddWorkspace__form{
-            .AddWorkspace__result{
-                flex-direction: column;
-                justify-content: flex-start;
-                .AddWorkspace__result-btn{
-                    width: 100% !important;
-                }
-            }
-        }
+@media only screen and (min-width: $smallDevices) {
+    .AddWorkspace{
+        display: none;
     }
 }

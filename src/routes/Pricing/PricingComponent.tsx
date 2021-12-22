@@ -15,14 +15,13 @@ const PricingComponent: React.FC = () => {
   }, []);
   return (
     <div className="PricingComponent-container">
-      <NavigationTop />
       <h1 className="pricingTitle">Explore current top deals</h1>
 
       <div className="PricingContainer">
         {plans.map((x, i) => (
           <PricingDetailComponent
             key={i}
-            color={i}
+            color={x.color}
             plan={x.name}
             price={x.price}
             description={x.description}

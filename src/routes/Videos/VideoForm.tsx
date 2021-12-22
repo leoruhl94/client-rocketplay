@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./VideoForm.scss";
 
 import { URL_BASE } from "../../constants/constants";
@@ -9,6 +9,9 @@ import { storeState } from "../../redux/type";
 import { Upload } from "@aws-sdk/lib-storage"
 import { S3Client, S3 } from "@aws-sdk/client-s3";
 import { SuccessWnd } from "../../components/successWnd/SuccessWnd";
+import { useAuth } from "../../auth/useAuth";
+import { setToast } from "../../redux/actions"
+import { testFunction } from "../../constants/functions";
 
 // Interfaces
 
@@ -30,7 +33,7 @@ interface Input {
 interface Errors {
   title: string;
   video: string;
-  image: string;
+  // image: string;
 }
 interface UploadId {
   uploadId: string;
@@ -39,13 +42,52 @@ interface Previews{
   video: any,
   img: any
 }
+
+interface Categories {
+  name: string;
+  id: number;
+}
+
+interface Channels {
+  name: string;
+  id: number;
+}
+
+interface Member {
+  memberId: number;
+  memberEmail: string;
+  memberName: string;
+  userType: string;
+}
  
-// -----------------------------------------------------------------------------------------
-export const VideoForm: React.FC = () => {
+interface Props {
+  schemaName: string;
+}
+//  -----------------------------------------------------------------------------------------
+export const VideoForm: React.FC<Props> = ({schemaName}) => {
   // Caja de variables
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<User>({
+    accessToken: "",
+    name: "",
+    pic: "",
+    email: "",
+    isBusiness: false,
+  });
+  const dispatch = useDispatch()
+  // name, email, isBusiness, pic, subscriptions, workspaces, workspacesTitles
+  const auth = useAuth()
+
   const [selectBool, setSelectBool] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [categoryState, setCategoryState] = useState<Categories[]>([])
+  const [channelsState, setChannelsState] = useState<Channels[]>([])
+  const [member, setMember] = useState<Member>({
+    memberId: 0,
+    memberEmail: "",
+    memberName: "",
+    userType: "",
+})
+
   const [input, setInput] = useState<Input>({
     file: null,
     title: "",
@@ -57,7 +99,7 @@ export const VideoForm: React.FC = () => {
   const [errors, setErrors] = useState<Errors>({
     title: "",
     video: 'Should upload a video',
-    image: 'Should upload an image',
+    // image: 'Should upload an image',
   });
   const [uploadIdState, setUploadIdState] = useState<UploadId>({uploadId: ""});
   const [previews, setPreviews] = useState<Previews>({video: undefined, img: undefined});
@@ -88,11 +130,53 @@ export const VideoForm: React.FC = () => {
     } 
   }, [input.thumb])
 
+  useEffect(() => {
+    axios.get(`${URL_BASE}/channels`, {params: {schemaName: schemaName}})
+    .then(r => {
+      let array:any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.name,
+          id: el.id,
+        }
+        array.push(obj)
+      })
+      setChannelsState(array)
+    })
+    getMemberInfo()
+  }, [])
+
+  const getMemberInfo = async () => {
+    let responseMembers = await axios.get(`${URL_BASE}/members`, {params: {schemaName: schemaName, memberEmail: auth?.user?.email}})
+    let data = responseMembers.data[0]
+    setMember({
+        memberId: data.id,
+        memberEmail: data.mail,
+        memberName: data.name,
+        userType: data.usertype
+    })
+  }
+
+  const handleCategorySelect = (e) => {
+    axios.get(`${URL_BASE}/category/bychannel`, {params: {schemaName: schemaName, channelId: e.target.value}})
+    .then(r => {
+      let array: any[] = []
+      r.data.map(el => {
+        let obj = {
+          name: el.catName,
+          id: el.catId,
+        }
+        array.push(obj)
+      })
+      setCategoryState(array)
+    })
+  }
+
   async function handleUpload() {
 
     if(errors.title) return alert('Fix: '+errors.title)
     if(errors.video) return alert('Fix: '+errors.video)
-    if(errors.image) return alert('Fix: '+errors.image)
+    // if(errors.image) return alert('Fix: '+errors.image)
 
     let boton = document.querySelector('.Video__file-uploader-btn')
     boton && boton.setAttribute("disabled", "true")
@@ -116,29 +200,57 @@ export const VideoForm: React.FC = () => {
       })
   
       let videoPromise = upload.done()
+      // let realThumb = input.thumb === null ? "" : input.title + "-thumb"
+      if(input.thumb !== null){
+        const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
+        const uploadThumb = new Upload({
+          client: client,
+          leavePartsOnError: false,
+          params: targetThumb,
+        })
+    
+        uploadThumb.on("httpUploadProgress", (progress) => {
+          console.log(progress)
+        })
+    
+        let thumbPromise = uploadThumb.done()
+        Promise.all([videoPromise, thumbPromise])
+        .then(() => {
+          setSuccess(true)
+          console.log("termine de subir los dos")
+          handleDatabaseLoad()
+        })
+      } else {
+        Promise.all([videoPromise])
+        .then(() => {
+          setSuccess(true)
+          handleDatabaseLoad()
+        })
+      }
 
-      const targetThumb = {Bucket: bucket, Key: input.title + "-thumb", Body: input.thumb, ContentType: input.thumb.type }
-      const uploadThumb = new Upload({
-        client: client,
-        leavePartsOnError: false,
-        params: targetThumb,
-      })
-  
-      uploadThumb.on("httpUploadProgress", (progress) => {
-        console.log(progress)
-      })
-  
-      let thumbPromise = uploadThumb.done()
-
-      Promise.all([videoPromise, thumbPromise])
-      .then(() => {
-        setSuccess(true)
-        console.log("termine de subir los dos")
-      })
 
     } catch (err){
       boton && boton.setAttribute("disabled", "false")
       console.log(err)
+    }
+
+    const handleDatabaseLoad = () => {
+      // let { title, avatar, author, description, thumbnail, memberId, categoryId } = req.body
+      let realThumb = input.thumb === null ? "" : input.title + "-thumb"
+      axios.post(`${URL_BASE}/uploadvideo/database`, {
+        title: input.title,
+        avatar: auth?.user?.pic,
+        author: schemaName,
+        description: input.description,
+        thumbnail: realThumb,
+        memberId: member.memberId,
+        categoryId: input.category
+      })
+      .then(r => {
+        dispatch(setToast('Video uploaded successfully'))
+        testFunction()
+        console.log(r)
+      })
     }
 
     // e.preventDefault();
@@ -182,7 +294,7 @@ export const VideoForm: React.FC = () => {
       return;
     }
     if(e.target.name === "thumb"){
-      if(e.target.value) setErrors({ ...errors, image: '' })
+      /* if(e.target.value) setErrors({ ...errors, image: '' }) */
       setInput({
         ...input,
         thumb: e.target.files[0]
@@ -222,7 +334,7 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Title ..... */}
             <div >
-              <h2 className='Section__title'>Title (required)</h2>
+              <h2 className='Section__title'>Title *</h2>
               <div className="inputDiv">
                 <input
                   className={`Video__file-uploader-text${errors.title?' invalid':''}`}
@@ -247,7 +359,7 @@ export const VideoForm: React.FC = () => {
 
           {/* ..... File ..... */}
           <div className='Section__Container'>
-            <h2 className='Section__title'>Video (required)</h2>
+            <h2 className='Section__title'>Video *</h2>
             <p className='Section__description'>Upload a video from your computer</p>
             {previews.video ? 
             <video className="Video__preview" title="Testing" width="300px" controls>
@@ -316,24 +428,33 @@ export const VideoForm: React.FC = () => {
           <div className='Section__Container'>
             {/* ..... Selects (Channels y Categories) ..... */}
             <div>
-              <h2 className='Section__title'>Workspace and Category (required)</h2>
+              <h2 className='Section__title'>Workspace and Category *</h2>
               <p className='Section__description'>Choose which workspace and category the video will belong to</p>
               <div>
-                <select name="channel" id="channel" onChange={handleDoubleSelect}>
-                  <option value="" selected disabled>Select a workspace</option>
-                  <option value="primeroA">Primero A</option>
-                  <option value="primeroB">Primero B</option>
-                  <option value="segundoA">Segundo A</option>
-                  <option value="segundoB">Segundo B</option>
+                <select name="channel" id="channel"className="SelectComponent" onChange={(e) => {
+                    handleDoubleSelect(e)
+                    handleCategorySelect(e)
+                }}>
+                  <option value="" selected disabled className="SelectComponent_option">Select a channel</option>
+                  {
+                    channelsState.length > 0 ?
+                    channelsState.map(el => {
+                      return <option value={el.id} key={el.id} className="SelectComponent_option">{el.name}</option>
+                    })
+                    : <></>
+                  }
                 </select>
                 {
                   selectBool ? (
-                    <select name="category" id="category" onChange={handleDoubleSelect}>
-                      <option value="" selected disabled>Select a category</option>
-                      <option value="math">Math</option>
-                      <option value="science">Science</option>
-                      <option value="history">History</option>
-                      <option value="geography">Geography</option>
+                    <select name="category" id="category"className="SelectComponent" onChange={handleDoubleSelect}>
+                      <option value="" selected disabled className="SelectComponent_option">Select a category</option>
+                      {
+                        categoryState.length > 0 ?
+                        categoryState.map(el => {
+                          return <option value={el.id} key={el.id} className="SelectComponent_option">{el.name}</option>
+                        })
+                        : <></>
+                      }
                     </select>
                   ) : <></>
                 }
@@ -341,7 +462,7 @@ export const VideoForm: React.FC = () => {
             </div>
 
             {/* ..... Tags ..... */}
-            <div>
+            {/* <div>
               <h2 className='Section__title'>Tags</h2>
               <p className='Section__description'>Tag your video so users can find it faster</p>
               <select name="tags" id="tags">
@@ -351,7 +472,7 @@ export const VideoForm: React.FC = () => {
                 <option value="predicado">Predicado</option>
                 <option value="Eli se me ocurrio como hacerlo">Eli se me ocurrio como hacerlo</option>
               </select>
-            </div>
+            </div> */}
           </div>
 
           {/* ..... Upload ..... */}

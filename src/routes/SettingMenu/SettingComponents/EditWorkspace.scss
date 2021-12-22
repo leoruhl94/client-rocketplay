@@ -1,0 +1,37 @@
+.editWorkspace{
+    color: white;
+    .editWorkspace__input-container{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        .editWorkspace__input-title-icon{
+            font-size: 1rem;
+        }
+        .editWorkspace__input{
+            font-size: 1.5rem;
+            padding: 0.5rem;
+        }
+    }
+    .editWorkspace__save-cont{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .editWorkspace__save{
+            width: 30%;
+            height: 2rem;
+            border-radius: 1rem;
+            margin: 1rem;
+            font-size: 1.5rem;
+            outline: none;
+            border: none;
+        }
+    }
+}
+
+// .WorkspaceItem__section-delete{
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-end;
+//     // grid-template-columns: 70% 20%;
+// }

@@ -1,0 +1,27 @@
+.edit-video-title-div{
+    // background: red;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    .edit-video-title-input{
+        padding-left: 1rem;
+        &::placeholder{
+            color: gray;
+        }
+    }
+    .edit-video-title-input-textarea{
+        margin-top: 1.5rem;
+        height: 100px;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        &::placeholder{
+            color: gray;
+        }
+    }
+    .edit-video-button-submit{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+}

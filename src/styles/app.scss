@@ -5,11 +5,120 @@ body {
   font-family: "Ubuntu Condensed", "Yatra One", sans-serif;
   background: $mainBackground;
 }
-.display__none{
-    display: none !important;
+.display__none {
+  display: none !important;
 }
 
+.SelectComponent {
+  font-size: 1.2rem;
+  // background-color: #755fe2;
+  // background: #1e9767;
+  background: transparent;
+  border: 2px solid #3dd598;
+  // box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  border-radius: 15px;
+  padding: 0.2rem;
+  padding-left: 0.8rem;
+  color: white;
+  margin: 0.1rem;
+  text-transform: capitalize;
+  outline: none;
+  .SelectComponent_option {
+    background: rgba(255, 255, 255, 0.808);
+    color: rgb(56, 56, 56);
+    font-size: 1.2rem;
+    text-transform: capitalize;
+  }
+}
+// .SelectComponent_option {
+//   background: #C985FF;
+//   font-size: 1.2rem;
+//   text-transform: capitalize;
 
+// }
 
+.Settings__input {
+  background: linear-gradient(138.13deg, #fafbfc 25.51%, #f2f3fb 100%);
+  box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 1rem;
+  // line-height: 2rem;
+  height: 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  // color: white;
+}
+.Settings__button {
+  // background: #3DD598;
+  background: transparent;
+  border: 2px solid #3dd598;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  box-shadow: 0px 2px 4px rgba(15, 218, 137, 0.3);
+  // background: linear-gradient(138.13deg, #FAFBFC 25.51%, #F2F3FB 100%);  border-radius: 10px;
+  // border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  height: 40px;
+  border-radius: 10px;
+  &:disabled{
+    color: gray;
+    border: 2px solid #2e9b6f;
+  }
+  transition: 0.2s;
+  &:hover{
+    background-color: #3b8b79;
+    border-color: white;
+  }
+}
 
-  
+.Settings__form {
+  padding: 1rem 0;
+  height: 100%;
+}
+.Settings__label {
+  padding-bottom: 10px;
+  font-size: 1.3rem;
+  padding-left: 0.2rem;
+  color: rgb(245, 245, 245);
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822);
+}
+.Settings__label_delete {
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+  padding-left: 0.2rem;
+  color: rgb(245, 245, 245);
+  // text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.822) ;
+  span {
+    padding-left: 0.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    // text-shadow: 1px 1px 3px rgba(253, 93, 93, 0.822) ;
+    color: red;
+  }
+}
+.Settings__selects {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.Settings__inputs_container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.Select__50w {
+  width: 50%;
+}
+.Select__100w {
+  width: 100%;
+}
+.Select__WP {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}

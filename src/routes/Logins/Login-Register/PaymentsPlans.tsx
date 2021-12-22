@@ -20,14 +20,11 @@ export const PaymentsPlans: React.FC = () => {
   useEffect(() => {
     dispatch(pricingSelect(""));
   }, []);
+
   function handleSubmit(e) {
+
     console.log("submit");
-    //e.preventDefault();
-    //const json = localStorage.getItem("user");
-    //const user = json && JSON.parse(json);
-    //axios.put('http://localhost:3002/users', {isBusiness: true, plan: input, email: user.email})
-    // window.open(plans.find((x) => x.name === input).url);
-    // history.push('/preapproval')
+    window.location.replace(paymentUrl);
   }
   function handleInput(e) {
     setInput(e.target.value);
@@ -39,11 +36,11 @@ export const PaymentsPlans: React.FC = () => {
     <div className="loginPlan__container">
       <div className="loginPlan">
         <h2 className="loginPlan__title">Choose your account plan</h2>
-        <form onSubmit={handleSubmit} className="loginPlan__form">
+        <div className="loginPlan__form">
         {plans.map((x) => (
-          <PlanRatio plan={x}/>
+          <PlanRatio key={x.name} plan={x} handleInput={handleInput} input={input === x.name}/>
         ))}
-          {plans.map((x) => (
+          {/* {plans.map((x) => (
             <div key={x.name} className="loginPlan__option-container">
               <input
                 type="radio"
@@ -58,27 +55,22 @@ export const PaymentsPlans: React.FC = () => {
                 {x.name}
               </label>
             </div>
-          ))}
+          ))} */}
           <div className="loginPlan__btns-container">
-            <div className="loginPlan__btn-cont">
-              <button
-                type="button"
-                onClick={handleBack}
-                className="loginPlan__btn"
-              >
-                Back
-              </button>
-            </div>
-            <SuperButton
-              text="Accept"
-              name="send"
-              externalLink={paymentUrl}
-              value={1}
-              handler={handleSubmit}
-              classes="acctype-superbutton-accept"
-            ></SuperButton>
+              <SuperButton
+                text="Back"
+                name="back"
+                handler={handleBack}
+                classes="loginPlan__superbutton"
+              />
+              <SuperButton
+                text="Buy"
+                name="send"
+                handler={handleSubmit}
+                classes="loginPlan__superbutton"
+              />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -1,94 +1,98 @@
 @import "../../styles/variables.scss";
 
 .Workspaces__container {
-//   background-color: chartreuse;
+  //   background-color: chartreuse;
   width: 100%;
-  height: 100%;
-  padding: 10px 0.5rem;
-//   border-radius: 10px;
+  height: auto;
+  padding: 1rem 0.5rem;
+  //   border-radius: 10px;
   //   background: $squareBackground;
+  margin: 0.5rem auto;
+
+  background-color: #1f2e35;
+  box-shadow: 2px 3px 10px 0 black;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 1.2rem 0.5rem;
+  
+  .Workspaces__title {
+    color: rgba(255, 255, 255, 0.89);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .Workspaces__worksGroup_title {
+    text-align: center;
+    margin: 1rem 0;
+    color: rgba(255, 255, 255);
+    text-shadow: 1px 1px 3px black;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    //margin-bottom: 1rem;
+  }
   .Workspaces__list {
-    margin: 0.5rem 0;
-    // background-color: coral;
-    background-color: 1F2E35;
-    box-shadow: 2px 3px 10px 0 black;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    padding: 1.2rem 0.5rem;
-    .Workspaces__title{
-        color: rgba(255, 255, 255, 0.89);
-        font-size: 2rem;
-        text-align: center;
-      
-    }  
-    .Workspaces__button_container{
-        margin-top: 1rem;
-        .Workspaces__button{
-            background: transparent;
-            // background-color: wheat;
-            border: none;
-            outline: none;
+    color: white;
+    margin-bottom: 1rem;
+    padding: 0;
+    margin: 0;
+    #title2 {
+      margin-top: 1rem;
+    }
+  }
+  .Workspaces__button_container {
+    margin-top: 1rem;
+    .Workspaces__button {
+      background: transparent;
+      // background-color: wheat;
+      border: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      align-self: center;
+      color: rgba(255, 255, 255, 0.89);
+      font-size: 1.2rem;
+
+      .Workspaces__button_icon {
+        margin-left: 5px;
+        font-size: 1.5rem;
+        // color: black;
+        color: #25c685;
+      }
+    }
+  }
+}
+@media only screen and (min-width: $smallDevices) {
+    #joinBtn{
+        display: none;
+    }
+    .Workspaces__container{
+        display: grid;
+        justify-content: flex-start;
+        align-items: flex-start;
+        grid-template-columns: 50% 50%;
+        width: 95%;
+        .Workspaces__worksGroup{
             display: flex;
             align-items: center;
-            align-self: center;
-            color: rgba(255, 255, 255, 0.89);
-            font-size: 1.2rem;
-                   
-            .Workspaces__button_icon{
-                margin-left: 5px;
-                font-size: 1.5rem;
-                // color: black;
-                color: #25C685;
+            flex-direction: column;
+            .Workspaces__list{
+                align-items: center;
+                justify-content: flex-start;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
             }
         }
     }
 }
-
+@media only screen and (min-width: $mediumDevices) {
+  .Workspaces__container{
+    width: 80%;
+  }
 }
-
-// .channelsAddChannel2 {
-//     margin: 0;
-//     // margin-top: 2rem;
-//     // background: blue;
-// gap: 1.5rem;
-//     h4 {
-//         color: white;
-//         font-size: 1.5rem;
-//         text-shadow: 1px 1px 3px black;
-//         font-weight: 400;
-//         margin: 1rem;
-//     }
-//     button {
-//         // font-weight: bold;
-//         font-size: 2rem;
-//         width: 32px;
-//         height: 32px;
-//         display: flex;
-//         justify-content: center;
-//         border-radius: 10px;
-//         align-items: center;
-//         outline: none;
-//         border: none;
-//         background: linear-gradient(180deg, #40DF9F 0%, #3ED598 100%);
-//         color: white;
-//         text-shadow: 1px 1px 3px black;
-//     }
-// }
-
-// @media (min-width: 700px){
-//     .singleChannel-outer-div{
-//         width: 70%;
-//         margin: 0 auto;
-//     }
-// }
-
-// @media (min-width: 1024px){
-//     .singleChannel-outer-div{
-//         width: 50%;
-//         margin: 0 auto;
-//     }
-// }

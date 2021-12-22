@@ -1,75 +1,304 @@
-import axios from "axios";
-import { motion } from "framer-motion";
 import React from "react";
 import { MenuToggleContainer } from "../../components/MenuToggleContainer/MenuToggleContainer";
 import "./SettingMenu.scss";
+import { useAuth } from "../../auth/useAuth";
+import { AddChannel } from "./SettingComponents/AddChannel";
+import { DropdownMenu } from "./SettingComponents/DropdownMenu";
+import { DropdownMenuItem } from "./SettingComponents/DropdownMenuItem";
+import { useOpen } from "../../Hooks/useOpen";
+import { AddCategory2 } from "./SettingComponents/AddCategory2";
+import { EditChannel } from "./SettingComponents/EditChannels";
+import { SubscriptionsSettings } from "./SettingComponents/SubscriptionsSettings";
+import { InfoAccount } from "./SettingComponents/InfoAccount";
+import { MemberType } from "./SettingComponents/MemberType";
+import { EditWorkspace } from "./SettingComponents/EditWorkspace";
+import { EditCategory } from "./SettingComponents/EditCategory";
+import { RemoveCategory } from "./SettingComponents/RemoveCategory";
+import { RemoveChannel } from "./SettingComponents/RemoveChannel";
+import { LeaveWorkspace } from "./SettingComponents/LeaveWorkspace";
+import { Modal } from "src/components/Modal/Modal";
 
 interface props {
   transition: any;
 }
+
+interface Open {
+  isOpen: Boolean;
+  openModal(): void;
+  closeModal(): void;
+}
+
 export const SettingMenu: React.FC<props> = ({ transition }) => {
+  const auth = useAuth();
+  ///==================MENUS===================
+  const [isOpenMenuAccount, openMenuAccount, closeMenuAccount] = useOpen(false);
+  const [isOpenMenuWorkspace, openMenuWorkspace, closeMenuWorkspace] =
+    useOpen(false);
+  const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
+    useOpen(false);
+  const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
+    useOpen(false);
+
+  ///==================MENUS===================
+
   return (
-    <motion.div
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={transition}
-      transition={{ type: "linear" }}
-    >
-      <MenuToggleContainer>
-        <nav className="SettingMenu__container">
-          {/* <div className="container"> */}
-          <ul className="SettingMenu__ul">
-            <li>
-              Workspace
-              <ul className="SettingMenu__submenu_ul">
-                <li>Edit your code</li>
-                <li>Edit your workspace name</li>
-                <li>Admin your subcribers</li>
-                <li>...</li>
-                <li>...</li>
-              </ul>
-            </li>
-            <li>
-              Channels
-              <ul className="SettingMenu__submenu SettingMenu__ul">
-                <li>...</li>
-                <li>...</li>
-                <li>...</li>
-              </ul>
-            </li>
-            <li>
-              Categories
-              <ul className="SettingMenu__submenu SettingMenu__ul">
-                <li>Edit name</li>
-                <li>Change privacy</li>
-                <li>Add/Remove</li>
-              </ul>
-            </li>
-            <li>
-              Videos
-              <ul className="SettingMenu__submenu SettingMenu__ul">
-                <li>Upload</li>
-                <li>Delete</li>
-                <li>Edit description</li>
-                <li>Tags</li>
-              </ul>
-            </li>
-            <li>
-              Subscriptions
-              <ul className="SettingMenu__submenu SettingMenu__ul">
-                <li>TOGGlE Activar/Pausar</li>
-                <li>Cancelar</li>
-                <li>qué le pongo a esto????</li>
-                <li>qué le pongo a esto????</li>
-                <li>qué le pongo a esto????</li>
-              </ul>
-            </li>
-            <li>qué le pongo a  esto????</li>
-          </ul>
-          {/* </div> */}
-        </nav>
-      </MenuToggleContainer>
-    </motion.div>
+    <MenuToggleContainer transition={transition} k="002">
+      <nav className="SettingMenu__container">
+        <DropdownMenu
+          title="Account"
+          isOpen={isOpenMenuAccount}
+          close={closeMenuAccount}
+          open={openMenuAccount}
+        >
+          <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
+            <InfoAccount />
+          </DropdownMenuItem>
+
+          {auth?.user?.isBusiness ? (
+            <>
+              <DropdownMenuItem
+                isOpen={isOpenMenuAccount}
+                title="Subscriptions"
+              >
+                <SubscriptionsSettings />
+              </DropdownMenuItem>
+            </>
+          ) : (
+            <></>
+          )}
+        </DropdownMenu>
+
+        <DropdownMenu
+          title="Workspace"
+          isOpen={isOpenMenuWorkspace}
+          close={closeMenuWorkspace}
+          open={openMenuWorkspace}
+        >
+          <DropdownMenuItem
+            isOpen={isOpenMenuWorkspace}
+            title="Leave Workspace"
+          >
+            <LeaveWorkspace />
+          </DropdownMenuItem>
+
+          {auth?.user?.isBusiness ? (
+            <>
+              <DropdownMenuItem
+                isOpen={isOpenMenuWorkspace}
+                title="Edit Workspace"
+              >
+                <EditWorkspace />
+              </DropdownMenuItem>
+
+              <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+                <MemberType />
+              </DropdownMenuItem>
+            </>
+          ) : (
+            <></>
+          )}
+        </DropdownMenu>
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenu
+              title="Channels"
+              isOpen={isOpenMenuChannels}
+              close={closeMenuChannels}
+              open={openMenuChannels}
+            >
+              <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
+                <AddChannel />
+              </DropdownMenuItem>
+
+              <DropdownMenuItem
+                isOpen={isOpenMenuChannels}
+                title="Edit Channel"
+              >
+                <EditChannel />
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                isOpen={isOpenMenuChannels}
+                title="Remove Channel"
+              >
+                <RemoveChannel />
+              </DropdownMenuItem>
+            </DropdownMenu>
+          </>
+        ) : (
+          <></>
+        )}
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenu
+              title="Categories"
+              isOpen={isOpenMenuCategories}
+              close={closeMenuCategories}
+              open={openMenuCategories}
+            >
+              <DropdownMenuItem
+                isOpen={isOpenMenuCategories}
+                title="Add Category"
+              >
+                <AddCategory2 />
+              </DropdownMenuItem>
+
+              <DropdownMenuItem
+                isOpen={isOpenMenuCategories}
+                title="Edit Category"
+              >
+                <EditCategory />
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                isOpen={isOpenMenuCategories}
+                title="Remove Category"
+              >
+                <RemoveCategory />
+              </DropdownMenuItem>
+
+              {/* <DropdownMenuItem
+            isOpen={isOpenMenuCategories}
+            title="Change privacy"
+          >
+            
+          </DropdownMenuItem> */}
+            </DropdownMenu>
+          </>
+        ) : (
+          <></>
+        )}
+      </nav>
+    </MenuToggleContainer>
   );
-}; 
+};
+
+export const MenuTodo = () => {
+  const auth = useAuth();
+  ///==================MENUS===================
+  const [isOpenMenuAccount, openMenuAccount, closeMenuAccount] = useOpen(false);
+  const [isOpenMenuWorkspace, openMenuWorkspace, closeMenuWorkspace] =
+    useOpen(false);
+  const [isOpenMenuChannels, openMenuChannels, closeMenuChannels] =
+    useOpen(false);
+  const [isOpenMenuCategories, openMenuCategories, closeMenuCategories] =
+    useOpen(false);
+
+  ///==================MENUS===================
+
+  return (
+    <nav className="SettingMenu__container">
+      <DropdownMenu
+        title="Account"
+        isOpen={isOpenMenuAccount}
+        close={closeMenuAccount}
+        open={openMenuAccount}
+      >
+        <DropdownMenuItem isOpen={isOpenMenuAccount} title="MyAccount">
+          <InfoAccount />
+        </DropdownMenuItem>
+
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenuItem isOpen={isOpenMenuAccount} title="Subscriptions">
+              <SubscriptionsSettings />
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <></>
+        )}
+      </DropdownMenu>
+
+      <DropdownMenu
+        title="Workspace"
+        isOpen={isOpenMenuWorkspace}
+        close={closeMenuWorkspace}
+        open={openMenuWorkspace}
+      >
+        <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Leave Workspace">
+          <LeaveWorkspace />
+        </DropdownMenuItem>
+
+        {auth?.user?.isBusiness ? (
+          <>
+            <DropdownMenuItem
+              isOpen={isOpenMenuWorkspace}
+              title="Edit Workspace"
+            >
+              <EditWorkspace />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem isOpen={isOpenMenuWorkspace} title="Members">
+              <MemberType />
+            </DropdownMenuItem>
+          </>
+        ) : (
+          <></>
+        )}
+      </DropdownMenu>
+      {auth?.user?.isBusiness ? (
+        <>
+          <DropdownMenu
+            title="Channels"
+            isOpen={isOpenMenuChannels}
+            close={closeMenuChannels}
+            open={openMenuChannels}
+          >
+            <DropdownMenuItem isOpen={isOpenMenuChannels} title="Add Channel">
+              <AddChannel />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem isOpen={isOpenMenuChannels} title="Edit Channel">
+              <EditChannel />
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              isOpen={isOpenMenuChannels}
+              title="Remove Channel"
+            >
+              <RemoveChannel />
+            </DropdownMenuItem>
+          </DropdownMenu>
+        </>
+      ) : (
+        <></>
+      )}
+      {auth?.user?.isBusiness ? (
+        <>
+          <DropdownMenu
+            title="Categories"
+            isOpen={isOpenMenuCategories}
+            close={closeMenuCategories}
+            open={openMenuCategories}
+          >
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Add Category"
+            >
+              <AddCategory2 />
+            </DropdownMenuItem>
+
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Edit Category"
+            >
+              <EditCategory />
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              isOpen={isOpenMenuCategories}
+              title="Remove Category"
+            >
+              <RemoveCategory />
+            </DropdownMenuItem>
+
+            {/* <DropdownMenuItem
+        isOpen={isOpenMenuCategories}
+        title="Change privacy"
+      >
+        
+      </DropdownMenuItem> */}
+          </DropdownMenu>
+        </>
+      ) : (
+        <></>
+      )}
+    </nav>
+  );
+};

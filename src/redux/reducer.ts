@@ -1,5 +1,5 @@
 import React from "react"
-import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE } from "../constants/constants"
+import { CHANGE_PROFILE, LOGOUT, REFRESH_PROFILE,  PRICING_SELECT, GET_PLANS, POST_CATEGORY, TRUNCATE_CATEGORY, PUT_CATEGORY, POST_NOTIFICATIONS, READ_NOTIFICATIONS, CHANGE_PAGE, SET_TOAST } from "../constants/constants"
 import { storeState, storeAction } from "./type"
 const initialState: storeState = {
     // Que nos van a traer
@@ -14,8 +14,9 @@ const initialState: storeState = {
     plan: '',
     plans: [],
     categories : [],
-    notifications : [{message:"Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updated Your subscription was updatedYour subscription was updatedYour subscription was updated",status:"authorized", readed: false}],
-    page: 3
+    notifications : [{message:"Welcome to RocketPlay!", readed: false}],
+    page: 3,
+    toast : 'Testing'
   }
 
   /*                  // {
@@ -52,7 +53,7 @@ const reducer = (
       case REFRESH_PROFILE:
         return {
           ...state,
-          profile: {name: action.payload.name, pic: action.payload.pic},
+          profile: action.payload || {name:'',pic:''},
         }
       case POST_CATEGORY:
         state.categories.push(action.payload) 
@@ -97,6 +98,11 @@ const reducer = (
             ...state,
             page : action.payload
           }
+        case SET_TOAST :
+          return {
+              ...state,
+              toast : action.payload
+            }
     }
     return state
   }

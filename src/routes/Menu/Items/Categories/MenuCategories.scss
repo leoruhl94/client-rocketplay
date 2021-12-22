@@ -12,6 +12,10 @@
     margin-top: 25px;
     border-radius: 10px;
     background-color: var(--grey);
+    transition: 0.2s;
+    &:hover{
+        background-color: #3b8b79;
+    }
 }
 
 .Menu__Category-container {

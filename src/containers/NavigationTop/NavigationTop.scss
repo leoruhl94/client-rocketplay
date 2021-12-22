@@ -1,96 +1,97 @@
-.navigationTop{
+@import "../../styles/variables.scss";
+.NavigationTop {
+ 
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  padding: 1rem 7%;
+  z-index: 2rem;
+
+  .NavigationTop__navLink_logo {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    height: fit-content;
-  
-    .navigationTop__navLink{
-        padding: 1rem;
-        font-size: 1.3rem;
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.8);
-    }
-    .navigationTop__navLink_onlyDesktop{
-        display: none;
-    }
-    .channelsNavUl {
-		margin: 0;
-		padding: 0;
-		margin: auto 1.1rem;
-		font-size: 1.1rem;
-		color: white;
-		text-shadow: 1px 1px 3px black;
-	}
-	.title{
-		margin: auto 0;
-		font-size: 1.1rem;
-		color: white;
-		text-shadow: 1px 1px 3px black;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		text-transform: capitalize;
-	}
-	.Profile_image{
-		width: 35px;
-		height: 35px;
-		border-radius: 50%;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.channelsNavProfileBtn{
-		width: 35px;
-		height: 35px;
-		border-radius: 50%;
-		position: relative;
-		border: none;
-		background: transparent;
-	}
-}
+    text-decoration: none;
 
-.navigationTop_user{
-    padding-top: 1rem;
-}
-
-
-@media only screen and (min-width: 768px) {
-    .navigationTop{
-        padding: 0 2rem;
-        .navigationTop__navLink{
-            padding: 0.6rem 0.8rem;
-            font-size: 1.5rem;
-            text-decoration: none;
-            // color: rgba(255, 255, 255, 0.8);
-            color: white;
-        }
-        .navigationTop__navLink_onlyDesktop{
-            display: block;
-        }
-        .Profile_image{
-            width: 45px;
-            height: 45px;
-        }
-        .channelsNavProfileBtn{
-            width: 45px;
-            height: 45px;
-        }
+    .NavigationTop__navLink_logo_icon {
+      padding-right: 0.5rem;
+      height: 2.6rem;
     }
-    .navigationTop_user{
-        padding-top: 1rem;
-        padding-right: 1.5rem;
+    .NavigationTop__navLink_logo_text {
+      font-size: 1.5rem;
+      color: white;
     }
-    
+  }
+  .NavigationTop__Links_containers {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .NavigationTop__navLink {
+      text-decoration: none;
+      margin: 0;
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+      transition: 0.2s;
+      border-radius: 20px;
+      &:hover{
+          background: #ffffff2a;
+      }
+    }
   }
 
-//   .channelsNav {
-// 	position: fixed;
-// 	width: 101%;
-// 	height: 50px;
-// 	background: #30444e;
-// 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-// 	display: flex;
-// 	justify-content: space-between;
-// 	z-index: 10;
+  .NavigationTop__profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    .NavigationTop__button {
+      border:none;
+      outline: none;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 0.2rem;
+      background: transparent;
+      transition: 0.2s;
+      border-radius: 20px;
+      height: 40px;
+      width: 40px;
+      cursor: pointer;
+      &:hover{
+          background: #ffffff2a;
+      }
+    }
+  }
 
-// }
+  .Profile_image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .NavigationTop__profile_button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+}
+
+
+@media (max-width: $mediumDevices) {
+  .NavigationTop {
+    display: none;
+  }
+}

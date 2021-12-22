@@ -1,12 +1,24 @@
+import { motion } from "framer-motion";
 import React from "react";
 import './MenuToggleContainer.scss'
 
-
-export const MenuToggleContainer: React.FC = ({children}) => {
-    
+interface props{
+    children?: React.ReactNode,
+    transition?: any
+    k?:string
+}
+export const MenuToggleContainer: React.FC<props> = ({children, transition, k}) => {
     return(
-        <div className="MenuToggleContainer">
+        <motion.div
+        key={k}
+        className="MenuToggleContainer"
+        initial="out"
+        animate="in"
+        exit="out"
+        variants={transition}
+        transition={{ type: "linear" }}
+             >
             {children}
-        </div>
+        </motion.div>
     )
 }

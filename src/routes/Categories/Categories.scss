@@ -1,43 +1,68 @@
+@import "../../styles/variables.scss";
 .Categories{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.3rem;
-    padding-top: 70px;
-    .Categories-link{
-        text-decoration: none;
+    padding: 1rem;
+    .Categories_title{
+        color: #fff;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        margin: 1rem;
+    }
+    .Categories_group{
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        // margin: 0 auto;
-        .Categories__item{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            letter-spacing: 0.5px;
-            width: 70%;
-            font-size: 1.2rem;
-            color: #fff;
-            background: #30444e;
-            border-radius: 1.5rem;
-            padding: 1rem 2rem;
-            margin: 0 auto;
-            text-shadow: 1px 1px 3px black;
-            box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+        .Categories-link{
+            text-decoration: none;
+            width: 100%;
+            margin: 0.5rem auto;
+            .Categories__item{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: #fff;
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+                background: #30444e;
+                border-radius: 1.5rem;
+                padding: 0.5rem 1.5rem;
+                text-shadow: 1px 1px 3px black;
+                box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+                margin-bottom: 0.5rem;
+                text-transform: capitalize;
+                font-weight: 600;
+                transition: 0.2s;
+                &:hover{
+                    background: #476370;
+                }
+                div{
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
         }
     }
     .singleChannelArrow{
-        // background: yellow;
-        width: 10%;
-        // margin: 0;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: rgb(230, 224, 224);
-        text-shadow: 2px 2px 5px black;
-        font-weight: 400;
-        p{
-            margin: 0;
+        color: #25C685;
+    }
+}
+@media only screen and (min-width: $smallDevices) {
+    .Categories{
+        .Categories_group{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            .Categories-link{
+                width: auto;
+                margin: 0.5rem 1rem;
+            }
         }
+    }
+}
+@media only screen and (min-width: $largeDevices) {
+    .Categories{
+        padding: 0 7rem;
     }
 }

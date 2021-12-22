@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import axios from "axios";
@@ -13,49 +13,51 @@ import { SuperButton } from "../../../components/Buttons/SuperButton/SuperButton
 import { async } from "@firebase/util";
 
 interface Props {
-  dep: boolean;
+  dep: boolean,
+  setDep?: any
 }
-interface User {
-  accessToken: string;
-  name: string;
-  pic: string;
-}
-export const ProfileWnd: React.FC<Props> = ({ dep }) => {
+
+export const ProfileWnd: React.FC<Props> = ({ dep, setDep }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth() 
-  const { profile } = useSelector((state: storeState) => state);
+  const { plans } = useSelector((state: storeState) => state);
+  const user = auth?.user
+  let [userPlan, setUserPlan] = useState<any>()
 
-  function errorGoogle(response) {
-    console.log(response);
-  }
   function logout() {
     dispatch(Logout(history, auth));
   }
+
+  useEffect(() => {
+    setUserPlan(auth?.user?.subscriptions?.map(x => plans.find(p => p.id === x.plan_id))[0])
+  },[])
   
-  const handleOnUpdateSubscriptions = async( value:String ) =>{
-    console.log(value);
-    let res = await axios.put(`${URL_BASE}/subscriptions`,{
-      email: auth?.user?.email,
-      status: value
-    })
+  // const handleOnUpdateSubscriptions = async( value:String ) =>{
+  //   console.log(value);
+  //   let res = await axios.put(`${URL_BASE}/subscriptions`,{
+  //     email: auth?.user?.email,
+  //     status: value
+  //   })
 
-    console.log(res.data)
-  }
-  const handleDestroy = async( value:String ) =>{
+  //   console.log(res.data)
+  // }
+  // const handleDestroy = async( value:String ) =>{
     
-    let res = await axios.delete(`${URL_BASE}/workspace/deleteall`)
+  //   let res = await axios.delete(`${URL_BASE}/workspace/deleteall`)
 
-  }
+  // }
 
-  return (
+  return (<>
     <div className={`profileWnd ${dep ? "profileWndDep" : ""}`}>
       <div className="profileWnd__user">
-        <img src={profile.pic} className="profileWnd__pic" />
+        <img src={user?.pic+''} className="profileWnd__pic" />
         <div className="profileWnd__info">
-          <span>{profile.name}</span>
-          <span>super admin</span>
+          <span>{user?.name}</span>
+          {userPlan ? <span className={`profileWnd__info-plan ${userPlan?.color}`}>{userPlan?.name}</span> 
+          : <span className="profileWnd__info-plan grey">No plan</span>}
+          <span className="profileWnd__info-plan grey">{user?.email}</span>
         </div>
       </div>
       
@@ -67,49 +69,7 @@ export const ProfileWnd: React.FC<Props> = ({ dep }) => {
           onLogoutSuccess={logout}
         />
       </div>
-      <SuperButton
-        name='activeSub'
-        value="authorized"
-        text='Active'
-        classes='profileWnd__activeSub'
-        handler={handleOnUpdateSubscriptions}
-      />
-      <SuperButton
-        name='pauseSub'
-        value="paused"
-        text='Pause'
-        classes='profileWnd__pauseSub'
-        handler={handleOnUpdateSubscriptions}
-      />
-      <SuperButton
-        name='cancelSub'
-        value="cancelled"
-        text='Cancel'
-        classes='profileWnd__cancelSub'
-        handler={handleOnUpdateSubscriptions}
-      />
-      <SuperButton
-        name='getBusinessAccount'
-        route="/payment"
-        text='Get business'
-        classes='profileWnd__cancelSub'
-      />
-      <SuperButton
-        name='Upload'
-        route="/uploadvideo"
-        text='Upload Video'
-        classes='profileWnd__cancelSub'
-      />
-       <SuperButton
-        name='destroySchemas'
-        value="destroyed"
-        text='Destroy'
-        classes='profileWnd__cancelSub'
-        handler={handleDestroy}
-      />
-      {/* <div className="profileWnd__cambiar">
-        <Link to="/payment"> Get a Business Account</Link>
-      </div> */}
     </div>
+    </>
   );
 };

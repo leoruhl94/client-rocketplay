@@ -1,54 +1,135 @@
 @import "../../styles/variables.scss";
 
-.singleChannel-outer-div{
-    background: $squareBackground;
-    padding: 16px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+.singleChannel-outer-div {
+  background: $squareBackground;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  .Channels__upload_button {
+    background: transparent;
+    font-size: 2rem;
+    border: none;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    color: #3DD598;
+    transition: 0.2s;
+    border-radius: 1rem;
+    &:hover{
+      background-color: #ffffff20;
+    }
+    span {
+      color: rgba(255, 255, 255, 0.884);
+      padding-right: 10px;
+      text-shadow: 1px 1px 3px black ;
+    }
+  }
+  .singleChannel__channelsGroup{
+    width: 100%;
+    .singleChannelDiv{
+      width: 100%;
+      transition: 0.2s;
+      &:hover{
+        background-color: #3b8b79;
+      }
+      .singleChannelText h2{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.singleChannelSuperContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  .awsChannels-flex-title-helper{
+    display: flex;
+    align-items: center;
+    .awsChannels-title-mapped{
+      // background: red;
+      width: 50%;
+      // display: none;
+      // position: absolute;
+      h4{
+        margin: 0;
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.884);
+        text-shadow: 1px 1px 3px black;
+        font-weight: 400;
+        padding-bottom: 1rem;
+      }
+    }
+  }
 }
 
 .channelsAddChannel2 {
-    margin: 0;
-    // margin-top: 2rem;
-    // background: blue;
+  margin: 0;
+  // margin-top: 2rem;
+  // background: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  h4 {
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px black;
+    font-weight: 400;
+    margin: 1rem;
+  }
+  button {
+    // font-weight: bold;
+    font-size: 2rem;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
-    h4 {
-        color: white;
-        font-size: 1.5rem;
-        text-shadow: 1px 1px 3px black;
-        font-weight: 400;
-        margin: 1rem;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: linear-gradient(180deg, #40df9f 0%, #3ed598 100%);
+    color: white;
+    text-shadow: 1px 1px 3px black;
+  }
+}
+@media only screen and (min-width: $mediumDevices) {
+  .singleChannel-outer-div{
+    width: 100%;
+    .singleChannel__channelsGroup{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .singleChannelDiv{
+        width: 29%;
+        margin: 1rem auto;
+      }
     }
-    button {
-        // font-weight: bold;
-        font-size: 2rem;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        outline: none;
-        border: none;
-        background: linear-gradient(180deg, #40DF9F 0%, #3ED598 100%);
-        color: white;
-        text-shadow: 1px 1px 3px black;
-    }
+  }
+}
+@media only screen and (min-width: $largeDevices) {
+  .singleChannel-outer-div{
+    width: 80%;
+  }
 }
 
-@media (min-width: 700px){
-    .singleChannel-outer-div{
-        width: 70%;
-        margin: 0 auto;
-    }
-}
 
-@media (min-width: 1024px){
-    .singleChannel-outer-div{
-        width: 50%;
-        margin: 0 auto;
-    }
-}
+// @media (min-width: 700px){
+//     .singleChannel-outer-div{
+//         width: 70%;
+//         margin: 0 auto;
+//     }
+// }
+
+// @media (min-width: 1024px){
+//     .singleChannel-outer-div{
+//         width: 50%;
+//         margin: 0 auto;
+//     }
+// }

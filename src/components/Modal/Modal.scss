@@ -1,0 +1,84 @@
+.Modal {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  // background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.Modal__open {
+  display: flex;
+}
+.ModalContainer {
+  position: relative;
+  background: linear-gradient(138.13deg, #22343c 25.87%, #1f2e35 100%);
+  min-width: 300px;
+  max-width: 90vw;
+  width: 95%;
+  min-height: 200px;
+  max-height: calc(100vh - 120px);
+  // max-height: 85vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 15px;
+  .Modal__title {
+    color: #e4e9f3;
+    margin: 0;
+    text-align: center;
+    margin-top: -1rem;
+    font-size: 1.5rem;
+    font-weight: 550;
+    margin-bottom: 0.5rem;
+  }
+  .Modal__button_close {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #96a7af;
+    z-index: 1;
+    &:hover {
+      font-size: 1.8rem;
+      color: #ff575f;
+    }
+  }
+}
+.fullWidth {
+  padding: 0 ;
+}
+
+@media (min-width:768px){
+  
+}
+
+// .Modal__container {
+//   display: block;
+//   // position: fixed;
+//   bottom: calc(0px + 40px);
+//   // left: 0px;
+//   min-height: calc(100vh - 100px);
+//   // height: 100%;
+//   width: 100%;
+//   padding: 5px;
+//   background-color: rgba(0, 0, 0, 0.342);
+//   // border-radius: 15px 15px 0 0;
+//   //animation: slideToTop 0.3s linear
+// }
+// // @keyframes slideToTop {
+// //     from {
+// //         bottom: -100vh;
+//     }
+//     to {
+//         bottom: 0;
+//     }
+// }

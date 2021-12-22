@@ -8,6 +8,7 @@ import { useAuth } from "../../../auth/useAuth";
 interface props {
   dep: boolean;
   handleAdd: any;
+  refreshWorkspace?: any;
 }
 interface Result {
   found: object | null;
@@ -21,7 +22,11 @@ interface Found {
   title?: String;
 }
 
-export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
+export const AddWorkspace: React.FC<props> = ({
+  dep,
+  handleAdd,
+  refreshWorkspace,
+}) => {
   let found: Found = {};
   const [search, setSearch] = useState("");
   const [result, setResult] = useState({ found: found, message: "" });
@@ -30,8 +35,9 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
     e.preventDefault();
     console.log("search", search);
     let res = await axios.get(`${URL_BASE}/workspace/find`, {
-      params: { code: search },
+      params: { code: search.split(" ").join("") },
     });
+    console.log("se busco: " + search.split(" ").join(""));
     setResult(res.data);
     console.log("result", res.data);
   };
@@ -43,14 +49,16 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
     let res = await axios.post(`${URL_BASE}/workspace/join`, {
       schemaName: result.found.name,
       userEmail: auth?.user?.email,
-      schemaTitle: result.found.title
+      schemaTitle: result.found.title,
     });
     console.log(res.data);
+
     if (res.status) {
       setSearch("");
       setResult({ found: found, message: "" });
+      refreshWorkspace();
       handleAdd(dep);
-    } 
+    }
   };
   function handleSearch(e) {
     e.preventDefault();
@@ -64,7 +72,7 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
       ) : null}
       <div className={"AddWorkspace" + (!dep ? " AddWorkspace__dep" : "")}>
         <div className="AddWorkspace__container">
-          <h2 className="AddWorkspace__title">Add Workspace</h2>
+          <h2 className="AddWorkspace__title">Join a Workspace</h2>
           <form className="AddWorkspace__form" onSubmit={handleSubmit}>
             <input
               type="text"
@@ -97,7 +105,7 @@ export const AddWorkspace: React.FC<props> = ({ dep, handleAdd }) => {
               </button>
               {result?.found?.name ? (
                 <button
-                  className="AddWorkspace__result-btn"
+                  className="AddWorkspace__form-btn"
                   type="button"
                   onClick={handleJoin}
                 >

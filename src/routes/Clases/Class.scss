@@ -2,8 +2,8 @@
 
 .class-super-container{
     margin: 0;
-    padding: 16px;
-    padding: 50px 0;
+    padding: 16px 0 50px 0;
+    // padding: 50px 0;
     height: 95vh;
     .class-title{
         color: white;
@@ -13,12 +13,27 @@
         text-shadow: 1px 1px 3px black;
         margin-bottom: 2rem;
         border-bottom: 3px solid white;
+        text-transform: capitalize;
+        h1{
+            margin: 0.5rem;
+            margin-bottom: 0.7rem;
+        }
     }
     .class-video-super-container{
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(320px, 1fr));
         gap: 1rem;
         padding-bottom: 60px;
+    }
+}
+.class-no-videos-found-div{
+    background: $squareBackground;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    .class-no-videos-found{
+        color: white;
+        // margin: 0 auto;
     }
 }
 
