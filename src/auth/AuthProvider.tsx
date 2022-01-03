@@ -55,12 +55,12 @@ function AuthProvider({ children }) {
     user,
     async login(tokens) {
       try {
-        let res = await axios.get(
-          `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
-        );
         /* let res = await axios.get(
-          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${token}`
-          ); */
+          `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
+        ); */
+        let res = await axios.get(
+          `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${tokens.id_token}`
+          );
         let userInfo: User = {
           name: res?.data.name,
           pic: res?.data.picture,
